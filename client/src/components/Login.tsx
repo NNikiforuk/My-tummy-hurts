@@ -1,12 +1,13 @@
-const Login = () => {
-  return (
-    <section className='login'>
-        <h1>Log in</h1>
-        <form>
-            
-        </form>
-    </section>
-  )
-}
+import { Button } from "./Button";
 
-export default Login
+const Login = () => {
+	return (
+		<section className="login">
+			<h1>Log in</h1>
+			<form></form>
+			<Button label="niki"  />
+		</section>
+	);
+};
+
+export default Login;

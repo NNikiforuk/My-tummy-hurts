@@ -1,16 +1,15 @@
-import { useState } from "react";
 import { Button } from "./Button";
 import { Input } from "./Input";
+import { useDispatch, useSelector } from "react-redux";
+import { setInputs } from "../redux/login/inputsSlice";
+import { RootState } from "../redux/store";
 
 const Login = () => {
-	const [inputsValue, setInputValue] = useState({
-		email: "",
-		password: "",
-	});
-	const { email, password } = inputsValue;
+	const dispatch = useDispatch();
+	const inputs = useSelector((state: RootState) => state.inputs);
 
-	const onChange = (e: { target: { name: string; value: string } }) => {
-		setInputValue({ ...inputsValue, [e.target.name]: e.target.value });
+	const handleChange = (e: any) => {
+		dispatch(setInputs({ field: e.target.name, value: e.target.value }));
 	};
 
 	const onSubmitForm = () => {};
@@ -23,16 +22,16 @@ const Login = () => {
 					type="email"
 					name="email"
 					placeholder="Enter e-mail"
-					value={email}
-					onChange={(e) => onChange(e)}
+					value={inputs.email}
+					onChange={handleChange}
 					label="Email"
 				/>
 				<Input
 					type="password"
 					name="password"
 					placeholder="Enter password"
-					value={password}
-					onChange={(e) => onChange(e)}
+					value={inputs.password}
+					onChange={handleChange}
 					label="Password"
 				/>
 			</form>

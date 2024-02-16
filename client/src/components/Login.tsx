@@ -5,7 +5,7 @@ const Login = () => {
 		<section className="login">
 			<h1>Log in</h1>
 			<form></form>
-			<Button label="niki"  />
+			<Button label="niki" />
 		</section>
 	);
 };

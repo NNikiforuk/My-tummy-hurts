@@ -13,6 +13,5 @@ export const FirstStory: Story = {
 	args: {
 		color: "error",
 		label: "Error button",
-		disabled: true
 	},
 };

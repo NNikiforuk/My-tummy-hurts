@@ -1,6 +1,6 @@
 import "./App.scss";
 import Login from "./components/Login";
-import Logo from "./components/Logo";
+import Logo from "./components/Logo/Logo";
 
 function App() {
 	return (

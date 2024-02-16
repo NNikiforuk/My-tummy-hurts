@@ -1,0 +1,18 @@
+@use "../../variables/colors";
+@use "../../variables/fonts";
+
+.logo {
+	font-weight: bold;
+	color: colors.$black;
+
+	&__figure {
+		color: colors.$dark-blue;
+		font-size: fonts.$font-size-s;
+		display: inline-block;
+		transform: rotate(5deg);
+		padding: 0 10px;
+		margin: 0 8px;
+		background-color: rgba(colors.$gray, 0.1);
+		border-bottom: 1px solid colors.$dark-blue;
+	}
+}

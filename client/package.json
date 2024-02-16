@@ -17,8 +17,11 @@
     "@fontsource/material-icons": "^5.0.12",
     "@fontsource/roboto": "^5.0.8",
     "@mui/material": "^5.15.10",
+    "@reduxjs/toolkit": "^2.2.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-redux": "^9.1.0",
+    "redux": "^5.0.1"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.6.16",
@@ -27,6 +30,7 @@
     "@storybook/addon-onboarding": "^1.0.11",
     "@storybook/addon-themes": "^7.6.16",
     "@storybook/blocks": "^7.6.16",
+    "@storybook/builder-vite": "^7.6.16",
     "@storybook/react": "^7.6.16",
     "@storybook/react-vite": "^7.6.16",
     "@storybook/test": "^7.6.16",

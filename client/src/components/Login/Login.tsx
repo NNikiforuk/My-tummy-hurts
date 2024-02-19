@@ -1,17 +1,17 @@
 import { Button } from "../Button";
 import { Input } from "../Input";
 import { useDispatch, useSelector } from "react-redux";
-import { setInputs } from "../../redux/login/inputsSlice";
+import { setLoginInputs } from "../../redux/login/inputsLoginSlice";
 import { RootState } from "../../redux/store";
 import "./login.scss";
 import { Link } from "react-router-dom";
 
 const Login = () => {
 	const dispatch = useDispatch();
-	const inputs = useSelector((state: RootState) => state.inputs);
+	const inputs = useSelector((state: RootState) => state.inputsLogin);
 
 	const handleChange = (e: any) => {
-		dispatch(setInputs({ field: e.target.name, value: e.target.value }));
+		dispatch(setLoginInputs({ field: e.target.name, value: e.target.value }));
 	};
 
 	const onSubmitForm = () => {};

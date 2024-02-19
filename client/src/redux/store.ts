@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import inputsReducer from "./login/inputsSlice";
+import inputsReducerLogin from "./login/inputsLoginSlice";
+import inputsReducerRegister from "./register/inputsRegisterSlice";
 
 export const store = configureStore({
 	reducer: {
-		inputs: inputsReducer,
+		inputsLogin: inputsReducerLogin,
+		inputsRegister: inputsReducerRegister,
 	},
 });
 

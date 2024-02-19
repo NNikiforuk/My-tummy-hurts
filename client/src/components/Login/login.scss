@@ -1,0 +1,44 @@
+@use "../../variables/colors";
+@use "../../variables/fonts";
+
+.login {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 25px;
+
+	&__inputs {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
+
+	&__reroute {
+		text-align: center;
+		margin-top: 30px;
+
+		a {
+			text-decoration: none;
+			color: colors.$gray;
+			font-weight: bold;
+		}
+	}
+}
+
+@media only screen and (min-width: 768px) {
+	.login {
+		gap: 45px;
+		margin-top: 40px;
+
+		&__inputs {
+			gap: 40px;
+		}
+
+		&__reroute {
+			text-align: center;
+			margin-top: 30px;
+			font-size: fonts.$font-size-m;
+		}
+	}
+}

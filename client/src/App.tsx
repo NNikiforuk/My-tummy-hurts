@@ -1,15 +1,20 @@
+import { Route, Routes } from "react-router-dom";
 import "./App.scss";
-import Login from "./components/Login";
+import Login from "./components/Login/Login";
 import Logo from "./components/Logo/Logo";
 
 function App() {
 	return (
-		<main className="app">
+		<div className="app">
 			<header>
 				<Logo />
 			</header>
-			<Login />
-		</main>
+			<main className="app__main">
+				<Routes>
+					<Route index element={<Login />} />
+				</Routes>
+			</main>
+		</div>
 	);
 }
 

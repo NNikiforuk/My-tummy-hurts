@@ -5,6 +5,7 @@ import "../Login/login.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { setRegisterInputs } from "../../redux/register/inputsRegisterSlice";
+import { FormEvent } from "react";
 
 const Register = () => {
 	const dispatch = useDispatch();
@@ -16,7 +17,9 @@ const Register = () => {
 		);
 	};
 
-	const onSubmitForm = () => {};
+	const onSubmitForm = async (e: FormEvent<Element>) => {
+		e.preventDefault();
+	};
 
 	return (
 		<section className="register">
@@ -50,7 +53,12 @@ const Register = () => {
 					/>
 				</div>
 			</form>
-			<Button label="Register" color="primary" size="small" variant="contained" />
+			<Button
+				label="Register"
+				color="primary"
+				size="small"
+				variant="contained"
+			/>
 			<div className="register__reroute">
 				<div>
 					I already have the <Link to="/">account</Link>

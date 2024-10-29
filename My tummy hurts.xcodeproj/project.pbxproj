@@ -12,7 +12,8 @@
 		F527AB052CD051A600646133 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F527AB042CD051A600646133 /* Assets.xcassets */; };
 		F527AB082CD051A600646133 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F527AB072CD051A600646133 /* Preview Assets.xcassets */; };
 		F527AB102CD052CE00646133 /* pooData.json in Resources */ = {isa = PBXBuildFile; fileRef = F527AB0F2CD052CE00646133 /* pooData.json */; };
-		F527AB122CD11BC300646133 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = F527AB112CD11BC300646133 /* Data.swift */; };
+		F527AB142CD1207A00646133 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F527AB132CD1207A00646133 /* ModelData.swift */; };
+		F527AB162CD1212C00646133 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F527AB152CD1212C00646133 /* UserData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,7 +23,8 @@
 		F527AB042CD051A600646133 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F527AB072CD051A600646133 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F527AB0F2CD052CE00646133 /* pooData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pooData.json; sourceTree = "<group>"; };
-		F527AB112CD11BC300646133 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		F527AB132CD1207A00646133 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
+		F527AB152CD1212C00646133 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +59,8 @@
 			children = (
 				F527AB0E2CD0526800646133 /* Resources */,
 				F527AB002CD051A400646133 /* My_tummy_hurtsApp.swift */,
-				F527AB112CD11BC300646133 /* Data.swift */,
+				F527AB152CD1212C00646133 /* UserData.swift */,
+				F527AB132CD1207A00646133 /* ModelData.swift */,
 				F527AB022CD051A400646133 /* ContentView.swift */,
 				F527AB042CD051A600646133 /* Assets.xcassets */,
 				F527AB062CD051A600646133 /* Preview Content */,
@@ -153,7 +156,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F527AB032CD051A400646133 /* ContentView.swift in Sources */,
-				F527AB122CD11BC300646133 /* Data.swift in Sources */,
+				F527AB142CD1207A00646133 /* ModelData.swift in Sources */,
+				F527AB162CD1212C00646133 /* UserData.swift in Sources */,
 				F527AB012CD051A400646133 /* My_tummy_hurtsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

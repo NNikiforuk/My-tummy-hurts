@@ -1,56 +1,51 @@
 [
     {
-        "user": "Natalia",
-        "data": [
+        "date": "2024-01-21",
+        "entries": [
             {
-                "date": "2024-01-21",
-                "entries": [
+                "id": 1,
+                "type": "meal",
+                "time": "07:30",
+                "ingredients": ["eggs", "olive oil", "rye bread", "spinach"],
+                "symptoms": [
                     {
-                        "id": 1,
-                        "type": "meal",
-                        "time": "07:30",
-                        "ingredients": ["eggs", "olive oil", "rye bread", "spinach"],
-                        "symptoms": [
-                            {
-                                "time": "08:00",
-                                "description": "diarrhea"
-                            }
-                        ]
-                    },
+                        "time": "08:00",
+                        "description": "diarrhea"
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "type": "drink",
+                "time": "10:30",
+                "ingredients": ["coffee with milk"],
+                "symptoms": []
+            },
+            {
+                "id": 3,
+                "type": "meal",
+                "time": "13:00",
+                "ingredients": ["grilled chicken", "brown rice", "mixed vegetables"],
+                "symptoms": [
                     {
-                        "id": 2,
-                        "type": "drink",
-                        "time": "10:30",
-                        "ingredients": ["coffee with milk"],
-                        "symptoms": []
-                    },
+                        "time": "14:00",
+                        "description": "bloated"
+                    }
+                ]
+            },
+            {
+                "id": 4,
+                "type": "drink",
+                "time": "15:00",
+                "ingredients": ["green tea"],
+                "symptoms": [
                     {
-                        "id": 3,
-                        "type": "meal",
-                        "time": "13:00",
-                        "ingredients": ["grilled chicken", "brown rice", "mixed vegetables"],
-                        "symptoms": [
-                            {
-                                "time": "14:00",
-                                "description": "bloated"
-                            }
-                        ]
-                    },
-                    {
-                        "id": 4,
-                        "type": "drink",
-                        "time": "15:00",
-                        "ingredients": ["green tea"],
-                        "symptoms": [
-                            {
-                                "time": "15:30",
-                                "description": "stomach discomfort"
-                            }
-                        ]
+                        "time": "15:30",
+                        "description": "stomach discomfort"
                     }
                 ]
             }
         ]
     }
 ]
-
+ 

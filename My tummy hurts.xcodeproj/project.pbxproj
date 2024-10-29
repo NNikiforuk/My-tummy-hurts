@@ -57,6 +57,8 @@
 		F527AAFF2CD051A400646133 /* My tummy hurts */ = {
 			isa = PBXGroup;
 			children = (
+				F527AB182CD133FE00646133 /* Views */,
+				F527AB172CD133F600646133 /* Model */,
 				F527AB0E2CD0526800646133 /* Resources */,
 				F527AB002CD051A400646133 /* My_tummy_hurtsApp.swift */,
 				F527AB152CD1212C00646133 /* UserData.swift */,
@@ -84,6 +86,20 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		F527AB172CD133F600646133 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F527AB182CD133FE00646133 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -100,6 +116,8 @@
 			dependencies = (
 			);
 			name = "My tummy hurts";
+			packageProductDependencies = (
+			);
 			productName = "My tummy hurts";
 			productReference = F527AAFD2CD051A400646133 /* My tummy hurts.app */;
 			productType = "com.apple.product-type.application";
@@ -128,6 +146,8 @@
 				Base,
 			);
 			mainGroup = F527AAF42CD051A400646133;
+			packageReferences = (
+			);
 			productRefGroup = F527AAFE2CD051A400646133 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

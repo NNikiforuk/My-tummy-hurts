@@ -14,6 +14,8 @@
 		F527AB102CD052CE00646133 /* pooData.json in Resources */ = {isa = PBXBuildFile; fileRef = F527AB0F2CD052CE00646133 /* pooData.json */; };
 		F527AB142CD1207A00646133 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F527AB132CD1207A00646133 /* ModelData.swift */; };
 		F527AB162CD1212C00646133 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F527AB152CD1212C00646133 /* UserData.swift */; };
+		F527AB252CD1924D00646133 /* CalendarDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F527AB242CD1924D00646133 /* CalendarDate.swift */; };
+		F527AB292CD1965E00646133 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F527AB282CD1965E00646133 /* CalendarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +27,8 @@
 		F527AB0F2CD052CE00646133 /* pooData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pooData.json; sourceTree = "<group>"; };
 		F527AB132CD1207A00646133 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		F527AB152CD1212C00646133 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		F527AB242CD1924D00646133 /* CalendarDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDate.swift; sourceTree = "<group>"; };
+		F527AB282CD1965E00646133 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +93,7 @@
 		F527AB172CD133F600646133 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F527AB242CD1924D00646133 /* CalendarDate.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -96,6 +101,7 @@
 		F527AB182CD133FE00646133 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F527AB282CD1965E00646133 /* CalendarView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -176,7 +182,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F527AB032CD051A400646133 /* ContentView.swift in Sources */,
+				F527AB292CD1965E00646133 /* CalendarView.swift in Sources */,
 				F527AB142CD1207A00646133 /* ModelData.swift in Sources */,
+				F527AB252CD1924D00646133 /* CalendarDate.swift in Sources */,
 				F527AB162CD1212C00646133 /* UserData.swift in Sources */,
 				F527AB012CD051A400646133 /* My_tummy_hurtsApp.swift in Sources */,
 			);

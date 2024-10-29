@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct CalendarDate: Identifiable {
+    var id = UUID()
+    var day: Int
+    var date: Date
+}

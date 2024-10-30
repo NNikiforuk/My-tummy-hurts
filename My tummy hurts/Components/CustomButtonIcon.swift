@@ -16,8 +16,8 @@ struct CustomButtonIcon: View {
             Image(systemName: iconName)
                 .resizable()
                 .scaledToFill()
-                .frame(width: 45, height: 45)
-                .foregroundColor(.yellow)
+                .frame(width: 40, height: 40)
+                .foregroundColor(.brown.opacity(0.6))
         }
     }
 }

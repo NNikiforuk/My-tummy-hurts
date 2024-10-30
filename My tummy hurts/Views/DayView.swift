@@ -8,19 +8,13 @@
 import SwiftUI
 
 struct DayView: View {
+    
     var body: some View {
         VStack {
-            HStack {
-                Text("30 October 2024")
-                    .font(.title.bold())
-                Button {
-                    
-                } label: {
-                    Image(systemName: "questionmark.circle.fill")
-                }
-            }
+            Text("30 October 2024")
+                .font(.title.bold())
         }
-        
+        .navigationTitle("Daily symptopms")
     }
 }
 

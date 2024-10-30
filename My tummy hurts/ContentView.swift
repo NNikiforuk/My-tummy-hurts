@@ -34,10 +34,19 @@ struct ContentView: View {
                 .clipShape(.capsule)
                 .foregroundStyle(.white)
                 .bold()
+                
+                NavigationLink {
+                    FAQ()
+                } label: {
+                    Text("FAQ")
+                        .foregroundColor(.yellow)
+                        .bold()
             }
-            .navigationTitle("Home")
-            .navigationBarTitleDisplayMode(.inline)
+            }
+                .navigationTitle("Home")
+                .navigationBarTitleDisplayMode(.inline)
         }
+        .padding()
     }
 }
 

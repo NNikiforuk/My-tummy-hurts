@@ -30,15 +30,6 @@ struct FAQ: View {
                     Text("\(info.id)")
                         .font(.system(size: 20, weight: .bold))
                         .foregroundStyle(.brown)
-//                        .background(
-//                            Circle()
-//                                .stroke(
-//                                    Color.brown.opacity(0.8),
-//                                    style: StrokeStyle(
-//                                        lineWidth: 3
-//                                    )
-//                                )
-//                        )
                     Text(info.text)
                 }
             }

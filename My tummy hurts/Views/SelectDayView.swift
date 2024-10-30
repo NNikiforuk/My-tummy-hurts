@@ -18,7 +18,6 @@ struct SelectDayView: View {
             .padding(.vertical, 30)
         }
         .padding()
-        .navigationTitle("Select a day")
     }
 }
 

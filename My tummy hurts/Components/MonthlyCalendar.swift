@@ -38,12 +38,12 @@ struct MonthlyCalendar: View {
             LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7)) {
                 ForEach(fetchDates()) { calendarDate in
                     if calendarDate.day == 0 {
-                        Text("")
+                        Color.clear
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 8)
                     } else {
                         NavigationLink {
-                            DayView()
+                            DayView(selectedDate: calendarDate.date, selectedDay: calendarDate.day)
                         } label: {
                             Text("\(calendarDate.day)")
                                 .foregroundStyle(.black)

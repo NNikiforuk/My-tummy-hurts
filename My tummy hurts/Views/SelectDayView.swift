@@ -12,15 +12,13 @@ struct SelectDayView: View {
     
     var body: some View {
         VStack {
-            
             VStack {
-                CalendarView(selectedMonth: $selectedMonth)
+                MonthlyCalendar(selectedMonth: $selectedMonth)
             }
             .padding(.vertical, 30)
         }
         .padding()
         .navigationTitle("Select a day")
-        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

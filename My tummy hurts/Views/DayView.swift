@@ -11,27 +11,16 @@ struct DayView: View {
     var body: some View {
         VStack {
             HStack {
-                VStack(alignment: .leading) {
-                    Text("30 October 2024")
-                        .font(.title.bold())
-                    Text("List of meals, drinks + symptoms after")
-                }
-                Spacer()
+                Text("30 October 2024")
+                    .font(.title.bold())
                 Button {
                     
                 } label: {
-                    Image(systemName: "plus.circle.fill")
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 45, height: 45)
-                        .foregroundColor(.yellow)
+                    Image(systemName: "questionmark.circle.fill")
                 }
             }
-            VStack {
-                
-            }
         }
-        .padding()
+        
     }
 }
 

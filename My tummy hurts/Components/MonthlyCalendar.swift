@@ -8,7 +8,7 @@
 import SwiftUI
 import Foundation
 
-struct CalendarView: View {
+struct MonthlyCalendar: View {
     @Binding var selectedMonth: Int
     let days = ["Mon", "Tue", "We", "Thu", "Fri", "Sat", "Sun"]
     
@@ -16,12 +16,16 @@ struct CalendarView: View {
         VStack(spacing: 20) {
             HStack {
                 Spacer()
-                CustomButtonIcon(iconName: "arrowtriangle.backward.circle.fill", clicked: {withAnimation { selectedMonth -= 1} })
+                CustomButtonIcon(iconName: "arrowtriangle.backward.circle.fill") {
+                    selectedMonth -= 1
+                }
                 Spacer()
                 Text(getMonthYearString())
                     .font(.title2)
                 Spacer()
-                CustomButtonIcon(iconName: "arrowtriangle.forward.circle.fill", clicked: {withAnimation { selectedMonth += 1} })
+                CustomButtonIcon(iconName: "arrowtriangle.forward.circle.fill") {
+                    selectedMonth += 1
+                }
                 Spacer()
             }
             HStack {
@@ -108,6 +112,6 @@ struct CalendarView: View {
 }
 
 #Preview {
-    CalendarView(selectedMonth: .constant(0))
+    MonthlyCalendar(selectedMonth: .constant(0))
 }
 

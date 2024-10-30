@@ -8,11 +8,20 @@
 import SwiftUI
 
 struct CustomButtonIcon: View {
+    var iconName: String
+    var clicked: () -> Void
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button(action: clicked) {
+            Image(systemName: iconName)
+                .resizable()
+                .scaledToFill()
+                .frame(width: 45, height: 45)
+                .foregroundColor(.yellow)
+        }
     }
 }
 
 #Preview {
-    CustomButtonIcon()
+    CustomButtonIcon(iconName: "swift", clicked: {})
 }

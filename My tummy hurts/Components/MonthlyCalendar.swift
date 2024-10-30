@@ -14,36 +14,14 @@ struct CalendarView: View {
     
     var body: some View {
         VStack(spacing: 20) {
-            Text("Select a day")
-                .font(.title2.bold())
             HStack {
                 Spacer()
-                Button {
-                    withAnimation {
-                        selectedMonth -= 1
-                    }
-                } label: {
-                    Image(systemName: "arrowtriangle.backward.circle.fill")
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 45, height: 45)
-                        .foregroundColor(.yellow)
-                }
+                CustomButtonIcon(iconName: "arrowtriangle.backward.circle.fill", clicked: {withAnimation { selectedMonth -= 1} })
                 Spacer()
                 Text(getMonthYearString())
                     .font(.title2)
                 Spacer()
-                Button {
-                    withAnimation {
-                        selectedMonth += 1
-                    }
-                } label: {
-                    Image(systemName: "arrowtriangle.forward.circle.fill")
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 45, height: 45)
-                        .foregroundColor(.yellow)
-                }
+                CustomButtonIcon(iconName: "arrowtriangle.forward.circle.fill", clicked: {withAnimation { selectedMonth += 1} })
                 Spacer()
             }
             HStack {

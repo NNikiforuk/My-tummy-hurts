@@ -8,28 +8,36 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var selectedMonth: Int = 0
     
     var body: some View {
-        VStack {
-            HStack {
-                Image("logo")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 70, height: 70)
-                VStack(alignment: .leading) {
-                    Text("My tummy")
-                        .font(.title.bold())
-                        .foregroundStyle(.brown)
-                    Text("hurts")
-                        .font(.title.bold())
-                        .foregroundStyle(.brown)
+        NavigationStack {
+            VStack(spacing: 40) {
+                HStack {
+                    Image("logo")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 70, height: 70)
+                    VStack(alignment: .leading) {
+                        Text("My tummy")
+                            .font(.title.bold())
+                            .foregroundStyle(.brown)
+                        Text("hurts")
+                            .font(.title.bold())
+                            .foregroundStyle(.brown)
+                    }
                 }
+                NavigationLink("Let's try to check why") {
+                    SelectDayView()
+                }
+                .padding()
+                .background(.brown)
+                .clipShape(.capsule)
+                .foregroundStyle(.white)
+                .bold()
             }
-            Divider()
-            CalendarView(selectedMonth: $selectedMonth)
+            .navigationTitle("Home")
+            .navigationBarTitleDisplayMode(.inline)
         }
-        .padding()
     }
 }
 

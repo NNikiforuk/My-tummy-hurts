@@ -60,20 +60,24 @@ struct CalendarView: View {
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 8)
                     } else {
-                        Text("\(calendarDate.day)")
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 8)
-                            .background(
-                                isToday(date: calendarDate.date) ?
-                                Circle().fill(Color.yellow.opacity(0.3)) :
-                                    nil
-                            )
+                        NavigationLink {
+                            DayView()
+                        } label: {
+                            Text("\(calendarDate.day)")
+                                .foregroundStyle(.black)
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 8)
+                                .background(
+                                    isToday(date: calendarDate.date) ?
+                                    Circle().fill(Color.yellow.opacity(0.3)) :
+                                        nil
+                                )
+                        }
                     }
-                    
                 }
             }
-            Spacer()
         }
+        Spacer()
     }
     
     func getMonthYearString() -> String {

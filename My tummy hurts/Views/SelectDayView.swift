@@ -8,8 +8,19 @@
 import SwiftUI
 
 struct SelectDayView: View {
+    @State private var selectedMonth: Int = 0
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            
+            VStack {
+                CalendarView(selectedMonth: $selectedMonth)
+            }
+            .padding(.vertical, 30)
+        }
+        .padding()
+        .navigationTitle("Select a day")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

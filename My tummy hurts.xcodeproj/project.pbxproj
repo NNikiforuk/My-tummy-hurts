@@ -16,6 +16,8 @@
 		F527AB162CD1212C00646133 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F527AB152CD1212C00646133 /* UserData.swift */; };
 		F527AB252CD1924D00646133 /* CalendarDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F527AB242CD1924D00646133 /* CalendarDate.swift */; };
 		F527AB292CD1965E00646133 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F527AB282CD1965E00646133 /* CalendarView.swift */; };
+		F527AB2B2CD197AF00646133 /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F527AB2A2CD197AF00646133 /* DayView.swift */; };
+		F527AB2D2CD24D7500646133 /* SelectDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F527AB2C2CD24D7500646133 /* SelectDayView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,8 @@
 		F527AB152CD1212C00646133 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		F527AB242CD1924D00646133 /* CalendarDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDate.swift; sourceTree = "<group>"; };
 		F527AB282CD1965E00646133 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		F527AB2A2CD197AF00646133 /* DayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
+		F527AB2C2CD24D7500646133 /* SelectDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDayView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +106,8 @@
 			isa = PBXGroup;
 			children = (
 				F527AB282CD1965E00646133 /* CalendarView.swift */,
+				F527AB2A2CD197AF00646133 /* DayView.swift */,
+				F527AB2C2CD24D7500646133 /* SelectDayView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -181,12 +187,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F527AB2B2CD197AF00646133 /* DayView.swift in Sources */,
 				F527AB032CD051A400646133 /* ContentView.swift in Sources */,
 				F527AB292CD1965E00646133 /* CalendarView.swift in Sources */,
 				F527AB142CD1207A00646133 /* ModelData.swift in Sources */,
 				F527AB252CD1924D00646133 /* CalendarDate.swift in Sources */,
 				F527AB162CD1212C00646133 /* UserData.swift in Sources */,
 				F527AB012CD051A400646133 /* My_tummy_hurtsApp.swift in Sources */,
+				F527AB2D2CD24D7500646133 /* SelectDayView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

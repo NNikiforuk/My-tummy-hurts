@@ -1,10 +1,9 @@
 [
     {
-        "date": "2024-01-21",
+        "date": "30/10/2024",
         "entries": [
             {
                 "id": 1,
-                "type": "meal",
                 "time": "07:30",
                 "ingredients": ["eggs", "olive oil", "rye bread", "spinach"],
                 "symptoms": [
@@ -16,14 +15,12 @@
             },
             {
                 "id": 2,
-                "type": "drink",
                 "time": "10:30",
                 "ingredients": ["coffee with milk"],
                 "symptoms": []
             },
             {
                 "id": 3,
-                "type": "meal",
                 "time": "13:00",
                 "ingredients": ["grilled chicken", "brown rice", "mixed vegetables"],
                 "symptoms": [
@@ -35,9 +32,8 @@
             },
             {
                 "id": 4,
-                "type": "drink",
                 "time": "15:00",
-                "ingredients": ["green tea"],
+                "ingredients": ["pepsi"],
                 "symptoms": [
                     {
                         "time": "15:30",

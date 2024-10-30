@@ -4,43 +4,53 @@
         "entries": [
             {
                 "id": 1,
-                "time": "07:30",
-                "ingredients": ["eggs", "olive oil", "rye bread", "spinach"],
-                "symptoms": [
-                    {
-                        "time": "08:00",
-                        "description": "diarrhea"
-                    }
-                ]
+                "meal":
+                {
+                    "time": "07:30",
+                    "ingredients": ["eggs", "olive oil", "rye bread", "spinach"],
+                },
+                "symptom":
+                {
+                    "time": "08:00",
+                    "description": ["diarrhea"]
+                }
             },
             {
                 "id": 2,
-                "time": "10:30",
-                "ingredients": ["coffee with milk"],
-                "symptoms": []
+                "meal":
+                {
+                    "time": "10:30",
+                    "ingredients": ["coffee with milk"],
+                },
+                "symptom": {}
             },
             {
                 "id": 3,
-                "time": "13:00",
-                "ingredients": ["grilled chicken", "brown rice", "mixed vegetables"],
-                "symptoms": [
-                    {
-                        "time": "14:00",
-                        "description": "bloated"
-                    }
-                ]
+                "meal":
+                {
+                    "time": "13:00",
+                    "ingredients": ["grilled chicken", "brown rice", "mixed vegetables"],
+                },
+                "symptom":
+                {
+                    "time": "14:00",
+                    "description": ["bloated"]
+                }
             },
             {
                 "id": 4,
-                "time": "15:00",
-                "ingredients": ["pepsi"],
-                "symptoms": [
-                    {
-                        "time": "15:30",
-                        "description": "stomach discomfort"
-                    }
-                ]
-            }
+                "meal":
+                {
+                    "time": "15:30",
+                    "ingredients": ["pepsi"],
+                },
+                "symptom":
+                {
+                    "time": "15:50",
+                    "description": ["stomach discomfort"]
+                }
+            },
+            
         ]
     }
 ]

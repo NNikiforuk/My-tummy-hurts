@@ -15,8 +15,8 @@ struct Info: Identifiable {
 struct FAQ: View {
     let infos: [Info] = [
         Info(id: 1, text: "Choose a given calendar day"),
-        Info(id: 2, text: "Throughout the day, write down the foods and drinks you consume and at what time"),
-        Info(id: 3, text: "Try to write down all the ingredients of the foods and drinks. You can leave out the neutral ones such as water"),
+        Info(id: 2, text: "Throughout the day, write down the ingredients of the meals and drinks you consume and at what times"),
+        Info(id: 3, text: "Try to write down all of them, in the same way. You can leave out the neutral ones such as water"),
         Info(id: 4, text: "If any negative symptopms appear, come back here and add them after a particular meal"),
         Info(id: 5, text: "Example of symptopms: diarrhea, abdominal pain, constipation, vomiting, nausea, stomach pain, etc."),
         Info(id: 6, text: "Collect all the data. Based on them, we will check whether there is a possibility of a reaction to a particular component of your diet"),

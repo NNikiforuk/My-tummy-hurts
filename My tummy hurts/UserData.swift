@@ -13,16 +13,17 @@ struct UserData: Codable, Hashable {
     
     struct Entry: Codable, Hashable {
         var id: Int
-        var type: String
-        var time: String
-        var ingredients: [String]
-        var symptoms: [Symptom]
+        var meal: Meal
+        var symptom: Symptom
+        
+        struct Meal: Codable, Hashable {
+            var time: String
+            var ingredients: [String]
+        }
         
         struct Symptom: Codable, Hashable {
             var time: String
-            var description: String
+            var description: [String]
         }
     }
 }
-
-

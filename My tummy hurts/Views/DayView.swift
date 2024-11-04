@@ -11,9 +11,11 @@ struct DayView: View {
     let selectedDate: Date
     let selectedDay: Int
     
-    @State private var symptoms: String = ""
-    @State private var ingredients: String = ""
     @State private var showingAddView: Bool = true
+    @State private var mealTime: Date = Date()
+    @State private var ingredients: String = ""
+    @State private var symptomTime: Date = Date()
+    @State private var symptoms: String = ""
     
     var body: some View {
         NavigationStack {
@@ -94,12 +96,34 @@ struct DayView: View {
                     }
                     VStack {
                         Form {
-                            
+                            Section("MEAL") {
+                                DatePicker(
+                                "Meal time",
+                                selection: $mealTime,
+                                displayedComponents: [.date, .hourAndMinute]
+                                )
+                                TextField(
+                                        "Ingredients: rye bread, cow milk",
+                                        text: $ingredients
+                                    )
+                            }
+                            Section("SYMPTOMS") {
+                                DatePicker(
+                                "Symptom time",
+                                selection: $symptomTime,
+                                displayedComponents: [.date, .hourAndMinute]
+                                )
+                                TextField(
+                                        "Symptoms: diarhhea, nusea",
+                                        text: $symptoms
+                                    )
+                            }
                         }
                     }
                     Spacer()
                 }
                 .presentationDetents([.medium, .large])
+                .padding(.top, 20)
                 .padding()
             }
         }

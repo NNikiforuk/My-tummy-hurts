@@ -11,15 +11,13 @@
 		F527AB032CD051A400646133 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F527AB022CD051A400646133 /* ContentView.swift */; };
 		F527AB052CD051A600646133 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F527AB042CD051A600646133 /* Assets.xcassets */; };
 		F527AB082CD051A600646133 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F527AB072CD051A600646133 /* Preview Assets.xcassets */; };
-		F527AB102CD052CE00646133 /* pooData.json in Resources */ = {isa = PBXBuildFile; fileRef = F527AB0F2CD052CE00646133 /* pooData.json */; };
-		F527AB142CD1207A00646133 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F527AB132CD1207A00646133 /* ModelData.swift */; };
-		F527AB162CD1212C00646133 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F527AB152CD1212C00646133 /* UserData.swift */; };
 		F527AB252CD1924D00646133 /* CalendarDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F527AB242CD1924D00646133 /* CalendarDate.swift */; };
 		F527AB292CD1965E00646133 /* MonthlyCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F527AB282CD1965E00646133 /* MonthlyCalendar.swift */; };
 		F527AB2B2CD197AF00646133 /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F527AB2A2CD197AF00646133 /* DayView.swift */; };
 		F527AB2D2CD24D7500646133 /* SelectDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F527AB2C2CD24D7500646133 /* SelectDayView.swift */; };
 		F527AB342CD257AE00646133 /* CustomButtonIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = F527AB332CD257AE00646133 /* CustomButtonIcon.swift */; };
 		F527AB362CD25E3300646133 /* FAQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = F527AB352CD25E3300646133 /* FAQ.swift */; };
+		F5F01EE32CD9293000697389 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F01EE22CD9293000697389 /* Day.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,15 +26,13 @@
 		F527AB022CD051A400646133 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F527AB042CD051A600646133 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F527AB072CD051A600646133 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		F527AB0F2CD052CE00646133 /* pooData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pooData.json; sourceTree = "<group>"; };
-		F527AB132CD1207A00646133 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
-		F527AB152CD1212C00646133 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		F527AB242CD1924D00646133 /* CalendarDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDate.swift; sourceTree = "<group>"; };
 		F527AB282CD1965E00646133 /* MonthlyCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyCalendar.swift; sourceTree = "<group>"; };
 		F527AB2A2CD197AF00646133 /* DayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
 		F527AB2C2CD24D7500646133 /* SelectDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDayView.swift; sourceTree = "<group>"; };
 		F527AB332CD257AE00646133 /* CustomButtonIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonIcon.swift; sourceTree = "<group>"; };
 		F527AB352CD25E3300646133 /* FAQ.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQ.swift; sourceTree = "<group>"; };
+		F5F01EE22CD9293000697389 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,10 +68,7 @@
 				F527AB2E2CD255EB00646133 /* Components */,
 				F527AB182CD133FE00646133 /* Views */,
 				F527AB172CD133F600646133 /* Model */,
-				F527AB0E2CD0526800646133 /* Resources */,
 				F527AB002CD051A400646133 /* My_tummy_hurtsApp.swift */,
-				F527AB152CD1212C00646133 /* UserData.swift */,
-				F527AB132CD1207A00646133 /* ModelData.swift */,
 				F527AB022CD051A400646133 /* ContentView.swift */,
 				F527AB042CD051A600646133 /* Assets.xcassets */,
 				F527AB062CD051A600646133 /* Preview Content */,
@@ -91,18 +84,11 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		F527AB0E2CD0526800646133 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				F527AB0F2CD052CE00646133 /* pooData.json */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		F527AB172CD133F600646133 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				F527AB242CD1924D00646133 /* CalendarDate.swift */,
+				F5F01EE22CD9293000697389 /* Day.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -190,7 +176,6 @@
 			files = (
 				F527AB082CD051A600646133 /* Preview Assets.xcassets in Resources */,
 				F527AB052CD051A600646133 /* Assets.xcassets in Resources */,
-				F527AB102CD052CE00646133 /* pooData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,11 +190,10 @@
 				F527AB032CD051A400646133 /* ContentView.swift in Sources */,
 				F527AB292CD1965E00646133 /* MonthlyCalendar.swift in Sources */,
 				F527AB342CD257AE00646133 /* CustomButtonIcon.swift in Sources */,
-				F527AB142CD1207A00646133 /* ModelData.swift in Sources */,
 				F527AB252CD1924D00646133 /* CalendarDate.swift in Sources */,
-				F527AB162CD1212C00646133 /* UserData.swift in Sources */,
 				F527AB012CD051A400646133 /* My_tummy_hurtsApp.swift in Sources */,
 				F527AB362CD25E3300646133 /* FAQ.swift in Sources */,
+				F5F01EE32CD9293000697389 /* Day.swift in Sources */,
 				F527AB2D2CD24D7500646133 /* SelectDayView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

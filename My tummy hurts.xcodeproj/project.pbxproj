@@ -1,0 +1,563 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		F5B005422E68632700EA1DE2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F5B005242E68632500EA1DE2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F5B0052B2E68632500EA1DE2;
+			remoteInfo = "My tummy hurts";
+		};
+		F5B0054C2E68632700EA1DE2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F5B005242E68632500EA1DE2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F5B0052B2E68632500EA1DE2;
+			remoteInfo = "My tummy hurts";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F5B0052C2E68632500EA1DE2 /* My tummy hurts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My tummy hurts.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5B005412E68632700EA1DE2 /* My tummy hurtsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "My tummy hurtsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5B0054B2E68632700EA1DE2 /* My tummy hurtsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "My tummy hurtsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		F5B0052E2E68632500EA1DE2 /* My tummy hurts */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "My tummy hurts";
+			sourceTree = "<group>";
+		};
+		F5B005442E68632700EA1DE2 /* My tummy hurtsTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "My tummy hurtsTests";
+			sourceTree = "<group>";
+		};
+		F5B0054E2E68632700EA1DE2 /* My tummy hurtsUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "My tummy hurtsUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F5B005292E68632500EA1DE2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5B0053E2E68632700EA1DE2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5B005482E68632700EA1DE2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F5B005232E68632500EA1DE2 = {
+			isa = PBXGroup;
+			children = (
+				F5B0052E2E68632500EA1DE2 /* My tummy hurts */,
+				F5B005442E68632700EA1DE2 /* My tummy hurtsTests */,
+				F5B0054E2E68632700EA1DE2 /* My tummy hurtsUITests */,
+				F5B0052D2E68632500EA1DE2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F5B0052D2E68632500EA1DE2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F5B0052C2E68632500EA1DE2 /* My tummy hurts.app */,
+				F5B005412E68632700EA1DE2 /* My tummy hurtsTests.xctest */,
+				F5B0054B2E68632700EA1DE2 /* My tummy hurtsUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F5B0052B2E68632500EA1DE2 /* My tummy hurts */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F5B005552E68632700EA1DE2 /* Build configuration list for PBXNativeTarget "My tummy hurts" */;
+			buildPhases = (
+				F5B005282E68632500EA1DE2 /* Sources */,
+				F5B005292E68632500EA1DE2 /* Frameworks */,
+				F5B0052A2E68632500EA1DE2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				F5B0052E2E68632500EA1DE2 /* My tummy hurts */,
+			);
+			name = "My tummy hurts";
+			packageProductDependencies = (
+			);
+			productName = "My tummy hurts";
+			productReference = F5B0052C2E68632500EA1DE2 /* My tummy hurts.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F5B005402E68632700EA1DE2 /* My tummy hurtsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F5B005582E68632700EA1DE2 /* Build configuration list for PBXNativeTarget "My tummy hurtsTests" */;
+			buildPhases = (
+				F5B0053D2E68632700EA1DE2 /* Sources */,
+				F5B0053E2E68632700EA1DE2 /* Frameworks */,
+				F5B0053F2E68632700EA1DE2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F5B005432E68632700EA1DE2 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				F5B005442E68632700EA1DE2 /* My tummy hurtsTests */,
+			);
+			name = "My tummy hurtsTests";
+			packageProductDependencies = (
+			);
+			productName = "My tummy hurtsTests";
+			productReference = F5B005412E68632700EA1DE2 /* My tummy hurtsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F5B0054A2E68632700EA1DE2 /* My tummy hurtsUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F5B0055B2E68632700EA1DE2 /* Build configuration list for PBXNativeTarget "My tummy hurtsUITests" */;
+			buildPhases = (
+				F5B005472E68632700EA1DE2 /* Sources */,
+				F5B005482E68632700EA1DE2 /* Frameworks */,
+				F5B005492E68632700EA1DE2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F5B0054D2E68632700EA1DE2 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				F5B0054E2E68632700EA1DE2 /* My tummy hurtsUITests */,
+			);
+			name = "My tummy hurtsUITests";
+			packageProductDependencies = (
+			);
+			productName = "My tummy hurtsUITests";
+			productReference = F5B0054B2E68632700EA1DE2 /* My tummy hurtsUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F5B005242E68632500EA1DE2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1620;
+				LastUpgradeCheck = 1620;
+				TargetAttributes = {
+					F5B0052B2E68632500EA1DE2 = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					F5B005402E68632700EA1DE2 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = F5B0052B2E68632500EA1DE2;
+					};
+					F5B0054A2E68632700EA1DE2 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = F5B0052B2E68632500EA1DE2;
+					};
+				};
+			};
+			buildConfigurationList = F5B005272E68632500EA1DE2 /* Build configuration list for PBXProject "My tummy hurts" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F5B005232E68632500EA1DE2;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = F5B0052D2E68632500EA1DE2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F5B0052B2E68632500EA1DE2 /* My tummy hurts */,
+				F5B005402E68632700EA1DE2 /* My tummy hurtsTests */,
+				F5B0054A2E68632700EA1DE2 /* My tummy hurtsUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F5B0052A2E68632500EA1DE2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5B0053F2E68632700EA1DE2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5B005492E68632700EA1DE2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F5B005282E68632500EA1DE2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5B0053D2E68632700EA1DE2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5B005472E68632700EA1DE2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F5B005432E68632700EA1DE2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F5B0052B2E68632500EA1DE2 /* My tummy hurts */;
+			targetProxy = F5B005422E68632700EA1DE2 /* PBXContainerItemProxy */;
+		};
+		F5B0054D2E68632700EA1DE2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F5B0052B2E68632500EA1DE2 /* My tummy hurts */;
+			targetProxy = F5B0054C2E68632700EA1DE2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		F5B005532E68632700EA1DE2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F5B005542E68632700EA1DE2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F5B005562E68632700EA1DE2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"My tummy hurts/Preview Content\"";
+				DEVELOPMENT_TEAM = HCL5YVAR64;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "name.natalianikiforuk.My-tummy-hurts";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F5B005572E68632700EA1DE2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"My tummy hurts/Preview Content\"";
+				DEVELOPMENT_TEAM = HCL5YVAR64;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "name.natalianikiforuk.My-tummy-hurts";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F5B005592E68632700EA1DE2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HCL5YVAR64;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "name.natalianikiforuk.My-tummy-hurtsTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/My tummy hurts.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/My tummy hurts";
+			};
+			name = Debug;
+		};
+		F5B0055A2E68632700EA1DE2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HCL5YVAR64;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "name.natalianikiforuk.My-tummy-hurtsTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/My tummy hurts.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/My tummy hurts";
+			};
+			name = Release;
+		};
+		F5B0055C2E68632700EA1DE2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HCL5YVAR64;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "name.natalianikiforuk.My-tummy-hurtsUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "My tummy hurts";
+			};
+			name = Debug;
+		};
+		F5B0055D2E68632700EA1DE2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HCL5YVAR64;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "name.natalianikiforuk.My-tummy-hurtsUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "My tummy hurts";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F5B005272E68632500EA1DE2 /* Build configuration list for PBXProject "My tummy hurts" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F5B005532E68632700EA1DE2 /* Debug */,
+				F5B005542E68632700EA1DE2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F5B005552E68632700EA1DE2 /* Build configuration list for PBXNativeTarget "My tummy hurts" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F5B005562E68632700EA1DE2 /* Debug */,
+				F5B005572E68632700EA1DE2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F5B005582E68632700EA1DE2 /* Build configuration list for PBXNativeTarget "My tummy hurtsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F5B005592E68632700EA1DE2 /* Debug */,
+				F5B0055A2E68632700EA1DE2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F5B0055B2E68632700EA1DE2 /* Build configuration list for PBXNativeTarget "My tummy hurtsUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F5B0055C2E68632700EA1DE2 /* Debug */,
+				F5B0055D2E68632700EA1DE2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F5B005242E68632500EA1DE2 /* Project object */;
+}

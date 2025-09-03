@@ -67,7 +67,7 @@ struct PersistenceController {
         }
     }
     
-    func createMeal(ingredients: String) {
+    func createMealNote(ingredients: String) {
         let entity = MealNote(context: container.viewContext)
        
         entity.id = UUID()
@@ -77,7 +77,7 @@ struct PersistenceController {
         saveChanges()
     }
     
-    func create(symptoms: String) {
+    func createSymptomNote(symptoms: String) {
         let entity = SymptomNote(context: container.viewContext)
        
         entity.id = UUID()
@@ -88,7 +88,7 @@ struct PersistenceController {
         saveChanges()
     }
     
-    func readMealNote(predicateFormat: String? = nil, fetchLimit: Int? = nil) -> [MealNote] {
+    func readMealNotes(predicateFormat: String? = nil, fetchLimit: Int? = nil) -> [MealNote] {
         var results: [MealNote] = []
         let request = NSFetchRequest<MealNote>(entityName: "MealNote")
 
@@ -109,7 +109,7 @@ struct PersistenceController {
         return results
     }
     
-    func readSymptomNote(predicateFormat: String? = nil, fetchLimit: Int? = nil) -> [SymptomNote] {
+    func readSymptomNotes(predicateFormat: String? = nil, fetchLimit: Int? = nil) -> [SymptomNote] {
         var results: [SymptomNote] = []
         let request = NSFetchRequest<SymptomNote>(entityName: "SymptomNote")
 

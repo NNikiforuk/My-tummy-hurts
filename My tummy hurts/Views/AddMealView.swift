@@ -27,7 +27,7 @@ struct AddMealView: View {
                 displayedComponents: [.hourAndMinute]
             )
             .customPickerModifier()
-            AddEditRows(newItems: $newIngredients, rows: $rows, meal: true)
+            AddNewNote(newItems: $newIngredients, rows: $rows, meal: true)
             Spacer()
         }
         .customBgModifier()

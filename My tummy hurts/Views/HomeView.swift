@@ -58,7 +58,7 @@ struct HomeView: View {
                     } label: {
                         Label(LocalizedStringKey("Change theme"), systemImage: "sun.lefthalf.filled")
                     }
-                    DeleteBtnTextIcon(title: "Delete all", icon: "trash", action: { model.showDeleteAlert = true })
+                    DeleteBtnTextIcon(title: "Delete all", icon: "trash", action: { model.showDeleteAllAlert = true })
                 } label: {
                     Label(LocalizedStringKey("Options"), systemImage: "ellipsis.circle")
                         .font(.callout)
@@ -92,7 +92,7 @@ struct HomeView: View {
                     .environmentObject(model)
             }
         }
-        .alert(LocalizedStringKey(alertTitle), isPresented: $model.showDeleteAlert) {
+        .alert(LocalizedStringKey(alertTitle), isPresented: $model.showDeleteAllAlert) {
             VStack {
                 if emptyDB {
                     CancelBtn(action: {})

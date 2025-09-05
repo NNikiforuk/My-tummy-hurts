@@ -18,7 +18,9 @@ class ViewModel: ObservableObject {
     
     @Published var showAddingMeal: Bool = false
     @Published var showAddingSymptom: Bool = false
-    @Published var showDeleteAlert: Bool = false
+    @Published var showDeleteAllAlert: Bool = false
+    @Published var showDeleteMealAlert: Bool = false
+    @Published var showDeleteSymptomAlert: Bool = false
     @Published var ingredients: String = ""
     @Published var symptoms: String = ""
     @Published var createdAtMeals: Date = Date()
@@ -39,6 +41,18 @@ class ViewModel: ObservableObject {
         if let token = changeObserver {
             NotificationCenter.default.removeObserver(token)
         }
+    }
+    
+    func updateMealNote(entity: MealNote, createdAt: Date? = nil, ingredients: String? = nil) {
+        dataService.updateMealNote(entity: entity, createdAt: createdAt, ingredients: ingredients)
+        ctx.reset()
+        reload()
+    }
+    
+    func updateSymptomNote(entity: SymptomNote, createdAt: Date? = nil, symptoms: String? = nil) {
+        dataService.updateSymptomNote(entity: entity, createdAt: createdAt, symptoms: symptoms)
+        ctx.reset()
+        reload()
     }
     
     func createMealNote() {
@@ -71,14 +85,14 @@ class ViewModel: ObservableObject {
     
     func clearMealStates() {
         showAddingMeal = false
-        showDeleteAlert = false
+        showDeleteMealAlert = false
         ingredients = ""
         createdAtMeals = Date()
     }
     
     func clearSymptomStates() {
         showAddingSymptom = false
-        showDeleteAlert = false
+        showDeleteSymptomAlert = false
         symptoms = ""
         createdAtSymptoms = Date()
     }

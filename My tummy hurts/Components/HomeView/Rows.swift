@@ -8,12 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct Row: Identifiable, Equatable {
-    var id = UUID()
-    var text = ""
-}
-
-struct AddEditRows: View {
+struct AddNewNote: View {
     @Binding var newItems: String
     @Binding var rows: [Row]
     
@@ -23,14 +18,7 @@ struct AddEditRows: View {
         VStack(alignment: .leading, spacing: 8) {
             SectionTitle(title: meal ? "Meal ingredients" : "Negative symptoms")
             NewRows(newNote: $newItems, rows: $rows, meal: meal)
-            Button {
-                withAnimation {
-                    rows.append(Row())
-                }
-            } label: {
-                PlusIcon()
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
+            AppendingRowBtn(rows: $rows)
         }
     }
 }

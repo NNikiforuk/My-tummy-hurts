@@ -29,7 +29,7 @@ struct AddSymptomView: View {
             )
             .customPickerModifier()
             SymptomTags(chosenColor: $chosenColor)
-            AddEditRows(newItems: $newSymptoms, rows: $rows, meal: false)
+            AddNewNote(newItems: $newSymptoms, rows: $rows, meal: false)
             Spacer()
         }
         .customBgModifier()

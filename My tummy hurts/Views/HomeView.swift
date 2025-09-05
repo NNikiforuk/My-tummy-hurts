@@ -125,10 +125,6 @@ struct NotesPicker: View {
     }
 }
 
-//#Preview {
-//    HomeView()
-//}
-
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {

@@ -28,6 +28,7 @@ struct AddMealView: View {
             )
             .customPickerModifier()
             AddNewNote(newItems: $newIngredients, rows: $rows, meal: true)
+                .environmentObject(model)
             Spacer()
         }
         .customBgModifier()
@@ -58,14 +59,11 @@ struct AddMealView: View {
     }
 }
 
-//#Preview {
-//    AddMealView(selectedDate: .constant(Date()))
-//}
-
 struct AddMealView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
             AddMealView(selectedDate: .constant((Date())))
+                .environmentObject(ViewModel())
         }
     }
 }

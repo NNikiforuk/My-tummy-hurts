@@ -10,7 +10,7 @@
 //
 //struct ContentView: View {
 //    @StateObject var vm: ViewModel = ViewModel()
-//    
+//
 //    var body: some View {
 //        NavigationStack {
 //            VStack {
@@ -28,7 +28,7 @@
 //                                            .font(.title3)
 //                                            .lineLimit(1)
 //                                            .bold()
-//                                        
+//
 //                                        Text(note.createdAt ?? Date(), style: .date)
 //                                            .lineLimit(1)
 //                                    }
@@ -70,3 +70,50 @@
 //        ContentView()
 //    }
 //}
+
+import SwiftUI
+
+
+
+struct InlinePopupExample: View {
+    @State private var text = ""
+    private let allIngredients = ["milk", "bread", "cereal", "cheese", "butter", "apple"]
+    
+    var suggestions: [String] {
+        guard !text.isEmpty else { return [] }
+        return allIngredients.filter { $0.lowercased().contains(text.lowercased()) }
+    }
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            TextField("Wpisz składnik", text: $text)
+                .textFieldStyle(.roundedBorder)
+                .padding(.horizontal)
+                .textInputAutocapitalization(.never)
+                
+            if !suggestions.isEmpty {
+                VStack(alignment: .leading, spacing: 0) {
+                    ForEach(suggestions, id: \.self) { suggestion in
+                        Button {
+                            text = suggestion
+                        } label: {
+                            Text(suggestion)
+                                .padding(8)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
+                .background(.ultraThinMaterial)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+                .shadow(radius: 4)
+                .padding(.horizontal)
+                .offset(y: 5)
+                .transition(.opacity.combined(with: .move(edge: .top)))
+            }
+        }
+        .animation(.default, value: suggestions)
+    }
+}
+
+struct InlinePopupExample_Previews: PreviewProvider { static var previews: some View { InlinePopupExample() } }

@@ -49,8 +49,8 @@ class ViewModel: ObservableObject {
         reload()
     }
     
-    func updateSymptomNote(entity: SymptomNote, createdAt: Date? = nil, symptoms: String? = nil) {
-        dataService.updateSymptomNote(entity: entity, createdAt: createdAt, symptoms: symptoms)
+    func updateSymptomNote(entity: SymptomNote, createdAt: Date? = nil, symptoms: String? = nil, critical: Bool? = nil) {
+        dataService.updateSymptomNote(entity: entity, createdAt: createdAt, symptoms: symptoms, critical: critical)
         ctx.reset()
         reload()
     }

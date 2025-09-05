@@ -85,6 +85,7 @@ struct EditSymptom: View {
     @State private var newSymptoms = ""
     @State private var symptomCreatedAt: Date = Date()
     @State private var rows: [Row] = []
+    @State private var chosenColor: SymptomTagsEnum = .blue
     
     var note: SymptomNote
     var noteToRows: [Row] {
@@ -105,13 +106,13 @@ struct EditSymptom: View {
             )
             .customPickerModifier()
             
+            SymptomTags(chosenColor: $chosenColor)
+            
             VStack(alignment: .leading, spacing: 8) {
                 SectionTitle(title: "Negative symptoms")
                 NewRows(newNote: $newSymptoms, rows: $rows, meal: false)
                 AppendingRowBtn(rows: $rows)
             }
-            
-            
             Spacer()
         }
         .customBgModifier()
@@ -119,8 +120,9 @@ struct EditSymptom: View {
             ToolbarItemGroup(placement: .topBarTrailing) {
                 DeleteBtn(action: { model.showDeleteSymptomAlert = true })
                 SaveBtn(action: {
-                    model.updateSymptomNote(entity: note, createdAt: symptomCreatedAt, symptoms: newSymptoms)
+                    model.updateSymptomNote(entity: note, createdAt: symptomCreatedAt, symptoms: newSymptoms, critical: chosenColor == .blue ? false : true)
                     model.clearSymptomStates()
+                    dismiss()
                 })
             }
         }
@@ -133,6 +135,13 @@ struct EditSymptom: View {
         }
         .onAppear {
             rows = noteToRows
+            
+            if note.critical {
+                chosenColor = SymptomTagsEnum.red
+            } else {
+                chosenColor = SymptomTagsEnum.blue
+            }
+            
         }
     }
 }

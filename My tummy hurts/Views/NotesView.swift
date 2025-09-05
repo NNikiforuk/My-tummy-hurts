@@ -58,7 +58,7 @@ struct NoteMeal: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            TopNoteRow(time: note.createdAt ?? Date())
+            TopNoteRow(time: note.createdAt ?? Date(), meals: meals)
             BottomNoteRow(text: note.ingredients ?? "", meals: meals)
         }
     }
@@ -70,7 +70,7 @@ struct NoteSymptom: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            TopNoteRow(time: note.createdAt ?? Date(), critical: note.critical)
+            TopNoteRow(time: note.createdAt ?? Date(), critical: note.critical, meals: meals)
             BottomNoteRow(text: note.symptoms ?? "", meals: meals)
         }
     }
@@ -79,10 +79,13 @@ struct NoteSymptom: View {
 struct TopNoteRow: View {
     let time: Date
     let critical: Bool?
+    let meals: Bool
     
-    init(time: Date, critical: Bool? = nil) {
+    
+    init(time: Date, critical: Bool? = nil, meals: Bool) {
         self.time = time
         self.critical = critical
+        self.meals = meals
     }
     
     var body: some View {
@@ -90,11 +93,11 @@ struct TopNoteRow: View {
                 NoteIcon(icon: "clock")
                 Text(time, style: .time)
                 if let critical {
+                    Spacer()
                     Circle()
                         .fill(critical ? SymptomTagsEnum.red.color : SymptomTagsEnum.blue.color)
-                        .frame(width: 10, height: 10)
+                        .frame(width: 15, height: 15)
                 }
-                Spacer()
             }
     }
 }

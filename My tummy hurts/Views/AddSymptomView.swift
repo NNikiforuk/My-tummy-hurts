@@ -42,7 +42,7 @@ struct AddSymptomView: View {
             }
             ToolbarItem(placement: .topBarTrailing) {
                 SaveBtn(action: {
-                    model.createSymptomNote()
+                    model.createSymptomNote(symptoms: newSymptoms, createdAt: selectedDate)
                     model.clearSymptomStates()
                 })
                 .fontWeight(.bold)

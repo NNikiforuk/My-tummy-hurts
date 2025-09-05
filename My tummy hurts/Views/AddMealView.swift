@@ -40,7 +40,7 @@ struct AddMealView: View {
             }
             ToolbarItem(placement: .topBarTrailing) {
                 SaveBtn(action: {
-                    model.createMealNote()
+                    model.createMealNote(ingredients: newIngredients, createdAt: selectedDate)
                     model.clearMealStates()
                 })
                 .fontWeight(.bold)
@@ -58,6 +58,14 @@ struct AddMealView: View {
     }
 }
 
-#Preview {
-    AddMealView(selectedDate: .constant(Date()))
+//#Preview {
+//    AddMealView(selectedDate: .constant(Date()))
+//}
+
+struct AddMealView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationStack {
+            AddMealView(selectedDate: .constant((Date())))
+        }
+    }
 }

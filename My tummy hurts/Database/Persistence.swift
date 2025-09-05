@@ -67,21 +67,21 @@ struct PersistenceController {
         }
     }
     
-    func createMealNote(ingredients: String) {
+    func createMealNote(ingredients: String, createdAt: Date) {
         let entity = MealNote(context: container.viewContext)
        
         entity.id = UUID()
-        entity.createdAt = Date()
+        entity.createdAt = createdAt
         entity.ingredients = ingredients
         
         saveChanges()
     }
     
-    func createSymptomNote(symptoms: String) {
+    func createSymptomNote(symptoms: String, createdAt: Date) {
         let entity = SymptomNote(context: container.viewContext)
        
         entity.id = UUID()
-        entity.createdAt = Date()
+        entity.createdAt = createdAt
         entity.symptoms = symptoms
         entity.critical = false
         

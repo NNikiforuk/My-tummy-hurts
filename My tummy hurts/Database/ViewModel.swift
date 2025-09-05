@@ -21,6 +21,8 @@ class ViewModel: ObservableObject {
     @Published var showDeleteAlert: Bool = false
     @Published var ingredients: String = ""
     @Published var symptoms: String = ""
+    @Published var createdAtMeals: Date = Date()
+    @Published var createdAtSymptoms: Date = Date()
     
     init() {
         reload()
@@ -40,12 +42,20 @@ class ViewModel: ObservableObject {
     }
     
     func createMealNote() {
-        dataService.createMealNote(ingredients: ingredients)
+        dataService.createMealNote(ingredients: ingredients, createdAt: createdAtMeals)
     }
     
+    func createMealNote(ingredients: String, createdAt: Date) {
+            dataService.createMealNote(ingredients: ingredients, createdAt: createdAt)
+        }
+    
     func createSymptomNote() {
-        dataService.createSymptomNote(symptoms: symptoms)
+        dataService.createSymptomNote(symptoms: symptoms, createdAt: createdAtSymptoms)
     }
+    
+    func createSymptomNote(symptoms: String, createdAt: Date) {
+            dataService.createSymptomNote(symptoms: symptoms, createdAt: createdAt)
+        }
     
     func toggleCritical(symptomNote: SymptomNote) {
         dataService.updateSymptomNote(entity: symptomNote, critical: !symptomNote.critical)
@@ -63,12 +73,14 @@ class ViewModel: ObservableObject {
         showAddingMeal = false
         showDeleteAlert = false
         ingredients = ""
+        createdAtMeals = Date()
     }
     
     func clearSymptomStates() {
         showAddingSymptom = false
         showDeleteAlert = false
         symptoms = ""
+        createdAtSymptoms = Date()
     }
     
     func resetDB() {

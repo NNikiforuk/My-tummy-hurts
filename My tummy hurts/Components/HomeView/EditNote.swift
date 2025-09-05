@@ -63,6 +63,7 @@ struct EditMeal: View {
                     model.clearMealStates()
                     dismiss()
                 }
+                .disabled(newIngredients.isEmpty)
             }
         }
         .alert(LocalizedStringKey("Do you want to delete this meal?"), isPresented: $model.showDeleteMealAlert) {

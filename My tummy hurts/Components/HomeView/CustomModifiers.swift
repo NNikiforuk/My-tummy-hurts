@@ -27,6 +27,7 @@ extension View {
 struct CustomPickerModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
+            .environment(\.timeZone, .current)
             .datePickerStyle(.compact)
             .cornerRadius(8)
             .bold()

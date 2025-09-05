@@ -187,7 +187,7 @@ struct AddBtns: View {
         }
         .padding(.horizontal, 30)
         .padding(.vertical, 15)
-        .background(.red)
+//        .background(.red)
         .clipShape(Capsule())
     }
 }

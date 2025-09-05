@@ -179,4 +179,34 @@ struct PersistenceController {
         container.viewContext.delete(entity)
         saveChanges()
     }
+    
+    func deleteAll() {
+        let context = container.viewContext
+
+        context.perform {
+            func runBatch<T: NSManagedObject>(_ type: T.Type) throws -> [NSManagedObjectID] {
+                let fetch: NSFetchRequest<NSFetchRequestResult> = T.fetchRequest()
+                let req = NSBatchDeleteRequest(fetchRequest: fetch)
+                req.resultType = .resultTypeObjectIDs
+
+                let result = try context.execute(req) as? NSBatchDeleteResult
+                return (result?.result as? [NSManagedObjectID]) ?? []
+            }
+
+            do {
+                let deletedMeals = try runBatch(MealNote.self)
+                let deletedSymptoms = try runBatch(SymptomNote.self)
+
+                let changes: [AnyHashable: Any] = [
+                    NSDeletedObjectsKey: deletedMeals + deletedSymptoms
+                ]
+
+                NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [context])
+                context.processPendingChanges()
+            } catch {
+                print("Batch delete failed:", error)
+            }
+        }
+    }
+
 }

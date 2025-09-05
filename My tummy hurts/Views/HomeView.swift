@@ -63,6 +63,7 @@ struct HomeView: View {
                     Label(LocalizedStringKey("Options"), systemImage: "ellipsis.circle")
                         .font(.callout)
                 }
+                .foregroundStyle(.primary)
             }
             ToolbarItem(placement: .topBarTrailing) {
                 NavigationLink {
@@ -97,12 +98,7 @@ struct HomeView: View {
                     CancelBtn(action: {})
                 } else {
                     DeleteBtn(action: {
-                        for meal in model.mealNotes {
-                            model.deleteMealNote(mealNote: meal)
-                        }
-                        for symptom in model.symptomNotes {
-                            model.deleteSymptomNote(symptomNote: symptom)
-                        }
+                        model.resetDB()
                     })
                     CancelBtn(action: {})
                 }
@@ -135,6 +131,8 @@ struct NotesPicker: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        NavigationStack {
+            HomeView()
+        }
     }
 }

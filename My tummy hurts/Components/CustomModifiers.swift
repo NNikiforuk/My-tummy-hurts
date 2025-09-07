@@ -54,3 +54,24 @@ extension View {
         modifier(CustomBgModifier())
     }
 }
+
+struct GrayOverlayModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .padding(16)
+            .background(
+                RoundedRectangle(cornerRadius: 16)
+//                    .fill(.bgc)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(.gray.opacity(0.2), lineWidth: 1)
+                    )
+            )
+    }
+}
+
+extension View {
+    func grayOverlayModifier() -> some View {
+        modifier(GrayOverlayModifier())
+    }
+}

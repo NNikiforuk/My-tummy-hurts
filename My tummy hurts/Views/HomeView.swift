@@ -67,7 +67,8 @@ struct HomeView: View {
             }
             ToolbarItem(placement: .topBarTrailing) {
                 NavigationLink {
-//                    ChartView(meals: meals, symptoms: symptoms)
+                    ChartView()
+                        .environmentObject(model)
                 } label: {
                     HStack {
                         Image(systemName: "chart.bar")

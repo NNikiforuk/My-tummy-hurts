@@ -66,7 +66,7 @@ struct GrayOverlayModifier: ViewModifier {
             .padding(16)
             .background(
                 RoundedRectangle(cornerRadius: 16)
-//                                    .fill(Color("BackgroundColor"))
+                    .fill(Color("BackgroundColor"))
                     .overlay(
                         RoundedRectangle(cornerRadius: 16)
                             .stroke(.gray.opacity(0.2), lineWidth: 1)

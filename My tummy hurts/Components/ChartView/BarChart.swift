@@ -45,7 +45,7 @@ struct BarChart: View {
             Text("\(entry.1)")
                 .font(.caption2)
             Rectangle()
-                .fill(.blue)
+                .fill(.accent)
                 .frame(
                     width: barWidth,
                     height: maxValue == 0 ? 0 :
@@ -55,7 +55,7 @@ struct BarChart: View {
                 .font(.caption2)
                 .frame(width: barWidth)
                 .lineLimit(1)
-                .foregroundStyle(.primary)
+                .foregroundStyle(Color("PrimaryText"))
         }
         .frame(width: barWidth)
     }

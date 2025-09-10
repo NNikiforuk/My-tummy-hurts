@@ -24,14 +24,10 @@ struct HowManyIngredients: View {
                             .frame(maxWidth: .infinity)
                     }
                     .buttonStyle(.bordered)
-                    .tint(ingredientsToShow == value ? .yellow : .secondary)
+                    .tint(ingredientsToShow == value ? .accent : .gray)
                 }
             }
-//            .grayOverlayModifier()
+            .grayOverlayModifier()
         }
     }
 }
-
-//#Preview {
-//    HowManyIngredients()
-//}

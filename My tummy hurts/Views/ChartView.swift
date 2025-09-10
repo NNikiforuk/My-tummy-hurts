@@ -28,9 +28,9 @@ struct ChartView: View {
         case .defaultChart:
             switch ingredientsToShow {
             case 1:
-                return "Top ingredient followed by symptoms"
+                return "Top ingredient followed by any symptom"
             default:
-                return "Top \(ingredientsToShow) ingredients followed by symptoms"
+                return "Top \(ingredientsToShow) ingredients followed by any symptom"
             }
             
         default:

@@ -29,7 +29,7 @@ struct SelectSymptom: View {
                 .frame(maxWidth: .infinity)
                 .font(.subheadline)
                 .pickerStyle(.menu)
-                //                .grayOverlayModifier()
+                .grayOverlayModifier()
             }
         }
         .padding(.top, 20)

@@ -66,12 +66,13 @@ struct GeneralAnalytics: View {
     var body: some View {
         //JEZELI ISTNIEJA MEALS, SYMPTOMS
         if !noMealNotes && !noSymptomNotes {
+            VStack(spacing: 40) {
             SelectChartType(chartType: $chartType)
             HowManyIngredients(ingredientsToShow: $ingredientsToShow)
             
             //SECOND TOGGLE SETTINGS
             if chartType == .limitByHours {
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 40) {
                     HowManyHoursBack(value: $hoursBack, range: 1...24)
                     SelectSymptom(selectedSymptomID: $selectedSymptomID, noSymptomNotes: noSymptomNotes)
                         .environmentObject(model)
@@ -84,6 +85,8 @@ struct GeneralAnalytics: View {
                 switch chartType {
                 case .defaultChart:
                     SectionTitle(title: chartTitle)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .foregroundStyle(.accent)
                     BarChart(data: firstChartData)
                         .frame(height: 250)
                         .padding()
@@ -105,6 +108,7 @@ struct GeneralAnalytics: View {
                         }
                     }
                 }
+            }
             }
         }
     }

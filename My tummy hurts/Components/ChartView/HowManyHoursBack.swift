@@ -19,11 +19,7 @@ struct HowManyHoursBack: View {
                 Text("\(value) h")
                     .font(.subheadline)
             }
-//            .grayOverlayModifier()
+            .grayOverlayModifier()
         }
     }
 }
-
-//#Preview {
-//    HowManyHoursBack()
-//}

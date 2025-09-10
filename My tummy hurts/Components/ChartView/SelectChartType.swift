@@ -30,9 +30,10 @@ struct SelectChartType: View {
                     infoText: ChartMode.limitByHours.infoText,
                     onTap: { chartType = ChartMode.limitByHours })
             }
-//            .grayOverlayModifier()
+            .grayOverlayModifier()
             .contentShape(Rectangle())
         }
+        .padding(.top, 40)
     }
 }
 
@@ -49,7 +50,7 @@ struct SelectableCard: View {
             HStack(alignment: .top, spacing: 12) {
                 Image(systemName: isSelected ? "largecircle.fill.circle" : "circle")
                     .imageScale(.large)
-                    .foregroundStyle(isSelected ? .red : .secondary)
+                    .foregroundStyle(isSelected ? .accent : .gray)
                 
                 VStack(alignment: .leading, spacing: 4) {
                     Text(title).font(.headline)
@@ -58,7 +59,7 @@ struct SelectableCard: View {
                     } label: {
                         Label("More info", systemImage: "info.circle")
                             .font(.subheadline)
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(.gray)
                             .padding(.top, 5)
                     }
                     if showInfo {

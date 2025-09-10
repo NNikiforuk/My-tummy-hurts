@@ -19,6 +19,7 @@ struct AddNewNote: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             SectionTitle(title: meal ? "Meal ingredients" : "Negative symptoms")
+                .padding(.bottom, 20)
             NewRows(newNote: $newItems, rows: $rows, meal: meal)
                 .environmentObject(model)
             AppendingRowBtn(rows: $rows)
@@ -45,14 +46,11 @@ struct NewRows: View {
             for mealNote in model.mealNotes {
                 if let ingredients = mealNote.ingredients {
                     let el = ingredients.components(separatedBy: ", ")
-                    
-                    if !ingredientsArray.contains(el) {
-                        ingredientsArray.append(contentsOf: el)
-                    }
+                    ingredientsArray.append(contentsOf: el)
                 }
             }
             
-            return ingredientsArray
+            return Array(Set(ingredientsArray))
         } else {
             guard !model.symptomNotes.isEmpty else { return [] }
             
@@ -60,48 +58,73 @@ struct NewRows: View {
             for symptomNote in model.symptomNotes {
                 if let symptoms = symptomNote.symptoms {
                     let el = symptoms.components(separatedBy: ", ")
-                    if !symptomsArray.contains(el) {
-                        symptomsArray.append(contentsOf: el)
-                    }
+                    symptomsArray.append(contentsOf: el)
                 }
             }
-            return symptomsArray
+            return Array(Set(symptomsArray))
         }
     }
     
+    func filteredSuggestions(text: String) -> [String] {
+        guard !text.isEmpty else { return [] }
+        return suggestions.filter { $0.lowercased().hasPrefix(text.lowercased()) }
+    }
+    
     var body: some View {
-        ForEach($rows) { $row in
-            let id = row.id
-            VStack {
-                HStack(spacing: 8) {
-                    TextField(
-                        meal ? "cow milk" : "diarrhea",
-                        text: $row.text)
-                    .focused($focusedRowID, equals: row.id)
-                    .disableAutocorrection(true)
-                    .padding(5)
-                    .padding(.horizontal, 10)
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 8, style: .continuous)
-                            .stroke(Color(UIColor.gray), lineWidth: 1)
+        VStack {
+            ForEach(rows, id: \.id) { row in
+                let binding = Binding(
+                    get: { row.text },
+                    set: { newValue in
+                        if let index = rows.firstIndex(where: { $0.id == row.id }) {
+                            rows[index].text = newValue
+                            syncNewNote()
+                        }
                     }
-                    .foregroundStyle(Color("PrimaryText"))
-                    .lineLimit(1)
-                    .textInputAutocapitalization(.never)
-                    .onChange(of: rows.map(\.text)) { _ in syncNewNote() }
-                    .onAppear {
-                        syncNewNote()
-                    }
-                    XMarkBtn(rows: $rows, id: id)
-                }
+                )
                 
-                if focusedRowID == row.id && !suggestions.isEmpty {
-                    Suggestion(newNote: $row.text, suggestions: suggestions, onSelect: {
+                VStack {
+                    HStack(spacing: 8) {
+                        TextField(meal ? "cow milk" : "diarrhea", text: binding)
+                            .focused($focusedRowID, equals: row.id)
+                            .disableAutocorrection(true)
+                            .padding(5)
+                            .padding(.horizontal, 10)
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 8, style: .continuous)
+                                    .stroke(Color(UIColor.gray), lineWidth: 1)
+                            }
+                            .foregroundStyle(Color("PrimaryText"))
+                            .lineLimit(1)
+                            .textInputAutocapitalization(.never)
+                            .onChange(of: rows.map(\.text)) { _ in syncNewNote() }
+                            .onAppear { syncNewNote() }
+                        
+                        XMarkBtn(rows: $rows, id: row.id) {
+                            if focusedRowID == row.id {
+                                focusedRowID = nil
+                            }
+                        }
+                    }
+                    
+                    if focusedRowID == row.id {
+                        let matches = filteredSuggestions(text: row.text)
+                        
+                        if !matches.isEmpty {
+                            Suggestion(newNote: binding, suggestions: matches) {
+                                focusedRowID = nil
+                            }
+                        }
+                    }
+                }
+                .id(row.id)
+                .padding(.bottom, 10)
+                .onChange(of: rows) { newRows in
+                    if !newRows.contains(where: { $0.id == focusedRowID }) {
                         focusedRowID = nil
-                    })
+                    }
                 }
             }
-            .padding(.bottom, 10)
         }
     }
     
@@ -117,6 +140,7 @@ struct XMarkBtn: View {
     @Binding var rows: [Row]
     
     var id: UUID
+    var onDelete: (() -> Void)?
     
     var body: some View {
         Button {
@@ -128,6 +152,7 @@ struct XMarkBtn: View {
                 } else {
                     rows.removeAll { $0.id == id }
                 }
+                onDelete?()
             }
         } label: {
             Image(systemName: "xmark")
@@ -146,8 +171,8 @@ struct Suggestion: View {
         VStack(alignment: .leading, spacing: 0) {
             ForEach(suggestions, id: \.self) { suggestion in
                 Button {
-                        newNote = suggestion
-                        onSelect?()
+                    newNote = suggestion
+                    onSelect?()
                 } label: {
                     Text(suggestion)
                         .padding(8)

@@ -70,3 +70,15 @@ struct NoDataTexts: View {
         NoDataAlert(text: "Add symptoms to see charts. The more you add - the better the conclusions will be")
     }
 }
+
+func onSameDay<T>(
+    _ items: [T],
+    as date: Date,
+    calendar: Calendar = .current,
+    getTime: (T) -> Date?
+) -> [T] {
+    items.filter { item in
+        guard let t = getTime(item) else { return false }
+        return calendar.isDate(t, inSameDayAs: date)
+    }
+}

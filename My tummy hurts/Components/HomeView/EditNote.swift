@@ -24,7 +24,7 @@ struct EditMeal: View {
     
     var noteToRows: [Row] {
         let text = note.ingredients ?? ""
-        return text.split(separator: ",").map{ Row(text: String($0) ) }
+        return text.split(separator: ",").map{ Row(text: String($0).trimmingCharacters(in: .whitespacesAndNewlines) ) }
     }
     
     var body: some View {
@@ -50,6 +50,10 @@ struct EditMeal: View {
         .onAppear {
             rows = noteToRows
             mealCreatedAt = note.createdAt ?? Date()
+            
+            
+           
+            
         }
         
         .customBgModifier()

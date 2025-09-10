@@ -66,8 +66,10 @@ struct ChartView: View {
                         .environmentObject(model)
                     
                 case .history:
-                    SymptomsHistory()
-                        .environmentObject(model)
+                    if !model.symptomNotes.isEmpty {
+                        SymptomsHistory()
+                            .environmentObject(model)
+                    }
                 }
             }
             .animation(.easeInOut, value: chartType)

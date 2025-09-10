@@ -9,15 +9,36 @@ import SwiftUI
 
 struct NotesView: View {
     @Binding var selection: NoteTab
+    @Binding var selectedDate: Date
     @EnvironmentObject var model: ViewModel
+    
+    let calendar = Calendar.current
+    
+    var filteredMeals: [MealNote] {
+        onSameDay(
+            model.mealNotes,
+            as: selectedDate,
+            calendar: calendar,
+            getTime: { $0.createdAt }
+        )
+    }
+    
+    var filteredSymptoms: [SymptomNote] {
+        onSameDay(
+            model.symptomNotes,
+            as: selectedDate,
+            calendar: calendar,
+            getTime: { $0.createdAt }
+        )
+    }
     
     var body: some View {
         switch selection {
         case .meals:
-            if model.mealNotes.isEmpty {
+            if filteredMeals.isEmpty {
                 noListData(text: "There are no meals yet")
             } else {
-                ForEach(model.mealNotes) { note in
+                ForEach(filteredMeals) { note in
                     NavigationLink {
                         EditMeal(note: note)
                             .environmentObject(model)
@@ -28,10 +49,10 @@ struct NotesView: View {
                 }
             }
         case .symptoms:
-            if model.symptomNotes.isEmpty {
+            if filteredSymptoms.isEmpty {
                 noListData(text: "There are no symptoms yet")
             } else {
-                ForEach(model.symptomNotes) { note in
+                ForEach(filteredSymptoms) { note in
                     NavigationLink {
                         EditSymptom(note: note)
                             .environmentObject(model)
@@ -126,5 +147,5 @@ struct NoteIcon: View {
 }
 
 #Preview {
-    NotesView(selection: .constant(.meals))
+    NotesView(selection: .constant(.meals), selectedDate: .constant(Date()))
 }

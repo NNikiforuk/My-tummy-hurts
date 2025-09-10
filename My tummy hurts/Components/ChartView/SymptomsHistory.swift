@@ -19,7 +19,7 @@ struct SymptomsHistory: View {
                     .environmentObject(model)
                 TagsDescription()
             }
-            //            .grayOverlayModifier()
+                        .grayOverlayModifier()
         }
     }
 }

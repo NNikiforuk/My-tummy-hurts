@@ -116,7 +116,7 @@ struct WeekView: View {
                     isToday(date: date)
                     ? .gray.opacity(0.2)
                     : isSameDay(date1: date, date2: selectedDate)
-                    ? Color("PrimaryText)")
+                    ? Color("PrimaryText")
                     : Color.clear
                 )
                 .clipShape(RoundedRectangle(cornerRadius: 8))

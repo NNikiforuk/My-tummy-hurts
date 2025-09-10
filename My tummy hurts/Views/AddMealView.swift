@@ -11,8 +11,7 @@ struct AddMealView: View {
     @EnvironmentObject var model: ViewModel
     @Environment(\.dismiss) var dismiss
     
-    @Binding var selectedDate: Date
-    
+    @State private var selectedDate: Date = Date()
     @State private var newIngredients = ""
     @State private var rows: [Row] = []
     @State private var isSaveDisabled = true
@@ -24,13 +23,17 @@ struct AddMealView: View {
             DatePicker(
                 LocalizedStringKey("Meal time"),
                 selection: $selectedDate,
-                displayedComponents: [.hourAndMinute]
+                displayedComponents: [.date, .hourAndMinute]
             )
             .customPickerModifier()
             AddNewNote(newItems: $newIngredients, rows: $rows, meal: true)
                 .environmentObject(model)
             Spacer()
         }
+        .onAppear {
+            print()
+        }
+        
         .customBgModifier()
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
@@ -62,7 +65,7 @@ struct AddMealView: View {
 struct AddMealView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            AddMealView(selectedDate: .constant((Date())))
+            AddMealView()
                 .environmentObject(ViewModel())
         }
     }

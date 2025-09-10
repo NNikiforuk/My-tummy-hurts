@@ -19,7 +19,7 @@ enum ChartMode: String, CaseIterable, Identifiable {
     }
     var infoText: String {
         switch self {
-        case .defaultChart: "Matches each symptom to its most recent preceding meal and counts the top X ingredients"
+        case .defaultChart: "Top x ingredients that immediately caused you stomach problems"
         case .limitByHours: "Limit to meals eaten within the last X hours"
         }
     }

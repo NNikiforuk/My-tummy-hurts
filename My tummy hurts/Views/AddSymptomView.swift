@@ -11,8 +11,7 @@ struct AddSymptomView: View {
     @EnvironmentObject var model: ViewModel
     @Environment(\.dismiss) var dismiss
     
-    @Binding var selectedDate: Date
-    
+    @State private var selectedDate: Date = Date()
     @State private var newSymptoms = ""
     @State private var rows: [Row] = []
     @State private var isSaveDisabled = true
@@ -25,7 +24,7 @@ struct AddSymptomView: View {
             DatePicker(
                 LocalizedStringKey("Symptom time"),
                 selection: $selectedDate,
-                displayedComponents: [.hourAndMinute]
+                displayedComponents: [.date, .hourAndMinute]
             )
             .customPickerModifier()
             SymptomTags(chosenColor: $chosenColor)
@@ -101,5 +100,5 @@ struct SymptomTags: View {
 
 
 #Preview {
-    AddSymptomView(selectedDate: .constant(Date()))
+    AddSymptomView()
 }

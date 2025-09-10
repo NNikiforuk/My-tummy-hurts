@@ -45,7 +45,7 @@ struct HomeView: View {
             NotesPicker(selection: $selection)
             ScrollView {
                 LazyVStack(spacing: 20) {
-                    NotesView(selection: $selection)
+                    NotesView(selection: $selection, selectedDate: $selectedDate)
                         .environmentObject(model)
                 }
             }
@@ -83,14 +83,14 @@ struct HomeView: View {
         .customBgModifier()
         .sheet(isPresented: $model.showAddingMeal) {
             NavigationStack {
-                AddMealView(selectedDate: $selectedDate)
+                AddMealView()
                     .environmentObject(model)
             }
         }
         .foregroundStyle(.accent)
         .sheet(isPresented: $model.showAddingSymptom) {
             NavigationStack {
-                AddSymptomView(selectedDate: $selectedDate)
+                AddSymptomView()
                     .environmentObject(model)
             }
         }

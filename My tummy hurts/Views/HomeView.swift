@@ -87,6 +87,7 @@ struct HomeView: View {
                     .environmentObject(model)
             }
         }
+        .foregroundStyle(.accent)
         .sheet(isPresented: $model.showAddingSymptom) {
             NavigationStack {
                 AddSymptomView(selectedDate: $selectedDate)

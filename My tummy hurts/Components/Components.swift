@@ -15,6 +15,7 @@ struct SiteTitle: View {
         Text(title)
             .font(.title2.bold())
             .padding(.vertical, 10)
+            .foregroundStyle(Color("PrimaryText"))
     }
 }
 
@@ -25,6 +26,7 @@ struct SectionTitle: View {
         Text(title)
             .bold()
             .padding(.bottom, 20)
+            .foregroundStyle(Color("PrimaryText"))
     }
 }
 

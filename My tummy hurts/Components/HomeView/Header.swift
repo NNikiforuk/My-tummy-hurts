@@ -18,6 +18,7 @@ struct HomeViewHeader: View {
         VStack {
             Text(formatMonth(for: currentPage))
                 .font(.title2.bold())
+                .foregroundStyle(Color("PrimaryText"))
             
             TabView(selection: $currentPage) {
                 ForEach(weekRange, id: \.self) { weekNumber in
@@ -90,22 +91,32 @@ struct WeekView: View {
                 VStack {
                     Text(formatDayName(date))
                         .font(.caption)
-                        .foregroundColor(.gray)
+                        .foregroundStyle(
+                            isToday(date: date)
+                            ? Color.gray
+                            : isSameDay(date1: date, date2: selectedDate)
+                            ? Color.gray
+                            : Color.gray)
                     Text(formatDayNumber(date))
                         .font(.title3)
                         .fontWeight(.bold)
+                        .foregroundStyle(
+                            isSameDay(date1: date, date2: selectedDate)
+                            ? Color("BackgroundColor")
+                            : Color("PrimaryText")
+                        )
                 }
                 .frame(width: 35, height: 60)
                 .background(
                     isSameDay(date1: date, date2: selectedDate)
-                    ? Color.blue
+                    ? Color("PrimaryText")
                     : Color.clear
                 )
                 .background(
                     isToday(date: date)
                     ? .gray.opacity(0.2)
                     : isSameDay(date1: date, date2: selectedDate)
-                    ? Color.blue
+                    ? Color("PrimaryText)")
                     : Color.clear
                 )
                 .clipShape(RoundedRectangle(cornerRadius: 8))
@@ -187,7 +198,9 @@ struct AddBtns: View {
         }
         .padding(.horizontal, 30)
         .padding(.vertical, 15)
-//        .background(.red)
+        .background(.accent)
+        .foregroundStyle(Color("BackgroundColor"))
+        .bold()
         .clipShape(Capsule())
     }
 }

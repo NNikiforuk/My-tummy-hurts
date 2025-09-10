@@ -48,7 +48,7 @@ struct NotesView: View {
         Text(LocalizedStringKey(text))
             .padding(.top, 50)
             .font(.callout)
-            .foregroundStyle(.secondary)
+            .foregroundStyle(.gray)
     }
 }
 

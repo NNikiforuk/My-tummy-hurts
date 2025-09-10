@@ -41,12 +41,17 @@ struct NewRows: View {
             guard !model.mealNotes.isEmpty else { return [] }
             
             var ingredientsArray: [String] = []
+            
             for mealNote in model.mealNotes {
                 if let ingredients = mealNote.ingredients {
                     let el = ingredients.components(separatedBy: ", ")
-                    ingredientsArray.append(contentsOf: el)
+                    
+                    if !ingredientsArray.contains(el) {
+                        ingredientsArray.append(contentsOf: el)
+                    }
                 }
             }
+            
             return ingredientsArray
         } else {
             guard !model.symptomNotes.isEmpty else { return [] }
@@ -55,7 +60,9 @@ struct NewRows: View {
             for symptomNote in model.symptomNotes {
                 if let symptoms = symptomNote.symptoms {
                     let el = symptoms.components(separatedBy: ", ")
-                    symptomsArray.append(contentsOf: el)
+                    if !symptomsArray.contains(el) {
+                        symptomsArray.append(contentsOf: el)
+                    }
                 }
             }
             return symptomsArray

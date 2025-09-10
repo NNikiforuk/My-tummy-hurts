@@ -8,14 +8,33 @@
 import Foundation
 import SwiftUI
 
+struct CustomBgModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .navigationBarTitleDisplayMode(.inline)
+            .padding()
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color("BackgroundColor"))
+    }
+}
+
+extension View {
+    func customBgModifier() -> some View {
+        modifier(CustomBgModifier())
+    }
+}
+
 struct NoteModifier: ViewModifier {
     func body(content: Content) -> some View {
-            content
+        content
             .frame(maxWidth: .infinity)
             .padding()
-            .background(.yellow.opacity(0.08))
-            .cornerRadius(15)
-        }
+            .foregroundStyle(Color("PrimaryText"))
+            .background {
+                RoundedRectangle(cornerRadius: 15)
+                    .fill(Color("NoteBgc"))
+            }
+    }
 }
 
 extension View {
@@ -31,6 +50,7 @@ struct CustomPickerModifier: ViewModifier {
             .datePickerStyle(.compact)
             .cornerRadius(8)
             .bold()
+            .foregroundStyle(Color("PrimaryText"))
     }
 }
 
@@ -40,28 +60,13 @@ extension View {
     }
 }
 
-struct CustomBgModifier: ViewModifier {
-    func body(content: Content) -> some View {
-            content
-            .navigationBarTitleDisplayMode(.inline)
-            .padding()
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-        }
-}
-
-extension View {
-    func customBgModifier() -> some View {
-        modifier(CustomBgModifier())
-    }
-}
-
 struct GrayOverlayModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .padding(16)
             .background(
                 RoundedRectangle(cornerRadius: 16)
-//                    .fill(.bgc)
+//                                    .fill(Color("BackgroundColor"))
                     .overlay(
                         RoundedRectangle(cornerRadius: 16)
                             .stroke(.gray.opacity(0.2), lineWidth: 1)

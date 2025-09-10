@@ -47,7 +47,7 @@ struct AddSymptomView: View {
                 })
                 .fontWeight(.bold)
                 .disabled(isSaveDisabled)
-                .foregroundStyle(isSaveDisabled ? .gray : .green)
+                .foregroundStyle(isSaveDisabled ? .gray : .accent)
             }
         }
         .ignoresSafeArea(.keyboard)
@@ -84,6 +84,7 @@ struct SymptomTags: View {
         } label: {
             HStack {
                 Text(el.desc)
+                    .foregroundStyle(Color("PrimaryText"))
             }
         }
         .padding(8)

@@ -85,6 +85,7 @@ struct NewRows: View {
                         RoundedRectangle(cornerRadius: 8, style: .continuous)
                             .stroke(Color(UIColor.gray), lineWidth: 1)
                     }
+                    .foregroundStyle(Color("PrimaryText"))
                     .lineLimit(1)
                     .textInputAutocapitalization(.never)
                     .onChange(of: rows.map(\.text)) { _ in syncNewNote() }

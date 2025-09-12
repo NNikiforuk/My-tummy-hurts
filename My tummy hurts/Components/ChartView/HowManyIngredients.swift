@@ -14,7 +14,7 @@ struct HowManyIngredients: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            SectionTitle(title: "HOW MANY INGREDIENTS TO SHOW")
+            SectionTitle(title: "HOW MANY BARS ON CHART")
             HStack(spacing: 8) {
                 ForEach(options, id: \.self) { value in
                     Button {

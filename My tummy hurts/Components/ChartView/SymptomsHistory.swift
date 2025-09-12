@@ -21,6 +21,7 @@ struct SymptomsHistory: View {
             }
                         .grayOverlayModifier()
         }
+        .padding(.top, 40)
     }
 }
 

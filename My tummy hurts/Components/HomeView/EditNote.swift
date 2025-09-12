@@ -50,10 +50,6 @@ struct EditMeal: View {
         .onAppear {
             rows = noteToRows
             mealCreatedAt = note.createdAt ?? Date()
-            
-            
-           
-            
         }
         
         .customBgModifier()
@@ -139,6 +135,7 @@ struct EditSymptom: View {
         }
         .onAppear {
             rows = noteToRows
+            symptomCreatedAt = note.createdAt ?? Date()
             
             if note.critical {
                 chosenColor = SymptomTagsEnum.red

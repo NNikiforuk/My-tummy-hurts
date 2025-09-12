@@ -9,18 +9,18 @@ import SwiftUI
 import Foundation
 
 enum ChartMode: String, CaseIterable, Identifiable {
-    case defaultChart, limitByHours
+    case defaultChart, checkSpecificSymptom
     var id: Self { self }
     var title: String {
         switch self {
-        case .defaultChart: "Pre-symptom meals"
-        case .limitByHours: "Meals within X hours before symptom"
+        case .defaultChart: "Pre-symptom ingredients"
+        case .checkSpecificSymptom: "Check specific symptom"
         }
     }
     var infoText: String {
         switch self {
-        case .defaultChart: "Top x ingredients that immediately caused you stomach problems"
-        case .limitByHours: "Limit to meals eaten within the last X hours"
+        case .defaultChart: "Top ingredients consumed directly before any negative symptom"
+        case .checkSpecificSymptom: "Example: top ingredients consumed within 5 hours before each occurrence of heartburn"
         }
     }
 }

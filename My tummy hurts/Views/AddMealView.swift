@@ -30,10 +30,6 @@ struct AddMealView: View {
                 .environmentObject(model)
             Spacer()
         }
-        .onAppear {
-            print()
-        }
-        
         .customBgModifier()
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {

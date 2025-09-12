@@ -10,6 +10,7 @@ import SwiftUI
 struct SelectChartType: View {
     @Binding var chartType: ChartMode
     @State private var showInfoAll = false
+    @State private var showInfoSpecificSymptom = false
     @State private var showInfoLimit = false
     
     var body: some View {
@@ -24,11 +25,18 @@ struct SelectChartType: View {
                     onTap: { chartType = ChartMode.defaultChart })
                 
                 SelectableCard(
-                    showInfo: $showInfoLimit,
-                    title: ChartMode.limitByHours.title,
-                    isSelected: chartType == ChartMode.limitByHours,
-                    infoText: ChartMode.limitByHours.infoText,
-                    onTap: { chartType = ChartMode.limitByHours })
+                    showInfo: $showInfoSpecificSymptom,
+                    title: ChartMode.checkSpecificSymptom.title,
+                    isSelected: chartType == ChartMode.checkSpecificSymptom,
+                    infoText: ChartMode.checkSpecificSymptom.infoText,
+                    onTap: { chartType = ChartMode.checkSpecificSymptom })
+                
+//                SelectableCard(
+//                    showInfo: $showInfoLimit,
+//                    title: ChartMode.limitByHours.title,
+//                    isSelected: chartType == ChartMode.limitByHours,
+//                    infoText: ChartMode.limitByHours.infoText,
+//                    onTap: { chartType = ChartMode.limitByHours })
             }
             .grayOverlayModifier()
             .contentShape(Rectangle())
@@ -78,7 +86,3 @@ struct SelectableCard: View {
         .onTapGesture { onTap() }
     }
 }
-
-//#Preview {
-//    SelectChartType()
-//}

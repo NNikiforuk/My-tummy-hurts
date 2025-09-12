@@ -11,10 +11,10 @@ struct ChartView: View {
     @EnvironmentObject var model: ViewModel
     
     @State private var analyticsType: AnalyticsMode = .general
-    @State private var chartType: ChartMode = .defaultChart
+    @State private var chartType: ChartMode = .checkSpecificSymptom
     @State private var ingredientsToShow = 3
     @State private var hoursBack = 1
-    @State private var selectedSymptomID: UUID?
+    @State private var selectedSymptom: String? = nil
     
     var noMealNotes: Bool {
         model.mealNotes.isEmpty
@@ -33,14 +33,14 @@ struct ChartView: View {
                 return "Top \(ingredientsToShow) ingredients followed by any symptom"
             }
             
-        default:
+        case .checkSpecificSymptom:
             switch ingredientsToShow {
             case 1:
                 switch hoursBack {
                 case 1:
-                    return "Top ingredient in the 1-hour window before selected symptom"
+                    return "Top ingredient in the 1-hour window before: \(selectedSymptom ?? "")"
                 default:
-                    return "Top ingredient in the \(hoursBack)-hour window before selected symptom"
+                    return "Top ingredient in the \(hoursBack)-hour window before: \(selectedSymptom ?? "")"
                 }
             default:
                 switch hoursBack {
@@ -62,7 +62,7 @@ struct ChartView: View {
                 NoDataTexts(analyticsType: $analyticsType, noMealNotes: noMealNotes, noSymptomNotes: noSymptomNotes)
                 
                 switch analyticsType {
-                case .general: GeneralAnalytics(chartType: $chartType, ingredientsToShow: $ingredientsToShow, hoursBack: $hoursBack, selectedSymptomID: $selectedSymptomID, chartTitle: chartTitle, noMealNotes: noMealNotes, noSymptomNotes: noSymptomNotes)
+                case .general: GeneralAnalytics(chartType: $chartType, ingredientsToShow: $ingredientsToShow, hoursBack: $hoursBack, selectedSymptom: $selectedSymptom, chartTitle: chartTitle, noMealNotes: noMealNotes, noSymptomNotes: noSymptomNotes)
                         .environmentObject(model)
                     
                 case .history:

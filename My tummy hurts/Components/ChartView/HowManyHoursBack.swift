@@ -10,7 +10,7 @@ import SwiftUI
 struct HowManyHoursBack: View {
     @Binding var value: Int
     
-    let range: ClosedRange<Int>
+    var range: ClosedRange<Int>
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {

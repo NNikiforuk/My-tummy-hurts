@@ -13,7 +13,7 @@ struct GeneralAnalytics: View {
     @Binding var chartType: ChartMode
     @Binding var ingredientsToShow: Int
     @Binding var hoursBack: Int
-    @Binding var selectedSymptomID: UUID?
+    @Binding var selectedSymptom: String?
     
     let chartTitle: LocalizedStringKey
     let noMealNotes: Bool
@@ -30,85 +30,62 @@ struct GeneralAnalytics: View {
         return mapped
     }
     
-    var selectedSymptom: SymptomNote? {
-        if selectedSymptomID != nil {
-            return model.symptomNotes.first { symptom in
-                selectedSymptomID == symptom.id
-            }
-        }
-        return nil
-    }
-    
-    var backedTime: Date? {
-        guard let time = selectedSymptom?.createdAt else { return nil }
-        return Calendar.current.date(byAdding: .hour, value: -hoursBack, to: time)
-    }
-    
-    var mealsFromTimeline: [MealNote]? {
-        guard let timeBack = backedTime, let selectedSymptomTime = selectedSymptom?.createdAt else { return nil }
-        
-        return model.mealNotes.filter { meal in
-            if let mealTime = meal.createdAt {
-                return mealTime >= timeBack && mealTime <= selectedSymptomTime
-            }
-            return false
-        }
-    }
-    
     var firstChartData: [(String, Int)] {
         sortTopIngredients(data: catchProblematicIngredients())
     }
     
     var secondChartData: [(String, Int)] {
-        sortTopIngredients(data: substractIngredients())
+        calcSortIngredients()
     }
     
     var body: some View {
         //JEZELI ISTNIEJA MEALS, SYMPTOMS
         if !noMealNotes && !noSymptomNotes {
             VStack(spacing: 40) {
-            SelectChartType(chartType: $chartType)
-            HowManyIngredients(ingredientsToShow: $ingredientsToShow)
-            
-            //SECOND TOGGLE SETTINGS
-            if chartType == .limitByHours {
-                VStack(alignment: .leading, spacing: 40) {
-                    HowManyHoursBack(value: $hoursBack, range: 1...24)
-                    SelectSymptom(selectedSymptomID: $selectedSymptomID, noSymptomNotes: noSymptomNotes)
-                        .environmentObject(model)
+                SelectChartType(chartType: $chartType)
+                HowManyIngredients(ingredientsToShow: $ingredientsToShow)
+                
+                //SECOND TOGGLE SETTINGS
+                if chartType == .checkSpecificSymptom {
+                    VStack(alignment: .leading, spacing: 40) {
+                        HowManyHoursBack(value: $hoursBack, range: 1...24)
+                        SelectSpecificSymptom(selectedSpecificSymptom: $selectedSymptom, noSymptomNotes: noSymptomNotes)
+                            .environmentObject(model)
+                    }
+                    .transition(.opacity.combined(with: .move(edge: .top)))
                 }
-                .transition(.opacity.combined(with: .move(edge: .top)))
-            }
-            
-            //CHARTS
-            VStack(alignment: .leading) {
-                switch chartType {
-                case .defaultChart:
-                    SectionTitle(title: chartTitle)
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        .foregroundStyle(.accent)
-                    BarChart(data: firstChartData)
-                        .frame(height: 250)
-                        .padding()
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 15).stroke(.gray.opacity(0.2))
-                        }
-                case .limitByHours:
-                    if selectedSymptomID != nil {
+                
+                //CHARTS
+                VStack(alignment: .leading) {
+                    switch chartType {
+                    case .defaultChart:
                         SectionTitle(title: chartTitle)
-                        BarChart(data: secondChartData)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .foregroundStyle(.accent)
+                            .multilineTextAlignment(.center)
+                        BarChart(data: firstChartData)
                             .frame(height: 250)
                             .padding()
                             .overlay {
                                 RoundedRectangle(cornerRadius: 15).stroke(.gray.opacity(0.2))
                             }
-                    } else {
-                        VStack(alignment: .center) {
-                            NoDataAlert(text: "Choose data volume, how many hours and symptom")
+                        
+                    case .checkSpecificSymptom:
+                        if selectedSymptom != nil {
+                            SectionTitle(title: chartTitle)
+                            BarChart(data: secondChartData)
+                                .frame(height: 250)
+                                .padding()
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 15).stroke(.gray.opacity(0.2))
+                                }
+                        } else {
+                            VStack(alignment: .center) {
+                                NoDataAlert(text: "Choose data volume, how many hours and symptom")
+                            }
                         }
                     }
                 }
-            }
             }
         }
     }
@@ -183,26 +160,84 @@ struct GeneralAnalytics: View {
         return Array(sorted.prefix(ingredientsToShow))
     }
     
-    func substractIngredients() -> [String] {
-        guard let meals = mealsFromTimeline else { return [] }
-        let data =  meals.compactMap { $0.ingredients }
-        var result: [String] = []
+    //    func substractIngredients() -> [String] {
+    //        guard let meals = mealsFromTimeline else { return [] }
+    //        let data =  meals.compactMap { $0.ingredients }
+    //        var result: [String] = []
+    //
+    //        for el in data {
+    //            if el.contains(",") {
+    //                let splitted = el.components(separatedBy: ", ")
+    //
+    //                for el in splitted {
+    //                    result.append(el)
+    //                }
+    //            } else {
+    //                result.append(el)
+    //            }
+    //        }
+    //        return result
+    //    }
+    
+    func filterBySelectedSymptom() -> [SymptomNote] {
+        guard let selectedSpecificSymptom = selectedSymptom else { return [] }
         
-        for el in data {
-            if el.contains(",") {
-                let splitted = el.components(separatedBy: ", ")
+        return model.symptomNotes.filter { symptom in
+            symptom.symptoms?.contains(selectedSpecificSymptom) == true
+        }
+    }
+    
+    func hoursBack(selectedSymptom: SymptomNote) -> Date {
+        let symptomTime = selectedSymptom.createdAt!
+        
+        return Calendar.current.date(byAdding: .hour, value: -hoursBack, to: symptomTime)!
+    }
+    
+    func collectMealsFromTimeline(selectedSymptom: SymptomNote, timeBack: Date) -> [MealNote] {
+        let selectedSymptomTime = selectedSymptom.createdAt!
+        
+        return model.mealNotes.filter { meal in
+            if let mealTime = meal.createdAt {
+                return mealTime >= timeBack && mealTime <= selectedSymptomTime
+            }
+            return false
+        }
+    }
+    
+    func collectIngredients() -> [String] {
+        let filteredSymptoms = filterBySelectedSymptom()
+        var ingredients: [String] = []
+        
+        for symptom in filteredSymptoms {
+            let backedTime = hoursBack(selectedSymptom: symptom)
+            let collectedMeals = collectMealsFromTimeline(selectedSymptom: symptom, timeBack: backedTime)
+            
+            for meal in collectedMeals {
+                let ings = meal.ingredients?.components(separatedBy: ", ")
                 
-                for el in splitted {
-                    result.append(el)
+                ings.map { el in
+                    ingredients.append(contentsOf: el)
                 }
-            } else {
-                result.append(el)
             }
         }
-        return result
+        return ingredients
+    }
+    
+    func calcSortIngredients() -> [(String, Int)] {
+        let data = collectIngredients()
+        var counts: [String: Int] = [:]
+        
+        for el in data {
+            counts[el] = (counts[el] ?? 0) + 1
+        }
+        
+        let sorted = counts.sorted {
+            if $0.value == $1.value {
+                return $0.key < $1.key
+            } else {
+                return $0.value > $1.value
+            }
+        }
+        return Array(sorted.prefix(ingredientsToShow))
     }
 }
-
-//#Preview {
-//    GeneralAnalytics()
-//}

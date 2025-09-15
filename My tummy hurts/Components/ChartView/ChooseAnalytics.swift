@@ -9,8 +9,8 @@ import SwiftUI
 import Foundation
 
 enum AnalyticsMode: String, CaseIterable, Identifiable {
-    case general = "General analytics"
-    case history = "History of symptoms"
+    case barChart = "Bar chart"
+    case calendarView = "Calendar view"
     var id: Self { self }
 }
 

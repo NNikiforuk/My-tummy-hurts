@@ -10,11 +10,12 @@ import SwiftUI
 struct ChartView: View {
     @EnvironmentObject var model: ViewModel
     
-    @State private var analyticsType: AnalyticsMode = .general
-    @State private var chartType: ChartMode = .checkSpecificSymptom
+    @State private var analyticsType: AnalyticsMode = .calendarView
+    @State private var chartType: ChartMode = .defaultChart
     @State private var ingredientsToShow = 3
     @State private var hoursBack = 1
     @State private var selectedSymptom: String? = nil
+    @State private var selectedIngredient: String? = nil
     
     var noMealNotes: Bool {
         model.mealNotes.isEmpty
@@ -62,12 +63,12 @@ struct ChartView: View {
                 NoDataTexts(analyticsType: $analyticsType, noMealNotes: noMealNotes, noSymptomNotes: noSymptomNotes)
                 
                 switch analyticsType {
-                case .general: GeneralAnalytics(chartType: $chartType, ingredientsToShow: $ingredientsToShow, hoursBack: $hoursBack, selectedSymptom: $selectedSymptom, chartTitle: chartTitle, noMealNotes: noMealNotes, noSymptomNotes: noSymptomNotes)
+                case .barChart: GeneralAnalytics(chartType: $chartType, ingredientsToShow: $ingredientsToShow, hoursBack: $hoursBack, selectedSymptom: $selectedSymptom, chartTitle: chartTitle, noMealNotes: noMealNotes, noSymptomNotes: noSymptomNotes)
                         .environmentObject(model)
                     
-                case .history:
+                case .calendarView:
                     if !model.symptomNotes.isEmpty {
-                        SymptomsHistory()
+                        CalendarChart(selectedIngredient: $selectedIngredient)
                             .environmentObject(model)
                     }
                 }

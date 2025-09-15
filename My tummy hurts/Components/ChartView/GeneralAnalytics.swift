@@ -49,8 +49,7 @@ struct GeneralAnalytics: View {
                 if chartType == .checkSpecificSymptom {
                     VStack(alignment: .leading, spacing: 40) {
                         HowManyHoursBack(value: $hoursBack, range: 1...24)
-                        SelectSpecificSymptom(selectedSpecificSymptom: $selectedSymptom, noSymptomNotes: noSymptomNotes)
-                            .environmentObject(model)
+                        SelectElementPicker(sectionTitle: "SELECT SYMPTOM", pickerData: dataForPicker(mealsMode: false, model: model), pickerSelection: $selectedSymptom)
                     }
                     .transition(.opacity.combined(with: .move(edge: .top)))
                 }
@@ -159,25 +158,6 @@ struct GeneralAnalytics: View {
         }
         return Array(sorted.prefix(ingredientsToShow))
     }
-    
-    //    func substractIngredients() -> [String] {
-    //        guard let meals = mealsFromTimeline else { return [] }
-    //        let data =  meals.compactMap { $0.ingredients }
-    //        var result: [String] = []
-    //
-    //        for el in data {
-    //            if el.contains(",") {
-    //                let splitted = el.components(separatedBy: ", ")
-    //
-    //                for el in splitted {
-    //                    result.append(el)
-    //                }
-    //            } else {
-    //                result.append(el)
-    //            }
-    //        }
-    //        return result
-    //    }
     
     func filterBySelectedSymptom() -> [SymptomNote] {
         guard let selectedSpecificSymptom = selectedSymptom else { return [] }

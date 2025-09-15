@@ -30,18 +30,11 @@ struct SelectChartType: View {
                     isSelected: chartType == ChartMode.checkSpecificSymptom,
                     infoText: ChartMode.checkSpecificSymptom.infoText,
                     onTap: { chartType = ChartMode.checkSpecificSymptom })
-                
-//                SelectableCard(
-//                    showInfo: $showInfoLimit,
-//                    title: ChartMode.limitByHours.title,
-//                    isSelected: chartType == ChartMode.limitByHours,
-//                    infoText: ChartMode.limitByHours.infoText,
-//                    onTap: { chartType = ChartMode.limitByHours })
             }
             .grayOverlayModifier()
             .contentShape(Rectangle())
         }
-        .padding(.top, 40)
+        .padding(.top, 10)
     }
 }
 

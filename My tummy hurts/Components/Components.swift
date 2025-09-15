@@ -51,7 +51,7 @@ struct NoDataTexts: View {
     
     var body: some View {
         switch analyticsType {
-        case .general:
+        case .barChart:
             if noMealNotes && noSymptomNotes {
                 NoDataAlert(text: "Add meals and negative symptoms. The more you add - the better the conclusions will be")
             } else if noMealNotes {
@@ -59,7 +59,7 @@ struct NoDataTexts: View {
             } else if noSymptomNotes {
                 noSymptoms
             }
-        case .history:
+        case .calendarView:
             if noSymptomNotes {
                 noSymptoms
             }

@@ -58,7 +58,7 @@ struct SelectElementPicker: View {
             .frame(maxWidth: .infinity)
             .font(.subheadline)
             .pickerStyle(.menu)
-            .grayOverlayModifier()
+            .pickerModifier()
         }
     }
 }

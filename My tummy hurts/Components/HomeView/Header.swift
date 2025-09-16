@@ -92,31 +92,27 @@ struct WeekView: View {
                     Text(formatDayName(date))
                         .font(.caption)
                         .foregroundStyle(
-                            isToday(date: date)
-                            ? Color.gray
-                            : isSameDay(date1: date, date2: selectedDate)
-                            ? Color.gray
-                            : Color.gray)
+                            isSameDay(date1: date, date2: selectedDate)
+                            ? Color("NeutralColor")
+                            : Color("PrimaryText"))
                     Text(formatDayNumber(date))
                         .font(.title3)
                         .fontWeight(.bold)
                         .foregroundStyle(
                             isSameDay(date1: date, date2: selectedDate)
-                            ? Color("BackgroundColor")
+                            ? Color("NeutralColor")
                             : Color("PrimaryText")
                         )
                 }
                 .frame(width: 35, height: 60)
                 .background(
                     isSameDay(date1: date, date2: selectedDate)
-                    ? Color("PrimaryText")
+                    ? Color("SecondaryColor")
                     : Color.clear
                 )
                 .background(
                     isToday(date: date)
-                    ? .gray.opacity(0.2)
-                    : isSameDay(date1: date, date2: selectedDate)
-                    ? Color("PrimaryText")
+                    ? .secondaryText.opacity(0.2)
                     : Color.clear
                 )
                 .clipShape(RoundedRectangle(cornerRadius: 8))

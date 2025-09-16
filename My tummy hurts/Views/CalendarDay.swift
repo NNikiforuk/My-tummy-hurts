@@ -40,6 +40,29 @@ struct CalendarDay: View {
         )
     }
     
+    var meals: [Event] {
+        filteredMeals.compactMap { meal in
+            guard let mealTime = meal.createdAt else { return nil }
+            guard let mealIngredients = meal.ingredients else { return nil }
+            
+            return Event(date: mealTime, type: .meals, tag: nil, icon: "fork.knife", desc: mealIngredients)
+        }
+    }
+    
+    var symptoms: [Event] {
+        filteredSymptoms.compactMap { symptom in
+            guard let symptomTime = symptom.createdAt else { return nil }
+            guard let symptoms = symptom.symptoms else { return nil }
+            
+            return Event(date: symptomTime, type: .symptoms, tag: symptom.critical ? .red : .blue, icon: "toilet", desc: symptoms)
+        }
+    }
+    
+    var data: [Event] {
+        let allTogether = meals + symptoms
+        return allTogether.sorted(by: { $0.date < $1.date })
+    }
+    
     var body: some View {
         VStack {
             pageTitle
@@ -48,9 +71,15 @@ struct CalendarDay: View {
                 Spacer()
             }
             .padding(.top, 30)
-            TimelineChart(startOfDay: startOfDay, endOfDay: endOfDay, filteredMeals: filteredMeals, filteredSymptoms: filteredSymptoms)
+            TimelineChart(startOfDay: startOfDay, endOfDay: endOfDay, data: data)
                 .environmentObject(model)
-            legend
+            HStack {
+                SectionTitle(title: "DAILY EVENTS")
+                Spacer()
+            }
+            .padding(.top, 30)
+            DailyEvents(data: data)
+                .grayOverlayModifier()
             Spacer()
         }
         .customBgModifier()
@@ -61,26 +90,6 @@ struct CalendarDay: View {
             .font(.title2.bold())
             .foregroundStyle(Color("PrimaryText"))
     }
-    
-    var legend: some View {
-        HStack(alignment: .center, spacing: 30) {
-            legendItem(icon: "fork.knife", text: "meal", color: Color("PrimaryText"))
-            legendItem(icon: "toilet", text: "minor symptom", color: SymptomTagsEnum.blue.color)
-            legendItem(icon: "toilet", text: "major symptom", color: SymptomTagsEnum.red.color)
-        }
-        .font(.caption)
-        .padding(.top, 10)
-    }
-    
-    func legendItem(icon: String, text: String, color: Color) -> some View {
-        HStack(spacing: 5) {
-            Image(systemName: icon)
-                .foregroundStyle(color)
-                .font(.body)
-            Text(text)
-                .foregroundStyle(.primaryText)
-        }
-    }
 }
 
 struct Event: Identifiable {
@@ -89,6 +98,7 @@ struct Event: Identifiable {
     let type: NoteTab
     let tag: SymptomTagsEnum?
     let icon: String
+    let desc: String
 }
 
 struct TimelineChart: View {
@@ -96,26 +106,7 @@ struct TimelineChart: View {
     
     var startOfDay: Date
     var endOfDay: Date
-    var filteredMeals: [MealNote]
-    var filteredSymptoms: [SymptomNote]
-    
-    var meals: [Event] {
-        filteredMeals.compactMap { meal in
-            guard let mealTime = meal.createdAt else { return nil }
-            return Event(date: mealTime, type: .meals, tag: nil, icon: "fork.knife")
-        }
-    }
-    
-    var symptoms: [Event] {
-        filteredSymptoms.compactMap { symptom in
-            guard let symptomTime = symptom.createdAt else { return nil }
-            return Event(date: symptomTime, type: .symptoms, tag: symptom.critical ? .red : .blue, icon: "toilet")
-        }
-    }
-    
-    var data: [Event] {
-        meals + symptoms
-    }
+    var data: [Event]
     
     var body: some View {
         ScrollView(.horizontal) {
@@ -131,10 +122,75 @@ struct TimelineChart: View {
             .chartXScale(domain: startOfDay...endOfDay)
             .frame(width: UIScreen.main.bounds.width * 2, height: 100)
             .padding(30)
+            legend
         }
         .grayOverlayModifier()
     }
+    
+    var legend: some View {
+        HStack(alignment: .center, spacing: 30) {
+            legendItem(icon: "fork.knife", text: "meal", color: Color("PrimaryText"))
+            legendItem(icon: "toilet", text: "minor symptom", color: SymptomTagsEnum.blue.color)
+            legendItem(icon: "toilet", text: "major symptom", color: SymptomTagsEnum.red.color)
+            Spacer()
+        }
+        .font(.caption2)
+        .padding(.vertical, 20)
+    }
+    
+    func legendItem(icon: String, text: String, color: Color) -> some View {
+        HStack(spacing: 5) {
+            Image(systemName: icon)
+                .foregroundStyle(color)
+                .font(.body)
+            Text(text)
+                .foregroundStyle(.primaryText)
+        }
+    }
 }
+
+struct DailyEvents: View {
+    var data: [Event]
+    
+    var body: some View {
+        ScrollView {
+            LazyVStack {
+                ForEach(data) { note in
+                    Note(note: note)
+                }
+                .noteModifier()
+            }
+        }
+    }
+}
+
+struct Note: View {
+    var note: Event
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 20) {
+            HStack(spacing: 10) {
+                NoteIcon(icon: "clock")
+                Text(note.date, style: .time)
+                if (note.tag != nil) {
+                    Spacer()
+                    Circle()
+                        .fill(note.tag == SymptomTagsEnum.red ? SymptomTagsEnum.red.color : SymptomTagsEnum.blue.color)
+                        .frame(width: 15, height: 15)
+                }
+            }
+            HStack(spacing: 10) {
+                NoteIcon(icon: note.type == .meals ? "carrot" : "toilet")
+                Text(note.desc)
+                    .lineLimit(1)
+                Spacer()
+            }
+        }
+    }
+}
+
+
+
 
 #Preview {
     CalendarDay(selectedDate: .constant(Date()))

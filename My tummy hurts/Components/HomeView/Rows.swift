@@ -92,7 +92,7 @@ struct NewRows: View {
                             .padding(.horizontal, 10)
                             .overlay {
                                 RoundedRectangle(cornerRadius: 8, style: .continuous)
-                                    .stroke(Color(UIColor.gray), lineWidth: 1)
+                                    .stroke(Color("SecondaryText"), lineWidth: 1)
                             }
                             .foregroundStyle(Color("PrimaryText"))
                             .lineLimit(1)
@@ -157,7 +157,7 @@ struct XMarkBtn: View {
         } label: {
             Image(systemName: "xmark")
         }
-        .foregroundStyle(.secondary)
+        .foregroundStyle(Color("SecondaryText"))
     }
 }
 
@@ -177,6 +177,7 @@ struct Suggestion: View {
                     Text(suggestion)
                         .padding(8)
                         .frame(maxWidth: .infinity, alignment: .leading)
+                        .foregroundStyle(Color("SecondaryText"))
                 }
             }
         }

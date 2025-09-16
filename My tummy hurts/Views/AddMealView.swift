@@ -45,7 +45,7 @@ struct AddMealView: View {
                 })
                 .fontWeight(.bold)
                 .disabled(isSaveDisabled)
-                .foregroundStyle(isSaveDisabled ? .gray : .accent)
+                .foregroundStyle(isSaveDisabled ? Color("SecondaryText") : .accent)
             }
         }
         .ignoresSafeArea(.keyboard)

@@ -14,7 +14,8 @@ struct PlusIcon: View {
             Image(systemName: "plus")
             Text("List item")
         }
-        .foregroundStyle(.secondary)
+        .foregroundStyle(.accent)
+        .bold()
         .padding(.horizontal, 10)
     }
 }

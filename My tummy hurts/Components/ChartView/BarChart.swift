@@ -44,6 +44,7 @@ struct BarChart: View {
         VStack {
             Text("\(entry.1)")
                 .font(.caption2)
+                .foregroundStyle(Color("PrimaryText"))
             Rectangle()
                 .fill(.accent)
                 .frame(

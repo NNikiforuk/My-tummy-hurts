@@ -22,6 +22,7 @@ struct ChooseAnalytics: View {
             Picker("Choose analytics", selection: $analyticsType) {
                 ForEach(AnalyticsMode.allCases) { el in
                     Text(el.rawValue)
+                        .foregroundStyle(Color("PrimaryText"))
                 }
             }
         }

@@ -37,7 +37,7 @@ struct NoDataAlert: View {
         Text(text)
             .font(.callout)
             .padding(20)
-            .foregroundStyle(.secondary)
+            .foregroundStyle(Color("SecondaryText"))
             .frame(maxWidth: .infinity, alignment: .center)
             .multilineTextAlignment(.center)
     }

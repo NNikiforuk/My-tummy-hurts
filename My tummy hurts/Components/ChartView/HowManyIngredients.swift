@@ -22,9 +22,10 @@ struct HowManyIngredients: View {
                     } label: {
                         Text("\(value)")
                             .frame(maxWidth: .infinity)
+                            .foregroundStyle(Color("PrimaryText"))
                     }
                     .buttonStyle(.bordered)
-                    .tint(ingredientsToShow == value ? .accent : .gray)
+                    .tint(ingredientsToShow == value ? .accent : .accent.opacity(0.3))
                 }
             }
             .grayOverlayModifier()

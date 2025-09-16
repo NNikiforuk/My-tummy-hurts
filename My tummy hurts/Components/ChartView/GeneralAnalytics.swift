@@ -68,7 +68,7 @@ struct GeneralAnalytics: View {
                             .frame(height: 250)
                             .padding()
                             .overlay {
-                                RoundedRectangle(cornerRadius: 15).stroke(.gray.opacity(0.2))
+                                RoundedRectangle(cornerRadius: 15).stroke(Color("SecondaryText").opacity(0.2))
                             }
                         
                     case .checkSpecificSymptom:

@@ -51,22 +51,23 @@ struct SelectableCard: View {
             HStack(alignment: .top, spacing: 12) {
                 Image(systemName: isSelected ? "largecircle.fill.circle" : "circle")
                     .imageScale(.large)
-                    .foregroundStyle(isSelected ? .accent : .gray)
+                    .foregroundStyle(isSelected ? .accent : Color("SecondaryText"))
                 
                 VStack(alignment: .leading, spacing: 4) {
                     Text(title).font(.headline)
+                        .foregroundStyle(Color("PrimaryText"))
                     Button {
                         withAnimation { showInfo.toggle() }
                     } label: {
                         Label("More info", systemImage: "info.circle")
                             .font(.subheadline)
-                            .foregroundStyle(.gray)
+                            .foregroundStyle(Color("SecondaryText"))
                             .padding(.top, 5)
                     }
                     if showInfo {
                         Text(infoText)
                             .font(.footnote)
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(Color("SecondaryText"))
                             .transition(.opacity)
                             .padding(.top, 5)
                     }

@@ -58,7 +58,15 @@ struct SelectElementPicker: View {
             .frame(maxWidth: .infinity)
             .font(.subheadline)
             .pickerStyle(.menu)
-            .pickerModifier()
+            .padding(5)
+            .background(
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color("BackgroundColor"))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(Color("SecondaryText"), lineWidth: 1)
+                    )
+            )
         }
     }
 }

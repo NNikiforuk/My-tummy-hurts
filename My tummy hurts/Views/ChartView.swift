@@ -10,8 +10,8 @@ import SwiftUI
 struct ChartView: View {
     @EnvironmentObject var model: ViewModel
     
-    @State private var analyticsType: AnalyticsMode = .calendarView
-    @State private var chartType: ChartMode = .checkSpecificSymptom
+    @State private var analyticsType: AnalyticsMode = .barChart
+    @State private var chartType: ChartMode = .defaultChart
     @State private var ingredientsToShow = 3
     @State private var hoursBack = 1
     @State private var selectedSymptom: String? = nil

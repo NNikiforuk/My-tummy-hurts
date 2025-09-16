@@ -69,7 +69,7 @@ struct GrayOverlayModifier: ViewModifier {
                     .fill(Color("BackgroundColor"))
                     .overlay(
                         RoundedRectangle(cornerRadius: 16)
-                            .stroke(.gray.opacity(0.2), lineWidth: 1)
+                            .stroke(Color("SecondaryText").opacity(0.2), lineWidth: 1)
                     )
             )
     }
@@ -78,26 +78,5 @@ struct GrayOverlayModifier: ViewModifier {
 extension View {
     func grayOverlayModifier() -> some View {
         modifier(GrayOverlayModifier())
-    }
-}
-
-struct PickerModifier: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .padding(5)
-            .background(
-                RoundedRectangle(cornerRadius: 16)
-                    .fill(Color("BackgroundColor"))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 16)
-                            .stroke(.gray.opacity(0.2), lineWidth: 1)
-                    )
-            )
-    }
-}
-
-extension View {
-    func pickerModifier() -> some View {
-        modifier(PickerModifier())
     }
 }

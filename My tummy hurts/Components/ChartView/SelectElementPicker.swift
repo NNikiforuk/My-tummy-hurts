@@ -25,7 +25,7 @@ func dataForPicker(mealsMode: Bool, model: ViewModel) -> [String] {
             }
         }
     }
-    return Array(Set(array.sorted()))
+    return Array(Set(array)).sorted(by: <)
 }
 
 struct SelectElementPicker: View {

@@ -16,6 +16,7 @@ struct ChartView: View {
     @State private var hoursBack = 1
     @State private var selectedSymptom: String? = nil
     @State private var selectedIngredient: String? = nil
+    @State private var selectedDate: Date = Date()
     
     var noMealNotes: Bool {
         model.mealNotes.isEmpty
@@ -68,7 +69,7 @@ struct ChartView: View {
                     
                 case .calendarView:
                     if !model.symptomNotes.isEmpty {
-                        CalendarChart(selectedIngredient: $selectedIngredient)
+                        CalendarChart(selectedIngredient: $selectedIngredient, selectedDate: $selectedDate)
                             .environmentObject(model)
                     }
                 }
@@ -77,6 +78,7 @@ struct ChartView: View {
         }
         .customBgModifier()
     }
+    
 }
 
 struct ChartView_Previews: PreviewProvider {

@@ -45,7 +45,7 @@ struct HomeView: View {
             NotesPicker(selection: $selection)
             ScrollView {
                 LazyVStack(spacing: 20) {
-                    NotesView(selection: $selection, selectedDate: $selectedDate)
+                    NotesView(selection: $selection, selectedDate: $selectedDate, onlyShow: false)
                         .environmentObject(model)
                 }
             }

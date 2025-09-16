@@ -10,20 +10,15 @@ import SwiftUI
 struct CalendarChart: View {
     @EnvironmentObject var model: ViewModel
     @Binding var selectedIngredient: String?
+    @Binding var selectedDate: Date
     
-    @State private var selectedDate: Date = Date()
     @State private var currentPage: Int
     
     let months: [Date]
     
-    var filteredMeals: [MealNote] {
-        return model.mealNotes.filter { meal in
-            meal.ingredients?.contains(selectedIngredient ?? "") ?? false
-        }
-    }
-    
-    init(selectedIngredient: Binding<String?>) {
+    init(selectedIngredient: Binding<String?>, selectedDate: Binding<Date>) {
         self._selectedIngredient = selectedIngredient
+        self._selectedDate = selectedDate
         
         let calendar = Calendar.current
         let today = Date()
@@ -48,7 +43,7 @@ struct CalendarChart: View {
     }
     
     var body: some View {
-        VStack {
+        NavigationStack {
             ScrollView {
                 VStack(spacing: 10) {
                     if !model.mealNotes.isEmpty {
@@ -57,13 +52,14 @@ struct CalendarChart: View {
                     VStack {
                         TabView(selection: $currentPage) {
                             ForEach(months.indices, id: \.self) { index in
-                                MonthView(selectedDate: $selectedDate, month: months[index])
+                                MonthView(selectedDate: $selectedDate, selectedIngredient: $selectedIngredient, month: months[index])
                                     .tag(index)
                             }
                         }
                         .tabViewStyle(.page(indexDisplayMode: .never))
-                        .frame(height: 300)
+                        .frame(height: 350)
                         .padding(.bottom, 40)
+                        .environmentObject(model)
                         
                         TagsDescription()
                             .environmentObject(model)
@@ -76,7 +72,9 @@ struct CalendarChart: View {
 }
 
 struct MonthView: View {
+    @EnvironmentObject var model: ViewModel
     @Binding var selectedDate: Date
+    @Binding var selectedIngredient: String?
     
     let month: Date
     let calendar = Calendar.current
@@ -99,7 +97,8 @@ struct MonthView: View {
             LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7)) {
                 ForEach(days, id: \.self) { date in
                     if let date = date {
-                        DayCell(date: date, selectedDate: $selectedDate)
+                        DayCell(selectedDate: $selectedDate, selectedIngredient: $selectedIngredient, date: date)
+                            .environmentObject(model)
                     } else {
                         Color.clear.frame(height: 40)
                     }
@@ -127,36 +126,94 @@ struct MonthView: View {
 }
 
 struct DayCell: View {
-    let date: Date
+    @EnvironmentObject var model: ViewModel
     @Binding var selectedDate: Date
+    @Binding var selectedIngredient: String?
+    
+    let date: Date
+    
+    var filteredMeals: [MealNote] {
+        return model.mealNotes.filter { meal in
+            meal.ingredients?.contains(selectedIngredient ?? "") ?? false
+        }
+    }
+    
+    var showSelectedIngredient: Color {
+        let sameDateNotes = model.mealNotes.filter { note in
+            if let created = note.createdAt {
+                return Calendar.current.isDate(created, inSameDayAs: date)
+            }
+            return false
+        }
+        
+        let contains = sameDateNotes.contains { note in
+            if let ingredients = note.ingredients, let selected = selectedIngredient {
+                return ingredients.contains(selected)
+            }
+            return false
+        }
+        
+        if contains {
+            return .accent
+        }
+        
+        return .clear
+    }
+    
+    var symptomColor: SymptomTagsEnum? {
+        let sameDayNotes = model.symptomNotes.filter { note in
+            if let created = note.createdAt {
+                return Calendar.current.isDate(created, inSameDayAs: date)
+            }
+            return false
+        }
+        
+        let tags = sameDayNotes.map { note in
+            (note.critical == true) ? SymptomTagsEnum.red : SymptomTagsEnum.blue
+        }
+        
+        return tags.max(by: { $0.priority < $1.priority })
+    }
     
     var body: some View {
-        let isSelected = Calendar.current.isDate(date, inSameDayAs: selectedDate)
-        
-        Text("\(Calendar.current.component(.day, from: date))")
-            .frame(width: 35, height: 35)
-            .background(
-                Circle()
-                    .fill(
-                        isSelected
-                        ? Color("PrimaryText")
-                        : (isToday(date: date)
-                           ? Color.gray.opacity(0.2)
-                           : .clear
-                          )
+        NavigationLink {
+            CalendarDay(selectedDate: $selectedDate)
+                .environmentObject(model)
+        } label: {
+            VStack {
+                Text("\(Calendar.current.component(.day, from: date))")
+                    .frame(width: 35, height: 35)
+                    .background(
+                        Circle()
+                            .fill(
+                                showSelectedIngredient
+                            )
                     )
-            )
-            .foregroundColor(isSelected ? .white : .primary)
-            .onTapGesture {
-                withAnimation {
-                    selectedDate = date
+                    .overlay(
+                        Circle().stroke(isToday(date: date) ? .gray.opacity(0.2) : Color.clear, lineWidth: 2)
+                    )
+                    .foregroundStyle(showSelectedIngredient == .accent ? .background : .primaryText)
+                    .fontWeight(isToday(date: date) ? .bold : .regular)
+                
+                if let tag = symptomColor {
+                    Circle()
+                        .fill(tag.color)
+                        .frame(width: 10, height: 10)
+                } else {
+                    Circle()
+                        .fill(.clear)
+                        .frame(width: 10, height: 10)
                 }
             }
+        }
+        .simultaneousGesture(TapGesture().onEnded {
+            selectedDate = date
+        })
     }
-    
-    func isToday(date: Date) -> Bool {
-        Calendar.current.isDateInToday(date)
-    }
+}
+
+func isToday(date: Date) -> Bool {
+    Calendar.current.isDateInToday(date)
 }
 
 extension Date {
@@ -165,11 +222,12 @@ extension Date {
     }
 }
 
+
 struct TagsDescription: View {
     @EnvironmentObject var model: ViewModel
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
+        VStack(alignment: .center) {
             HStack(spacing: 30) {
                 Text("Symptom:")
                 ForEach(SymptomTagsEnum.allCases) { el in
@@ -179,16 +237,6 @@ struct TagsDescription: View {
                         Text(el.desc)
                     }
                 }
-                Spacer()
-            }
-            if !model.mealNotes.isEmpty {
-                HStack {
-                    Text("Selected ingredient(s):")
-                    Circle()
-                        .fill(Color("NoteBgc"))
-                        .frame(width: 15, height: 15)
-                        .border(.gray)
-                }
             }
         }
         .font(.caption2)
@@ -197,5 +245,5 @@ struct TagsDescription: View {
 }
 
 #Preview {
-    CalendarChart(selectedIngredient: .constant("jajko"))
+    CalendarChart(selectedIngredient: .constant("jajko"), selectedDate: .constant(Date()))
 }

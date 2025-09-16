@@ -13,6 +13,7 @@ struct NotesView: View {
     @EnvironmentObject var model: ViewModel
     
     let calendar = Calendar.current
+    let onlyShow: Bool
     
     var filteredMeals: [MealNote] {
         onSameDay(
@@ -38,28 +39,42 @@ struct NotesView: View {
             if filteredMeals.isEmpty {
                 noListData(text: "There are no meals yet")
             } else {
-                ForEach(filteredMeals) { note in
-                    NavigationLink {
-                        EditMeal(note: note)
-                            .environmentObject(model)
-                    } label: {
+                if onlyShow {
+                    ForEach(filteredMeals) { note in
                         NoteMeal(note: note, meals: true)
+                            .noteModifier()
                     }
-                    .noteModifier()
+                } else {
+                    ForEach(filteredMeals) { note in
+                        NavigationLink {
+                            EditMeal(note: note)
+                                .environmentObject(model)
+                        } label: {
+                            NoteMeal(note: note, meals: true)
+                        }
+                        .noteModifier()
+                    }
                 }
             }
         case .symptoms:
             if filteredSymptoms.isEmpty {
                 noListData(text: "There are no symptoms yet")
             } else {
-                ForEach(filteredSymptoms) { note in
-                    NavigationLink {
-                        EditSymptom(note: note)
-                            .environmentObject(model)
-                    } label: {
+                if onlyShow {
+                    ForEach(filteredSymptoms) { note in
                         NoteSymptom(note: note, meals: false)
+                            .noteModifier()
                     }
-                    .noteModifier()
+                } else {
+                    ForEach(filteredSymptoms) { note in
+                        NavigationLink {
+                            EditSymptom(note: note)
+                                .environmentObject(model)
+                        } label: {
+                            NoteSymptom(note: note, meals: false)
+                        }
+                        .noteModifier()
+                    }
                 }
             }
         }
@@ -110,16 +125,16 @@ struct TopNoteRow: View {
     }
     
     var body: some View {
-            HStack(spacing: 10) {
-                NoteIcon(icon: "clock")
-                Text(time, style: .time)
-                if let critical {
-                    Spacer()
-                    Circle()
-                        .fill(critical ? SymptomTagsEnum.red.color : SymptomTagsEnum.blue.color)
-                        .frame(width: 15, height: 15)
-                }
+        HStack(spacing: 10) {
+            NoteIcon(icon: "clock")
+            Text(time, style: .time)
+            if let critical {
+                Spacer()
+                Circle()
+                    .fill(critical ? SymptomTagsEnum.red.color : SymptomTagsEnum.blue.color)
+                    .frame(width: 15, height: 15)
             }
+        }
     }
 }
 
@@ -147,5 +162,5 @@ struct NoteIcon: View {
 }
 
 #Preview {
-    NotesView(selection: .constant(.meals), selectedDate: .constant(Date()))
+    NotesView(selection: .constant(.meals), selectedDate: .constant(Date()), onlyShow: false)
 }

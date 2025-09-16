@@ -9,15 +9,17 @@ import SwiftUI
 
 struct CalendarChart: View {
     @EnvironmentObject var model: ViewModel
-    @Binding var selectedIngredient: String?
+    @Binding var selectedFirstIngredient: String?
+    @Binding var selectedSecondIngredient: String?
     @Binding var selectedDate: Date
     
     @State private var currentPage: Int
     
     let months: [Date]
     
-    init(selectedIngredient: Binding<String?>, selectedDate: Binding<Date>) {
-        self._selectedIngredient = selectedIngredient
+    init(selectedFirstIngredient: Binding<String?>, selectedSecondIngredient: Binding<String?>, selectedDate: Binding<Date>) {
+        self._selectedFirstIngredient = selectedFirstIngredient
+        self._selectedSecondIngredient = selectedSecondIngredient
         self._selectedDate = selectedDate
         
         let calendar = Calendar.current
@@ -45,14 +47,18 @@ struct CalendarChart: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(spacing: 10) {
+                VStack(alignment: .leading, spacing: 10) {
                     if !model.mealNotes.isEmpty {
-                        SelectElementPicker(sectionTitle: "SELECT INGREDIENT(S)", pickerData: dataForPicker(mealsMode: true, model: model), pickerSelection: $selectedIngredient)
+                        SectionTitle(title: "CHECK COMBINATIONS IN A MEAL")
+                        HStack {
+                            SelectElementPicker(pickerData: dataForPicker(mealsMode: true, model: model, excluded: selectedSecondIngredient), pickerSelection: $selectedFirstIngredient)
+                            SelectElementPicker(pickerData: dataForPicker(mealsMode: true, model: model, excluded: selectedFirstIngredient), pickerSelection: $selectedSecondIngredient)
+                        }
                     }
                     VStack {
                         TabView(selection: $currentPage) {
                             ForEach(months.indices, id: \.self) { index in
-                                MonthView(selectedDate: $selectedDate, selectedIngredient: $selectedIngredient, month: months[index])
+                                MonthView(selectedDate: $selectedDate, selectedFirstIngredient: $selectedFirstIngredient, selectedSecondIngredient: $selectedSecondIngredient, month: months[index])
                                     .tag(index)
                             }
                         }
@@ -66,6 +72,7 @@ struct CalendarChart: View {
                     }
                     .grayOverlayModifier()
                 }
+                .padding(.top, 30)
             }
         }
     }
@@ -74,7 +81,8 @@ struct CalendarChart: View {
 struct MonthView: View {
     @EnvironmentObject var model: ViewModel
     @Binding var selectedDate: Date
-    @Binding var selectedIngredient: String?
+    @Binding var selectedFirstIngredient: String?
+    @Binding var selectedSecondIngredient: String?
     
     let month: Date
     let calendar = Calendar.current
@@ -97,7 +105,7 @@ struct MonthView: View {
             LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7)) {
                 ForEach(days, id: \.self) { date in
                     if let date = date {
-                        DayCell(selectedDate: $selectedDate, selectedIngredient: $selectedIngredient, date: date)
+                        DayCell(selectedDate: $selectedDate, selectedFirstIngredient: $selectedFirstIngredient, selectedSecondIngredient: $selectedSecondIngredient, date: date)
                             .environmentObject(model)
                     } else {
                         Color.clear.frame(height: 40)
@@ -128,15 +136,10 @@ struct MonthView: View {
 struct DayCell: View {
     @EnvironmentObject var model: ViewModel
     @Binding var selectedDate: Date
-    @Binding var selectedIngredient: String?
+    @Binding var selectedFirstIngredient: String?
+    @Binding var selectedSecondIngredient: String?
     
     let date: Date
-    
-    var filteredMeals: [MealNote] {
-        return model.mealNotes.filter { meal in
-            meal.ingredients?.contains(selectedIngredient ?? "") ?? false
-        }
-    }
     
     var showSelectedIngredient: Color {
         let sameDateNotes = model.mealNotes.filter { note in
@@ -147,8 +150,20 @@ struct DayCell: View {
         }
         
         let contains = sameDateNotes.contains { note in
-            if let ingredients = note.ingredients, let selected = selectedIngredient {
-                return ingredients.contains(selected)
+            guard let ingredients = note.ingredients else { return false }
+            
+            if let first = selectedFirstIngredient, let second = selectedSecondIngredient {
+                if ingredients.contains(first) && ingredients.contains(second) {
+                    return true
+                }
+            } else if let first = selectedFirstIngredient {
+                if ingredients.contains(first) {
+                    return true
+                }
+            } else if let second = selectedSecondIngredient {
+                if ingredients.contains(second) {
+                    return true
+                }
             }
             return false
         }
@@ -245,5 +260,5 @@ struct TagsDescription: View {
 }
 
 #Preview {
-    CalendarChart(selectedIngredient: .constant("jajko"), selectedDate: .constant(Date()))
+    CalendarChart(selectedFirstIngredient: .constant("jajko"), selectedSecondIngredient: .constant("zgada"), selectedDate: .constant(Date()))
 }

@@ -11,11 +11,12 @@ struct ChartView: View {
     @EnvironmentObject var model: ViewModel
     
     @State private var analyticsType: AnalyticsMode = .calendarView
-    @State private var chartType: ChartMode = .defaultChart
+    @State private var chartType: ChartMode = .checkSpecificSymptom
     @State private var ingredientsToShow = 3
     @State private var hoursBack = 1
     @State private var selectedSymptom: String? = nil
-    @State private var selectedIngredient: String? = nil
+    @State private var selectedFirstIngredient: String? = nil
+    @State private var selectedSecondIngredient: String? = nil
     @State private var selectedDate: Date = Date()
     
     var noMealNotes: Bool {
@@ -69,7 +70,7 @@ struct ChartView: View {
                     
                 case .calendarView:
                     if !model.symptomNotes.isEmpty {
-                        CalendarChart(selectedIngredient: $selectedIngredient, selectedDate: $selectedDate)
+                        CalendarChart(selectedFirstIngredient: $selectedFirstIngredient, selectedSecondIngredient: $selectedSecondIngredient, selectedDate: $selectedDate)
                             .environmentObject(model)
                     }
                 }

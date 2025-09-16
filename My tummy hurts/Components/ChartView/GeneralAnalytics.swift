@@ -47,9 +47,11 @@ struct GeneralAnalytics: View {
                 
                 //SECOND TOGGLE SETTINGS
                 if chartType == .checkSpecificSymptom {
-                    VStack(alignment: .leading, spacing: 40) {
+                    VStack(alignment: .leading) {
                         HowManyHoursBack(value: $hoursBack, range: 1...24)
-                        SelectElementPicker(sectionTitle: "SELECT SYMPTOM", pickerData: dataForPicker(mealsMode: false, model: model), pickerSelection: $selectedSymptom)
+                            .padding(.bottom, 40)
+                        SectionTitle(title: "SELECT SYMPTOM")
+                        SelectElementPicker(pickerData: dataForPicker(mealsMode: false, model: model), pickerSelection: $selectedSymptom)
                     }
                     .transition(.opacity.combined(with: .move(edge: .top)))
                 }
@@ -72,12 +74,20 @@ struct GeneralAnalytics: View {
                     case .checkSpecificSymptom:
                         if selectedSymptom != nil {
                             SectionTitle(title: chartTitle)
-                            BarChart(data: secondChartData)
-                                .frame(height: 250)
-                                .padding()
-                                .overlay {
-                                    RoundedRectangle(cornerRadius: 15).stroke(.gray.opacity(0.2))
+                                .multilineTextAlignment(.center)
+                            
+                            if secondChartData.isEmpty {
+                                VStack(alignment: .center) {
+                                    NoDataAlert(text: "No data to show")
                                 }
+                            } else {
+                                BarChart(data: secondChartData)
+                                    .frame(height: 250)
+                                    .padding()
+                                    .overlay {
+                                        RoundedRectangle(cornerRadius: 15).stroke(.gray.opacity(0.2))
+                                    }
+                            }
                         } else {
                             VStack(alignment: .center) {
                                 NoDataAlert(text: "Choose data volume, how many hours and symptom")

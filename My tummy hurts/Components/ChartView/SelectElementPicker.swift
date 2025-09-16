@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-func dataForPicker(mealsMode: Bool, model: ViewModel) -> [String] {
+func dataForPicker(mealsMode: Bool, model: ViewModel, excluded: String? = nil) -> [String] {
     var array: [String] = []
     
     if mealsMode {
@@ -17,6 +17,7 @@ func dataForPicker(mealsMode: Bool, model: ViewModel) -> [String] {
                 array.append(contentsOf: el)
             }
         }
+        
     } else {
         for symptomNote in model.symptomNotes {
             if let symptoms = symptomNote.symptoms {
@@ -25,19 +26,21 @@ func dataForPicker(mealsMode: Bool, model: ViewModel) -> [String] {
             }
         }
     }
+    
+    if excluded != nil {
+        return array.filter { $0 != excluded }
+    }
+    
     return Array(Set(array)).sorted(by: <)
 }
 
 struct SelectElementPicker: View {
-    let sectionTitle: LocalizedStringKey
     let pickerData: [String]
     
     @Binding var pickerSelection: String?
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            SectionTitle(title: sectionTitle)
-            VStack(alignment: .leading) {
             Picker(LocalizedStringKey("Select"), selection: $pickerSelection) {
                 Text(LocalizedStringKey("None")).tag(nil as String?)
                     .font(.subheadline)
@@ -57,7 +60,5 @@ struct SelectElementPicker: View {
             .pickerStyle(.menu)
             .grayOverlayModifier()
         }
-        }
-        .padding(.top, 10)
     }
 }

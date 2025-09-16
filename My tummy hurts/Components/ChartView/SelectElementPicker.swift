@@ -44,15 +44,15 @@ struct SelectElementPicker: View {
             Picker(LocalizedStringKey("Select"), selection: $pickerSelection) {
                 Text(LocalizedStringKey("None")).tag(nil as String?)
                     .font(.subheadline)
+                    .foregroundStyle(.accent)
                 ForEach(pickerData, id: \.self) { el in
                     Text(el)
                         .font(.subheadline)
-                        .foregroundStyle(.blue)
+                        .foregroundStyle(.accent)
                         .tag(el as String?)
                         .textCase(.lowercase)
                         .fontWeight(.regular)
                         .lineLimit(1)
-                        .font(.subheadline)
                 }
             }
             .frame(maxWidth: .infinity)
@@ -64,7 +64,7 @@ struct SelectElementPicker: View {
                     .fill(Color("BackgroundColor"))
                     .overlay(
                         RoundedRectangle(cornerRadius: 16)
-                            .stroke(Color("SecondaryText"), lineWidth: 1)
+                            .stroke(Color("SecondaryText").opacity(0.2), lineWidth: 1)
                     )
             )
         }

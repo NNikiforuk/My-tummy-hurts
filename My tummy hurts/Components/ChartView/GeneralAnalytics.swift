@@ -58,45 +58,46 @@ struct GeneralAnalytics: View {
                 
                 //CHARTS
                 VStack(alignment: .leading) {
-                    switch chartType {
-                    case .defaultChart:
-                        SectionTitle(title: chartTitle)
-                            .frame(maxWidth: .infinity, alignment: .center)
-                            .foregroundStyle(.accent)
-                            .multilineTextAlignment(.center)
-                        BarChart(data: firstChartData)
-                            .frame(height: 250)
-                            .padding()
-                            .overlay {
-                                RoundedRectangle(cornerRadius: 15).stroke(Color("SecondaryText").opacity(0.2))
-                            }
-                        
-                    case .checkSpecificSymptom:
-                        if selectedSymptom != nil {
-                            SectionTitle(title: chartTitle)
-                                .multilineTextAlignment(.center)
+                    SectionTitle(title: "CHART")
+                    VStack {
+                        switch chartType {
+                        case .defaultChart:
+                            titleOfChart(title: chartTitle)
+                            BarChart(data: firstChartData)
+                                .frame(height: 300)
                             
+                        case .checkSpecificSymptom:
                             if secondChartData.isEmpty {
-                                VStack(alignment: .center) {
-                                    NoDataAlert(text: "No data to show")
-                                }
+                                NoDataAlert(text: "Add more data to see the chart")
                             } else {
-                                BarChart(data: secondChartData)
-                                    .frame(height: 250)
-                                    .padding()
-                                    .overlay {
-                                        RoundedRectangle(cornerRadius: 15).stroke(.gray.opacity(0.2))
+                                if selectedSymptom != nil {
+                                    titleOfChart(title: chartTitle)
+                                    BarChart(data: secondChartData)
+                                } else {
+                                    VStack(alignment: .center) {
+                                        NoDataAlert(text: "Choose data volume, how many hours and symptom")
                                     }
-                            }
-                        } else {
-                            VStack(alignment: .center) {
-                                NoDataAlert(text: "Choose data volume, how many hours and symptom")
+                                }
                             }
                         }
+                    }
+                    .padding()
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 15).stroke(Color("SecondaryText").opacity(0.2))
                     }
                 }
             }
         }
+    }
+    
+    func titleOfChart(title: LocalizedStringKey) -> some View {
+        Text(title)
+            .padding()
+            .padding(.bottom, 20)
+            .foregroundStyle(Color("SecondaryText"))
+            .lineLimit(nil)
+            .fixedSize(horizontal: false, vertical: true)
+            .multilineTextAlignment(.center)
     }
     
     func catchConnections() -> [(meal: NoteEnum, symptoms: [NoteEnum])] {

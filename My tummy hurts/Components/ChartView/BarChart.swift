@@ -62,7 +62,3 @@ struct BarChart: View {
     }
     
 }
-
-//#Preview {
-//    BarChart()
-//}

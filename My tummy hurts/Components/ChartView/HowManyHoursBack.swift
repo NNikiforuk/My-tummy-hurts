@@ -18,6 +18,7 @@ struct HowManyHoursBack: View {
             Stepper(value: $value, in: range) {
                 Text("\(value) h")
                     .font(.subheadline)
+                    .foregroundStyle(Color("PrimaryText"))
             }
             .grayOverlayModifier()
         }

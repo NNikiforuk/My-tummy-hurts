@@ -117,6 +117,7 @@ struct NotesPicker: View {
             Picker("", selection: $selection) {
                 ForEach(NoteTab.allCases) { tab in
                     Text(LocalizedStringKey(tab.rawValue)).tag(tab)
+                        .foregroundStyle(Color("PrimaryText"))
                 }
             }
             .bold()

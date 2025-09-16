@@ -32,7 +32,7 @@ struct NoteModifier: ViewModifier {
             .foregroundStyle(Color("PrimaryText"))
             .background {
                 RoundedRectangle(cornerRadius: 15)
-                    .fill(Color("NoteBgc"))
+                    .fill(Color("NeutralColor"))
             }
     }
 }

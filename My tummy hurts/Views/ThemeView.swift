@@ -15,9 +15,11 @@ struct ThemeView: View {
                 Text(LocalizedStringKey("Change theme"))
                     .font(.title2.bold())
                     .padding(.vertical, 10)
+                    .foregroundStyle(Color("PrimaryText"))
                 Picker("", selection: $selectedAppearance) {
                     ForEach(Appearance.allCases) { mode in
                         Text(LocalizedStringKey(mode.rawValue)).tag(mode)
+                            .foregroundStyle(Color("PrimaryText"))
                     }
                 }
                 .pickerStyle(.segmented)

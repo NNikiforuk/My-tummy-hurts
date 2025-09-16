@@ -195,7 +195,7 @@ struct AddBtns: View {
         .padding(.horizontal, 30)
         .padding(.vertical, 15)
         .background(.accent)
-        .foregroundStyle(Color("BackgroundColor"))
+        .foregroundStyle(Color("NeutralColor"))
         .bold()
         .clipShape(Capsule())
     }

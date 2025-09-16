@@ -30,10 +30,14 @@ struct NoteModifier: ViewModifier {
             .frame(maxWidth: .infinity)
             .padding()
             .foregroundStyle(Color("PrimaryText"))
-            .background {
+            .background(
                 RoundedRectangle(cornerRadius: 15)
                     .fill(Color("NeutralColor"))
-            }
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(Color("SecondaryText").opacity(0.2), lineWidth: 1)
+                    )
+            )
     }
 }
 

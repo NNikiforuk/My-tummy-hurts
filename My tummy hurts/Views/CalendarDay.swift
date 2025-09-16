@@ -66,20 +66,24 @@ struct CalendarDay: View {
     var body: some View {
         VStack {
             pageTitle
-            HStack {
-                SectionTitle(title: "EVENTS TIMELINE")
-                Spacer()
+            if data.isEmpty {
+                NoDataAlert(text: "No notes today")
+            } else {
+                HStack {
+                    SectionTitle(title: "EVENTS TIMELINE")
+                    Spacer()
+                }
+                .padding(.top, 30)
+                TimelineChart(startOfDay: startOfDay, endOfDay: endOfDay, data: data)
+                    .environmentObject(model)
+                HStack {
+                    SectionTitle(title: "DAILY EVENTS")
+                    Spacer()
+                }
+                .padding(.top, 30)
+                DailyEvents(data: data)
+                    .grayOverlayModifier()
             }
-            .padding(.top, 30)
-            TimelineChart(startOfDay: startOfDay, endOfDay: endOfDay, data: data)
-                .environmentObject(model)
-            HStack {
-                SectionTitle(title: "DAILY EVENTS")
-                Spacer()
-            }
-            .padding(.top, 30)
-            DailyEvents(data: data)
-                .grayOverlayModifier()
             Spacer()
         }
         .customBgModifier()
@@ -115,7 +119,7 @@ struct TimelineChart: View {
                 )
                 .symbol {
                     Image(systemName: event.icon)
-                        .foregroundColor(event.tag?.color ?? .primaryText)
+                        .foregroundColor(event.tag?.color ?? Color("PrimaryText"))
                         .font(.system(size: 17))
                 }
             }
@@ -144,7 +148,7 @@ struct TimelineChart: View {
                 .foregroundStyle(color)
                 .font(.body)
             Text(text)
-                .foregroundStyle(.primaryText)
+                .foregroundStyle(Color("PrimaryText"))
         }
     }
 }
@@ -172,16 +176,18 @@ struct Note: View {
             HStack(spacing: 10) {
                 NoteIcon(icon: "clock")
                 Text(note.date, style: .time)
+                    .foregroundStyle(Color("PrimaryText"))
                 if (note.tag != nil) {
                     Spacer()
                     Circle()
-                        .fill(note.tag == SymptomTagsEnum.red ? SymptomTagsEnum.red.color : SymptomTagsEnum.blue.color)
+                        .fill(note.tag == SymptomTagsEnum.red ? SymptomTagsEnum.red.color.opacity(0.4) : SymptomTagsEnum.blue.color.opacity(0.4))
                         .frame(width: 15, height: 15)
                 }
             }
             HStack(spacing: 10) {
                 NoteIcon(icon: note.type == .meals ? "carrot" : "toilet")
                 Text(note.desc)
+                    .foregroundStyle(Color("PrimaryText"))
                     .lineLimit(1)
                 Spacer()
             }

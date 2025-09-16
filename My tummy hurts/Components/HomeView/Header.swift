@@ -107,7 +107,7 @@ struct WeekView: View {
                 .frame(width: 35, height: 60)
                 .background(
                     isSameDay(date1: date, date2: selectedDate)
-                    ? Color("SecondaryColor")
+                    ? Color("CustomSecondary")
                     : Color.clear
                 )
                 .background(

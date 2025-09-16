@@ -131,7 +131,7 @@ struct TopNoteRow: View {
             if let critical {
                 Spacer()
                 Circle()
-                    .fill(critical ? SymptomTagsEnum.red.color : SymptomTagsEnum.blue.color)
+                    .fill(critical ? SymptomTagsEnum.red.color.opacity(0.4) : SymptomTagsEnum.blue.color).opacity(0.4)
                     .frame(width: 15, height: 15)
             }
         }
@@ -157,6 +157,7 @@ struct NoteIcon: View {
     
     var body: some View {
         Image(systemName: icon)
+            .foregroundStyle(Color("PrimaryText"))
             .frame(width: 28)
     }
 }

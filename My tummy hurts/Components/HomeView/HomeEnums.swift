@@ -40,9 +40,9 @@ extension SymptomTagsEnum {
     var color: Color {
         switch self {
         case .blue:
-                .blue.opacity(0.4)
+                .blue
         case .red:
-                .red.opacity(0.4)
+                .red
         }
     }
     

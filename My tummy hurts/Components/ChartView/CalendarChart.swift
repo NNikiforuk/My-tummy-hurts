@@ -49,7 +49,7 @@ struct CalendarChart: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 10) {
                     if !model.mealNotes.isEmpty {
-                        SectionTitle(title: "CHECK COMBINATIONS IN A MEAL")
+                        SectionTitle(title: "CHECK INGREDIENT OR COMBOS IN A MEAL")
                         HStack {
                             SelectElementPicker(pickerData: dataForPicker(mealsMode: true, model: model, excluded: selectedSecondIngredient), pickerSelection: $selectedFirstIngredient)
                             SelectElementPicker(pickerData: dataForPicker(mealsMode: true, model: model, excluded: selectedFirstIngredient), pickerSelection: $selectedSecondIngredient)
@@ -90,7 +90,9 @@ struct MonthView: View {
     var body: some View {
         VStack {
             Text(month.formatted(.dateTime.month(.wide).year()))
-                .padding()
+                .padding(20)
+                .bold()
+                .foregroundStyle(Color("PrimaryText"))
             
             let symbols = calendar.shortStandaloneWeekdaySymbols
             HStack {
@@ -98,6 +100,7 @@ struct MonthView: View {
                     Text(day)
                         .font(.caption)
                         .frame(maxWidth: .infinity)
+                        .foregroundStyle(Color("PrimaryText"))
                 }
             }
             
@@ -207,7 +210,7 @@ struct DayCell: View {
                     .overlay(
                         Circle().stroke(isToday(date: date) ? .gray.opacity(0.2) : Color.clear, lineWidth: 2)
                     )
-                    .foregroundStyle(showSelectedIngredient == .accent ? .background : .primaryText)
+                    .foregroundStyle(showSelectedIngredient == .accent ? .background : Color("PrimaryText"))
                     .fontWeight(isToday(date: date) ? .bold : .regular)
                 
                 if let tag = symptomColor {
@@ -255,7 +258,7 @@ struct TagsDescription: View {
             }
         }
         .font(.caption2)
-        .foregroundStyle(.gray)
+        .foregroundStyle(Color("SecondaryText"))
     }
 }
 

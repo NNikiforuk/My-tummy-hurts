@@ -167,9 +167,13 @@ struct Suggestion: View {
     var suggestions: [String]
     var onSelect: (() -> Void)? = nil
     
+    var sortedSuggestions: [String] {
+        suggestions.sorted(by: { $0 < $1 })
+    }
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            ForEach(suggestions, id: \.self) { suggestion in
+            ForEach(sortedSuggestions, id: \.self) { suggestion in
                 Button {
                     newNote = suggestion
                     onSelect?()

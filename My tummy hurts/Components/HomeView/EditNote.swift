@@ -41,7 +41,8 @@ struct EditMeal: View {
             .customPickerModifier()
             
             VStack(alignment: .leading, spacing: 8) {
-                SectionTitle(title: "Meal ingredients")
+                SectionTitle(title: "Meal ingredients", textColor: Color("PrimaryText"))
+                    .padding(.bottom, 20)
                 NewRows(newNote: $newIngredients, rows: $rows, meal: true)
                 AppendingRowBtn(rows: $rows)
             }
@@ -109,7 +110,8 @@ struct EditSymptom: View {
             SymptomTags(chosenColor: $chosenColor)
             
             VStack(alignment: .leading, spacing: 8) {
-                SectionTitle(title: "Negative symptoms")
+                SectionTitle(title: "Negative symptoms", textColor: Color("PrimaryText"))
+                    .padding(.bottom, 20)
                 NewRows(newNote: $newSymptoms, rows: $rows, meal: false)
                 AppendingRowBtn(rows: $rows)
             }

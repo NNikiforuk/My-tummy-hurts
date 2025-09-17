@@ -49,7 +49,7 @@ struct CalendarChart: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 10) {
                     if !model.mealNotes.isEmpty {
-                        SectionTitle(title: "CHECK INGREDIENT OR COMBOS IN A MEAL")
+                        SectionTitle(title: "CHECK INGREDIENT OR COMBOS IN A MEAL", textColor: Color("SecondaryText"))
                         HStack {
                             SelectElementPicker(pickerData: dataForPicker(mealsMode: true, model: model, excluded: selectedSecondIngredient), pickerSelection: $selectedFirstIngredient)
                             SelectElementPicker(pickerData: dataForPicker(mealsMode: true, model: model, excluded: selectedFirstIngredient), pickerSelection: $selectedSecondIngredient)

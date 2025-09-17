@@ -18,7 +18,7 @@ struct AddNewNote: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            SectionTitle(title: meal ? "Meal ingredients" : "Negative symptoms")
+            SectionTitle(title: meal ? "Meal ingredients" : "Negative symptoms", textColor: Color("PrimaryText"))
                 .padding(.bottom, 20)
             NewRows(newNote: $newItems, rows: $rows, meal: meal)
                 .environmentObject(model)

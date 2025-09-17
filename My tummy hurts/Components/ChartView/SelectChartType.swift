@@ -15,7 +15,7 @@ struct SelectChartType: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            SectionTitle(title: "SELECT CHART TYPE")
+            SectionTitle(title: "SELECT CHART TYPE", textColor: Color("SecondaryText"))
             VStack(spacing: 20) {
                 SelectableCard(
                     showInfo: $showInfoAll,

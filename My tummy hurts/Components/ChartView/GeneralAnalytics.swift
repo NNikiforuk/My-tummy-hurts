@@ -34,7 +34,7 @@ struct GeneralAnalytics: View {
                     VStack(alignment: .leading) {
                         HowManyHoursBack(value: $hoursBack)
                             .padding(.bottom, 40)
-                        SectionTitle(title: "SELECT SYMPTOM")
+                        SectionTitle(title: "SELECT SYMPTOM", textColor: Color("SecondaryText"))
                         SelectElementPicker(pickerData: dataForPicker(mealsMode: false, model: model), pickerSelection: $selectedSymptom)
                     }
                     .transition(.opacity.combined(with: .move(edge: .top)))
@@ -44,7 +44,7 @@ struct GeneralAnalytics: View {
                 
                 //CHARTS
                 VStack(alignment: .leading) {
-                    SectionTitle(title: "POTENTIAL CAUSES FOR UPSET TUMMY")
+                    SectionTitle(title: "POTENTIAL CAUSES FOR UPSET TUMMY", textColor: Color("SecondaryText"))
                     VStack {
                         switch chartType {
                         case .defaultChart:

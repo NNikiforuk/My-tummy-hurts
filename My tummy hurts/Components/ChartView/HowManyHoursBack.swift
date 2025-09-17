@@ -12,7 +12,7 @@ struct HowManyHoursBack: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            SectionTitle(title: "HOW MANY HOURS BACK")
+            SectionTitle(title: "HOW MANY HOURS BACK", textColor: Color("SecondaryText"))
             Stepper(value: $value, in: 1...24) {
                 Text("\(value) h")
                     .font(.subheadline)

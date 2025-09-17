@@ -21,11 +21,12 @@ struct SiteTitle: View {
 
 struct SectionTitle: View {
     let title: LocalizedStringKey
+    let textColor: Color
     
     var body: some View {
         Text(title)
             .bold()
-            .foregroundStyle(Color("SecondaryText"))
+            .foregroundStyle(textColor)
     }
 }
 

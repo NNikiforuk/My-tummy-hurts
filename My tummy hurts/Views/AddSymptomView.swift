@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct AddSymptomView: View {
-    @EnvironmentObject var model: ViewModel
+//    @EnvironmentObject var model: ViewModel
+    @EnvironmentObject private var model: CoreDataViewModel
     @Environment(\.dismiss) var dismiss
     
     @State private var selectedDate: Date = Date()
@@ -16,7 +17,7 @@ struct AddSymptomView: View {
     @State private var rows: [Row] = []
     @State private var isSaveDisabled = true
     @State private var isEditorFocused = false
-    @State private var chosenColor: SymptomTagsEnum = .blue
+    @State private var critical: Bool = false
     
     var body: some View {
         VStack(spacing: 20) {
@@ -27,7 +28,7 @@ struct AddSymptomView: View {
                 displayedComponents: [.date, .hourAndMinute]
             )
             .customPickerModifier()
-            SymptomTags(chosenColor: $chosenColor)
+            SymptomTags(critical: $critical)
             AddNewNote(newItems: $newSymptoms, rows: $rows, meal: false)
             Spacer()
         }
@@ -35,14 +36,17 @@ struct AddSymptomView: View {
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 CancelBtn(action: {
-                    model.clearSymptomStates()
-                    dismiss()
+//                    model.clearSymptomStates()
+//                    dismiss()
+                    clearForm()
                 })
             }
             ToolbarItem(placement: .topBarTrailing) {
                 SaveBtn(action: {
-                    model.createSymptomNote(symptoms: newSymptoms, createdAt: selectedDate)
-                    model.clearSymptomStates()
+//                    model.createSymptomNote(symptoms: newSymptoms, createdAt: selectedDate)
+//                    model.clearSymptomStates()
+                    model.addSymptom(createdAt: selectedDate, symptoms: newSymptoms, critical: critical)
+                    clearForm()
                 })
                 .fontWeight(.bold)
                 .disabled(isSaveDisabled)
@@ -57,10 +61,18 @@ struct AddSymptomView: View {
             isSaveDisabled = $0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
         }
     }
+    
+    func clearForm() {
+        selectedDate = Date()
+        newSymptoms = ""
+        rows = []
+        critical = false
+        dismiss()
+    }
 }
 
 struct SymptomTags: View {
-    @Binding var chosenColor: SymptomTagsEnum
+    @Binding var critical: Bool
     
     var body: some View {
         VStack {
@@ -79,7 +91,11 @@ struct SymptomTags: View {
     
     private func singleTag(el: SymptomTagsEnum) -> some View {
         Button {
-            chosenColor = el
+            if el == .blue {
+                critical = false
+            } else {
+                critical = true
+            }
         } label: {
             HStack {
                 Text(el.desc)
@@ -88,7 +104,7 @@ struct SymptomTags: View {
         }
         .padding(8)
         .background {
-            if el == chosenColor {
+            if el == .blue {
                 RoundedRectangle(cornerRadius: 8, style: .continuous)
                     .fill(el.color.opacity(0.2))
             }
@@ -101,4 +117,5 @@ struct SymptomTags: View {
 
 #Preview {
     AddSymptomView()
+        .environmentObject(CoreDataViewModel())
 }

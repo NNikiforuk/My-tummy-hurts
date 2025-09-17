@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct AddMealView: View {
-    @EnvironmentObject var model: ViewModel
+//    @EnvironmentObject var model: ViewModel
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject private var model: CoreDataViewModel
     
     @State private var selectedDate: Date = Date()
     @State private var newIngredients = ""
@@ -27,21 +28,24 @@ struct AddMealView: View {
             )
             .customPickerModifier()
             AddNewNote(newItems: $newIngredients, rows: $rows, meal: true)
-                .environmentObject(model)
+//                .environmentObject(model)
             Spacer()
         }
         .customBgModifier()
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 CancelBtn(action: {
-                    model.clearMealStates()
-                    dismiss()
+//                    model.clearMealStates()
+//                    dismiss()
+                    clearForm()
                 })
             }
             ToolbarItem(placement: .topBarTrailing) {
                 SaveBtn(action: {
-                    model.createMealNote(ingredients: newIngredients, createdAt: selectedDate)
-                    model.clearMealStates()
+//                    model.createMealNote(ingredients: newIngredients, createdAt: selectedDate)
+//                    model.clearMealStates()
+                    model.addMeal(createdAt: selectedDate, ingredients: newIngredients)
+                    clearForm()
                 })
                 .fontWeight(.bold)
                 .disabled(isSaveDisabled)
@@ -56,13 +60,20 @@ struct AddMealView: View {
             isSaveDisabled = $0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
         }
     }
+    
+    func clearForm() {
+        selectedDate = Date()
+        newIngredients = ""
+        rows = []
+        dismiss()
+    }
 }
 
 struct AddMealView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
             AddMealView()
-                .environmentObject(ViewModel())
+                .environmentObject(CoreDataViewModel())
         }
     }
 }

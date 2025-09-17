@@ -9,7 +9,8 @@ import Foundation
 import SwiftUI
 
 struct AddNewNote: View {
-    @EnvironmentObject var model: ViewModel
+//    @EnvironmentObject var model: ViewModel
+    @EnvironmentObject private var vm: CoreDataViewModel
     
     @Binding var newItems: String
     @Binding var rows: [Row]
@@ -21,14 +22,15 @@ struct AddNewNote: View {
             SectionTitle(title: meal ? "Meal ingredients" : "Negative symptoms", textColor: Color("PrimaryText"))
                 .padding(.bottom, 20)
             NewRows(newNote: $newItems, rows: $rows, meal: meal)
-                .environmentObject(model)
+//                .environmentObject(model)
             AppendingRowBtn(rows: $rows)
         }
     }
 }
 
 struct NewRows: View {
-    @EnvironmentObject var model: ViewModel
+//    @EnvironmentObject var model: ViewModel
+    @EnvironmentObject private var vm: CoreDataViewModel
     
     @Binding var newNote: String
     @Binding var rows: [Row]
@@ -39,11 +41,13 @@ struct NewRows: View {
     
     var suggestions: [String] {
         if meal {
-            guard !model.mealNotes.isEmpty else { return [] }
+//            guard !model.mealNotes.isEmpty else { return [] }
+            guard !vm.savedMealNotes.isEmpty else { return [] }
             
             var ingredientsArray: [String] = []
             
-            for mealNote in model.mealNotes {
+            for mealNote in vm.savedMealNotes {
+//            for mealNote in model.mealNotes {
                 if let ingredients = mealNote.ingredients {
                     let el = ingredients.components(separatedBy: ", ")
                     ingredientsArray.append(contentsOf: el)
@@ -52,10 +56,12 @@ struct NewRows: View {
             
             return Array(Set(ingredientsArray))
         } else {
-            guard !model.symptomNotes.isEmpty else { return [] }
+            guard !vm.savedSymptomNotes.isEmpty else { return [] }
+//            guard !model.symptomNotes.isEmpty else { return [] }
             
             var symptomsArray: [String] = []
-            for symptomNote in model.symptomNotes {
+            for symptomNote in vm.savedSymptomNotes {
+//            for symptomNote in model.symptomNotes {
                 if let symptoms = symptomNote.symptoms {
                     let el = symptoms.components(separatedBy: ", ")
                     symptomsArray.append(contentsOf: el)

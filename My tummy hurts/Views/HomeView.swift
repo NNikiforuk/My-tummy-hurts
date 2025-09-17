@@ -8,14 +8,21 @@
 import SwiftUI
 
 struct HomeView: View {
-    @StateObject var model: ViewModel = ViewModel()
+    @EnvironmentObject private var model: CoreDataViewModel
+//    @StateObject var mv = CoreDataViewModel()
+//    @StateObject var model: ViewModel = ViewModel()
     @AppStorage("appearance") private var selectedAppearance: Appearance = .system
     
     @State private var selectedDate: Date = Date()
     @State private var selection: NoteTab = .meals
     
+    @State private var showAddingMealView: Bool = false
+    @State private var showAddingSymptomView: Bool = false
+    @State private var showDeleteAllAlert: Bool = false
+    
     var emptyDB: Bool {
-        model.mealNotes.isEmpty && model.symptomNotes.isEmpty
+        model.savedMealNotes.isEmpty && model.savedSymptomNotes.isEmpty
+//        model.mealNotes.isEmpty && model.symptomNotes.isEmpty
     }
     
     var alertTitle: String {
@@ -40,13 +47,13 @@ struct HomeView: View {
     var body: some View {
         VStack {
             HomeViewHeader(selectedDate: $selectedDate)
-            AddBtns(selection: $selection)
-                .environmentObject(model)
+            AddBtns(selection: $selection, showAddingMealView: $showAddingMealView, showAddingSymptomView: $showAddingSymptomView)
+//                .environmentObject(model)
             NotesPicker(selection: $selection)
             ScrollView {
                 LazyVStack(spacing: 20) {
                     NotesView(selection: $selection, selectedDate: $selectedDate, onlyShow: false)
-                        .environmentObject(model)
+//                        .environmentObject(model)
                 }
             }
         }
@@ -58,7 +65,7 @@ struct HomeView: View {
                     } label: {
                         Label(LocalizedStringKey("Change theme"), systemImage: "sun.lefthalf.filled")
                     }
-                    DeleteBtnTextIcon(title: "Delete all", icon: "trash", action: { model.showDeleteAllAlert = true })
+                    DeleteBtnTextIcon(title: "Delete all", icon: "trash", action: { showDeleteAllAlert = true })
                 } label: {
                     Label(LocalizedStringKey("Options"), systemImage: "ellipsis.circle")
                         .font(.callout)
@@ -67,8 +74,8 @@ struct HomeView: View {
             }
             ToolbarItem(placement: .topBarTrailing) {
                 NavigationLink {
-                    ChartView()
-                        .environmentObject(model)
+//                    ChartView()
+//                        .environmentObject(model)
                 } label: {
                     HStack {
                         Image(systemName: "chart.bar")
@@ -81,26 +88,30 @@ struct HomeView: View {
         }
         .preferredColorScheme(colorScheme)
         .customBgModifier()
-        .sheet(isPresented: $model.showAddingMeal) {
+        .sheet(isPresented: $showAddingMealView) {
+//        .sheet(isPresented: $model.showAddingMeal) {
             NavigationStack {
                 AddMealView()
-                    .environmentObject(model)
+//                    .environmentObject(model)
             }
         }
         .foregroundStyle(.accent)
-        .sheet(isPresented: $model.showAddingSymptom) {
+        .sheet(isPresented: $showAddingSymptomView) {
+//        .sheet(isPresented: $model.showAddingSymptom) {
             NavigationStack {
                 AddSymptomView()
-                    .environmentObject(model)
+//                    .environmentObject(model)
             }
         }
-        .alert(LocalizedStringKey(alertTitle), isPresented: $model.showDeleteAllAlert) {
+        .alert(LocalizedStringKey(alertTitle), isPresented: $showDeleteAllAlert) {
+//        .alert(LocalizedStringKey(alertTitle), isPresented: $model.showDeleteAllAlert) {
             VStack {
                 if emptyDB {
                     CancelBtn(action: {})
                 } else {
                     DeleteBtn(action: {
-                        model.resetDB()
+//                        model.resetDB()
+                        model.deleteAll()
                     })
                     CancelBtn(action: {})
                 }
@@ -132,6 +143,7 @@ struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
             HomeView()
+                .environmentObject(CoreDataViewModel())
         }
     }
 }

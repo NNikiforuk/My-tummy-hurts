@@ -10,14 +10,16 @@ import SwiftUI
 struct NotesView: View {
     @Binding var selection: NoteTab
     @Binding var selectedDate: Date
-    @EnvironmentObject var model: ViewModel
+//    @EnvironmentObject var model: ViewModel
+    @EnvironmentObject private var vm: CoreDataViewModel
     
     let calendar = Calendar.current
     let onlyShow: Bool
     
     var filteredMeals: [MealNote] {
         onSameDay(
-            model.mealNotes,
+            vm.savedMealNotes,
+//          model.mealNotes,
             as: selectedDate,
             calendar: calendar,
             getTime: { $0.createdAt }
@@ -26,7 +28,8 @@ struct NotesView: View {
     
     var filteredSymptoms: [SymptomNote] {
         onSameDay(
-            model.symptomNotes,
+            vm.savedSymptomNotes,
+//            model.symptomNotes,
             as: selectedDate,
             calendar: calendar,
             getTime: { $0.createdAt }
@@ -34,49 +37,55 @@ struct NotesView: View {
     }
     
     var body: some View {
-        switch selection {
-        case .meals:
-            if filteredMeals.isEmpty {
-                noListData(text: "There are no meals yet")
-            } else {
-                if onlyShow {
-                    ForEach(filteredMeals) { note in
-                        NoteMeal(note: note, meals: true)
-                            .noteModifier()
-                    }
+        VStack {
+            switch selection {
+            case .meals:
+                if filteredMeals.isEmpty {
+                    noListData(text: "There are no meals yet")
                 } else {
-                    ForEach(filteredMeals) { note in
-                        NavigationLink {
-                            EditMeal(note: note)
-                                .environmentObject(model)
-                        } label: {
+                    if onlyShow {
+                        ForEach(filteredMeals, id: \.objectID) { note in
                             NoteMeal(note: note, meals: true)
+                                .noteModifier()
                         }
-                        .noteModifier()
-                    }
-                }
-            }
-        case .symptoms:
-            if filteredSymptoms.isEmpty {
-                noListData(text: "There are no symptoms yet")
-            } else {
-                if onlyShow {
-                    ForEach(filteredSymptoms) { note in
-                        NoteSymptom(note: note, meals: false)
+                    } else {
+                        ForEach(filteredMeals, id: \.objectID) { note in
+                            NavigationLink {
+                                EditMeal(note: note)
+                                //                                .environmentObject(model)
+                            } label: {
+                                NoteMeal(note: note, meals: true)
+                            }
                             .noteModifier()
-                    }
-                } else {
-                    ForEach(filteredSymptoms) { note in
-                        NavigationLink {
-                            EditSymptom(note: note)
-                                .environmentObject(model)
-                        } label: {
-                            NoteSymptom(note: note, meals: false)
                         }
-                        .noteModifier()
+                    }
+                }
+            case .symptoms:
+                if filteredSymptoms.isEmpty {
+                    noListData(text: "There are no symptoms yet")
+                } else {
+                    if onlyShow {
+                        ForEach(filteredSymptoms, id: \.objectID) { note in
+                            NoteSymptom(note: note, meals: false)
+                                .noteModifier()
+                        }
+                    } else {
+                        ForEach(filteredSymptoms, id: \.objectID) { note in
+                            NavigationLink {
+                                EditSymptom(note: note)
+                                //                                .environmentObject(model)
+                            } label: {
+                                NoteSymptom(note: note, meals: false)
+                            }
+                            .noteModifier()
+                        }
                     }
                 }
             }
+        }
+        .onChange(of: vm.savedMealNotes) { _ in
+            _ = filteredMeals 
+            _ = filteredSymptoms
         }
     }
     
@@ -89,7 +98,8 @@ struct NotesView: View {
 }
 
 struct NoteMeal: View {
-    var note: MealNote
+//    var note: MealNote
+    @ObservedObject var note: MealNote
     let meals: Bool
     
     var body: some View {
@@ -101,7 +111,8 @@ struct NoteMeal: View {
 }
 
 struct NoteSymptom: View {
-    var note: SymptomNote
+//    var note: SymptomNote
+    @ObservedObject var note: SymptomNote
     let meals: Bool
     
     var body: some View {
@@ -118,7 +129,7 @@ struct TopNoteRow: View {
     let meals: Bool
     
     
-    init(time: Date, critical: Bool? = nil, meals: Bool) {
+    init(time: Date, critical: Bool? = false, meals: Bool) {
         self.time = time
         self.critical = critical
         self.meals = meals
@@ -164,4 +175,5 @@ struct NoteIcon: View {
 
 #Preview {
     NotesView(selection: .constant(.meals), selectedDate: .constant(Date()), onlyShow: false)
+        .environmentObject(CoreDataViewModel())
 }

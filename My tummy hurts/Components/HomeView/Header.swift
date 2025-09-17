@@ -167,7 +167,8 @@ struct WeekView: View {
 
 struct AddBtns: View {
     @Binding var selection: NoteTab
-    @EnvironmentObject var model: ViewModel
+    @Binding var showAddingMealView: Bool
+    @Binding var showAddingSymptomView: Bool
     
     var body: some View {
         VStack {
@@ -185,9 +186,9 @@ struct AddBtns: View {
         Button {
             switch selection {
             case .meals:
-                model.showAddingMeal = true
+                showAddingMealView = true
             case .symptoms:
-                model.showAddingSymptom = true
+                showAddingSymptomView = true
             }
         } label: {
             Label(LocalizedStringKey(title), systemImage: "plus")

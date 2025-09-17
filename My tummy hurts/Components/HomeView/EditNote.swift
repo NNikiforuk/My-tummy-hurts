@@ -13,14 +13,17 @@ struct Row: Identifiable, Equatable {
 }
 
 struct EditMeal: View {
-    @EnvironmentObject var model: ViewModel
+    //    @EnvironmentObject var model: ViewModel
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject private var vm: CoreDataViewModel
     
     @State private var newIngredients = ""
     @State private var mealCreatedAt: Date = Date()
     @State private var rows: [Row] = []
+    @State private var showDeleteMealAlert: Bool = false
     
-    var note: MealNote
+        @ObservedObject var note: MealNote
+//    let note: MealNote
     
     var noteToRows: [Row] {
         let text = note.ingredients ?? ""
@@ -32,10 +35,7 @@ struct EditMeal: View {
             SiteTitle(title: "Edit meal")
             DatePicker(
                 LocalizedStringKey("Meal time"),
-                selection: Binding(
-                    get: { note.createdAt ?? Date() },
-                    set: { note.createdAt = $0 }
-                ),
+                selection: $mealCreatedAt,
                 displayedComponents: [.date, .hourAndMinute]
             )
             .customPickerModifier()
@@ -49,46 +49,62 @@ struct EditMeal: View {
             Spacer()
         }
         .onAppear {
-            rows = noteToRows
             mealCreatedAt = note.createdAt ?? Date()
+            newIngredients = note.ingredients ?? ""
+            rows = noteToRows
         }
-        
         .customBgModifier()
         .toolbar {
             ToolbarItemGroup(placement: .topBarTrailing) {
-                Button("Delete") {
-                    model.showDeleteMealAlert = true
-                }
+                //                Button("Delete") {
+                ////                    model.showDeleteMealAlert = true
+                //                    showDeleteMealAlert.toggle()
+                //                }
+                DeleteBtn(action: { showDeleteMealAlert = true })
                 Button("Save") {
-                    model.updateMealNote(entity: note, createdAt: mealCreatedAt, ingredients: newIngredients)
-                    model.clearMealStates()
+                    //                    model.updateMealNote(entity: note, createdAt: mealCreatedAt, ingredients: newIngredients)
+                    //                    model.clearMealStates()
+                    //                    dismiss()
+                    vm.updateMeal(entity: note, createdAt: mealCreatedAt, ingredients: newIngredients)
                     dismiss()
                 }
                 .disabled(newIngredients.isEmpty)
             }
         }
-        .alert(LocalizedStringKey("Do you want to delete this meal?"), isPresented: $model.showDeleteMealAlert) {
-            Button("Cancel", role: .cancel) {
-                model.clearMealStates()
-            }
-            Button("Delete", role: .destructive) {
-                model.deleteMealNote(mealNote: note)
+        .alert(LocalizedStringKey("Do you want to delete this meal?"), isPresented: $showDeleteMealAlert) {
+            //            Button("Cancel", role: .cancel) {
+            ////                model.clearMealStates()
+            //                dismiss()
+            //            }
+            CancelBtn(action: {  })
+            //            Button("Delete", role: .destructive) {
+            ////                model.deleteMealNote(mealNote: note)
+            ////                dismiss()
+            //                vm.deleteMeal(entity: note)
+            //                dismiss()
+            //            }
+            DeleteBtn(action: {
+                vm.deleteMeal(entity: note)
                 dismiss()
-            }
+            })
         }
     }
 }
 
 struct EditSymptom: View {
-    @EnvironmentObject var model: ViewModel
+    //    @EnvironmentObject var model: ViewModel
+    @EnvironmentObject private var vm: CoreDataViewModel
     @Environment(\.dismiss) private var dismiss
     
     @State private var newSymptoms = ""
     @State private var symptomCreatedAt: Date = Date()
     @State private var rows: [Row] = []
-    @State private var chosenColor: SymptomTagsEnum = .blue
+    @State private var critical: Bool = false
+    @State private var showDeleteSymptomAlert: Bool = false
     
-    var note: SymptomNote
+    //    var note: SymptomNote
+    let note: SymptomNote
+    
     var noteToRows: [Row] {
         let text = note.symptoms ?? ""
         return text.split(separator: ",").map{ Row(text: String($0) ) }
@@ -99,15 +115,16 @@ struct EditSymptom: View {
             SiteTitle(title: "Edit symptom")
             DatePicker(
                 LocalizedStringKey("Symptom time"),
-                selection: Binding(
-                    get: { note.createdAt ?? Date() },
-                    set: { note.createdAt = $0 }
-                ),
+                selection: $symptomCreatedAt,
+                //                selection: Binding(
+                //                    get: { note.createdAt ?? Date() },
+                //                    set: { note.createdAt = $0 }
+                //                ),
                 displayedComponents: [.date, .hourAndMinute]
             )
             .customPickerModifier()
             
-            SymptomTags(chosenColor: $chosenColor)
+            SymptomTags(critical: $critical)
             
             VStack(alignment: .leading, spacing: 8) {
                 SectionTitle(title: "Negative symptoms", textColor: Color("PrimaryText"))
@@ -120,18 +137,23 @@ struct EditSymptom: View {
         .customBgModifier()
         .toolbar {
             ToolbarItemGroup(placement: .topBarTrailing) {
-                DeleteBtn(action: { model.showDeleteSymptomAlert = true })
+                //                DeleteBtn(action: { model.showDeleteSymptomAlert = true })
+                DeleteBtn(action: { showDeleteSymptomAlert = true })
                 SaveBtn(action: {
-                    model.updateSymptomNote(entity: note, createdAt: symptomCreatedAt, symptoms: newSymptoms, critical: chosenColor == .blue ? false : true)
-                    model.clearSymptomStates()
+                    //                    model.updateSymptomNote(entity: note, createdAt: symptomCreatedAt, symptoms: newSymptoms, critical: chosenColor == .blue ? false : true)
+                    //                    model.clearSymptomStates()
+                    //                    dismiss()
+                    vm.updateSymptom(entity: note, createdAt: symptomCreatedAt, symptoms: newSymptoms, critical: critical)
                     dismiss()
                 })
             }
         }
-        .alert(LocalizedStringKey("Do you want to delete this symptom?"), isPresented: $model.showDeleteSymptomAlert) {
-            CancelBtn(action: {  model.clearSymptomStates() })
+        .alert(LocalizedStringKey("Do you want to delete this symptom?"), isPresented: $showDeleteSymptomAlert) {
+            //            CancelBtn(action: {  model.clearSymptomStates() })
+            CancelBtn(action: {  })
             DeleteBtn(action: {
-                model.deleteSymptomNote(symptomNote: note)
+                //                model.deleteSymptomNote(symptomNote: note)
+                vm.deleteSymptom(entity: note)
                 dismiss()
             })
         }
@@ -139,12 +161,11 @@ struct EditSymptom: View {
             rows = noteToRows
             symptomCreatedAt = note.createdAt ?? Date()
             
-            if note.critical {
-                chosenColor = SymptomTagsEnum.red
-            } else {
-                chosenColor = SymptomTagsEnum.blue
-            }
-            
+            //            if note.critical {
+            //                chosenColor = SymptomTagsEnum.red
+            //            } else {
+            //                chosenColor = SymptomTagsEnum.blue
+            //            }
         }
     }
 }

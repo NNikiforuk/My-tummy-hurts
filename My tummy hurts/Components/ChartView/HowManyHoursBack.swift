@@ -10,12 +10,10 @@ import SwiftUI
 struct HowManyHoursBack: View {
     @Binding var value: Int
     
-    var range: ClosedRange<Int>
-    
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             SectionTitle(title: "HOW MANY HOURS BACK")
-            Stepper(value: $value, in: range) {
+            Stepper(value: $value, in: 1...24) {
                 Text("\(value) h")
                     .font(.subheadline)
                     .foregroundStyle(Color("PrimaryText"))

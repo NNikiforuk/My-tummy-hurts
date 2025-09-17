@@ -25,7 +25,7 @@ struct SectionTitle: View {
     var body: some View {
         Text(title)
             .bold()
-            .foregroundStyle(Color("PrimaryText"))
+            .foregroundStyle(Color("SecondaryText"))
     }
 }
 

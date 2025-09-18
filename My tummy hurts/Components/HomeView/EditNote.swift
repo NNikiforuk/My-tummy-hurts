@@ -13,7 +13,6 @@ struct Row: Identifiable, Equatable {
 }
 
 struct EditMeal: View {
-    //    @EnvironmentObject var model: ViewModel
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var vm: CoreDataViewModel
     
@@ -22,8 +21,7 @@ struct EditMeal: View {
     @State private var rows: [Row] = []
     @State private var showDeleteMealAlert: Bool = false
     
-        @ObservedObject var note: MealNote
-//    let note: MealNote
+    @ObservedObject var note: MealNote
     
     var noteToRows: [Row] {
         let text = note.ingredients ?? ""
@@ -56,15 +54,8 @@ struct EditMeal: View {
         .customBgModifier()
         .toolbar {
             ToolbarItemGroup(placement: .topBarTrailing) {
-                //                Button("Delete") {
-                ////                    model.showDeleteMealAlert = true
-                //                    showDeleteMealAlert.toggle()
-                //                }
                 DeleteBtn(action: { showDeleteMealAlert = true })
                 Button("Save") {
-                    //                    model.updateMealNote(entity: note, createdAt: mealCreatedAt, ingredients: newIngredients)
-                    //                    model.clearMealStates()
-                    //                    dismiss()
                     vm.updateMeal(entity: note, createdAt: mealCreatedAt, ingredients: newIngredients)
                     dismiss()
                 }
@@ -72,17 +63,7 @@ struct EditMeal: View {
             }
         }
         .alert(LocalizedStringKey("Do you want to delete this meal?"), isPresented: $showDeleteMealAlert) {
-            //            Button("Cancel", role: .cancel) {
-            ////                model.clearMealStates()
-            //                dismiss()
-            //            }
             CancelBtn(action: {  })
-            //            Button("Delete", role: .destructive) {
-            ////                model.deleteMealNote(mealNote: note)
-            ////                dismiss()
-            //                vm.deleteMeal(entity: note)
-            //                dismiss()
-            //            }
             DeleteBtn(action: {
                 vm.deleteMeal(entity: note)
                 dismiss()
@@ -92,7 +73,6 @@ struct EditMeal: View {
 }
 
 struct EditSymptom: View {
-    //    @EnvironmentObject var model: ViewModel
     @EnvironmentObject private var vm: CoreDataViewModel
     @Environment(\.dismiss) private var dismiss
     
@@ -102,8 +82,7 @@ struct EditSymptom: View {
     @State private var critical: Bool = false
     @State private var showDeleteSymptomAlert: Bool = false
     
-    //    var note: SymptomNote
-    let note: SymptomNote
+    @ObservedObject var note: SymptomNote
     
     var noteToRows: [Row] {
         let text = note.symptoms ?? ""
@@ -116,10 +95,6 @@ struct EditSymptom: View {
             DatePicker(
                 LocalizedStringKey("Symptom time"),
                 selection: $symptomCreatedAt,
-                //                selection: Binding(
-                //                    get: { note.createdAt ?? Date() },
-                //                    set: { note.createdAt = $0 }
-                //                ),
                 displayedComponents: [.date, .hourAndMinute]
             )
             .customPickerModifier()
@@ -137,22 +112,16 @@ struct EditSymptom: View {
         .customBgModifier()
         .toolbar {
             ToolbarItemGroup(placement: .topBarTrailing) {
-                //                DeleteBtn(action: { model.showDeleteSymptomAlert = true })
                 DeleteBtn(action: { showDeleteSymptomAlert = true })
                 SaveBtn(action: {
-                    //                    model.updateSymptomNote(entity: note, createdAt: symptomCreatedAt, symptoms: newSymptoms, critical: chosenColor == .blue ? false : true)
-                    //                    model.clearSymptomStates()
-                    //                    dismiss()
                     vm.updateSymptom(entity: note, createdAt: symptomCreatedAt, symptoms: newSymptoms, critical: critical)
                     dismiss()
                 })
             }
         }
         .alert(LocalizedStringKey("Do you want to delete this symptom?"), isPresented: $showDeleteSymptomAlert) {
-            //            CancelBtn(action: {  model.clearSymptomStates() })
             CancelBtn(action: {  })
             DeleteBtn(action: {
-                //                model.deleteSymptomNote(symptomNote: note)
                 vm.deleteSymptom(entity: note)
                 dismiss()
             })
@@ -160,12 +129,6 @@ struct EditSymptom: View {
         .onAppear {
             rows = noteToRows
             symptomCreatedAt = note.createdAt ?? Date()
-            
-            //            if note.critical {
-            //                chosenColor = SymptomTagsEnum.red
-            //            } else {
-            //                chosenColor = SymptomTagsEnum.blue
-            //            }
         }
     }
 }

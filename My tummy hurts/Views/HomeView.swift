@@ -9,8 +9,6 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject private var model: CoreDataViewModel
-//    @StateObject var mv = CoreDataViewModel()
-//    @StateObject var model: ViewModel = ViewModel()
     @AppStorage("appearance") private var selectedAppearance: Appearance = .system
     
     @State private var selectedDate: Date = Date()
@@ -22,7 +20,6 @@ struct HomeView: View {
     
     var emptyDB: Bool {
         model.savedMealNotes.isEmpty && model.savedSymptomNotes.isEmpty
-//        model.mealNotes.isEmpty && model.symptomNotes.isEmpty
     }
     
     var alertTitle: String {
@@ -48,12 +45,10 @@ struct HomeView: View {
         VStack {
             HomeViewHeader(selectedDate: $selectedDate)
             AddBtns(selection: $selection, showAddingMealView: $showAddingMealView, showAddingSymptomView: $showAddingSymptomView)
-//                .environmentObject(model)
             NotesPicker(selection: $selection)
             ScrollView {
                 LazyVStack(spacing: 20) {
                     NotesView(selection: $selection, selectedDate: $selectedDate, onlyShow: false)
-//                        .environmentObject(model)
                 }
             }
         }
@@ -74,8 +69,7 @@ struct HomeView: View {
             }
             ToolbarItem(placement: .topBarTrailing) {
                 NavigationLink {
-//                    ChartView()
-//                        .environmentObject(model)
+                    ChartView()
                 } label: {
                     HStack {
                         Image(systemName: "chart.bar")
@@ -89,28 +83,22 @@ struct HomeView: View {
         .preferredColorScheme(colorScheme)
         .customBgModifier()
         .sheet(isPresented: $showAddingMealView) {
-//        .sheet(isPresented: $model.showAddingMeal) {
             NavigationStack {
                 AddMealView()
-//                    .environmentObject(model)
             }
         }
         .foregroundStyle(.accent)
         .sheet(isPresented: $showAddingSymptomView) {
-//        .sheet(isPresented: $model.showAddingSymptom) {
             NavigationStack {
                 AddSymptomView()
-//                    .environmentObject(model)
             }
         }
         .alert(LocalizedStringKey(alertTitle), isPresented: $showDeleteAllAlert) {
-//        .alert(LocalizedStringKey(alertTitle), isPresented: $model.showDeleteAllAlert) {
             VStack {
                 if emptyDB {
                     CancelBtn(action: {})
                 } else {
                     DeleteBtn(action: {
-//                        model.resetDB()
                         model.deleteAll()
                     })
                     CancelBtn(action: {})

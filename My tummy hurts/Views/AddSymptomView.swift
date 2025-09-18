@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct AddSymptomView: View {
-//    @EnvironmentObject var model: ViewModel
     @EnvironmentObject private var model: CoreDataViewModel
     @Environment(\.dismiss) var dismiss
     
@@ -36,15 +35,11 @@ struct AddSymptomView: View {
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 CancelBtn(action: {
-//                    model.clearSymptomStates()
-//                    dismiss()
                     clearForm()
                 })
             }
             ToolbarItem(placement: .topBarTrailing) {
                 SaveBtn(action: {
-//                    model.createSymptomNote(symptoms: newSymptoms, createdAt: selectedDate)
-//                    model.clearSymptomStates()
                     model.addSymptom(createdAt: selectedDate, symptoms: newSymptoms, critical: critical)
                     clearForm()
                 })
@@ -91,11 +86,7 @@ struct SymptomTags: View {
     
     private func singleTag(el: SymptomTagsEnum) -> some View {
         Button {
-            if el == .blue {
-                critical = false
-            } else {
-                critical = true
-            }
+            critical = (el == .red)
         } label: {
             HStack {
                 Text(el.desc)
@@ -104,13 +95,17 @@ struct SymptomTags: View {
         }
         .padding(8)
         .background {
-            if el == .blue {
-                RoundedRectangle(cornerRadius: 8, style: .continuous)
-                    .fill(el.color.opacity(0.2))
-            }
+            RoundedRectangle(cornerRadius: 8, style: .continuous)
+                .fill(
+                    (el == .blue && !critical) || (el == .red && critical)
+                    ? el.color.opacity(0.2)
+                    : .clear
+                )
+        }
+        .overlay(
             RoundedRectangle(cornerRadius: 8, style: .continuous)
                 .stroke(el.color.opacity(0.2), lineWidth: 2)
-        }
+        )
     }
 }
 

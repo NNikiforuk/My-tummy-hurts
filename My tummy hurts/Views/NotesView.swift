@@ -8,32 +8,37 @@
 import SwiftUI
 
 struct NotesView: View {
+    @EnvironmentObject private var vm: CoreDataViewModel
     @Binding var selection: NoteTab
     @Binding var selectedDate: Date
-//    @EnvironmentObject var model: ViewModel
-    @EnvironmentObject private var vm: CoreDataViewModel
     
     let calendar = Calendar.current
     let onlyShow: Bool
     
     var filteredMeals: [MealNote] {
-        onSameDay(
+        let onSame = onSameDay(
             vm.savedMealNotes,
-//          model.mealNotes,
             as: selectedDate,
             calendar: calendar,
             getTime: { $0.createdAt }
         )
+        let sorted = onSame.sorted {
+            ($0.createdAt ?? .distantPast) < ($1.createdAt ?? .distantPast)
+        }
+        return sorted
     }
     
     var filteredSymptoms: [SymptomNote] {
-        onSameDay(
+        let onSame = onSameDay(
             vm.savedSymptomNotes,
-//            model.symptomNotes,
             as: selectedDate,
             calendar: calendar,
             getTime: { $0.createdAt }
         )
+        let sorted = onSame.sorted {
+            ($0.createdAt ?? .distantPast) < ($1.createdAt ?? .distantPast)
+        }
+        return sorted
     }
     
     var body: some View {
@@ -52,7 +57,6 @@ struct NotesView: View {
                         ForEach(filteredMeals, id: \.objectID) { note in
                             NavigationLink {
                                 EditMeal(note: note)
-                                //                                .environmentObject(model)
                             } label: {
                                 NoteMeal(note: note, meals: true)
                             }
@@ -73,7 +77,6 @@ struct NotesView: View {
                         ForEach(filteredSymptoms, id: \.objectID) { note in
                             NavigationLink {
                                 EditSymptom(note: note)
-                                //                                .environmentObject(model)
                             } label: {
                                 NoteSymptom(note: note, meals: false)
                             }
@@ -98,7 +101,6 @@ struct NotesView: View {
 }
 
 struct NoteMeal: View {
-//    var note: MealNote
     @ObservedObject var note: MealNote
     let meals: Bool
     
@@ -111,7 +113,6 @@ struct NoteMeal: View {
 }
 
 struct NoteSymptom: View {
-//    var note: SymptomNote
     @ObservedObject var note: SymptomNote
     let meals: Bool
     
@@ -139,11 +140,13 @@ struct TopNoteRow: View {
         HStack(spacing: 10) {
             NoteIcon(icon: "clock")
             Text(time, style: .time)
-            if let critical {
-                Spacer()
-                Circle()
-                    .fill(critical ? SymptomTagsEnum.red.color.opacity(0.4) : SymptomTagsEnum.blue.color).opacity(0.4)
-                    .frame(width: 15, height: 15)
+            if !meals {
+                if let crit = critical {
+                    Spacer()
+                    Circle()
+                        .fill(crit ? SymptomTagsEnum.red.color.opacity(0.4) : SymptomTagsEnum.blue.color).opacity(0.4)
+                        .frame(width: 15, height: 15)
+                }
             }
         }
     }

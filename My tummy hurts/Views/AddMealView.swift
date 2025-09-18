@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct AddMealView: View {
-//    @EnvironmentObject var model: ViewModel
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject private var model: CoreDataViewModel
     
@@ -28,22 +27,17 @@ struct AddMealView: View {
             )
             .customPickerModifier()
             AddNewNote(newItems: $newIngredients, rows: $rows, meal: true)
-//                .environmentObject(model)
             Spacer()
         }
         .customBgModifier()
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 CancelBtn(action: {
-//                    model.clearMealStates()
-//                    dismiss()
                     clearForm()
                 })
             }
             ToolbarItem(placement: .topBarTrailing) {
                 SaveBtn(action: {
-//                    model.createMealNote(ingredients: newIngredients, createdAt: selectedDate)
-//                    model.clearMealStates()
                     model.addMeal(createdAt: selectedDate, ingredients: newIngredients)
                     clearForm()
                 })

@@ -55,3 +55,51 @@ func onSameDay<T>(
         return calendar.isDate(t, inSameDayAs: date)
     }
 }
+
+struct ToolbarSkipButton: View {
+    @Binding var isOnboarding: Bool
+    
+    var body: some View {
+        Button(LocalizedStringKey("Skip intro")) {
+            isOnboarding = false
+        }
+        .foregroundStyle(.accent)
+    }
+}
+
+struct DeleteBtn: View {
+    let action: () -> Void
+    
+    var body: some View {
+        Button("Delete", role: .destructive, action: action)
+            .foregroundStyle(.red)
+    }
+}
+
+struct DeleteBtnTextIcon: View {
+    let title: String
+    let icon: String
+    let action: () -> Void
+    
+    var body: some View {
+        Button(title, systemImage: icon, role: .destructive, action: action)
+            .foregroundStyle(.red)
+    }
+}
+
+struct SaveBtn: View {
+    let action: () -> Void
+    
+    var body: some View {
+        Button("Save", action: action)
+            .bold()
+    }
+}
+
+struct CancelBtn: View {
+    let action: () -> Void
+    
+    var body: some View {
+        Button("Cancel", role: .cancel, action: action)
+    }
+}

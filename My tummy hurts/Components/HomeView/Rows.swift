@@ -130,7 +130,11 @@ struct NewRows: View {
     private func syncNewNote() {
         let items = rows
             .map(\.text)
-            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+            .map {
+                $0
+                    .trimmingCharacters(in: .whitespacesAndNewlines)
+                    .trimmingCharacters(in: CharacterSet(charactersIn: ".,"))
+            }
             .filter { !$0.isEmpty }
         
         var seen = Set<String>()

@@ -10,13 +10,18 @@ import SwiftUI
 @main
 struct My_tummy_hurtsApp: App {
     @StateObject private var vm = CoreDataViewModel()
+    @AppStorage("isOnboarding") private var isOnboarding = true
     
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                HomeView()
+                if isOnboarding {
+                    WelcomeView(isOnboarding: $isOnboarding)
+                } else {
+                    HomeView()
+                        .environmentObject(vm)
+                }
             }
-            .environmentObject(vm)
         }
     }
 }

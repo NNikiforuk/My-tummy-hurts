@@ -56,7 +56,7 @@ struct GeneralAnalytics: View {
                                     NoDataAlert(text: "Select symptom above")
                                 }
                             } else if secondChartData.isEmpty {
-                                NoDataAlert(text: "Add more data to see the chart")
+                                NoDataAlert(text: "No data to show")
                             } else if selectedSymptom != nil {
                                 titleOfChart(title: chartTitle)
                                 BarChart(data: secondChartData)

@@ -41,8 +41,8 @@ struct SelectElementPicker: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Picker(LocalizedStringKey("Select"), selection: $pickerSelection) {
-                Text(LocalizedStringKey("None")).tag(nil as String?)
+            Picker("Select", selection: $pickerSelection) {
+                Text("None").tag(nil as String?)
                     .font(.subheadline)
                     .foregroundStyle(.accent)
                 ForEach(pickerData, id: \.self) { el in

@@ -44,7 +44,7 @@ struct HomeView: View {
     var body: some View {
         VStack {
             HomeViewHeader(selectedDate: $selectedDate)
-            AddBtns(selection: $selection, showAddingMealView: $showAddingMealView, showAddingSymptomView: $showAddingSymptomView)
+                AddBtns(selection: $selection, showAddingMealView: $showAddingMealView, showAddingSymptomView: $showAddingSymptomView)
             NotesPicker(selection: $selection)
             ScrollView {
                 LazyVStack(spacing: 20) {
@@ -58,11 +58,11 @@ struct HomeView: View {
                     NavigationLink {
                         ThemeView()
                     } label: {
-                        Label(LocalizedStringKey("Change theme"), systemImage: "sun.lefthalf.filled")
+                        Label("Change theme", systemImage: "sun.lefthalf.filled")
                     }
                     DeleteBtnTextIcon(title: "Delete all", icon: "trash", action: { showDeleteAllAlert = true })
                 } label: {
-                    Label(LocalizedStringKey("Options"), systemImage: "ellipsis.circle")
+                    Label("Options", systemImage: "ellipsis.circle")
                         .font(.callout)
                 }
                 .foregroundStyle(.primary)
@@ -74,7 +74,7 @@ struct HomeView: View {
                     HStack {
                         Image(systemName: "chart.bar")
                             .font(.callout)
-                        Text(LocalizedStringKey("Analytics"))
+                        Text("Analytics")
                             .font(.callout)
                     }
                 }
@@ -93,7 +93,7 @@ struct HomeView: View {
                 AddSymptomView()
             }
         }
-        .alert(LocalizedStringKey(alertTitle), isPresented: $showDeleteAllAlert) {
+        .alert(alertTitle, isPresented: $showDeleteAllAlert) {
             VStack {
                 if emptyDB {
                     CancelBtn(action: {})
@@ -115,7 +115,7 @@ struct NotesPicker: View {
         HStack {
             Picker("", selection: $selection) {
                 ForEach(NoteTab.allCases) { tab in
-                    Text(LocalizedStringKey(tab.rawValue)).tag(tab)
+                    Text(tab.rawValue).tag(tab)
                         .foregroundStyle(Color("PrimaryText"))
                 }
             }

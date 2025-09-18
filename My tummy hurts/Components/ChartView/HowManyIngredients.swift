@@ -13,9 +13,6 @@ struct HowManyIngredients: View {
     
     let options = [1, 2, 3, 4, 5]
     
-    var howManyElFirstChartData: Int
-    var howManyElSecondChartData: Int
-    
     var body: some View {
         VStack(alignment: .leading) {
             SectionTitle(title: "TOP INGREDIENTS ON CHART", textColor: Color("SecondaryText"))
@@ -30,24 +27,9 @@ struct HowManyIngredients: View {
                     }
                     .buttonStyle(.bordered)
                     .tint(ingredientsToShow == value ? .accent : .accent.opacity(0.3))
-                    .disabled(isDisabled(value: value))
                 }
             }
             .grayOverlayModifier()
         }
-    }
-    
-    func isDisabled(value: Int) -> Bool {
-        switch chartType {
-        case .defaultChart:
-            if howManyElFirstChartData < value {
-                return true
-            }
-        case .checkSpecificSymptom:
-            if howManyElSecondChartData < value {
-                return true
-            }
-        }
-        return false
     }
 }

@@ -199,4 +199,5 @@ struct Note: View {
 
 #Preview {
     CalendarDay(selectedDate: .constant(Date()))
+        .environmentObject(CoreDataViewModel())
 }

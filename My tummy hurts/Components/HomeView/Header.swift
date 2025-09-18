@@ -164,7 +164,6 @@ struct WeekView: View {
     }
 }
 
-
 struct AddBtns: View {
     @Binding var selection: NoteTab
     @Binding var showAddingMealView: Bool
@@ -191,7 +190,7 @@ struct AddBtns: View {
                 showAddingSymptomView = true
             }
         } label: {
-            Label(LocalizedStringKey(title), systemImage: "plus")
+            Label(title, systemImage: "plus")
         }
         .padding(.horizontal, 30)
         .padding(.vertical, 15)

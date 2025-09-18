@@ -21,7 +21,7 @@ struct AddMealView: View {
         VStack(spacing: 20) {
             SiteTitle(title: "Add meal")
             DatePicker(
-                LocalizedStringKey("Meal time"),
+                "Meal time",
                 selection: $selectedDate,
                 displayedComponents: [.date, .hourAndMinute]
             )

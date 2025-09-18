@@ -12,13 +12,13 @@ struct ThemeView: View {
     
     var body: some View {
             VStack(spacing: 20) {
-                Text(LocalizedStringKey("Change theme"))
+                Text("Change theme")
                     .font(.title2.bold())
                     .padding(.vertical, 10)
                     .foregroundStyle(Color("PrimaryText"))
                 Picker("", selection: $selectedAppearance) {
                     ForEach(Appearance.allCases) { mode in
-                        Text(LocalizedStringKey(mode.rawValue)).tag(mode)
+                        Text(mode.rawValue).tag(mode)
                             .foregroundStyle(Color("PrimaryText"))
                     }
                 }

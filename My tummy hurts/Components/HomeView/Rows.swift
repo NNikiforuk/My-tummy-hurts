@@ -128,10 +128,17 @@ struct NewRows: View {
     }
     
     private func syncNewNote() {
-        newNote = rows.map(\.text)
+        let items = rows
+            .map(\.text)
             .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
             .filter { !$0.isEmpty }
-            .joined(separator: ", ")
+        
+        var seen = Set<String>()
+        let unique = items.filter { item in
+            let key = item.lowercased()
+            return seen.insert(key).inserted
+        }
+        newNote = unique.joined(separator: ", ")
     }
 }
 

@@ -12,7 +12,7 @@ struct DeleteBtn: View {
     let action: () -> Void
     
     var body: some View {
-        Button(LocalizedStringKey("Delete"), role: .destructive, action: action)
+        Button("Delete", role: .destructive, action: action)
             .foregroundStyle(.red)
     }
 }
@@ -23,7 +23,7 @@ struct DeleteBtnTextIcon: View {
     let action: () -> Void
     
     var body: some View {
-        Button(LocalizedStringKey(title), systemImage: icon, role: .destructive, action: action)
+        Button(title, systemImage: icon, role: .destructive, action: action)
             .foregroundStyle(.red)
     }
 }
@@ -32,7 +32,8 @@ struct SaveBtn: View {
     let action: () -> Void
     
     var body: some View {
-        Button(LocalizedStringKey("Save"), action: action)
+        Button("Save", action: action)
+            .bold()
     }
 }
 
@@ -40,6 +41,6 @@ struct CancelBtn: View {
     let action: () -> Void
     
     var body: some View {
-        Button(LocalizedStringKey("Cancel"), role: .cancel, action: action)
+        Button("Cancel", role: .cancel, action: action)
     }
 }

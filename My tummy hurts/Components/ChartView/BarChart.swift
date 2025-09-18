@@ -41,7 +41,8 @@ struct BarChart: View {
                          maxValue: Int,
                          geo: GeometryProxy,
                          textHeight: CGFloat) -> some View {
-        VStack {
+        return VStack {
+            Spacer()
             Text("\(entry.1)")
                 .font(.caption2)
                 .foregroundStyle(Color("PrimaryText"))

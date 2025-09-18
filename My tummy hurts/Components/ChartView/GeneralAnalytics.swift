@@ -15,13 +15,11 @@ struct GeneralAnalytics: View {
     @Binding var hoursBack: Int
     @Binding var selectedSymptom: String?
     
-    let chartTitle: LocalizedStringKey
+    let chartTitle: String
     let noMealNotes: Bool
     let noSymptomNotes: Bool
     var firstChartData: [(String, Int)]
     var secondChartData: [(String, Int)]
-    var howManyElFirstChartData: Int
-    var howManyElSecondChartData: Int
     
     var body: some View {
         //JEZELI ISTNIEJA MEALS, SYMPTOMS
@@ -40,7 +38,7 @@ struct GeneralAnalytics: View {
                     .transition(.opacity.combined(with: .move(edge: .top)))
                 }
                 
-                HowManyIngredients(ingredientsToShow: $ingredientsToShow, chartType: $chartType, howManyElFirstChartData: howManyElFirstChartData, howManyElSecondChartData: howManyElSecondChartData)
+                HowManyIngredients(ingredientsToShow: $ingredientsToShow, chartType: $chartType)
                 
                 //CHARTS
                 VStack(alignment: .leading) {
@@ -75,7 +73,7 @@ struct GeneralAnalytics: View {
         }
     }
     
-    func titleOfChart(title: LocalizedStringKey) -> some View {
+    func titleOfChart(title: String) -> some View {
         Text(title)
             .bold()
             .padding()

@@ -9,7 +9,7 @@ import SwiftUI
 import Foundation
 
 struct SiteTitle: View {
-    let title: LocalizedStringKey
+    let title: String
     
     var body: some View {
         Text(title)
@@ -20,7 +20,7 @@ struct SiteTitle: View {
 }
 
 struct SectionTitle: View {
-    let title: LocalizedStringKey
+    let title: String
     let textColor: Color
     
     var body: some View {
@@ -32,7 +32,7 @@ struct SectionTitle: View {
 
 
 struct NoDataAlert: View {
-    let text: LocalizedStringKey
+    let text: String
     
     var body: some View {
         Text(text)
@@ -41,34 +41,6 @@ struct NoDataAlert: View {
             .foregroundStyle(Color("SecondaryText"))
             .frame(maxWidth: .infinity, alignment: .center)
             .multilineTextAlignment(.center)
-    }
-}
-
-struct NoDataTexts: View {
-    @Binding var analyticsType: AnalyticsMode
-    
-    let noMealNotes: Bool
-    let noSymptomNotes: Bool
-    
-    var body: some View {
-        switch analyticsType {
-        case .barChart:
-            if noMealNotes && noSymptomNotes {
-                NoDataAlert(text: "Add meals and negative symptoms. The more you add - the better the conclusions will be")
-            } else if noMealNotes {
-                NoDataAlert(text: "Add meals to see charts. The more you add - the better the conclusions will be")
-            } else if noSymptomNotes {
-                noSymptoms
-            }
-        case .calendarView:
-            if noSymptomNotes {
-                noSymptoms
-            }
-        }
-    }
-    
-    var noSymptoms: some View {
-        NoDataAlert(text: "Add symptoms to see charts. The more you add - the better the conclusions will be")
     }
 }
 

@@ -22,7 +22,7 @@ struct AddSymptomView: View {
         VStack(spacing: 20) {
             SiteTitle(title: "Add symptom")
             DatePicker(
-                LocalizedStringKey("Symptom time"),
+               "Symptom time",
                 selection: $selectedDate,
                 displayedComponents: [.date, .hourAndMinute]
             )
@@ -72,7 +72,7 @@ struct SymptomTags: View {
     var body: some View {
         VStack {
             HStack(alignment: .center) {
-                Text(LocalizedStringKey("Symptom tag"))
+                Text("Symptom tag")
                     .frame(width: 120, alignment: .leading)
                     .bold()
                 Spacer()

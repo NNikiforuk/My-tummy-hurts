@@ -11,10 +11,10 @@ struct ChartView: View {
     @EnvironmentObject private var vm: CoreDataViewModel
     
     @State private var analyticsType: AnalyticsMode = .barChart
-    @State private var chartType: ChartMode = .defaultChart
-    @State private var ingredientsToShow = 1
+    @State private var chartType: ChartMode = .checkSpecificSymptom
+    @State private var ingredientsToShow = 3
     @State private var hoursBack = 1
-    @State private var selectedSymptom: String? = nil
+    @State private var selectedSymptom: String? = "biegunka"
     @State private var selectedFirstIngredient: String? = nil
     @State private var selectedSecondIngredient: String? = nil
     @State private var selectedDate: Date = Date()
@@ -23,10 +23,10 @@ struct ChartView: View {
         vm.savedMealNotes.isEmpty
     }
     var noSymptomNotes: Bool {
-        vm.savedMealNotes.isEmpty
+        vm.savedSymptomNotes.isEmpty
     }
     
-    var chartTitle: LocalizedStringKey {
+    var chartTitle: String {
         switch chartType {
         case .defaultChart:
             switch ingredientsToShow {
@@ -87,14 +87,17 @@ struct ChartView: View {
                 SiteTitle(title: "Analytics")
                     .frame(maxWidth: .infinity, alignment: .center)
                 ChooseAnalytics(analyticsType: $analyticsType)
-                NoDataTexts(analyticsType: $analyticsType, noMealNotes: noMealNotes, noSymptomNotes: noSymptomNotes)
                 
-                switch analyticsType {
-                case .barChart: GeneralAnalytics(chartType: $chartType, ingredientsToShow: $ingredientsToShow, hoursBack: $hoursBack, selectedSymptom: $selectedSymptom, chartTitle: chartTitle, noMealNotes: noMealNotes, noSymptomNotes: noSymptomNotes, firstChartData: firstChartData, secondChartData: secondChartData, howManyElFirstChartData: howManyElFirstChartData, howManyElSecondChartData: howManyElSecondChartData)
-                    
-                case .calendarView:
-                    if !noSymptomNotes {
-                        CalendarChart(selectedFirstIngredient: $selectedFirstIngredient, selectedSecondIngredient: $selectedSecondIngredient, selectedDate: $selectedDate)
+                if vm.savedMealNotes.count < 5 || vm.savedSymptomNotes.count < 5 {
+                    NoDataAlert(text: "Add minimum 5 meals and 5 negative symptoms to see the charts. The more you add - the better the conclusions will be")
+                } else {
+                    switch analyticsType {
+                    case .barChart: GeneralAnalytics(chartType: $chartType, ingredientsToShow: $ingredientsToShow, hoursBack: $hoursBack, selectedSymptom: $selectedSymptom, chartTitle: chartTitle, noMealNotes: noMealNotes, noSymptomNotes: noSymptomNotes, firstChartData: firstChartData, secondChartData: secondChartData)
+                        
+                    case .calendarView:
+                        if !noSymptomNotes {
+                            CalendarChart(selectedFirstIngredient: $selectedFirstIngredient, selectedSecondIngredient: $selectedSecondIngredient, selectedDate: $selectedDate)
+                        }
                     }
                 }
             }

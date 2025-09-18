@@ -32,7 +32,7 @@ struct EditMeal: View {
         VStack(spacing: 20) {
             SiteTitle(title: "Edit meal")
             DatePicker(
-                LocalizedStringKey("Meal time"),
+                "Meal time",
                 selection: $mealCreatedAt,
                 displayedComponents: [.date, .hourAndMinute]
             )
@@ -55,14 +55,14 @@ struct EditMeal: View {
         .toolbar {
             ToolbarItemGroup(placement: .topBarTrailing) {
                 DeleteBtn(action: { showDeleteMealAlert = true })
-                Button("Save") {
+                SaveBtn(action: {
                     vm.updateMeal(entity: note, createdAt: mealCreatedAt, ingredients: newIngredients)
                     dismiss()
-                }
+                })
                 .disabled(newIngredients.isEmpty)
             }
         }
-        .alert(LocalizedStringKey("Do you want to delete this meal?"), isPresented: $showDeleteMealAlert) {
+        .alert("Do you want to delete this meal?", isPresented: $showDeleteMealAlert) {
             CancelBtn(action: {  })
             DeleteBtn(action: {
                 vm.deleteMeal(entity: note)
@@ -93,7 +93,7 @@ struct EditSymptom: View {
         VStack(spacing: 20) {
             SiteTitle(title: "Edit symptom")
             DatePicker(
-                LocalizedStringKey("Symptom time"),
+                "Symptom time",
                 selection: $symptomCreatedAt,
                 displayedComponents: [.date, .hourAndMinute]
             )
@@ -117,9 +117,10 @@ struct EditSymptom: View {
                     vm.updateSymptom(entity: note, createdAt: symptomCreatedAt, symptoms: newSymptoms, critical: critical)
                     dismiss()
                 })
+                .disabled(newSymptoms.isEmpty)
             }
         }
-        .alert(LocalizedStringKey("Do you want to delete this symptom?"), isPresented: $showDeleteSymptomAlert) {
+        .alert("Do you want to delete this symptom?", isPresented: $showDeleteSymptomAlert) {
             CancelBtn(action: {  })
             DeleteBtn(action: {
                 vm.deleteSymptom(entity: note)

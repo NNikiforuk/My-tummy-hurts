@@ -17,6 +17,14 @@ struct My_tummy_hurtsApp: App {
             NavigationStack {
                 if isOnboarding {
                     WelcomeView(isOnboarding: $isOnboarding)
+                        .navigationTitle("")
+                        .navigationBarTitleDisplayMode(.inline)
+                        .toolbar {
+                            ToolbarItem(placement: .topBarTrailing) {
+                                ToolbarSkipButton(isOnboarding: $isOnboarding)
+                            }
+                        }
+                        .toolbarBackground(.visible, for: .navigationBar)
                 } else {
                     HomeView()
                         .environmentObject(vm)

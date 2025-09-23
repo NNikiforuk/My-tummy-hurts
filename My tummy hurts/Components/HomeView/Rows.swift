@@ -87,15 +87,7 @@ struct NewRows: View {
                         TextField(meal ? "cow milk" : "diarrhea", text: binding)
                             .focused($focusedRowID, equals: row.id)
                             .disableAutocorrection(true)
-                            .padding(5)
-                            .padding(.horizontal, 10)
-                            .overlay {
-                                RoundedRectangle(cornerRadius: 8, style: .continuous)
-                                    .stroke(Color("SecondaryText"), lineWidth: 1)
-                            }
-                            .foregroundStyle(Color("PrimaryText"))
-                            .lineLimit(1)
-                            .textInputAutocapitalization(.never)
+                            .textFieldModifier()
                             .onChange(of: rows.map(\.text)) { _ in syncNewNote() }
                             .onAppear { syncNewNote() }
                         

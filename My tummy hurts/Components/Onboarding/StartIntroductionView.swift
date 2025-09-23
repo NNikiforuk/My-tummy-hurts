@@ -29,7 +29,6 @@ struct StartIntroductionView: View {
                     }
                 }
             }
-            .customBgModifier()
     }
 }
 

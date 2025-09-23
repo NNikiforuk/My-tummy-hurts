@@ -32,12 +32,6 @@ struct MethodsIntroductionView: View {
                 Spacer()
             }
             .padding(.top, 50)
-            .customBgModifier()
-            .toolbar {
-                ToolbarItem {
-                    ToolbarSkipButton(isOnboarding: $isOnboarding)
-                }
-            }
     }
     
     func createMethod(title: String, text1: String, text2: String) -> some View {

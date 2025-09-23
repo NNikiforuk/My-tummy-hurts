@@ -25,12 +25,6 @@ struct AdvantagesIntroductionView: View {
                 Spacer()
             }
             .padding(.top, 50)
-            .customBgModifier()
-            .toolbar {
-                ToolbarItem {
-                    ToolbarSkipButton(isOnboarding: $isOnboarding)
-                }
-            }
     }
     
     func createHStack(text: String) -> some View {

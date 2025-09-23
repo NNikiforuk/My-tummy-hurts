@@ -84,3 +84,25 @@ extension View {
         modifier(GrayOverlayModifier())
     }
 }
+
+struct TextFieldModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .padding(5)
+            .padding(.horizontal, 10)
+            .overlay {
+                RoundedRectangle(cornerRadius: 8, style: .continuous)
+                    .stroke(Color("SecondaryText"), lineWidth: 1)
+            }
+            .foregroundStyle(Color("PrimaryText"))
+            .lineLimit(1)
+            .textInputAutocapitalization(.never)
+    }
+}
+
+extension View {
+    func textFieldModifier() -> some View {
+        modifier(TextFieldModifier())
+    }
+}
+

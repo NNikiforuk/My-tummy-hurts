@@ -9,20 +9,57 @@ import SwiftUI
 
 struct WelcomeView: View {
     @Binding var isOnboarding: Bool
+    @AppStorage("appearance") private var selectedAppearance: Appearance = .system
+    
+    var colorScheme: ColorScheme? {
+        switch selectedAppearance {
+        case .system:
+            return nil
+        case .dark:
+            return .dark
+        case .light:
+            return .light
+        }
+    }
     
     var body: some View {
-        TabView {
-            LogoIntroductionView(isOnboarding: $isOnboarding)
-            HowItWorksIntroductionView(isOnboarding: $isOnboarding)
-            MethodsIntroductionView(isOnboarding: $isOnboarding)
-            AdvantagesIntroductionView(isOnboarding: $isOnboarding)
-            StartIntroductionView(isOnboarding: $isOnboarding)
+        ZStack {
+            Color("OnboardingBcg").ignoresSafeArea()
+            
+            TabView {
+                LogoIntroductionView(isOnboarding: $isOnboarding)
+                InputDataView(isOnboarding: $isOnboarding)
+                MethodsIntroductionView(isOnboarding: $isOnboarding)
+                AdvantagesIntroductionView(isOnboarding: $isOnboarding)
+                StartIntroductionView(isOnboarding: $isOnboarding)
+            }
+            .tabViewStyle(PageTabViewStyle())
         }
-        .tabViewStyle(PageTabViewStyle())
-        .customBgModifier()
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbarBackground(Color("OnboardingBcg"), for: .navigationBar)
+        .toolbarBackground(.visible, for: .navigationBar)
+        .preferredColorScheme(colorScheme)
     }
 }
 
-#Preview {
-    WelcomeView(isOnboarding: .constant(false))
+#Preview("Onboarding") {
+    NavigationStack {
+        WelcomeView(isOnboarding: .constant(true))
+            .navigationTitle("")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {} label: {
+                                Text("Skip")
+                                    .font(.body)
+                                    .foregroundColor(.accent)
+                            }
+                }
+            }
+            .toolbarBackground(Color("OnboardingBcg"), for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
+            .background(Color("OnboardingBcg").ignoresSafeArea())
+    }
+    .environment(\.colorScheme, .light)
 }
+

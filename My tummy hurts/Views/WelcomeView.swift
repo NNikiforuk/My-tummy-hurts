@@ -27,10 +27,11 @@ struct WelcomeView: View {
             Color("OnboardingBcg").ignoresSafeArea()
             
             TabView {
-                LogoIntroductionView(isOnboarding: $isOnboarding)
-                InputDataView(isOnboarding: $isOnboarding)
-                MethodsIntroductionView(isOnboarding: $isOnboarding)
-                AdvantagesIntroductionView(isOnboarding: $isOnboarding)
+//                LogoIntroductionView(isOnboarding: $isOnboarding)
+//                InputDataView(isOnboarding: $isOnboarding)
+//                TopIngredients(isOnboarding: $isOnboarding)
+//                SpecificSymptom(isOnboarding: $isOnboarding)
+//                MonthlyCalendar(isOnboarding: $isOnboarding)
                 StartIntroductionView(isOnboarding: $isOnboarding)
             }
             .tabViewStyle(PageTabViewStyle())

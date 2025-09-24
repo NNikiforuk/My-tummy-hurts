@@ -104,3 +104,13 @@ struct CancelBtn: View {
         Button("Cancel", role: .cancel, action: action)
     }
 }
+
+struct OnboardingPageTitle: View {
+    let text: String
+    
+    var body: some View {
+       Text(text)
+            .font(.title.bold())
+            .padding(.vertical, 20)
+    }
+}

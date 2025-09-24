@@ -11,24 +11,19 @@ struct StartIntroductionView: View {
     @Binding var isOnboarding: Bool
     
     var body: some View {
-            VStack {
-                LogoView()
-                NavigationLink(destination: HomeView()) {
-                    Button(action: {
-                        isOnboarding = false
-                    }) {
-                        Text(LocalizedStringKey("Start"))
-                            .padding()
-                            .foregroundStyle(.accent)
-                            .cornerRadius(15)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 12)
-                                    .stroke(.accent, lineWidth: 0.5)
-                            )
-                            .padding(.top, 70)
-                    }
+        VStack {
+            LogoView()
+            NavigationLink(destination: HomeView()) {
+                Button(action: {
+                    isOnboarding = false
+                }) {
+                    Text(LocalizedStringKey("Start"))
+                        .font(.title2)
                 }
+                .buttonStyle(.borderedProminent)
+                .padding(.vertical, 20)
             }
+        }
     }
 }
 

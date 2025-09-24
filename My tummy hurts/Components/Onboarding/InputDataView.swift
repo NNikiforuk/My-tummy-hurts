@@ -15,30 +15,40 @@ struct InputDataView: View {
     @State private var symptom2: String = ""
     @State private var showSecondIngredient = false
     @State private var showSecondSymptom = false
+    @State private var hasTypedIngredients = false
+    @State private var hasTypedSymptoms = false
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 50) {
-            createItem(text: "Enter what you ate and drank", icon: "fork.knife", bindingText: $ingredient1, secondBindingText: $ingredient2, ifShow: showSecondIngredient)
-            createItem(text: "Note any discomfort", icon: "toilet", bindingText: $symptom1, secondBindingText: $symptom2, ifShow: showSecondSymptom)
-            
-            HStack {
-                Spacer()
-                Image(systemName: "info.circle")
-                Text("Be as specific as possible")
+        VStack(alignment: .leading, spacing: 20) {
+            OnboardingPageTitle(text: "How does it work?")
+            VStack(alignment: .leading, spacing: 50) {
+                createItem(text: "Enter what you ate and drank", icon: "fork.knife", bindingText: $ingredient1, secondBindingText: $ingredient2, ifShow: showSecondIngredient)
+                createItem(text: "Note any discomfort", icon: "toilet", bindingText: $symptom1, secondBindingText: $symptom2, ifShow: showSecondSymptom)
+                
+                HStack {
+                    Spacer()
+                    Image(systemName: "info.circle")
+                    Text("Be as specific as possible")
+                    Spacer()
+                }
+                .font(.callout).bold()
+                .foregroundStyle(.accent)
                 Spacer()
             }
-            .font(.callout).bold()
-            .foregroundStyle(.accent)
-            Spacer()
         }
         .padding()
         .padding(.top, 20)
         .onAppear {
-            typeText("cow milk", into: $ingredient1) {
-                withAnimation { showSecondIngredient = true }
-                typeText("rye bread", into: $ingredient2, completion: nil)
+            if !hasTypedIngredients {
+                hasTypedIngredients = true
+                typeText("cow milk", into: $ingredient1) {
+                    withAnimation { showSecondIngredient = true }
+                    typeText("rye bread", into: $ingredient2, completion: nil)
+                }
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            
+            if !hasTypedSymptoms {
+                hasTypedSymptoms = true
                 typeText("bloating", into: $symptom1) {
                     withAnimation { showSecondSymptom = true }
                     typeText("diarrhea", into: $symptom2, completion: nil)

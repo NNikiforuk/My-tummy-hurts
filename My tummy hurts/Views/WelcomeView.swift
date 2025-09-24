@@ -25,14 +25,13 @@ struct WelcomeView: View {
     var body: some View {
         ZStack {
             Color("OnboardingBcg").ignoresSafeArea()
-            
             TabView {
-//                LogoIntroductionView(isOnboarding: $isOnboarding)
-//                InputDataView(isOnboarding: $isOnboarding)
-//                TopIngredients(isOnboarding: $isOnboarding)
-//                SpecificSymptom(isOnboarding: $isOnboarding)
-//                MonthlyCalendar(isOnboarding: $isOnboarding)
-                StartIntroductionView(isOnboarding: $isOnboarding)
+                LogoIntroductionView()
+                InputDataView()
+                TopIngredients()
+                SpecificSymptom()
+                MonthlyCalendar()
+                Info(isOnboarding: $isOnboarding)
             }
             .tabViewStyle(PageTabViewStyle())
         }
@@ -51,10 +50,10 @@ struct WelcomeView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {} label: {
-                                Text("Skip")
-                                    .font(.body)
-                                    .foregroundColor(.accent)
-                            }
+                        Text("Skip")
+                            .font(.body)
+                            .foregroundColor(.accent)
+                    }
                 }
             }
             .toolbarBackground(Color("OnboardingBcg"), for: .navigationBar)

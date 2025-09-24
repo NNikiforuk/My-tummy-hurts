@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct LogoIntroductionView: View {
-    @Binding var isOnboarding: Bool
-    
     var body: some View {
         VStack {
             LogoView()
@@ -21,8 +19,6 @@ struct LogoIntroductionView: View {
                     .foregroundStyle(Color("WhiteCustom"))
                 Text("your gut")
             }
-            .padding(.horizontal, 30)
-            
         }
         .font(.title2)
         .multilineTextAlignment(.center)
@@ -37,6 +33,3 @@ struct LogoView: View {
     }
 }
 
-#Preview {
-    LogoIntroductionView(isOnboarding: .constant(false))
-}

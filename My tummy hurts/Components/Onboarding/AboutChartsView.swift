@@ -5,17 +5,9 @@
 //  Created by Natalia Nikiforuk on 11/03/2025.
 //
 
-
-
-
-
-//createHStack(text: "See on the chart which food might be causing issues", icon: "chart.bar")
-//createHStack(text: "The more data you add, the more accurate the analysis will be", icon: "info.square")
-
 import SwiftUI
 
 struct AboutChartView: View {
-    @Binding var isOnboarding: Bool
     @State private var ingredient1: String = ""
     @State private var ingredient2: String = ""
     @State private var symptom1: String = ""
@@ -86,8 +78,4 @@ struct AboutChartView: View {
             }
         }
     }
-}
-
-#Preview {
-    AboutChartView(isOnboarding: .constant(false))
 }

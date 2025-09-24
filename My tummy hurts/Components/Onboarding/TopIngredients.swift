@@ -9,23 +9,15 @@ import SwiftUI
 import Charts
 
 struct TopIngredients: View {
-    @Binding var isOnboarding: Bool
-    
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            TopIngredientsOnboardingView()
+            VStack(spacing: 40) {
+                header(icon: "fork.knife", title: "Top ingredients", subtitle: "Find out which ingredients show up most often before discomfort")
+                OnboardingColumnChart()
+            }
             Spacer()
         }
         .padding()
-    }
-}
-
-struct TopIngredientsOnboardingView: View {
-    var body: some View {
-        VStack(spacing: 40) {
-            header(icon: "fork.knife", title: "Top ingredients", subtitle: "Find out which ingredients show up most often before discomfort")
-            OnboardingColumnChart()
-        }
     }
 }
 

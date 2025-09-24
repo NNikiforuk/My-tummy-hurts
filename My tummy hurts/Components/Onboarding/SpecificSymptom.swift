@@ -9,8 +9,6 @@ import SwiftUI
 import Charts
 
 struct SpecificSymptom: View {
-    @Binding var isOnboarding: Bool
-    
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             TimeWindowOnboardingView()
@@ -36,7 +34,7 @@ struct TimeWindowOnboardingView: View {
                     }
             }
             .chartXScale(domain: -15...1)
-            .frame(height: 200)
+            .frame(height: 100)
             .padding()
         }
     }

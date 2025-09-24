@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct InputDataView: View {
-    @Binding var isOnboarding: Bool
     @State private var ingredient1: String = ""
     @State private var ingredient2: String = ""
     @State private var symptom1: String = ""
@@ -20,7 +19,6 @@ struct InputDataView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            OnboardingPageTitle(text: "How does it work?")
             VStack(alignment: .leading, spacing: 50) {
                 createItem(text: "Enter what you ate and drank", icon: "fork.knife", bindingText: $ingredient1, secondBindingText: $ingredient2, ifShow: showSecondIngredient)
                 createItem(text: "Note any discomfort", icon: "toilet", bindingText: $symptom1, secondBindingText: $symptom2, ifShow: showSecondSymptom)
@@ -37,21 +35,20 @@ struct InputDataView: View {
             }
         }
         .padding()
-        .padding(.top, 20)
         .onAppear {
             if !hasTypedIngredients {
                 hasTypedIngredients = true
                 typeText("cow milk", into: $ingredient1) {
                     withAnimation { showSecondIngredient = true }
-                    typeText("rye bread", into: $ingredient2, completion: nil)
-                }
-            }
-            
-            if !hasTypedSymptoms {
-                hasTypedSymptoms = true
-                typeText("bloating", into: $symptom1) {
-                    withAnimation { showSecondSymptom = true }
-                    typeText("diarrhea", into: $symptom2, completion: nil)
+                    typeText("rye bread", into: $ingredient2) {
+                        if !hasTypedSymptoms {
+                            hasTypedSymptoms = true
+                            typeText("bloating", into: $symptom1) {
+                                withAnimation { showSecondSymptom = true }
+                                typeText("diarrhea", into: $symptom2, completion: nil)
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -83,14 +80,10 @@ struct InputDataView: View {
     
     func typeText(_ text: String, into binding: Binding<String>, completion: (() -> Void)?) {
         for (i, char) in text.enumerated() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.15 * Double(i)) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.30 * Double(i)) {
                 binding.wrappedValue.append(char)
                 if i == text.count - 1 { completion?() }
             }
         }
     }
-}
-
-#Preview {
-    InputDataView(isOnboarding: .constant(false))
 }

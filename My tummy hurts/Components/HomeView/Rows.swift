@@ -147,13 +147,7 @@ struct XMarkBtn: View {
     var body: some View {
         Button {
             withAnimation {
-                if rows.count == 1 {
-                    if let index = rows.firstIndex(where: { $0.id == id }) {
-                        rows[index].text = ""
-                    }
-                } else {
-                    rows.removeAll { $0.id == id }
-                }
+                rows.removeAll { $0.id == id }
                 onDelete?()
             }
         } label: {

@@ -26,7 +26,7 @@ struct My_tummy_hurtsApp: App {
                         }
                         .toolbarBackground(.visible, for: .navigationBar)
                 } else {
-                    HomeView()
+                    HomeView(isOnboarding: $isOnboarding)
                         .environmentObject(vm)
                 }
             }

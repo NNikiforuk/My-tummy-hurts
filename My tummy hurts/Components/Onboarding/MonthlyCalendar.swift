@@ -124,7 +124,7 @@ struct IngredientDisplay: View {
             } else {
                 HStack {
                     Image(systemName: "chevron.down")
-                        .foregroundStyle(Color("OnboardingBgc"))
+                        .foregroundStyle(Color("OnboardingBcg"))
                     Text("Select")
                         .foregroundStyle(Color("OnboardingBcg"))
                 }

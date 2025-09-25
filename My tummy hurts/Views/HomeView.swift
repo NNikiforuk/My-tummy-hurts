@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject private var model: CoreDataViewModel
+    @Binding var isOnboarding: Bool
     @AppStorage("appearance") private var selectedAppearance: Appearance = .system
     
     @State private var selectedDate: Date = Date()
@@ -56,13 +57,18 @@ struct HomeView: View {
             ToolbarItem(placement: .topBarLeading) {
                 Menu {
                     NavigationLink {
+                        WelcomeView(isOnboarding: $isOnboarding)
+                    } label: {
+                        Label("Onboarding", systemImage: "book")
+                    }
+                    NavigationLink {
                         ThemeView()
                     } label: {
                         Label("Change theme", systemImage: "sun.lefthalf.filled")
                     }
                     DeleteBtnTextIcon(title: "Delete all", icon: "trash", action: { showDeleteAllAlert = true })
                 } label: {
-                    Label("Options", systemImage: "ellipsis.circle")
+                    Label("Options", systemImage: "ellipsis")
                         .font(.callout)
                 }
                 .foregroundStyle(.primary)
@@ -130,7 +136,7 @@ struct NotesPicker: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            HomeView()
+            HomeView(isOnboarding: .constant(false))
                 .environmentObject(CoreDataViewModel())
         }
     }

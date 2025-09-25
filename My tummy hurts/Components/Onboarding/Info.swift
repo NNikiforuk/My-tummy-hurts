@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Info: View {
     @Binding var isOnboarding: Bool
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
@@ -31,9 +32,10 @@ struct Info: View {
                     .bold()
                 }
                 
-                NavigationLink(destination: HomeView()) {
+                NavigationLink(destination: HomeView(isOnboarding: $isOnboarding)) {
                     Button(action: {
                         isOnboarding = false
+                        dismiss()
                     }) {
                         Text(LocalizedStringKey("Start"))
                             .font(.title3)

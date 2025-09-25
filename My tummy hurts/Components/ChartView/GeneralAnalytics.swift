@@ -32,8 +32,11 @@ struct GeneralAnalytics: View {
                     VStack(alignment: .leading) {
                         HowManyHoursBack(value: $hoursBack)
                             .padding(.bottom, 40)
-                        SectionTitle(title: "SELECT SYMPTOM", textColor: Color("SecondaryText"))
-                        SelectElementPicker(pickerData: dataForPicker(mealsMode: false, model: vm), pickerSelection: $selectedSymptom)
+                        HStack {
+                            SectionTitle(title: "SELECT SYMPTOM", textColor: Color("SecondaryText"))
+                            Spacer()
+                            SelectElementPicker(pickerData: dataForPicker(mealsMode: false, model: vm), pickerSelection: $selectedSymptom)
+                        }
                     }
                     .transition(.opacity.combined(with: .move(edge: .top)))
                 }

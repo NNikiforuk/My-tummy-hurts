@@ -194,10 +194,11 @@ struct Note: View {
     }
 }
 
-
-
-
-#Preview {
-    CalendarDay(selectedDate: .constant(Date()))
-        .environmentObject(CoreDataViewModel())
+struct CalendarDay_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationStack {
+            CalendarDay(selectedDate: .constant(Date()))
+                .environmentObject(CoreDataViewModel())
+        }
+    }
 }

@@ -93,7 +93,6 @@ struct SaveBtn: View {
     
     var body: some View {
         Button("Save", action: action)
-            .bold()
     }
 }
 

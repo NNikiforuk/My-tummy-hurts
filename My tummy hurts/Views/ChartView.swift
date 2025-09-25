@@ -11,7 +11,7 @@ struct ChartView: View {
     @EnvironmentObject private var vm: CoreDataViewModel
     
     @State private var analyticsType: AnalyticsMode = .barChart
-    @State private var chartType: ChartMode = .checkSpecificSymptom
+    @State private var chartType: ChartMode = .defaultChart
     @State private var ingredientsToShow = 3
     @State private var hoursBack = 1
     @State private var selectedSymptom: String? = "biegunka"
@@ -89,7 +89,7 @@ struct ChartView: View {
                 ChooseAnalytics(analyticsType: $analyticsType)
                 
                 if vm.savedMealNotes.count < 5 || vm.savedSymptomNotes.count < 5 {
-                    NoDataAlert(text: "Add minimum 5 meals and 5 negative symptoms to see the charts. The more you add - the better the conclusions will be")
+                    NoDataAlert(text: "Add minimum 5 meals and 5 negative symptoms to see the charts. Detail matters: add more to unlock better insights")
                 } else {
                     switch analyticsType {
                     case .barChart: GeneralAnalytics(chartType: $chartType, ingredientsToShow: $ingredientsToShow, hoursBack: $hoursBack, selectedSymptom: $selectedSymptom, chartTitle: chartTitle, noMealNotes: noMealNotes, noSymptomNotes: noSymptomNotes, firstChartData: firstChartData, secondChartData: secondChartData)

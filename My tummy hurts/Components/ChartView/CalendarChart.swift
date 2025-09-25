@@ -44,14 +44,26 @@ struct CalendarChart: View {
         )
     }
     
+    var pickersTitle: String {
+        if let firstIngredient = selectedFirstIngredient, selectedSecondIngredient == nil {
+            return "Showing days with: \(firstIngredient)"
+        }
+        
+        if let secondIngredient = selectedSecondIngredient, selectedFirstIngredient == nil {
+            return "Showing days with: \(secondIngredient)"
+        }
+        return "Showing days with one ingredient or combo"
+    }
+    
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 10) {
                     if !vm.savedMealNotes.isEmpty {
-                        SectionTitle(title: "CHECK INGREDIENT OR COMBOS IN A MEAL", textColor: Color("SecondaryText"))
+                        SectionTitle(title: "SEE ONE INGREDIENT OR COMBOS IN A MEAL", textColor: Color("SecondaryText"))
                         HStack {
                             SelectElementPicker(pickerData: dataForPicker(mealsMode: true, model: vm, excluded: selectedSecondIngredient), pickerSelection: $selectedFirstIngredient)
+                            Spacer()
                             SelectElementPicker(pickerData: dataForPicker(mealsMode: true, model: vm, excluded: selectedFirstIngredient), pickerSelection: $selectedSecondIngredient)
                         }
                     }

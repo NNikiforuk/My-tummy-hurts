@@ -10,7 +10,7 @@ import Foundation
 
 enum AnalyticsMode: String, CaseIterable, Identifiable {
     case barChart = "Bar chart"
-    case calendarView = "Calendar view"
+    case calendarView = "Monthly calendar"
     var id: Self { self }
 }
 

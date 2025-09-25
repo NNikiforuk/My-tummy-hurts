@@ -62,7 +62,7 @@ struct CalendarChart: View {
                 VStack(alignment: .leading, spacing: 10) {
                     if !vm.savedMealNotes.isEmpty {
                         HStack {
-                            SectionTitle(title: "SELECT INGREDIENT(S)", textColor: Color("SecondaryText"))
+                            SectionTitle(title: "Select ingredients(s)", textColor: Color("SecondaryText"))
                             Spacer()
                             Button {
                                 withAnimation { showInfo.toggle() }

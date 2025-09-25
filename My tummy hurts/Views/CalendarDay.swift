@@ -70,13 +70,13 @@ struct CalendarDay: View {
                 NoDataAlert(text: "No notes today")
             } else {
                 HStack {
-                    SectionTitle(title: "EVENTS TIMELINE", textColor: Color("SecondaryText"))
+                    SectionTitle(title: "Events timeline", textColor: Color("SecondaryText"))
                     Spacer()
                 }
                 .padding(.top, 30)
                 TimelineChart(startOfDay: startOfDay, endOfDay: endOfDay, data: data)
                 HStack {
-                    SectionTitle(title: "DAILY EVENTS", textColor: Color("SecondaryText"))
+                    SectionTitle(title: "Daily events", textColor: Color("SecondaryText"))
                     Spacer()
                 }
                 .padding(.top, 30)

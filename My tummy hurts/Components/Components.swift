@@ -27,6 +27,7 @@ struct SectionTitle: View {
         Text(title)
             .bold()
             .foregroundStyle(textColor)
+            .textCase(.uppercase)
     }
 }
 

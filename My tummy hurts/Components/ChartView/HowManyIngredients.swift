@@ -15,7 +15,7 @@ struct HowManyIngredients: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            SectionTitle(title: "TOP INGREDIENTS ON CHART", textColor: Color("SecondaryText"))
+            SectionTitle(title: "Top ingredients on chart", textColor: Color("SecondaryText"))
             HStack(spacing: 8) {
                 ForEach(options, id: \.self) { value in
                     Button {

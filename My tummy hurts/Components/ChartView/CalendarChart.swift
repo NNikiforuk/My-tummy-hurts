@@ -14,6 +14,7 @@ struct CalendarChart: View {
     @Binding var selectedDate: Date
     
     @State private var currentPage: Int
+    @State private var showInfo = false
     
     let months: [Date]
     
@@ -60,7 +61,24 @@ struct CalendarChart: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 10) {
                     if !vm.savedMealNotes.isEmpty {
-                        SectionTitle(title: "SEE ONE INGREDIENT OR COMBOS IN A MEAL", textColor: Color("SecondaryText"))
+                        HStack {
+                            SectionTitle(title: "SELECT INGREDIENT(S)", textColor: Color("SecondaryText"))
+                            Spacer()
+                            Button {
+                                withAnimation { showInfo.toggle() }
+                            } label: {
+                                Image(systemName: "info.circle")
+                                    .font(.subheadline)
+                                    .foregroundStyle(Color("SecondaryText"))
+                            }
+                        }
+                        if showInfo {
+                            Text("Pick one ingredient to highlight its days. Add a second to see days they occur in the same meal")
+                                .font(.footnote)
+                                .foregroundStyle(Color("SecondaryText"))
+                                .transition(.opacity)
+                                .padding(.vertical, 5)
+                        }
                         HStack {
                             SelectElementPicker(pickerData: dataForPicker(mealsMode: true, model: vm, excluded: selectedSecondIngredient), pickerSelection: $selectedFirstIngredient)
                             Spacer()

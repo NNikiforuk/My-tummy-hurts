@@ -315,6 +315,41 @@
         }
       }
     },
+    "Be consistent" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bleib konsequent"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sé coherente"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Soyez cohérent"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bądź konsekwentna/konsekwentny"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保持一致"
+          }
+        }
+      }
+    },
     "bloating" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -374,7 +409,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kolor niebieski = łagodne objawy, czerwony = silne. Wybierz jeden składnik, a zobaczysz dni jego spożycia. Dodaj drugi, aby sprawdzić, kiedy oba trafiły do jednego posiłku."
+            "value" : "Kolor niebieski = łagodne objawy, czerwony = silne. Wybierz jeden składnik, a zobaczysz dni jego spożycia. Dodaj drugi, aby sprawdzić, kiedy oba trafiły do jednego posiłku"
           }
         },
         "zh-Hans" : {
@@ -959,7 +994,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Edycja posiłek"
+            "value" : "Edycja posiłku"
           }
         },
         "zh-Hans" : {
@@ -1001,41 +1036,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "编辑症状"
-          }
-        }
-      }
-    },
-    "Enter ingredients consistently. For example, always use „rye bread” instead of „bread rye”" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Geben Sie die Zutaten einheitlich ein. Zum Beispiel immer „Roggenbrot“ statt „Brot Roggen“"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Introduce los ingredientes de forma coherente. Por ejemplo, usa siempre « pan de centeno » en lugar de « centeno pan »"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Saisissez les ingrédients de manière cohérente. Par exemple, utilisez toujours « pain de seigle » plutôt que « seigle pain »"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wpisuj składniki zawsze w ten sam sposób. Np.: tylko „chleb żytni”, a nie „żytni chleb”"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "输入成分时保持一致。例如，总是写“黑麦面包”，而不是“面包黑麦”"
           }
         }
       }
@@ -1180,6 +1180,41 @@
         }
       }
     },
+    "For example, always use „rye bread” instead of „bread rye”" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zum Beispiel verwende immer „Roggenbrot“ statt „Brot Roggen“"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Por ejemplo, usa siempre «pan de centeno» en lugar de «centeno pan»"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Par exemple, utilisez toujours « pain de seigle » plutôt que « seigle pain »"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Np. zawsze „chleb żytni”, a nie „żytni chleb”"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "例如，请始终使用“黑麦面包”，而不是“面包黑麦”"
+          }
+        }
+      }
+    },
     "How many hours back" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1211,40 +1246,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "向前追溯多少小时"
-          }
-        }
-      }
-    },
-    "hurting" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Schmerzhaft"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dolor"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Douleur"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "szkodź"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "疼痛"
           }
         }
       }
@@ -2796,7 +2797,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Negatywne objawy"
+            "value" : "Objawy"
           }
         },
         "zh-Hans" : {
@@ -3260,70 +3261,37 @@
         }
       }
     },
-    "Uncover what's" : {
+    "Uncover what's hurting your gut" : {
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Finde heraus, was"
+            "value" : "Finde heraus, was deinem Darm schadet"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Descubre qué"
+            "value" : "Descubre qué daña tu estómago"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Découvrir ce qui"
+            "value" : "Découvrez ce qui nuit à vos intestins"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Odkryj, co"
+            "value" : "Sprawdź, co szkodzi Twoim jelitom"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "揭示"
-          }
-        }
-      }
-    },
-    "your gut" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "deinem Darm schadet"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "afecta tu estómago"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "affecte vos intestins"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Twoim jelitom"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "你的肠胃"
+            "value" : "查看什么在伤害你的肠胃"
           }
         }
       }

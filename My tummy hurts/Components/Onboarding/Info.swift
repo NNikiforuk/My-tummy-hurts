@@ -14,15 +14,6 @@ struct Info: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             VStack(spacing: 20) {
-                header(icon: "info.circle", title: "Additional info", subtitle: "")
-                VStack(alignment: .leading) {
-                    listItem(text: "List all the ingredients of your meals")
-                    listItem(text: "Be as detailed as possible")
-                    listItem(text: "Enter ingredients consistently. For example, always use „rye bread” instead of „bread rye”")
-                    listItem(text: "More data = better graphs")
-                }
-                
-                VStack {
                     HStack(alignment: .top) {
                         Image(systemName: "stethoscope")
                             .font(.title2)
@@ -31,7 +22,6 @@ struct Info: View {
                     .padding(.top, 30)
                     .foregroundStyle(.accent)
                     .bold()
-                }
                 
                 NavigationLink(destination: HomeView(isOnboarding: $isOnboarding)) {
                     Button(action: {
@@ -39,14 +29,16 @@ struct Info: View {
                         dismiss()
                     }) {
                         Text("Start")
-                            .font(.title3)
+                            .font(.title3).bold()
+                            .padding(.horizontal, 20)
+                            .padding(.vertical, 10)
                     }
                     .buttonStyle(.borderedProminent)
                     .padding(.vertical, 20)
                 }
-                
                 Spacer()
             }
+            .padding(.top, 50)
         }
         .padding()
     }

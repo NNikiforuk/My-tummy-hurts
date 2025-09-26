@@ -92,7 +92,7 @@ struct NotesView: View {
         }
     }
     
-    func noListData(text: String) -> some View {
+    func noListData(text: LocalizedStringKey) -> some View {
         Text(text)
             .padding(.top, 50)
             .font(.callout)

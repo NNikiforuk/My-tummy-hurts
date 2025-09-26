@@ -121,7 +121,8 @@ struct NotesPicker: View {
         HStack {
             Picker("", selection: $selection) {
                 ForEach(NoteTab.allCases) { tab in
-                    Text(tab.rawValue).tag(tab)
+                    Text(tab.localized)
+                        .tag(tab)
                         .foregroundStyle(Color("PrimaryText"))
                 }
             }

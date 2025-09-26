@@ -23,14 +23,13 @@ struct InputDataView: View {
                 createItem(text: "Enter what you ate and drank", icon: "fork.knife", bindingText: $ingredient1, secondBindingText: $ingredient2, ifShow: showSecondIngredient)
                 createItem(text: "Note any discomfort", icon: "toilet", bindingText: $symptom1, secondBindingText: $symptom2, ifShow: showSecondSymptom)
                 
-                HStack {
-                    Spacer()
-                    Image(systemName: "info.circle")
-                    Text("Be as specific as possible")
-                    Spacer()
+                VStack(alignment: .leading) {
+                    createInfo(text: "More data = better graphs")
+                    createInfo(text: "Be as specific as possible")
+                    createInfo(text: "Be consistent")
+                    createInfo(text: "For example, always use „rye bread” instead of „bread rye”")
                 }
-                .font(.callout).bold()
-                .foregroundStyle(.accent)
+                .padding(.top, 30)
                 Spacer()
             }
         }
@@ -38,14 +37,27 @@ struct InputDataView: View {
         .onAppear {
             if !hasTypedIngredients {
                 hasTypedIngredients = true
-                typeText("cow milk", into: $ingredient1) {
+                typeText(
+                    NSLocalizedString("cow milk", comment: ""),
+                    into: $ingredient1
+                ) {
                     withAnimation { showSecondIngredient = true }
-                    typeText("rye bread", into: $ingredient2) {
+                    typeText(
+                        NSLocalizedString("rye bread", comment: ""),
+                        into: $ingredient2
+                    ) {
                         if !hasTypedSymptoms {
                             hasTypedSymptoms = true
-                            typeText("bloating", into: $symptom1) {
+                            typeText(
+                                NSLocalizedString("bloating", comment: ""),
+                                into: $symptom1
+                            ) {
                                 withAnimation { showSecondSymptom = true }
-                                typeText("diarrhea", into: $symptom2, completion: nil)
+                                typeText(
+                                    NSLocalizedString("diarrhea", comment: ""),
+                                    into: $symptom2,
+                                    completion: nil
+                                )
                             }
                         }
                     }
@@ -54,7 +66,20 @@ struct InputDataView: View {
         }
     }
     
-    func createHStack(text: String, icon: String) -> some View {
+    func createInfo(text: LocalizedStringKey) -> some View {
+        HStack(alignment: .top) {
+            Image(systemName: "checkmark")
+                .font(.body)
+                .foregroundStyle(.accent)
+            Text(text)
+                .font(.body)
+        }
+        .font(.callout)
+        .padding(.bottom, 10)
+        .padding(.horizontal, 20)
+    }
+    
+    func createHStack(text: LocalizedStringKey, icon: String) -> some View {
         HStack(alignment: .center, spacing: 10) {
             Image(systemName: icon)
                 .font(.callout)
@@ -63,7 +88,7 @@ struct InputDataView: View {
         }
     }
     
-    func createItem(text: String, icon: String, bindingText: Binding<String>,     secondBindingText: Binding<String>, ifShow: Bool) -> some View {
+    func createItem(text: LocalizedStringKey, icon: String, bindingText: Binding<String>,     secondBindingText: Binding<String>, ifShow: Bool) -> some View {
         VStack(alignment: .leading, spacing: 5) {
             createHStack(text: text, icon: icon)
             TextField("", text: bindingText)

@@ -9,7 +9,7 @@ import SwiftUI
 import Foundation
 
 struct SiteTitle: View {
-    let title: String
+    let title: LocalizedStringKey
     
     var body: some View {
         Text(title)
@@ -20,20 +20,19 @@ struct SiteTitle: View {
 }
 
 struct SectionTitle: View {
-    let title: String
+    let title: LocalizedStringKey
     let textColor: Color
     
     var body: some View {
         Text(title)
             .bold()
             .foregroundStyle(textColor)
-            .textCase(.uppercase)
     }
 }
 
 
 struct NoDataAlert: View {
-    let text: String
+    let text: LocalizedStringKey
     
     var body: some View {
         Text(text)
@@ -61,7 +60,7 @@ struct ToolbarSkipButton: View {
     @Binding var isOnboarding: Bool
     
     var body: some View {
-        Button("Skip") {
+        Button(LocalizedStringKey("Skip")) {
             isOnboarding = false
         }
         .foregroundStyle(.accent)
@@ -73,13 +72,13 @@ struct DeleteBtn: View {
     let action: () -> Void
     
     var body: some View {
-        Button("Delete", role: .destructive, action: action)
+        Button(LocalizedStringKey("Delete"), role: .destructive, action: action)
             .foregroundStyle(.red)
     }
 }
 
 struct DeleteBtnTextIcon: View {
-    let title: String
+    let title: LocalizedStringKey
     let icon: String
     let action: () -> Void
     
@@ -93,7 +92,7 @@ struct SaveBtn: View {
     let action: () -> Void
     
     var body: some View {
-        Button("Save", action: action)
+        Button(LocalizedStringKey("Save"), action: action)
     }
 }
 
@@ -101,12 +100,12 @@ struct CancelBtn: View {
     let action: () -> Void
     
     var body: some View {
-        Button("Cancel", role: .cancel, action: action)
+        Button(LocalizedStringKey("Cancel"), role: .cancel, action: action)
     }
 }
 
 struct OnboardingPageTitle: View {
-    let text: String
+    let text: LocalizedStringKey
     
     var body: some View {
        Text(text)

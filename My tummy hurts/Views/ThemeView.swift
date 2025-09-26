@@ -18,7 +18,8 @@ struct ThemeView: View {
                 .foregroundStyle(Color("PrimaryText"))
             Picker("", selection: $selectedAppearance) {
                 ForEach(Appearance.allCases) { mode in
-                    Text(mode.rawValue).tag(mode)
+                    Text(mode.localized)
+                        .tag(mode)
                         .foregroundStyle(Color("PrimaryText"))
                 }
             }

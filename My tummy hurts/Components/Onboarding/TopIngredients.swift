@@ -24,11 +24,11 @@ struct TopIngredients: View {
 struct OnboardingColumnChart: View {
     var body: some View {
         Chart {
-            BarMark(x: .value("Ingredient", "cow milk"), y: .value("Count", 4))
+            BarMark(x: .value("Ingredient", NSLocalizedString("cow milk", comment: "")), y: .value("Count", 4))
                 .foregroundStyle(.accent)
-            BarMark(x: .value("Ingredient", "rye bread"), y: .value("Count", 3))
+            BarMark(x: .value("Ingredient", NSLocalizedString("rye bread", comment: "")), y: .value("Count", 3))
                 .foregroundStyle(.accent)
-            BarMark(x: .value("Ingredient", "onion chips"), y: .value("Count", 2))
+            BarMark(x: .value("Ingredient", NSLocalizedString("onion chips", comment: "")), y: .value("Count", 2))
                 .foregroundStyle(.accent)
         }
         .frame(height: 200)
@@ -37,9 +37,9 @@ struct OnboardingColumnChart: View {
 }
 
 @ViewBuilder
-func header(icon: String, title: String, subtitle: String) -> some View {
+func header(icon: String, title: LocalizedStringKey, subtitle: LocalizedStringKey) -> some View {
     VStack(alignment: .leading, spacing: 10) {
-        HStack {
+        HStack(alignment: .top) {
             Image(systemName: icon)
             Text(title)
                 .font(.headline)

@@ -14,16 +14,24 @@ enum Appearance: String, CaseIterable, Identifiable {
     case dark = "Dark"
     
     var id: Self { self }
+    var localized: String {
+        NSLocalizedString(self.rawValue, comment: "")
+    }
 }
 
 enum NoteTab: String, Identifiable, CaseIterable {
     case meals = "Meals"
     case symptoms = "Symptoms"
+    
     var id: Self { self }
+    var localized: String {
+        NSLocalizedString(self.rawValue, comment: "")
+    }
 }
 
 enum SymptomTagsEnum: String, Identifiable, CaseIterable {
     case blue, red
+    
     var id: Self { self }
 }
 
@@ -35,6 +43,10 @@ extension SymptomTagsEnum {
         case .red:
             "major"
         }
+    }
+    
+    var localized: String {
+        NSLocalizedString(self.desc, comment: "")
     }
     
     var color: Color {

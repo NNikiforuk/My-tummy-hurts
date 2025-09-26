@@ -89,7 +89,7 @@ struct SymptomTags: View {
             critical = (el == .red)
         } label: {
             HStack {
-                Text(el.desc)
+                Text(el.localized)
                     .foregroundStyle(Color("PrimaryText"))
             }
         }

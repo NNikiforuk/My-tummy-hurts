@@ -12,16 +12,56 @@ struct LogoIntroductionView: View {
         VStack {
             LogoView()
             Text("Eat. Track.")
-            HStack {
-                Text("Uncover what's")
-                Text("hurting")
-                    .font(.myFont)
-                    .foregroundStyle(Color("WhiteCustom"))
-                Text("your gut")
-            }
+            hilightedText(
+                str: NSLocalizedString("Uncover what's hurting your gut", comment: ""),
+                searched: localizedSearchWord(),
+                styles: { text in
+                    text
+                        .font(.myFont)
+                        .foregroundColor(Color("WhiteCustom"))
+                }
+            )
+            .multilineTextAlignment(.leading)
         }
         .font(.title2)
         .multilineTextAlignment(.center)
+    }
+    
+    func hilightedText(
+        str: String,
+        searched: String,
+        styles: (Text) -> Text
+    ) -> Text {
+        guard !str.isEmpty && !searched.isEmpty else { return Text(str) }
+        
+        var result: Text?
+        let parts = str.components(separatedBy: searched)
+        
+        for i in parts.indices {
+            result = (result == nil ? Text(parts[i]) : result! + Text(parts[i]))
+            
+            if i != parts.count - 1 {
+                result = result! + styles(Text(searched))
+            }
+        }
+        
+        return result ?? Text(str)
+    }
+    
+    func localizedSearchWord() -> String {
+        let locale = Locale.current.language.languageCode?.identifier ?? "en"
+        switch locale {
+        case "pl":
+            return "szkodzi"
+        case "fr":
+            return "nuit"
+        case "es":
+            return "daña"
+        case "de":
+            return "schadet"
+        default:
+            return "hurting"
+        }
     }
 }
 

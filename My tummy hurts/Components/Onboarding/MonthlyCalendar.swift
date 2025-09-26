@@ -9,15 +9,15 @@ import SwiftUI
 import Charts
 
 struct MonthlyCalendar: View {
-    @State private var selectedFirstIngredient: String? = nil
-    @State private var selectedSecondIngredient: String? = nil
+    @State private var selectedFirstIngredient: LocalizedStringKey? = nil
+    @State private var selectedSecondIngredient: LocalizedStringKey? = nil
     @State private var highlightedDays: [Int] = []
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             header(icon: "calendar",
                    title: "Track patterns in monthly calendar",
-                   subtitle: "Blue = minor symptoms, red = major. Select 1 ingredient to highlight days you ate it. Select 2 to see overlaps in the same meal")
+                   subtitle: "Blue = minor symptoms, red = major. Select one ingredient to highlight days you ate it. Select two to see overlaps in the same meal")
             
             HStack {
                 IngredientDisplay(selectedIngredient: selectedFirstIngredient)
@@ -114,7 +114,7 @@ struct MonthlyCalendar: View {
 }
 
 struct IngredientDisplay: View {
-    var selectedIngredient: String?
+    var selectedIngredient: LocalizedStringKey?
     
     var body: some View {
         HStack {

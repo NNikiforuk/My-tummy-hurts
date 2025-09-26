@@ -181,7 +181,7 @@ struct AddBtns: View {
         .padding(.vertical, 40)
     }
     
-    func addBtn(title: String) -> some View {
+    func addBtn(title: LocalizedStringKey) -> some View {
         Button {
             switch selection {
             case .meals:

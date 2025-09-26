@@ -45,17 +45,6 @@ struct CalendarChart: View {
         )
     }
     
-    var pickersTitle: String {
-        if let firstIngredient = selectedFirstIngredient, selectedSecondIngredient == nil {
-            return "Showing days with: \(firstIngredient)"
-        }
-        
-        if let secondIngredient = selectedSecondIngredient, selectedFirstIngredient == nil {
-            return "Showing days with: \(secondIngredient)"
-        }
-        return "Showing days with one ingredient or combo"
-    }
-    
     var body: some View {
         NavigationStack {
             ScrollView {

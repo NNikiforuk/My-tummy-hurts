@@ -46,7 +46,7 @@ struct NotesView: View {
             switch selection {
             case .meals:
                 if filteredMeals.isEmpty {
-                    noListData(text: "There are no meals yet")
+                    noListData(text: "No meals yet")
                 } else {
                     if onlyShow {
                         ForEach(filteredMeals, id: \.objectID) { note in
@@ -66,7 +66,7 @@ struct NotesView: View {
                 }
             case .symptoms:
                 if filteredSymptoms.isEmpty {
-                    noListData(text: "There are no symptoms yet")
+                    noListData(text: "No symptoms yet")
                 } else {
                     if onlyShow {
                         ForEach(filteredSymptoms, id: \.objectID) { note in

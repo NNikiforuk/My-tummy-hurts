@@ -10,7 +10,7 @@ import SwiftUI
 struct ChartView: View {
     @EnvironmentObject private var vm: CoreDataViewModel
     
-    @State private var analyticsType: AnalyticsMode = .calendarView
+    @State private var analyticsType: AnalyticsMode = .barChart
     @State private var chartType: ChartMode = .defaultChart
     @State private var ingredientsToShow = 3
     @State private var hoursBack = 1

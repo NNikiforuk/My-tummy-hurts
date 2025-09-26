@@ -58,7 +58,7 @@ struct InputDataView: View {
         HStack(alignment: .center, spacing: 10) {
             Image(systemName: icon)
                 .font(.callout)
-            Text(LocalizedStringKey(text))
+            Text(text)
                 .font(.body)
         }
     }

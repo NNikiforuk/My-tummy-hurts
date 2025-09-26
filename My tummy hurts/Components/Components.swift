@@ -61,7 +61,7 @@ struct ToolbarSkipButton: View {
     @Binding var isOnboarding: Bool
     
     var body: some View {
-        Button(LocalizedStringKey("Skip")) {
+        Button("Skip") {
             isOnboarding = false
         }
         .foregroundStyle(.accent)

@@ -18,6 +18,7 @@ struct Info: View {
                 VStack(alignment: .leading) {
                     listItem(text: "List all the ingredients of your meals")
                     listItem(text: "Be as detailed as possible")
+                    listItem(text: "Enter ingredients consistently. For example, always use „rye bread” instead of „bread rye”")
                     listItem(text: "More data = better graphs")
                 }
                 
@@ -37,7 +38,7 @@ struct Info: View {
                         isOnboarding = false
                         dismiss()
                     }) {
-                        Text(LocalizedStringKey("Start"))
+                        Text("Start")
                             .font(.title3)
                     }
                     .buttonStyle(.borderedProminent)

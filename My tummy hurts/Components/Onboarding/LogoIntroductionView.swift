@@ -11,7 +11,7 @@ struct LogoIntroductionView: View {
     var body: some View {
         VStack {
             LogoView()
-            Text(LocalizedStringKey("Eat. Track."))
+            Text("Eat. Track.")
             HStack {
                 Text("Uncover what's")
                 Text("hurting")

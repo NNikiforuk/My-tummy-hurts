@@ -41,10 +41,10 @@ func header(icon: String, title: String, subtitle: String) -> some View {
     VStack(alignment: .leading, spacing: 10) {
         HStack {
             Image(systemName: icon)
-            Text(LocalizedStringKey(title))
+            Text(title)
                 .font(.headline)
         }
-        Text(LocalizedStringKey(subtitle))
+        Text(subtitle)
             .font(.subheadline)
             .foregroundStyle(.secondary)
     }

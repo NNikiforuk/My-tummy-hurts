@@ -88,11 +88,6 @@ struct SelectElementPicker: View {
         }
         .onAppear(perform: coerceSelectionToOptions)
         .onChange(of: pickerData) { _ in coerceSelectionToOptions() }
-        .onAppear {
-            if let s = pickerSelection {
-                print("scalars:", s.unicodeScalars.map { String(format:"U+%04X", $0.value) }.joined(separator:" "))
-            }
-        }
     }
     private func coerceSelectionToOptions() {
         let normalizedOptions = pickerData.map { $0.normalizedToken }

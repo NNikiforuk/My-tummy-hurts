@@ -25,7 +25,7 @@ struct HomeView: View {
     
     var alertTitle: String {
         if emptyDB {
-            "There is no data to delete"
+            "Nothing to delete"
         } else {
             "Do you want to delete everything?"
         }

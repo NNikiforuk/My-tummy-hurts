@@ -11,7 +11,11 @@ import Foundation
 enum AnalyticsMode: String, CaseIterable, Identifiable {
     case barChart = "Bar chart"
     case calendarView = "Monthly calendar"
+    
     var id: Self { self }
+    var localized: String {
+        NSLocalizedString(self.rawValue, comment: "")
+    }
 }
 
 struct ChooseAnalytics: View {
@@ -21,7 +25,7 @@ struct ChooseAnalytics: View {
         VStack {
             Picker("Choose analytics", selection: $analyticsType) {
                 ForEach(AnalyticsMode.allCases) { el in
-                    Text(el.rawValue)
+                    Text(el.localized)
                         .foregroundStyle(Color("PrimaryText"))
                 }
             }

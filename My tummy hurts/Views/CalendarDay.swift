@@ -71,12 +71,14 @@ struct CalendarDay: View {
             } else {
                 HStack {
                     SectionTitle(title: "Events timeline", textColor: Color("SecondaryText"))
+                        .textCase(.uppercase)
                     Spacer()
                 }
                 .padding(.top, 30)
                 TimelineChart(startOfDay: startOfDay, endOfDay: endOfDay, data: data)
                 HStack {
                     SectionTitle(title: "Daily events", textColor: Color("SecondaryText"))
+                        .textCase(.uppercase)
                     Spacer()
                 }
                 .padding(.top, 30)
@@ -141,7 +143,7 @@ struct TimelineChart: View {
         .padding(.vertical, 20)
     }
     
-    func legendItem(icon: String, text: String, color: Color) -> some View {
+    func legendItem(icon: String, text: LocalizedStringKey, color: Color) -> some View {
         HStack(spacing: 5) {
             Image(systemName: icon)
                 .foregroundStyle(color)

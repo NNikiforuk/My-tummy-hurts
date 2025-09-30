@@ -16,19 +16,20 @@ struct SelectChartType: View {
     var body: some View {
         VStack(alignment: .leading) {
             SectionTitle(title: "Select chart type", textColor: Color("SecondaryText"))
+                .textCase(.uppercase)
             VStack(spacing: 20) {
                 SelectableCard(
                     showInfo: $showInfoAll,
-                    title: ChartMode.defaultChart.title,
+                    title: ChartMode.defaultChart.localizedTitle,
                     isSelected: chartType == ChartMode.defaultChart,
-                    infoText: ChartMode.defaultChart.infoText,
+                    infoText: ChartMode.defaultChart.localizedInfo,
                     onTap: { chartType = ChartMode.defaultChart })
                 
                 SelectableCard(
                     showInfo: $showInfoSpecificSymptom,
-                    title: ChartMode.checkSpecificSymptom.title,
+                    title: ChartMode.checkSpecificSymptom.localizedTitle,
                     isSelected: chartType == ChartMode.checkSpecificSymptom,
-                    infoText: ChartMode.checkSpecificSymptom.infoText,
+                    infoText: ChartMode.checkSpecificSymptom.localizedInfo,
                     onTap: { chartType = ChartMode.checkSpecificSymptom })
             }
             .grayOverlayModifier()

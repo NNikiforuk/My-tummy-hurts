@@ -34,6 +34,7 @@ struct GeneralAnalytics: View {
                             .padding(.bottom, 40)
                         HStack {
                             SectionTitle(title: "Select symptom", textColor: Color("SecondaryText"))
+                                .textCase(.uppercase)
                             Spacer()
                             SelectElementPicker(pickerData: dataForPicker(mealsMode: false, model: vm), pickerSelection: $selectedSymptom)
                         }
@@ -46,6 +47,7 @@ struct GeneralAnalytics: View {
                 //CHARTS
                 VStack(alignment: .leading) {
                     SectionTitle(title: "Potential causes for upset tummy", textColor: Color("SecondaryText"))
+                        .textCase(.uppercase)
                     VStack {
                         switch chartType {
                         case .defaultChart:

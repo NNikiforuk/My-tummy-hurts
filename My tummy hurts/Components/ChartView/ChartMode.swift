@@ -23,4 +23,10 @@ enum ChartMode: String, CaseIterable, Identifiable {
         case .checkSpecificSymptom: "Example: top ingredients consumed within 5 hours before each occurrence of heartburn"
         }
     }
+    var localizedTitle: String {
+        NSLocalizedString(self.title, comment: "")
+    }
+    var localizedInfo: String {
+        NSLocalizedString(self.infoText, comment: "")
+    }
 }

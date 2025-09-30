@@ -131,7 +131,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dodaj min. 5 posiłków i min. 5 negatywnych objawów, aby zobaczyć analizę. Szczegóły mają znaczenie. Dodaj jak najwięcej danych aby polepszyć wyniki"
+            "value" : "Dodaj min. 5 posiłków i min. 5 negatywnych objawów, aby zobaczyć analizę. Szczegóły mają znaczenie. Dodaj jak najwięcej danych, aby ulepszyć wyniki"
           }
         },
         "zh-Hans" : {
@@ -2464,31 +2464,30 @@
         }
       }
     },
-    "Select ingredient(s)" : {
-      "extractionState" : "manual",
+    "Select ingredients" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zutat(en) auswählen"
+            "value" : "Zutaten auswählen"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Seleccionar ingrediente(s)"
+            "value" : "Selecciona ingredientes"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sélectionner des ingrédients"
+            "value" : "Sélectionnez des ingrédients"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wybierz składnik(i)"
+            "value" : "Wybierz składniki"
           }
         },
         "zh-Hans" : {
@@ -2523,7 +2522,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wybierz konkretny objaw"
+            "value" : "Wybierz objaw"
           }
         },
         "zh-Hans" : {
@@ -2910,6 +2909,9 @@
           }
         }
       }
+    },
+    "Top %1$d ingredients followed by any symptom" : {
+
     },
     "Top %1$d ingredients followed by any symptom (%2$d found)" : {
       "extractionState" : "manual",

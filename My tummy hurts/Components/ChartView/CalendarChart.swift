@@ -23,24 +23,24 @@ struct CalendarChart: View {
         self._selectedSecondIngredient = selectedSecondIngredient
         self._selectedDate = selectedDate
         
-        let calendar = Calendar.current
+        let customCalendar = Calendar.gregorianMondayFirst
         let today = Date()
         
         var dates: [Date] = []
-        let start = calendar.date(byAdding: .year, value: -2, to: today)!
-        let end   = calendar.date(byAdding: .year, value:  2, to: today)!
+        let start = customCalendar.date(byAdding: .year, value: -2, to: today)!
+        let end   = customCalendar.date(byAdding: .year, value:  2, to: today)!
         
         var current = start
         while current <= end {
-            dates.append(current.startOfMonth())
-            current = calendar.date(byAdding: .month, value: 1, to: current)!
+            dates.append(current.startOfMonth(using: customCalendar))
+            current = customCalendar.date(byAdding: .month, value: 1, to: current)!
         }
         
         self.months = dates
         
         self._currentPage = State(
             initialValue: dates.firstIndex(where: {
-                calendar.isDate($0, equalTo: today, toGranularity: .month)
+                customCalendar.isDate($0, equalTo: today, toGranularity: .month)
             }) ?? 0
         )
     }
@@ -51,8 +51,8 @@ struct CalendarChart: View {
                 VStack(alignment: .leading, spacing: 10) {
                     if !vm.savedMealNotes.isEmpty {
                         HStack {
-                            SectionTitle(title: "Select ingredients(s)", textColor: Color("SecondaryText"))
-                            Spacer()
+                            SectionTitle(title: "Select ingredients", textColor: Color("SecondaryText"))
+                                .textCase(.uppercase)
                             Button {
                                 withAnimation { showInfo.toggle() }
                             } label: {
@@ -101,49 +101,81 @@ struct MonthView: View {
     @Binding var selectedSecondIngredient: String?
     
     let month: Date
-    let calendar = Calendar.current
+    let customCalendar = Calendar.gregorianMondayFirst
+    
+    var monthFormatter: Date.FormatStyle {
+        var style = Date.FormatStyle().month(.wide).year()
+        style.calendar = customCalendar
+        return style
+    }
     
     var body: some View {
         VStack {
-            Text(month.formatted(.dateTime.month(.wide).year()))
+            Text(month, format: monthFormatter)
                 .padding(20)
                 .bold()
                 .foregroundStyle(Color("PrimaryText"))
             
-            let symbols = calendar.shortStandaloneWeekdaySymbols
+            let symbols = customCalendar.shortStandaloneWeekdaySymbols
+            let orderedSymbols = symbols.shifted(startingAt: customCalendar.firstWeekday - 1)
             HStack {
-                ForEach(symbols, id: \.self) { day in
+                ForEach(orderedSymbols, id: \.self) { day in
                     Text(day)
                         .font(.caption)
                         .frame(maxWidth: .infinity)
-                        .foregroundStyle(Color("PrimaryText"))
                 }
             }
             
-            let days = makeDays().compactMap { $0 }
+            let days = makeDays()
             LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7)) {
-                ForEach(days, id: \.self) { date in
+                ForEach(days.indices, id: \.self) { index in
+                    if let date = days[index] {
                         DayCell(selectedDate: $selectedDate, selectedFirstIngredient: $selectedFirstIngredient, selectedSecondIngredient: $selectedSecondIngredient, date: date)
+                    } else {
+                        Color.clear
+                            .frame(height: 32)
+                    }
                 }
             }
         }
     }
     
     private func makeDays() -> [Date?] {
-        let range = calendar.range(of: .day, in: .month, for: month)!
-        let firstDayOfMonth = month.startOfMonth()
-        let firstWeekday = calendar.component(.weekday, from: firstDayOfMonth)
-        let offset = (firstWeekday - calendar.firstWeekday + 7) % 7
+        let range = customCalendar.range(of: .day, in: .month, for: month)!
+        let firstDayOfMonth = month.startOfMonth(using: customCalendar)
+        
+        let weekdayIndex = customCalendar.component(.weekday, from: firstDayOfMonth)
+        // offset względem firstWeekday (u nas 2 = pon)
+        let offset = (weekdayIndex - customCalendar.firstWeekday + 7) % 7
         
         var days: [Date?] = Array(repeating: nil, count: offset)
-        
         for day in range {
-            if let date = calendar.date(byAdding: .day, value: day - 1, to: firstDayOfMonth) {
+            if let date = customCalendar.date(byAdding: .day, value: day - 1, to: firstDayOfMonth) {
                 days.append(date)
             }
         }
-        
         return days
+    }
+}
+
+extension Date {
+    func startOfMonth(using calendar: Calendar = .gregorianMondayFirst) -> Date {
+        calendar.date(from: calendar.dateComponents([.year, .month], from: self))!
+    }
+}
+
+extension Calendar {
+    static var gregorianMondayFirst: Calendar = {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.firstWeekday = 2 // poniedziałek
+        return calendar
+    }()
+}
+
+extension Array {
+    func shifted(startingAt index: Int) -> [Element] {
+        guard !isEmpty, indices.contains(index) else { return self }
+        return Array(self[index...] + self[..<index])
     }
 }
 
@@ -244,13 +276,6 @@ func isToday(date: Date) -> Bool {
     Calendar.current.isDateInToday(date)
 }
 
-extension Date {
-    func startOfMonth() -> Date {
-        Calendar.current.date(from: Calendar.current.dateComponents([.year, .month], from: self))!
-    }
-}
-
-
 struct TagsDescription: View {
     
     var body: some View {
@@ -261,7 +286,7 @@ struct TagsDescription: View {
                     HStack {
                         Circle().fill(el.color)
                             .frame(width: 15, height: 15)
-                        Text(el.desc)
+                        Text(el.localized)
                     }
                 }
             }

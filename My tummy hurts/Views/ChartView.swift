@@ -10,7 +10,7 @@ import SwiftUI
 struct ChartView: View {
     @EnvironmentObject private var vm: CoreDataViewModel
     
-    @State private var analyticsType: AnalyticsMode = .barChart
+    @State private var analyticsType: AnalyticsMode = .calendarView
     @State private var chartType: ChartMode = .defaultChart
     @State private var ingredientsToShow = 3
     @State private var hoursBack = 1
@@ -31,24 +31,29 @@ struct ChartView: View {
         case .defaultChart:
             switch ingredientsToShow {
             case 1:
-                return "Top ingredient followed by any symptom"
+                return NSLocalizedString("Top ingredient followed by any symptom", comment: "")
             default:
                 if howManyElFirstChartData < ingredientsToShow {
-                    return "Top \(ingredientsToShow) ingredients followed by any symptom (\(howManyElFirstChartData) found)"
+                    let format = NSLocalizedString("Top %1$d ingredients followed by any symptom (%2$d found)", comment: "")
+                    return String(format: format, ingredientsToShow, howManyElFirstChartData)
                 } else {
-                    return "Top \(ingredientsToShow) ingredients followed by any symptom"
+                    let format = NSLocalizedString("Top %1$d ingredients followed by any symptom", comment: "")
+                    return String(format: format, ingredientsToShow)
                 }
             }
             
         case .checkSpecificSymptom:
             switch ingredientsToShow {
             case 1:
-                return "Top ingredient in the \(hoursBack)-hour window before: \(selectedSymptom ?? "")"
+                let format = NSLocalizedString("Top ingredient in the %1$d-hour window before: %2$@", comment: "")
+                return String(format: format, hoursBack, selectedSymptom ?? "")
             default:
                 if howManyElSecondChartData < ingredientsToShow {
-                    return "Top \(ingredientsToShow) ingredients in the \(hoursBack)-hour window before: \(selectedSymptom ?? "") (\(howManyElSecondChartData) found)"
+                    let format = NSLocalizedString("Top %1$d ingredients in the %2$d-hour window before: %3$@ (%4$d found)", comment: "")
+                    return String(format: format, ingredientsToShow, hoursBack, selectedSymptom ?? "", howManyElSecondChartData)
                 } else {
-                    return "Top \(ingredientsToShow) ingredients in the \(hoursBack)-hour window before: \(selectedSymptom ?? "")"
+                    let format = NSLocalizedString("Top %1$d ingredients in the %2$d-hour window before: %3$@", comment: "")
+                    return String(format: format, ingredientsToShow, hoursBack, selectedSymptom ?? "")
                 }
             }
         }

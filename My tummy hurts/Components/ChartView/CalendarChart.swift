@@ -82,8 +82,7 @@ struct CalendarChart: View {
                             }
                         }
                         .tabViewStyle(.page(indexDisplayMode: .never))
-                        .frame(height: 350)
-                        .padding(.bottom, 40)
+                        .frame(height: 400)
                         TagsDescription()
                     }
                     .grayOverlayModifier()
@@ -143,9 +142,7 @@ struct MonthView: View {
     private func makeDays() -> [Date?] {
         let range = customCalendar.range(of: .day, in: .month, for: month)!
         let firstDayOfMonth = month.startOfMonth(using: customCalendar)
-        
         let weekdayIndex = customCalendar.component(.weekday, from: firstDayOfMonth)
-        // offset względem firstWeekday (u nas 2 = pon)
         let offset = (weekdayIndex - customCalendar.firstWeekday + 7) % 7
         
         var days: [Date?] = Array(repeating: nil, count: offset)
@@ -158,27 +155,6 @@ struct MonthView: View {
     }
 }
 
-extension Date {
-    func startOfMonth(using calendar: Calendar = .gregorianMondayFirst) -> Date {
-        calendar.date(from: calendar.dateComponents([.year, .month], from: self))!
-    }
-}
-
-extension Calendar {
-    static var gregorianMondayFirst: Calendar = {
-        var calendar = Calendar(identifier: .gregorian)
-        calendar.firstWeekday = 2 // poniedziałek
-        return calendar
-    }()
-}
-
-extension Array {
-    func shifted(startingAt index: Int) -> [Element] {
-        guard !isEmpty, indices.contains(index) else { return self }
-        return Array(self[index...] + self[..<index])
-    }
-}
-
 struct DayCell: View {
     @EnvironmentObject private var vm: CoreDataViewModel
     @Binding var selectedDate: Date
@@ -186,11 +162,12 @@ struct DayCell: View {
     @Binding var selectedSecondIngredient: String?
     
     let date: Date
+    let customCalendar = Calendar.gregorianMondayFirst
     
     var showSelectedIngredient: Color {
         let sameDateNotes = vm.savedMealNotes.filter { note in
             if let created = note.createdAt {
-                return Calendar.current.isDate(created, inSameDayAs: date)
+                return customCalendar.isDate(created, inSameDayAs: date)
             }
             return false
         }
@@ -224,7 +201,7 @@ struct DayCell: View {
     var symptomColor: SymptomTagsEnum? {
         let sameDayNotes = vm.savedSymptomNotes.filter { note in
             if let created = note.createdAt {
-                return Calendar.current.isDate(created, inSameDayAs: date)
+                return customCalendar.isDate(created, inSameDayAs: date)
             }
             return false
         }
@@ -232,7 +209,6 @@ struct DayCell: View {
         let tags = sameDayNotes.map { note in
             (note.critical == true) ? SymptomTagsEnum.red : SymptomTagsEnum.blue
         }
-        
         return tags.max(by: { $0.priority < $1.priority })
     }
     
@@ -242,7 +218,7 @@ struct DayCell: View {
         } label: {
             VStack {
                 Text("\(Calendar.current.component(.day, from: date))")
-                    .frame(width: 35, height: 35)
+                    .frame(width: 30, height: 30)
                     .background(
                         Circle()
                             .fill(
@@ -258,17 +234,19 @@ struct DayCell: View {
                 if let tag = symptomColor {
                     Circle()
                         .fill(tag.color)
-                        .frame(width: 10, height: 10)
+                        .frame(width: 8, height: 8)
                 } else {
                     Circle()
                         .fill(.clear)
-                        .frame(width: 10, height: 10)
+                        .frame(width: 8, height: 8)
                 }
             }
         }
         .simultaneousGesture(TapGesture().onEnded {
             selectedDate = date
         })
+        
+        
     }
 }
 
@@ -277,7 +255,6 @@ func isToday(date: Date) -> Bool {
 }
 
 struct TagsDescription: View {
-    
     var body: some View {
         VStack(alignment: .center) {
             HStack(spacing: 30) {
@@ -285,7 +262,7 @@ struct TagsDescription: View {
                 ForEach(SymptomTagsEnum.allCases) { el in
                     HStack {
                         Circle().fill(el.color)
-                            .frame(width: 15, height: 15)
+                            .frame(width: 10, height: 10)
                         Text(el.localized)
                     }
                 }
@@ -293,6 +270,29 @@ struct TagsDescription: View {
         }
         .font(.caption2)
         .foregroundStyle(Color("SecondaryText"))
+        .padding(.top, 50)
+    }
+}
+
+extension Date {
+    func startOfMonth(using calendar: Calendar = .gregorianMondayFirst) -> Date {
+        calendar.date(from: calendar.dateComponents([.year, .month], from: self))!
+    }
+}
+
+extension Calendar {
+    static var gregorianMondayFirst: Calendar = {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.firstWeekday = 2
+        calendar.timeZone = .current
+        return calendar
+    }()
+}
+
+extension Array {
+    func shifted(startingAt index: Int) -> [Element] {
+        guard !isEmpty, indices.contains(index) else { return self }
+        return Array(self[index...] + self[..<index])
     }
 }
 

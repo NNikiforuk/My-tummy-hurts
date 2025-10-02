@@ -33,11 +33,6 @@ struct AddSymptomView: View {
         }
         .customBgModifier()
         .toolbar {
-            ToolbarItem(placement: .topBarLeading) {
-                CancelBtn(action: {
-                    clearForm()
-                })
-            }
             ToolbarItem(placement: .topBarTrailing) {
                 SaveBtn(action: {
                     model.addSymptom(createdAt: selectedDate, symptoms: newSymptoms, critical: critical)

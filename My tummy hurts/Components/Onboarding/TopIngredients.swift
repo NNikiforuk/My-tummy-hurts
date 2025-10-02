@@ -9,27 +9,57 @@ import SwiftUI
 import Charts
 
 struct TopIngredients: View {
+    @Environment(\.dynamicTypeSize) var sizeCategory
+    
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            VStack(spacing: 40) {
-                header(icon: "fork.knife", title: "Top ingredients", subtitle: "Find out which ingredients show up most often before discomfort")
-                OnboardingColumnChart()
+        ScrollView {
+            VStack(alignment: .leading, spacing: 20) {
+                VStack(spacing: 40) {
+                    header(icon: "fork.knife", title: "Top ingredients", subtitle: "Find out which ingredients show up most often before discomfort")
+                    OnboardingColumnChart()
+                    if sizeCategory.isAccessibilitySize {
+                        LargeSizeLegend()
+                    }
+                }
+                Spacer()
             }
-            Spacer()
+            .padding()
+            .minimumScaleFactor(sizeCategory.customMinScaleFactor)
         }
-        .padding()
+    }
+}
+
+struct LargeSizeLegend: View {
+    var body: some View {
+            VStack {
+                Text("a: cow milk")
+                Text("b: rye bread")
+                Text("c: onion chips")
+            }
+            .foregroundStyle(.secondary)
     }
 }
 
 struct OnboardingColumnChart: View {
+    @Environment(\.dynamicTypeSize) var sizeCategory
+    
     var body: some View {
         Chart {
-            BarMark(x: .value("Ingredient", NSLocalizedString("cow milk", comment: "")), y: .value("Count", 4))
-                .foregroundStyle(.accent)
-            BarMark(x: .value("Ingredient", NSLocalizedString("rye bread", comment: "")), y: .value("Count", 3))
-                .foregroundStyle(.accent)
-            BarMark(x: .value("Ingredient", NSLocalizedString("onion chips", comment: "")), y: .value("Count", 2))
-                .foregroundStyle(.accent)
+            if sizeCategory.isAccessibilitySize {
+                BarMark(x: .value("Ingredient", NSLocalizedString("a", comment: "")), y: .value("Count", 4))
+                    .foregroundStyle(.accent)
+                BarMark(x: .value("Ingredient", NSLocalizedString("b", comment: "")), y: .value("Count", 3))
+                    .foregroundStyle(.accent)
+                BarMark(x: .value("Ingredient", NSLocalizedString("c", comment: "")), y: .value("Count", 2))
+                    .foregroundStyle(.accent)
+            } else {
+                BarMark(x: .value("Ingredient", NSLocalizedString("cow milk", comment: "")), y: .value("Count", 4))
+                    .foregroundStyle(.accent)
+                BarMark(x: .value("Ingredient", NSLocalizedString("rye bread", comment: "")), y: .value("Count", 3))
+                    .foregroundStyle(.accent)
+                BarMark(x: .value("Ingredient", NSLocalizedString("onion chips", comment: "")), y: .value("Count", 2))
+                    .foregroundStyle(.accent)
+            }
         }
         .frame(height: 200)
         .padding()

@@ -26,12 +26,12 @@ struct WelcomeView: View {
         ZStack {
             Color("OnboardingBcg").ignoresSafeArea()
             TabView {
-                LogoIntroductionView()
-                InputDataView()
-                TopIngredients()
+//                LogoIntroductionView()
+//                InputDataView()
+//                TopIngredients()
                 SpecificSymptom()
-                MonthlyCalendar()
-                Info(isOnboarding: $isOnboarding)
+//                MonthlyCalendar()
+//                Info(isOnboarding: $isOnboarding)
             }
             .tabViewStyle(PageTabViewStyle())
         }
@@ -62,4 +62,3 @@ struct WelcomeView: View {
     }
     .environment(\.colorScheme, .light)
 }
-

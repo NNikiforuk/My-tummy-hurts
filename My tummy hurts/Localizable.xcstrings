@@ -321,7 +321,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bleib konsequent"
+            "value" : "Bleibe konsequent"
           }
         },
         "es" : {
@@ -333,7 +333,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Soyez cohérent"
+            "value" : "Restez cohérent"
           }
         },
         "pl" : {
@@ -403,7 +403,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bleu = symptômes légers, rouge = graves. Sélectionnez un ingrédient pour mettre en évidence les jours où vous l’avez consommé. Sélectionnez-en deux pour voir quand ils apparaissent dans le même repas"
+            "value" : "Bleu = symptômes légers, rouge = symptômes graves. Sélectionnez un ingrédient pour mettre en évidence les jours où vous l’avez consommé. Sélectionnez-en deux pour voir quand ils apparaissent dans le même repas"
           }
         },
         "pl" : {
@@ -500,13 +500,13 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Revisar un síntoma específico"
+            "value" : "Revisar síntoma específico"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vérifier un symptôme spécifique"
+            "value" : "Analyse d’un symptôme spécifique"
           }
         },
         "pl" : {
@@ -518,7 +518,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "查看特定症状"
+            "value" : "分析特定症状"
           }
         }
       }
@@ -529,19 +529,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zeitfenster prüfen"
+            "value" : "Zeitraum analysieren"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Revisar intervalos de tiempo"
+            "value" : "Revisa los rangos de tiempo"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vérifier les plages horaires"
+            "value" : "Vérifiez l’intervalle de temps"
           }
         },
         "pl" : {
@@ -678,7 +678,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Événements du jour"
+            "value" : "Historique du jour"
           }
         },
         "pl" : {
@@ -947,7 +947,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Come. Registra."
+            "value" : "Come. Regístralo."
           }
         },
         "fr" : {
@@ -1070,7 +1070,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "输入你吃了和喝了什么"
+            "value" : "请输入你吃了什么/喝了什么"
           }
         }
       }
@@ -1087,13 +1087,13 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Línea de tiempo de eventos"
+            "value" : "Cronología de eventos"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Chronologie des événements"
+            "value" : "Chronologie de la journée"
           }
         },
         "pl" : {
@@ -1163,7 +1163,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Découvrez quels ingrédients apparaissent le plus souvent avant un inconfort"
+            "value" : "Ingrédients associés à un inconfort"
           }
         },
         "pl" : {
@@ -1186,7 +1186,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zum Beispiel verwende immer „Roggenbrot“ statt „Brot Roggen“"
+            "value" : "Verwende zum Beispiel immer „Roggenbrot“ statt „Brot Roggen“"
           }
         },
         "es" : {
@@ -1215,6 +1215,9 @@
         }
       }
     },
+    "Hello, World!" : {
+
+    },
     "How many hours back" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1227,13 +1230,13 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cuántas horas atrás"
+            "value" : "¿Cuántas horas antes?"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Combien d’heures en arrière"
+            "value" : "Combien d’heures avant"
           }
         },
         "pl" : {
@@ -1245,7 +1248,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "向前追溯多少小时"
+            "value" : "向前回溯时长"
           }
         }
       }
@@ -1393,19 +1396,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Listenelement"
+            "value" : "Eintrag hinzufügen"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Elemento de lista"
+            "value" : "Elemento de la lista"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Élément de liste"
+            "value" : "Ajouter un ingrédient"
           }
         },
         "pl" : {
@@ -1475,7 +1478,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Symptôme grave"
+            "value" : "Grave"
           }
         },
         "pl" : {
@@ -1567,13 +1570,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Essenszeit"
+            "value" : "Essenszeitpunkt"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hora de la comida"
+            "value" : "Hora de comida"
           }
         },
         "fr" : {
@@ -1684,7 +1687,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Symptôme léger"
+            "value" : "Léger"
           }
         },
         "pl" : {
@@ -1811,19 +1814,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Negative Symptome"
+            "value" : "Beschwerden"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Síntomas negativos"
+            "value" : "Síntomas adversos"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Symptômes négatifs"
+            "value" : "Symptômes associés"
           }
         },
         "pl" : {
@@ -1887,7 +1890,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aún no hay comidas"
+            "value" : "Todavía no hay comidas"
           }
         },
         "fr" : {
@@ -2009,7 +2012,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "无"
+            "value" : "未选择"
           }
         }
       }
@@ -2020,19 +2023,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Notiere jegliches Unwohlsein"
+            "value" : "Notiere deine Beschwerden"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Anota cualquier malestar"
+            "value" : "Registra cualquier malestar"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Notez tout inconfort"
+            "value" : "Indiquez vos symptômes"
           }
         },
         "pl" : {
@@ -2239,7 +2242,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Causes possibles de maux de ventre"
+            "value" : "Causes possibles des douleurs abdominales"
           }
         },
         "pl" : {
@@ -2251,7 +2254,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "可能导致肠胃不适的原因"
+            "value" : "肠胃不适的可能原因"
           }
         }
       }
@@ -2268,13 +2271,13 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ingredientes previos a los síntomas"
+            "value" : "Ingredientes antes de los síntomas"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ingrédients avant symptômes"
+            "value" : "Ingrédients précédant les symptômes"
           }
         },
         "pl" : {
@@ -2286,7 +2289,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "症状前的成分"
+            "value" : "症状前常见成分"
           }
         }
       }
@@ -2441,7 +2444,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Seleccionar tipo de gráfico"
+            "value" : "Elige un tipo de gráfico"
           }
         },
         "fr" : {
@@ -2510,7 +2513,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Seleccionar un síntoma"
+            "value" : "Elige un síntoma"
           }
         },
         "fr" : {
@@ -2675,19 +2678,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Symptom-Tag"
+            "value" : "Stärke"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Etiqueta de síntoma"
+            "value" : "Etiqueta del síntoma"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Étiquette de symptôme"
+            "value" : "Gravité du symptôme"
           }
         },
         "pl" : {
@@ -2859,7 +2862,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cette application est uniquement à titre indicatif et affiche des statistiques simples. En cas de symptômes graves ou persistants, veuillez consulter un médecin"
+            "value" : "Cette application fournit uniquement des statistiques indicatives. En cas de symptômes graves ou persistants, consultez un médecin"
           }
         },
         "pl" : {
@@ -2931,7 +2934,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$d ingrédients les plus fréquents précédant un symptôme (%2$d trouvés)"
+            "value" : "%1$d ingrédients les plus courants précédant un symptôme (%2$d trouvés)"
           }
         },
         "pl" : {
@@ -2966,7 +2969,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$d ingrédients les plus fréquents dans les %2$d heures avant : %3$@"
+            "value" : "%1$d ingrédients les plus courants dans les %2$d heures avant : %3$@"
           }
         },
         "pl" : {
@@ -3001,7 +3004,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$d ingrédients les plus fréquents dans les %2$d heures avant : %3$@ (%4$d trouvés)"
+            "value" : "%1$d ingrédients les plus courants dans les %2$d heures avant : %3$@ (%4$d trouvés)"
           }
         },
         "pl" : {
@@ -3036,7 +3039,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$d ingrédients les plus fréquents précédant un symptôme"
+            "value" : "%1$d ingrédients les plus courants précédant un symptôme"
           }
         },
         "pl" : {
@@ -3141,7 +3144,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ingrédients les plus fréquents"
+            "value" : "Ingrédients les plus courants"
           }
         },
         "pl" : {
@@ -3153,7 +3156,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "最常见的成分"
+            "value" : "最常见的食材"
           }
         }
       }
@@ -3176,7 +3179,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ingrédients les plus fréquents consommés juste avant un symptôme négatif"
+            "value" : "Ingrédients les plus courants consommés juste avant un symptôme négatif"
           }
         },
         "pl" : {
@@ -3188,7 +3191,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "负面症状前直接食用的最常见成分"
+            "value" : "导致负面症状前最常见的成分"
           }
         }
       }
@@ -3205,13 +3208,13 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ingredientes más comunes en el gráfico"
+            "value" : "Ingredientes más comunes"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ingrédients les plus fréquents sur le graphique"
+            "value" : "Nombre d’ingrédients affichés"
           }
         },
         "pl" : {
@@ -3234,13 +3237,13 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Muster im Monatskalender verfolgen"
+            "value" : "Muster im Monatskalender erkennen"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rastrear patrones en el calendario mensual"
+            "value" : "Detecta patrones en el calendario mensual"
           }
         },
         "fr" : {
@@ -3258,7 +3261,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在月历中跟踪模式"
+            "value" : "在月历中跟踪功能"
           }
         }
       }
@@ -3275,7 +3278,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Descubre qué daña tu estómago"
+            "value" : "Descubre qué le hace daño a tu estómago"
           }
         },
         "fr" : {
@@ -3293,7 +3296,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "查看什么在伤害你的肠胃"
+            "value" : "找出是什么在伤害你的肠胃"
           }
         }
       }

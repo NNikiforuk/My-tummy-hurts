@@ -8,10 +8,14 @@
 import SwiftUI
 
 struct LogoIntroductionView: View {
+    @Environment(\.dynamicTypeSize) var sizeCategory
+    
     var body: some View {
         VStack {
             LogoView()
             Text("Eat. Track.")
+                .font(.title2)
+                .multilineTextAlignment(.center)
             hilightedText(
                 str: NSLocalizedString("Uncover what's hurting your gut", comment: ""),
                 searched: localizedSearchWord(),
@@ -21,10 +25,10 @@ struct LogoIntroductionView: View {
                         .foregroundColor(Color("WhiteCustom"))
                 }
             )
-            .multilineTextAlignment(.leading)
+            .font(.title2)
+            .multilineTextAlignment(.center)
         }
-        .font(.title2)
-        .multilineTextAlignment(.center)
+        .minimumScaleFactor(sizeCategory.customMinScaleFactor)
     }
     
     func hilightedText(
@@ -56,7 +60,7 @@ struct LogoIntroductionView: View {
         case "fr":
             return "nuit"
         case "es":
-            return "daña"
+            return "daño"
         case "de":
             return "schadet"
         default:
@@ -70,6 +74,19 @@ struct LogoView: View {
         Image("AppIconPreview")
             .resizable()
             .frame(width: 100, height: 100)
+    }
+}
+
+extension DynamicTypeSize {
+    var customMinScaleFactor: CGFloat {
+        switch self {
+        case .xSmall, .small, .medium:
+            return 1.0
+        case .large, .xLarge, .xxLarge:
+            return 0.6
+        default:
+            return 0.85
+        }
     }
 }
 

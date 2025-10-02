@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct HomeView: View {
     @EnvironmentObject private var model: CoreDataViewModel
@@ -45,7 +46,7 @@ struct HomeView: View {
     var body: some View {
         VStack {
             HomeViewHeader(selectedDate: $selectedDate)
-                AddBtns(selection: $selection, showAddingMealView: $showAddingMealView, showAddingSymptomView: $showAddingSymptomView)
+            AddBtns(selection: $selection, showAddingMealView: $showAddingMealView, showAddingSymptomView: $showAddingSymptomView)
             NotesPicker(selection: $selection)
             ScrollView {
                 LazyVStack(spacing: 20) {

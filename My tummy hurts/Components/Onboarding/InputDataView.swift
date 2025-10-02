@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct InputDataView: View {
+    @Environment(\.dynamicTypeSize) var sizeCategory
+    
     @State private var ingredient1: String = ""
     @State private var ingredient2: String = ""
     @State private var symptom1: String = ""
@@ -18,6 +20,7 @@ struct InputDataView: View {
     @State private var hasTypedSymptoms = false
     
     var body: some View {
+        ScrollView {
         VStack(alignment: .leading, spacing: 20) {
             VStack(alignment: .leading, spacing: 50) {
                 createItem(text: "Enter what you ate and drank", icon: "fork.knife", bindingText: $ingredient1, secondBindingText: $ingredient2, ifShow: showSecondIngredient)
@@ -33,6 +36,7 @@ struct InputDataView: View {
                 Spacer()
             }
         }
+        .minimumScaleFactor(sizeCategory.customMinScaleFactor)
         .padding()
         .onAppear {
             if !hasTypedIngredients {
@@ -64,6 +68,7 @@ struct InputDataView: View {
                 }
             }
         }
+    }
     }
     
     func createInfo(text: LocalizedStringKey) -> some View {

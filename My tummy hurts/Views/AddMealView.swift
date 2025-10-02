@@ -31,11 +31,6 @@ struct AddMealView: View {
         }
         .customBgModifier()
         .toolbar {
-            ToolbarItem(placement: .topBarLeading) {
-                CancelBtn(action: {
-                    clearForm()
-                })
-            }
             ToolbarItem(placement: .topBarTrailing) {
                 SaveBtn(action: {
                     model.addMeal(createdAt: selectedDate, ingredients: newIngredients)

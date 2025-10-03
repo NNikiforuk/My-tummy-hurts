@@ -9,71 +9,32 @@ import SwiftUI
 import Charts
 
 struct MonthlyCalendar: View {
+    @Environment(\.dynamicTypeSize) var sizeCategory
+    
     @State private var selectedFirstIngredient: LocalizedStringKey? = nil
     @State private var selectedSecondIngredient: LocalizedStringKey? = nil
     @State private var highlightedDays: [Int] = []
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            header(icon: "calendar",
-                   title: "Track patterns in monthly calendar",
-                   subtitle: "Blue = minor symptoms, red = major. Select one ingredient to highlight days you ate it. Select two to see overlaps in the same meal")
-            
-            HStack {
-                IngredientDisplay(selectedIngredient: selectedFirstIngredient)
-                IngredientDisplay(selectedIngredient: selectedSecondIngredient)
+        ScrollView {
+            VStack(alignment: .leading, spacing: 20) {
+                header(icon: "calendar",
+                       title: "Track patterns in monthly calendar",
+                       subtitle: "Blue = minor symptoms, red = major. Select one ingredient to highlight days you ate it. Select two to see overlaps in the same meal")
+                
+                if sizeCategory >= .xxLarge {
+                    largeScreenPickers
+                } else {
+                    defaultScreenPickers
+                }
+                reverseBtn
+                calendar
+                Spacer()
             }
-            .frame(maxWidth: .infinity)
-            .padding(.vertical, 20)
-            
-            VStack(spacing: 20) {
-                Button {
-                    runAnimation()
-                } label: {
-                    HStack {
-                        Spacer()
-                        Image(systemName: "arrow.counterclockwise")
-                            .font(.myFont)
-                            .foregroundStyle(.primary)
-                    }
-                    .padding(10)
-                }
-                Text("JANUARY 2025").bold().padding(.bottom, 10)
-                HStack(spacing: 20) {
-                    dayView(1, color: .clear)
-                    dayView(2, color: .clear)
-                    dayView(3, color: .blue)
-                    dayView(4, color: .clear)
-                    dayView(5, color: .clear)
-                }
-                HStack(spacing: 20) {
-                    dayView(6, color: .clear)
-                    dayView(7, color: .red)
-                    dayView(8, color: .clear)
-                    dayView(9, color: .blue)
-                    dayView(10, color: .clear)
-                }
-                HStack(spacing: 20) {
-                    dayView(11, color: .clear)
-                    dayView(12, color: .clear)
-                    dayView(13, color: .clear)
-                    dayView(14, color: .blue)
-                    dayView(15, color: .clear)
-                }
-                HStack(spacing: 20) {
-                    dayView(16, color: .clear)
-                    dayView(17, color: .clear)
-                    dayView(18, color: .blue)
-                    dayView(19, color: .clear)
-                    dayView(20, color: .clear)
-                }
+            .padding()
+            .task {
+                runAnimation()
             }
-            .frame(maxWidth: .infinity)
-            Spacer()
-        }
-        .padding()
-        .task {
-            runAnimation()
         }
     }
     
@@ -97,23 +58,116 @@ struct MonthlyCalendar: View {
         }
     }
     
+    var defaultScreenPickers: some View {
+        HStack {
+            IngredientDisplay(selectedIngredient: selectedFirstIngredient)
+            IngredientDisplay(selectedIngredient: selectedSecondIngredient)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 20)
+    }
+    
+    var largeScreenPickers: some View {
+        VStack {
+            IngredientDisplay(selectedIngredient: selectedFirstIngredient)
+            IngredientDisplay(selectedIngredient: selectedSecondIngredient)
+        }
+        .padding(.vertical, 20)
+    }
+    
+    var reverseBtn: some View {
+        Button {
+            runAnimation()
+        } label: {
+            HStack {
+                Spacer()
+                Image(systemName: "arrow.counterclockwise")
+                    .font(.myFont)
+                    .foregroundStyle(.primary)
+            }
+            .padding(10)
+        }
+    }
+    
+    var calendar: some View {
+        VStack(spacing: 20) {
+            Text("JANUARY 2025").bold().padding(.bottom, 10)
+            HStack(spacing: 20) {
+                dayView(1, color: .clear)
+                dayView(2, color: .clear)
+                dayView(3, color: .blue)
+                dayView(4, color: .clear)
+                dayView(5, color: .clear)
+            }
+            HStack(spacing: 20) {
+                dayView(6, color: .clear)
+                dayView(7, color: .red)
+                dayView(8, color: .clear)
+                dayView(9, color: .blue)
+                dayView(10, color: .clear)
+            }
+            HStack(spacing: 20) {
+                dayView(11, color: .clear)
+                dayView(12, color: .clear)
+                dayView(13, color: .clear)
+                dayView(14, color: .blue)
+                dayView(15, color: .clear)
+            }
+            HStack(spacing: 20) {
+                dayView(16, color: .clear)
+                dayView(17, color: .clear)
+                dayView(18, color: .blue)
+                dayView(19, color: .clear)
+                dayView(20, color: .clear)
+            }
+        }
+        .minimumScaleFactor(sizeCategory.customMinScaleFactor)
+        .frame(maxWidth: .infinity)
+    }
+    
     func dayView(_ day: Int, color: Color) -> some View {
         VStack {
             Text("\(day)")
+                .minimumScaleFactor(sizeCategory.customMinScaleFactor)
                 .foregroundStyle(highlightedDays.contains(day) ? .white : .primary)
-                .frame(width: 30, height: 30)
+                .frame(
+                    width: dayCircleSize(for: sizeCategory),
+                    height: dayCircleSize(for: sizeCategory)
+                )
                 .background(
                     Circle()
                         .fill(highlightedDays.contains(day) ? .accent : .clear)
                 )
             Circle().fill(color)
-                .frame(width: 8, height: 8)
+                .frame(
+                    width: sizeCategory >= .xxLarge ? 15 : 8,
+                    height: sizeCategory >= .xxLarge ? 15 : 8
+                )
         }
         .frame(maxWidth: .infinity)
+    }
+    
+    func dayCircleSize(for sizeCategory: DynamicTypeSize) -> CGFloat {
+        switch sizeCategory {
+        case .xSmall, .small, .medium, .large:
+            return 30
+        case .xLarge, .xxLarge, .xxxLarge:
+            return 45
+        case .accessibility1, .accessibility2:
+            return 55
+        case .accessibility3:
+            return 60
+        case .accessibility4:
+            return 62
+        default:
+            return 65
+        }
     }
 }
 
 struct IngredientDisplay: View {
+    @Environment(\.dynamicTypeSize) var sizeCategory
+    
     var selectedIngredient: LocalizedStringKey?
     
     var body: some View {
@@ -133,6 +187,7 @@ struct IngredientDisplay: View {
             Image(systemName: "chevron.down")
                 .foregroundStyle(.accent)
         }
+        .minimumScaleFactor(sizeCategory.customMinScaleFactor)
         .padding()
         .frame(maxWidth: .infinity)
         .background(

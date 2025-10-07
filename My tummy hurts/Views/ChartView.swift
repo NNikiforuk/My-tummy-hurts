@@ -244,11 +244,19 @@ struct ChartView: View {
     }
 }
 
-struct ChartView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            ChartView()
-                .environmentObject(CoreDataViewModel())
-        }
+
+extension CoreDataViewModel {
+    static let preview: CoreDataViewModel = {
+        return CoreDataViewModel()
+    }()
+}
+
+
+#Preview("ChartView") {
+    NavigationStack {
+        ChartView()
+        .environmentObject(CoreDataViewModel.preview)
     }
 }
+
+

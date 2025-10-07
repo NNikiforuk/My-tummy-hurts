@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GeneralAnalytics: View {
     @EnvironmentObject private var vm: CoreDataViewModel
+    @Environment(\.dynamicTypeSize) var sizeCategory
     
     @Binding var chartType: ChartMode
     @Binding var ingredientsToShow: Int
@@ -32,12 +33,27 @@ struct GeneralAnalytics: View {
                     VStack(alignment: .leading) {
                         HowManyHoursBack(value: $hoursBack)
                             .padding(.bottom, 40)
-                        HStack {
-                            SectionTitle(title: "Select symptom", textColor: Color("SecondaryText"))
-                                .textCase(.uppercase)
-                            Spacer()
-                            SelectElementPicker(pickerData: dataForPicker(mealsMode: false, model: vm), pickerSelection: $selectedSymptom)
+                        
+                        if sizeCategory.isAccessibilitySize {
+                            VStack {
+                                HStack {
+                                    SectionTitle(title: "Select symptom", textColor: Color("SecondaryText"))
+                                        .textCase(.uppercase)
+                                    Spacer()
+                                }
+                                Spacer()
+                                SelectElementPicker(pickerData: dataForPicker(mealsMode: false, model: vm), pickerSelection: $selectedSymptom)
+                            }
+                        } else {
+                            HStack {
+                                SectionTitle(title: "Select symptom", textColor: Color("SecondaryText"))
+                                    .textCase(.uppercase)
+                                Spacer()
+                                SelectElementPicker(pickerData: dataForPicker(mealsMode: false, model: vm), pickerSelection: $selectedSymptom)
+                            }
                         }
+                        
+                       
                     }
                     .transition(.opacity.combined(with: .move(edge: .top)))
                 }
@@ -70,9 +86,6 @@ struct GeneralAnalytics: View {
                         }
                     }
                     .padding()
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 15).stroke(Color("SecondaryText").opacity(0.2))
-                    }
                 }
             }
         }
@@ -89,3 +102,25 @@ struct GeneralAnalytics: View {
             .multilineTextAlignment(.center)
     }
 }
+
+#Preview("ChartView") {
+    NavigationStack {
+        NavigationStack {
+            ScrollView {
+                GeneralAnalytics(
+                    chartType: .constant(.checkSpecificSymptom),
+                    ingredientsToShow: .constant(3),
+                    hoursBack: .constant(1),
+                    selectedSymptom: .constant("biegunka"),
+                    chartTitle: "title",
+                    noMealNotes: false,
+                    noSymptomNotes: false,
+                    firstChartData: [("kuba", 8)],
+                    secondChartData: [("niki", 3)]
+                )
+                .environmentObject(CoreDataViewModel.preview)
+            }
+        }
+    }
+}
+

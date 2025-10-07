@@ -11,6 +11,8 @@ struct HowManyIngredients: View {
     @Binding var ingredientsToShow: Int
     @Binding var chartType: ChartMode
     
+    @Environment(\.dynamicTypeSize) var sizeCategory
+    
     let options = [1, 2, 3, 4, 5]
     
     var body: some View {
@@ -23,6 +25,7 @@ struct HowManyIngredients: View {
                         withAnimation { ingredientsToShow = value }
                     } label: {
                         Text("\(value)")
+                            .font(sizeCategory.isAccessibilitySize ? .caption2 : .body)
                             .frame(maxWidth: .infinity)
                             .foregroundStyle(Color("PrimaryText"))
                     }
@@ -32,5 +35,11 @@ struct HowManyIngredients: View {
             }
             .grayOverlayModifier()
         }
+    }
+}
+
+#Preview("") {
+    NavigationStack {
+        HowManyIngredients(ingredientsToShow: .constant(3), chartType: .constant(.defaultChart))
     }
 }

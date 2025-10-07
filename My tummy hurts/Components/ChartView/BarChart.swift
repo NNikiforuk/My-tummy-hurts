@@ -54,12 +54,24 @@ struct BarChart: View {
                         CGFloat(entry.1) / CGFloat(maxValue) * (geo.size.height - textHeight)
                 )
             Text(entry.0)
-                .font(.caption2)
+                .font(.system(size: 16))
                 .frame(width: barWidth)
                 .lineLimit(1)
                 .foregroundStyle(Color("PrimaryText"))
         }
         .frame(width: barWidth)
     }
-    
+}
+
+private let sampleBars: [(String, Int)] = [
+    ("krowie mleko", 8),
+    ("pomidor", 6),
+    ("chleb żytni", 4),
+    ("płatki owsiane", 2)
+]
+
+#Preview("Default") {
+    BarChart(data: sampleBars)
+        .frame(height: 260)
+        .padding()
 }

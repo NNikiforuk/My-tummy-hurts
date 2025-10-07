@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CalendarChart: View {
     @EnvironmentObject private var vm: CoreDataViewModel
+    @Environment(\.dynamicTypeSize) var sizeCategory
+    
     @Binding var selectedFirstIngredient: String?
     @Binding var selectedSecondIngredient: String?
     @Binding var selectedDate: Date
@@ -68,11 +70,22 @@ struct CalendarChart: View {
                                 .transition(.opacity)
                                 .padding(.vertical, 5)
                         }
-                        HStack {
-                            SelectElementPicker(pickerData: dataForPicker(mealsMode: true, model: vm, excluded: selectedSecondIngredient), pickerSelection: $selectedFirstIngredient)
-                            Spacer()
-                            SelectElementPicker(pickerData: dataForPicker(mealsMode: true, model: vm, excluded: selectedFirstIngredient), pickerSelection: $selectedSecondIngredient)
+                        
+                        if sizeCategory.isAccessibilitySize {
+                            VStack {
+                                SelectElementPicker(pickerData: dataForPicker(mealsMode: true, model: vm, excluded: selectedSecondIngredient), pickerSelection: $selectedFirstIngredient)
+                                Spacer()
+                                SelectElementPicker(pickerData: dataForPicker(mealsMode: true, model: vm, excluded: selectedFirstIngredient), pickerSelection: $selectedSecondIngredient)
+                            }
+                        } else {
+                            HStack {
+                                SelectElementPicker(pickerData: dataForPicker(mealsMode: true, model: vm, excluded: selectedSecondIngredient), pickerSelection: $selectedFirstIngredient)
+                                Spacer()
+                                SelectElementPicker(pickerData: dataForPicker(mealsMode: true, model: vm, excluded: selectedFirstIngredient), pickerSelection: $selectedSecondIngredient)
+                            }
                         }
+                        
+                        
                     }
                     VStack {
                         TabView(selection: $currentPage) {
@@ -95,6 +108,8 @@ struct CalendarChart: View {
 
 struct MonthView: View {
     @EnvironmentObject private var vm: CoreDataViewModel
+    @Environment(\.dynamicTypeSize) var sizeCategory
+    
     @Binding var selectedDate: Date
     @Binding var selectedFirstIngredient: String?
     @Binding var selectedSecondIngredient: String?
@@ -114,13 +129,14 @@ struct MonthView: View {
                 .padding(20)
                 .bold()
                 .foregroundStyle(Color("PrimaryText"))
+                .font(sizeCategory.isAccessibilitySize ? .system(size: 34) : .body)
             
-            let symbols = customCalendar.shortStandaloneWeekdaySymbols
-            let orderedSymbols = symbols.shifted(startingAt: customCalendar.firstWeekday - 1)
+            let symbols = weekdaySymbols(for: customCalendar, dts: sizeCategory)
+            let ordered = symbols.shifted(startingAt: customCalendar.firstWeekday - 1)
             HStack {
-                ForEach(orderedSymbols, id: \.self) { day in
+                ForEach(ordered, id: \.self) { day in
                     Text(day)
-                        .font(.caption)
+                        .font(sizeCategory.isAccessibilitySize ? .system(size: 18) : .caption)
                         .frame(maxWidth: .infinity)
                 }
             }
@@ -136,6 +152,15 @@ struct MonthView: View {
                     }
                 }
             }
+        }
+    }
+    
+    private func weekdaySymbols(for cal: Calendar, dts: DynamicTypeSize) -> [String] {
+        if dts.isAccessibilitySize {
+            let narrow = cal.veryShortStandaloneWeekdaySymbols
+            return narrow.isEmpty ? cal.shortStandaloneWeekdaySymbols.map { String($0.prefix(1)) } : narrow
+        } else {
+            return cal.shortStandaloneWeekdaySymbols
         }
     }
     
@@ -157,6 +182,8 @@ struct MonthView: View {
 
 struct DayCell: View {
     @EnvironmentObject private var vm: CoreDataViewModel
+    @Environment(\.dynamicTypeSize) var sizeCategory
+    
     @Binding var selectedDate: Date
     @Binding var selectedFirstIngredient: String?
     @Binding var selectedSecondIngredient: String?
@@ -230,6 +257,7 @@ struct DayCell: View {
                     )
                     .foregroundStyle(showSelectedIngredient == .accent ? .background : Color("PrimaryText"))
                     .fontWeight(isToday(date: date) ? .bold : .regular)
+                    .font(sizeCategory.isAccessibilitySize ? .system(size: 24) : .body)
                 
                 if let tag = symptomColor {
                     Circle()
@@ -255,6 +283,8 @@ func isToday(date: Date) -> Bool {
 }
 
 struct TagsDescription: View {
+    @Environment(\.dynamicTypeSize) var sizeCategory
+    
     var body: some View {
         VStack(alignment: .center) {
             HStack(spacing: 30) {
@@ -268,7 +298,7 @@ struct TagsDescription: View {
                 }
             }
         }
-        .font(.caption2)
+        .font(sizeCategory.isAccessibilitySize ? .system(size: 22) : .body )
         .foregroundStyle(Color("SecondaryText"))
         .padding(.top, 50)
     }

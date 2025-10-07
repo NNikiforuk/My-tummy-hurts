@@ -64,28 +64,30 @@ struct CalendarDay: View {
     }
     
     var body: some View {
-        VStack {
-            pageTitle
-            if data.isEmpty {
-                NoDataAlert(text: "No notes today")
-            } else {
-                HStack {
-                    SectionTitle(title: "Events timeline", textColor: Color("SecondaryText"))
-                        .textCase(.uppercase)
-                    Spacer()
+        ScrollView {
+            VStack {
+                pageTitle
+                if data.isEmpty {
+                    NoDataAlert(text: "No notes today")
+                } else {
+                    HStack {
+                        SectionTitle(title: "Events timeline", textColor: Color("SecondaryText"))
+                            .textCase(.uppercase)
+                        Spacer()
+                    }
+                    .padding(.top, 30)
+                    TimelineChart(startOfDay: startOfDay, endOfDay: endOfDay, data: data)
+                    HStack {
+                        SectionTitle(title: "Daily events", textColor: Color("SecondaryText"))
+                            .textCase(.uppercase)
+                        Spacer()
+                    }
+                    .padding(.top, 30)
+                    DailyEvents(data: data)
+                        .grayOverlayModifier()
                 }
-                .padding(.top, 30)
-                TimelineChart(startOfDay: startOfDay, endOfDay: endOfDay, data: data)
-                HStack {
-                    SectionTitle(title: "Daily events", textColor: Color("SecondaryText"))
-                        .textCase(.uppercase)
-                    Spacer()
-                }
-                .padding(.top, 30)
-                DailyEvents(data: data)
-                    .grayOverlayModifier()
+                Spacer()
             }
-            Spacer()
         }
         .customBgModifier()
     }
@@ -108,6 +110,7 @@ struct Event: Identifiable {
 
 struct TimelineChart: View {
     @EnvironmentObject private var vm: CoreDataViewModel
+    @Environment(\.dynamicTypeSize) var sizeCategory
     
     var startOfDay: Date
     var endOfDay: Date
@@ -121,7 +124,7 @@ struct TimelineChart: View {
                 .symbol {
                     Image(systemName: event.icon)
                         .foregroundColor(event.tag?.color ?? Color("PrimaryText"))
-                        .font(.system(size: 17))
+                        .font(sizeCategory.isAccessibilitySize ? .body :  .system(size: 17))
                 }
             }
             .chartXScale(domain: startOfDay...endOfDay)
@@ -170,11 +173,12 @@ struct DailyEvents: View {
 }
 
 struct Note: View {
+    @Environment(\.dynamicTypeSize) var sizeCategory
     var note: Event
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            HStack(spacing: 10) {
+            HStack(spacing: sizeCategory.isAccessibilitySize ? 20 :  10) {
                 NoteIcon(icon: "clock")
                 Text(note.date, style: .time)
                     .foregroundStyle(Color("PrimaryText"))
@@ -185,7 +189,7 @@ struct Note: View {
                         .frame(width: 15, height: 15)
                 }
             }
-            HStack(spacing: 10) {
+            HStack(spacing: sizeCategory.isAccessibilitySize ? 20 :  10) {
                 NoteIcon(icon: note.type == .meals ? "carrot" : "toilet")
                 Text(note.desc)
                     .foregroundStyle(Color("PrimaryText"))

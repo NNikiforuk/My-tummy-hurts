@@ -8,7 +8,13 @@
 import SwiftUI
 
 struct ThemeView: View {
+    @Environment(\.dynamicTypeSize) var sizeCategory
     @AppStorage("appearance") private var selectedAppearance: Appearance = .system
+    @ScaledMetric(relativeTo: .footnote) private var fontRefSize = 50.0
+    
+    var fontScalingFactor: CGFloat {
+        max(1, (fontRefSize / 100))
+    }
     
     var body: some View {
         VStack(spacing: 20) {
@@ -24,6 +30,9 @@ struct ThemeView: View {
                 }
             }
             .pickerStyle(.segmented)
+            .fixedSize()
+            .scaleEffect(fontScalingFactor)
+            .frame(minHeight: 30 * fontScalingFactor)
             Spacer()
         }
         .customBgModifier()

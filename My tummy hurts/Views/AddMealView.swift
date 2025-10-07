@@ -10,6 +10,7 @@ import SwiftUI
 struct AddMealView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject private var model: CoreDataViewModel
+    @Environment(\.dynamicTypeSize) var sizeCategory
     
     @State private var selectedDate: Date = Date()
     @State private var newIngredients = ""
@@ -18,16 +19,17 @@ struct AddMealView: View {
     @State private var isEditorFocused = false
     
     var body: some View {
-        VStack(spacing: 20) {
-            SiteTitle(title: "Add meal")
-            DatePicker(
-                "Meal time",
-                selection: $selectedDate,
-                displayedComponents: [.date, .hourAndMinute]
-            )
-            .customPickerModifier()
-            AddNewNote(newItems: $newIngredients, rows: $rows, meal: true)
-            Spacer()
+        ScrollView {
+            VStack(spacing: 20) {
+                SiteTitle(title: "Add meal")
+                if sizeCategory.isAccessibilitySize {
+                   BiggerFontView(title: "Meal time", bindingData: $selectedDate)
+                } else {
+                    DefaultFontView(title: "Meal time", bindingData: $selectedDate)
+                }
+                AddNewNote(newItems: $newIngredients, rows: $rows, meal: true)
+                Spacer()
+            }
         }
         .customBgModifier()
         .toolbar {

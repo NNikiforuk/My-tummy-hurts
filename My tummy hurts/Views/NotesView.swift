@@ -9,6 +9,8 @@ import SwiftUI
 
 struct NotesView: View {
     @EnvironmentObject private var vm: CoreDataViewModel
+    @Environment(\.dynamicTypeSize) var sizeCategory
+    
     @Binding var selection: NoteTab
     @Binding var selectedDate: Date
     
@@ -54,13 +56,15 @@ struct NotesView: View {
                                 .noteModifier()
                         }
                     } else {
-                        ForEach(filteredMeals, id: \.objectID) { note in
-                            NavigationLink {
-                                EditMeal(note: note)
-                            } label: {
-                                NoteMeal(note: note, meals: true)
+                        VStack(spacing: sizeCategory >= .accessibility3 ? 30 :  20) {
+                            ForEach(filteredMeals, id: \.objectID) { note in
+                                NavigationLink {
+                                    EditMeal(note: note)
+                                } label: {
+                                    NoteMeal(note: note, meals: true)
+                                }
+                                .noteModifier()
                             }
-                            .noteModifier()
                         }
                     }
                 }
@@ -74,13 +78,15 @@ struct NotesView: View {
                                 .noteModifier()
                         }
                     } else {
-                        ForEach(filteredSymptoms, id: \.objectID) { note in
-                            NavigationLink {
-                                EditSymptom(note: note)
-                            } label: {
-                                NoteSymptom(note: note, meals: false)
+                        VStack(spacing: sizeCategory >= .accessibility3 ? 30 :  20) {
+                            ForEach(filteredSymptoms, id: \.objectID) { note in
+                                NavigationLink {
+                                    EditSymptom(note: note)
+                                } label: {
+                                    NoteSymptom(note: note, meals: false)
+                                }
+                                .noteModifier()
                             }
-                            .noteModifier()
                         }
                     }
                 }
@@ -125,6 +131,8 @@ struct NoteSymptom: View {
 }
 
 struct TopNoteRow: View {
+    @Environment(\.dynamicTypeSize) var sizeCategory
+    
     let time: Date
     let critical: Bool?
     let meals: Bool
@@ -137,7 +145,7 @@ struct TopNoteRow: View {
     }
     
     var body: some View {
-        HStack(spacing: 10) {
+        HStack(spacing: sizeCategory >= .accessibility3 ? 30 : 10) {
             NoteIcon(icon: "clock")
             Text(time, style: .time)
             if !meals {
@@ -153,11 +161,13 @@ struct TopNoteRow: View {
 }
 
 struct BottomNoteRow: View {
+    @Environment(\.dynamicTypeSize) var sizeCategory
+    
     let text: String
     let meals: Bool
     
     var body: some View {
-        HStack(spacing: 10) {
+        HStack(spacing: sizeCategory >= .accessibility3 ? 30 : 10) {
             NoteIcon(icon: meals ? "carrot" : "toilet")
             Text(text)
                 .lineLimit(1)

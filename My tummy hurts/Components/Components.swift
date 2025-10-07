@@ -113,3 +113,54 @@ struct OnboardingPageTitle: View {
             .padding(.vertical, 20)
     }
 }
+
+struct DefaultFontView: View {
+    var title: String
+    
+    @Binding var bindingData: Date
+    
+    
+    var body: some View {
+        DatePicker(
+            title,
+            selection: $bindingData,
+            displayedComponents: [.date, .hourAndMinute]
+        )
+        .customPickerModifier()
+    }
+}
+
+struct BiggerFontView: View {
+    var title: LocalizedStringKey
+    
+    @Binding var bindingData: Date
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            HStack {
+                SectionTitle(title: title, textColor: .primaryText)
+                   Spacer()
+            }
+            .padding(.top, 40)
+            CustomDataPicker(bindingData: $bindingData, title: title, isTime: false)
+            CustomDataPicker(bindingData: $bindingData, title: title, isTime: true)
+        }
+    }
+}
+
+struct CustomDataPicker: View {
+    @Binding var bindingData: Date
+    
+    var title: LocalizedStringKey
+    let isTime: Bool
+    
+    var body: some View {
+        DatePicker(
+            title,
+            selection: $bindingData,
+            displayedComponents: isTime ? .hourAndMinute : .date
+        )
+        .datePickerStyle(.compact)
+        .labelsHidden()
+    }
+}

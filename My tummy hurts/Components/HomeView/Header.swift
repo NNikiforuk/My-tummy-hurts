@@ -9,6 +9,7 @@ import SwiftUI
 import Foundation
 
 struct HomeViewHeader: View {
+    @Environment(\.dynamicTypeSize) var sizeCategory
     @State private var currentPage: Int = 0
     @State private var weekRange: ClosedRange<Int> = -50...50
     
@@ -19,6 +20,7 @@ struct HomeViewHeader: View {
             Text(formatMonth(for: currentPage))
                 .font(.title2.bold())
                 .foregroundStyle(Color("PrimaryText"))
+                .minimumScaleFactor(sizeCategory.calHeader)
             
             TabView(selection: $currentPage) {
                 ForEach(weekRange, id: \.self) { weekNumber in
@@ -38,95 +40,121 @@ struct HomeViewHeader: View {
                 }
             }
         }
+        .minimumScaleFactor(sizeCategory.customMinScaleFactor)
         .tabViewStyle(.page(indexDisplayMode: .never))
-        .frame(height: 100)
-    }
-}
-
-func formatMonth(for weekNumber: Int) -> String {
-    let calendar = Calendar.current
-    let today = Date()
-    
-    guard let targetDate = calendar.date(byAdding: .weekOfYear, value: weekNumber, to: today) else {
-        return ""
+        .frame(height: sizeCategory >= .accessibility1 ? 190 :
+                sizeCategory >= .xxxLarge  ? 150 :
+                sizeCategory >= .xLarge   ? 130 : 100)
     }
     
-    guard let weekStart = calendar.date(
-        from: calendar
-            .dateComponents(
-                [.yearForWeekOfYear, .weekOfYear],
-                from: targetDate
-            )
-    ),
-          let weekEnd = calendar.date(byAdding: .day, value: 6, to: weekStart) else {
-        return ""
+    func formatMonth(for weekNumber: Int) -> String {
+        let calendar = Calendar.current
+        let today = Date()
+        
+        guard let targetDate = calendar.date(byAdding: .weekOfYear, value: weekNumber, to: today) else {
+            return ""
+        }
+        
+        guard let weekStart = calendar.date(
+            from: calendar
+                .dateComponents(
+                    [.yearForWeekOfYear, .weekOfYear],
+                    from: targetDate
+                )
+        ),
+              let weekEnd = calendar.date(byAdding: .day, value: 6, to: weekStart) else {
+            return ""
+        }
+        
+        let monthFormatter = DateFormatter()
+        monthFormatter.dateFormat = "LLLL"
+        monthFormatter.locale = Locale.current
+        
+        let startMonth = monthFormatter.string(from: weekStart)
+        let endMonth = monthFormatter.string(from: weekEnd)
+        
+        let yearFormatter = DateFormatter()
+        yearFormatter.dateFormat = "yyyy"
+        yearFormatter.locale = Locale.current
+        let year = yearFormatter.string(from: targetDate)
+        
+        if startMonth != endMonth {
+            if sizeCategory >= .accessibility1 {
+                return "\(startMonth) \(year)"
+            } else {
+                return "\(startMonth) / \(endMonth) \(year)"
+            }
+        }
+        
+        return "\(startMonth) \(year)"
     }
-    
-    let monthFormatter = DateFormatter()
-    monthFormatter.dateFormat = "LLLL"
-    monthFormatter.locale = Locale.current
-    
-    let startMonth = monthFormatter.string(from: weekStart)
-    let endMonth = monthFormatter.string(from: weekEnd)
-    
-    let yearFormatter = DateFormatter()
-    yearFormatter.dateFormat = "yyyy"
-    yearFormatter.locale = Locale.current
-    let year = yearFormatter.string(from: targetDate)
-    
-    if startMonth != endMonth {
-        return "\(startMonth) / \(endMonth) \(year)"
-    }
-    
-    return "\(startMonth) \(year)"
 }
 
 struct WeekView: View {
+    @Environment(\.dynamicTypeSize) var sizeCategory
+    
     @Binding var selectedDate: Date
     let weekNumber: Int
+    
+    var circleSize: CGSize {
+        dayCircleSize(for: sizeCategory)
+    }
     
     var body: some View {
         HStack {
             ForEach(getDaysOfWeek(for: weekNumber), id: \.self) { date in
-                VStack {
-                    Text(formatDayName(date))
-                        .font(.caption)
-                        .foregroundStyle(
-                            isSameDay(date1: date, date2: selectedDate)
-                            ? Color("NeutralColor")
-                            : Color("PrimaryText"))
-                    Text(formatDayNumber(date))
-                        .font(.title3)
-                        .fontWeight(.bold)
-                        .foregroundStyle(
-                            isSameDay(date1: date, date2: selectedDate)
-                            ? Color("NeutralColor")
-                            : Color("PrimaryText")
-                        )
-                }
-                .frame(width: 35, height: 60)
-                .background(
-                    isSameDay(date1: date, date2: selectedDate)
-                    ? Color("CustomSecondary")
-                    : Color.clear
-                )
-                .background(
-                    isToday(date: date)
-                    ? .secondaryText.opacity(0.2)
-                    : Color.clear
-                )
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-                .onTapGesture {
-                    withAnimation {
-                        selectedDate = date
+                content(date: date)
+                    .frame(width: circleSize.width, height: circleSize.height)
+                    .background(
+                        isSameDay(date1: date, date2: selectedDate)
+                        ? Color("CustomSecondary")
+                        : Color.clear
+                    )
+                    .background(
+                        isToday(date: date)
+                        ? .secondaryText.opacity(0.2)
+                        : Color.clear
+                    )
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .onTapGesture {
+                        withAnimation {
+                            selectedDate = date
+                        }
                     }
-                }
             }
         }
         .padding(.horizontal)
     }
     
-    private func getDaysOfWeek(for weekNumber: Int) -> [Date] {
+    func content(date: Date) -> some View {
+        VStack {
+            Text(formatDayName(date))
+                .font(.caption)
+                .foregroundStyle(
+                    isSameDay(date1: date, date2: selectedDate)
+                    ? Color("NeutralColor")
+                    : Color("PrimaryText"))
+            Text(formatDayNumber(date))
+                .font(sizeCategory >= .xxxLarge ? .system(size: 32) : .title3)
+                .fontWeight(.bold)
+                .foregroundStyle(
+                    isSameDay(date1: date, date2: selectedDate)
+                    ? Color("NeutralColor")
+                    : Color("PrimaryText")
+                )
+        }
+    }
+    
+    func dayCircleSize(for size: DynamicTypeSize) -> CGSize {
+        switch size {
+        case .xSmall, .small, .medium, .large:
+            return CGSize(width: 35, height: 60)
+        default:
+            return CGSize(width: 45, height: 85)
+        }
+    }
+    
+    func getDaysOfWeek(for weekNumber: Int) -> [Date] {
         let calendar = Calendar.current
         let today = Date()
         
@@ -146,9 +174,16 @@ struct WeekView: View {
     
     private func formatDayName(_ date: Date) -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "EEE"
         formatter.locale = Locale.current
-        return formatter.string(from: date)
+        
+        if sizeCategory >= .xxLarge {
+            formatter.dateFormat = "EEEE"
+            let fullName = formatter.string(from: date)
+            return String(fullName.prefix(1)).uppercased()
+        } else {
+            formatter.dateFormat = "EEE"
+            return formatter.string(from: date)
+        }
     }
     
     private func formatDayNumber(_ date: Date) -> String {

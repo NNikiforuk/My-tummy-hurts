@@ -72,6 +72,12 @@
         }
       }
     },
+    "a" : {
+
+    },
+    "a: cow milk" : {
+
+    },
     "Add meal" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -246,6 +252,12 @@
         }
       }
     },
+    "b" : {
+
+    },
+    "b: rye bread" : {
+
+    },
     "Bar chart" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -419,6 +431,12 @@
           }
         }
       }
+    },
+    "c" : {
+
+    },
+    "c: onion chips" : {
+
     },
     "Cancel" : {
       "localizations" : {

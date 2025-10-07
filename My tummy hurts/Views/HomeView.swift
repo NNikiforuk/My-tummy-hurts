@@ -9,6 +9,7 @@ import SwiftUI
 import CoreData
 
 struct HomeView: View {
+    @Environment(\.dynamicTypeSize) var sizeCategory
     @EnvironmentObject private var model: CoreDataViewModel
     @Binding var isOnboarding: Bool
     @AppStorage("appearance") private var selectedAppearance: Appearance = .system
@@ -45,12 +46,14 @@ struct HomeView: View {
     
     var body: some View {
         VStack {
-            HomeViewHeader(selectedDate: $selectedDate)
-            AddBtns(selection: $selection, showAddingMealView: $showAddingMealView, showAddingSymptomView: $showAddingSymptomView)
-            NotesPicker(selection: $selection)
             ScrollView {
-                LazyVStack(spacing: 20) {
-                    NotesView(selection: $selection, selectedDate: $selectedDate, onlyShow: false)
+                HomeViewHeader(selectedDate: $selectedDate)
+                AddBtns(selection: $selection, showAddingMealView: $showAddingMealView, showAddingSymptomView: $showAddingSymptomView)
+                NotesPicker(selection: $selection)
+                ScrollView {
+                    LazyVStack(spacing: 20) {
+                        NotesView(selection: $selection, selectedDate: $selectedDate, onlyShow: false)
+                    }
                 }
             }
         }
@@ -117,6 +120,15 @@ struct HomeView: View {
 
 struct NotesPicker: View {
     @Binding var selection: NoteTab
+    @Environment(\.colorScheme) var colorScheme
+    
+    var backgroundColorSegmentedControl: Color {
+        return colorScheme == .dark ? .gray.opacity(0.4) : .gray.opacity(0.14)
+    }
+    
+    var selectedButtonBackgroundColor: Color {
+        return colorScheme == .dark ? .white.opacity(0.4) : .white
+    }
     
     var body: some View {
         HStack {
@@ -135,11 +147,12 @@ struct NotesPicker: View {
     }
 }
 
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            HomeView(isOnboarding: .constant(false))
-                .environmentObject(CoreDataViewModel())
-        }
+#Preview("HomeView") {
+    NavigationStack {
+        HomeView(isOnboarding: .constant(false))
+            .environmentObject(CoreDataViewModel())
     }
 }
+
+
+

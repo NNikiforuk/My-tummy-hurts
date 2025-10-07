@@ -15,6 +15,7 @@ struct Row: Identifiable, Equatable {
 struct EditMeal: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var vm: CoreDataViewModel
+    @Environment(\.dynamicTypeSize) var sizeCategory
     
     @State private var newIngredients = ""
     @State private var mealCreatedAt: Date = Date()
@@ -29,22 +30,24 @@ struct EditMeal: View {
     }
     
     var body: some View {
-        VStack(spacing: 20) {
-            SiteTitle(title: "Edit meal")
-            DatePicker(
-                "Meal time",
-                selection: $mealCreatedAt,
-                displayedComponents: [.date, .hourAndMinute]
-            )
-            .customPickerModifier()
-            
-            VStack(alignment: .leading, spacing: 8) {
-                SectionTitle(title: "Meal ingredients", textColor: Color("PrimaryText"))
-                    .padding(.bottom, 20)
-                NewRows(newNote: $newIngredients, rows: $rows, meal: true)
-                AppendingRowBtn(rows: $rows)
+        ScrollView {
+            VStack(spacing: 20) {
+                SiteTitle(title: "Edit meal")
+                
+                if sizeCategory.isAccessibilitySize {
+                   BiggerFontView(title: "Meal time", bindingData: $mealCreatedAt)
+                } else {
+                    DefaultFontView(title: "Meal time", bindingData: $mealCreatedAt)
+                }
+    
+                VStack(alignment: .leading, spacing: 8) {
+                    SectionTitle(title: "Meal ingredients", textColor: Color("PrimaryText"))
+                        .padding(.bottom, 20)
+                    NewRows(newNote: $newIngredients, rows: $rows, meal: true)
+                    AppendingRowBtn(rows: $rows)
+                }
+                Spacer()
             }
-            Spacer()
         }
         .onAppear {
             mealCreatedAt = note.createdAt ?? Date()
@@ -75,6 +78,7 @@ struct EditMeal: View {
 struct EditSymptom: View {
     @EnvironmentObject private var vm: CoreDataViewModel
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.dynamicTypeSize) var sizeCategory
     
     @State private var newSymptoms = ""
     @State private var symptomCreatedAt: Date = Date()
@@ -90,24 +94,26 @@ struct EditSymptom: View {
     }
     
     var body: some View {
-        VStack(spacing: 20) {
-            SiteTitle(title: "Edit symptom")
-            DatePicker(
-                "Symptom time",
-                selection: $symptomCreatedAt,
-                displayedComponents: [.date, .hourAndMinute]
-            )
-            .customPickerModifier()
-            
-            SymptomTags(critical: $critical)
-            
-            VStack(alignment: .leading, spacing: 8) {
-                SectionTitle(title: "Negative symptoms", textColor: Color("PrimaryText"))
-                    .padding(.bottom, 20)
-                NewRows(newNote: $newSymptoms, rows: $rows, meal: false)
-                AppendingRowBtn(rows: $rows)
+        ScrollView {
+            VStack(spacing: 20) {
+                SiteTitle(title: "Edit symptom")
+                
+                if sizeCategory.isAccessibilitySize {
+                    BiggerFontView(title: "Symptom time", bindingData: $symptomCreatedAt)
+                } else {
+                    DefaultFontView(title: "Symptom time", bindingData: $symptomCreatedAt)
+                }
+                
+                SymptomTags(critical: $critical)
+                
+                VStack(alignment: .leading, spacing: 8) {
+                    SectionTitle(title: "Negative symptoms", textColor: Color("PrimaryText"))
+                        .padding(.bottom, 20)
+                    NewRows(newNote: $newSymptoms, rows: $rows, meal: false)
+                    AppendingRowBtn(rows: $rows)
+                }
+                Spacer()
             }
-            Spacer()
         }
         .customBgModifier()
         .toolbar {

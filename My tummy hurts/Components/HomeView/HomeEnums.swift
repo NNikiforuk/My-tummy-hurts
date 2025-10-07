@@ -27,6 +27,15 @@ enum NoteTab: String, Identifiable, CaseIterable {
     var localized: String {
         NSLocalizedString(self.rawValue, comment: "")
     }
+    
+    func icon() -> String {
+        switch self {
+        case .meals:
+            return "fork.knife"
+        case .symptoms:
+            return "toilet"
+        }
+    }
 }
 
 enum SymptomTagsEnum: String, Identifiable, CaseIterable {
@@ -66,4 +75,26 @@ extension SymptomTagsEnum {
     }
 }
 
-
+extension DynamicTypeSize {
+    var customMinScaleFactor: CGFloat {
+        switch self {
+        case .xSmall, .small, .medium:
+            return 1.0
+        case .large, .xLarge, .xxLarge:
+            return 0.6
+        default:
+            return 0.85
+        }
+    }
+    
+    var calHeader: CGFloat {
+        switch self {
+        case .xSmall, .small, .medium:
+            return 1.0
+        case .large, .xLarge, .xxLarge:
+            return 0.3
+        default:
+            return 0.5
+        }
+    }
+}

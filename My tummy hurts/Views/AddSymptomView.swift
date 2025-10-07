@@ -10,6 +10,7 @@ import SwiftUI
 struct AddSymptomView: View {
     @EnvironmentObject private var model: CoreDataViewModel
     @Environment(\.dismiss) var dismiss
+    @Environment(\.dynamicTypeSize) var sizeCategory
     
     @State private var selectedDate: Date = Date()
     @State private var newSymptoms = ""
@@ -19,17 +20,18 @@ struct AddSymptomView: View {
     @State private var critical: Bool = false
     
     var body: some View {
-        VStack(spacing: 20) {
+        ScrollView {
+            VStack(spacing: 20) {
             SiteTitle(title: "Add symptom")
-            DatePicker(
-               "Symptom time",
-                selection: $selectedDate,
-                displayedComponents: [.date, .hourAndMinute]
-            )
-            .customPickerModifier()
+            if sizeCategory.isAccessibilitySize {
+               BiggerFontView(title: "Symptom time", bindingData: $selectedDate)
+            } else {
+               DefaultFontView(title: "Symptom time", bindingData: $selectedDate)
+            }
             SymptomTags(critical: $critical)
             AddNewNote(newItems: $newSymptoms, rows: $rows, meal: false)
             Spacer()
+        }
         }
         .customBgModifier()
         .toolbar {
@@ -62,16 +64,42 @@ struct AddSymptomView: View {
 }
 
 struct SymptomTags: View {
+    @Environment(\.dynamicTypeSize) var sizeCategory
+    
     @Binding var critical: Bool
     
     var body: some View {
         VStack {
-            HStack(alignment: .center) {
+            if sizeCategory.isAccessibilitySize {
+                biggerFontView()
+                    .padding(.vertical, 40)
+            } else {
+                defaultFontView()
+            }
+        }
+    }
+    
+    func defaultFontView() -> some View {
+        HStack(alignment: .center) {
+            Text("Symptom tag")
+                .frame(width: 120, alignment: .leading)
+                .bold()
+            Spacer()
+            
+            ForEach(SymptomTagsEnum.allCases) { el in
+                singleTag(el: el)
+            }
+        }
+    }
+    
+    func biggerFontView() -> some View {
+        VStack {
+            HStack {
                 Text("Symptom tag")
-                    .frame(width: 120, alignment: .leading)
                     .bold()
                 Spacer()
-                
+            }
+            HStack {
                 ForEach(SymptomTagsEnum.allCases) { el in
                     singleTag(el: el)
                 }
@@ -79,7 +107,7 @@ struct SymptomTags: View {
         }
     }
     
-    private func singleTag(el: SymptomTagsEnum) -> some View {
+    func singleTag(el: SymptomTagsEnum) -> some View {
         Button {
             critical = (el == .red)
         } label: {
@@ -103,7 +131,6 @@ struct SymptomTags: View {
         )
     }
 }
-
 
 #Preview {
     AddSymptomView()

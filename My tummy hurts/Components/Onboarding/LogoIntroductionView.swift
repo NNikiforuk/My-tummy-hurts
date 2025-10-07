@@ -77,16 +77,3 @@ struct LogoView: View {
     }
 }
 
-extension DynamicTypeSize {
-    var customMinScaleFactor: CGFloat {
-        switch self {
-        case .xSmall, .small, .medium:
-            return 1.0
-        case .large, .xLarge, .xxLarge:
-            return 0.6
-        default:
-            return 0.85
-        }
-    }
-}
-

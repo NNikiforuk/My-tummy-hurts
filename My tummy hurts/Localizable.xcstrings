@@ -73,10 +73,72 @@
       }
     },
     "a" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "a"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "a"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "a"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "a"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "a"
+          }
+        }
+      }
     },
     "a: cow milk" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "a: Kuhmilch"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "a: leche de vaca"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "a: lait de vache"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "a: krowie mleko"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "a: 牛奶"
+          }
+        }
+      }
     },
     "Add meal" : {
       "extractionState" : "manual",
@@ -253,10 +315,72 @@
       }
     },
     "b" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "b"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "b"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "b"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "b"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "b"
+          }
+        }
+      }
     },
     "b: rye bread" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "b: Roggenbrot"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "b: pan de centeno"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "b: pain de seigle"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "b: chleb żytni"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "b: 黑麦面包"
+          }
+        }
+      }
     },
     "Bar chart" : {
       "extractionState" : "manual",
@@ -433,10 +557,72 @@
       }
     },
     "c" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "c"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "c"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "c"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "c"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "c"
+          }
+        }
+      }
     },
     "c: onion chips" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "c: Chips mit Zwiebelgeschmack"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "c: patatas fritas sabor a cebolla"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "c: chips à l’oignon"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "c: chipsy cebulowe"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "c: 洋葱味薯片"
+          }
+        }
+      }
     },
     "Cancel" : {
       "localizations" : {
@@ -1234,7 +1420,7 @@
       }
     },
     "Hello, World!" : {
-
+      "shouldTranslate" : false
     },
     "How many hours back" : {
       "extractionState" : "manual",
@@ -1335,6 +1521,41 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "2025年1月"
+          }
+        }
+      }
+    },
+    "Key" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legende"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Légende"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Légende"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Key"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "图例"
           }
         }
       }
@@ -2932,7 +3153,38 @@
       }
     },
     "Top %1$d ingredients followed by any symptom" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$d häufigste Zutaten, nach denen Symptome auftraten"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$d ingredientes más comunes seguidos de algún síntoma"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$d ingrédients les plus courants précédant un symptôme"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Najczęstsze %1$d składniki tuż przed objawami"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最常见的 %1$d 个成分，其后伴随任意症状"
+          }
+        }
+      }
     },
     "Top %1$d ingredients followed by any symptom (%2$d found)" : {
       "extractionState" : "manual",
@@ -3035,41 +3287,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "在症状前 %2$d 小时内最常见的 %1$d 个成分：%3$@（找到 %4$d 个）"
-          }
-        }
-      }
-    },
-    "Top %d ingredients followed by any symptom" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$d häufigste Zutaten, nach denen Symptome auftraten"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$d ingredientes más comunes seguidos de algún síntoma"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$d ingrédients les plus courants précédant un symptôme"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%d najczęściej spożywanych składników tuż przed objawami"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "最常见的 %d 个成分，其后伴随任意症状"
           }
         }
       }

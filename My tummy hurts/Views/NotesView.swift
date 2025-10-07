@@ -56,7 +56,7 @@ struct NotesView: View {
                                 .noteModifier()
                         }
                     } else {
-                        VStack(spacing: sizeCategory >= .accessibility3 ? 30 :  20) {
+                        VStack(spacing: sizeCategory >= .accessibility3 ? 30 :  10) {
                             ForEach(filteredMeals, id: \.objectID) { note in
                                 NavigationLink {
                                     EditMeal(note: note)
@@ -78,7 +78,7 @@ struct NotesView: View {
                                 .noteModifier()
                         }
                     } else {
-                        VStack(spacing: sizeCategory >= .accessibility3 ? 30 :  20) {
+                        VStack(spacing: sizeCategory >= .accessibility3 ? 30 :  10) {
                             ForEach(filteredSymptoms, id: \.objectID) { note in
                                 NavigationLink {
                                     EditSymptom(note: note)

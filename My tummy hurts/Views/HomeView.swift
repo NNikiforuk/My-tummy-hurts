@@ -25,7 +25,7 @@ struct HomeView: View {
         model.savedMealNotes.isEmpty && model.savedSymptomNotes.isEmpty
     }
     
-    var alertTitle: String {
+    var alertTitle: LocalizedStringKey {
         if emptyDB {
             "Nothing to delete"
         } else {

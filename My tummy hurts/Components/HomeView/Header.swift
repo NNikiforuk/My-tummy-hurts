@@ -10,6 +10,8 @@ import Foundation
 
 struct HomeViewHeader: View {
     @Environment(\.dynamicTypeSize) var sizeCategory
+    @Environment(\.locale) private var locale
+
     @State private var currentPage: Int = 0
     @State private var weekRange: ClosedRange<Int> = -50...50
     
@@ -46,52 +48,49 @@ struct HomeViewHeader: View {
                 sizeCategory >= .xxxLarge  ? 150 :
                 sizeCategory >= .xLarge   ? 130 : 100)
     }
-    
+
     func formatMonth(for weekNumber: Int) -> String {
-        let calendar = Calendar.current
+        var cal = Calendar.current
+        cal.locale = locale
+
         let today = Date()
-        
-        guard let targetDate = calendar.date(byAdding: .weekOfYear, value: weekNumber, to: today) else {
-            return ""
+        guard
+            let target = cal.date(byAdding: .weekOfYear, value: weekNumber, to: today),
+            let weekStart = cal.date(from: cal.dateComponents([.yearForWeekOfYear, .weekOfYear], from: target)),
+            let weekEnd   = cal.date(byAdding: .day, value: 6, to: weekStart)
+        else { return "" }
+
+        let ym = DateFormatter()
+        ym.locale = locale
+        ym.setLocalizedDateFormatFromTemplate("yMMMM")
+
+        let mOnly = DateFormatter()
+        mOnly.locale = locale
+        mOnly.setLocalizedDateFormatFromTemplate("MMMM")
+        if sizeCategory >= .accessibility1 {
+            return ym.string(from: weekStart)
         }
-        
-        guard let weekStart = calendar.date(
-            from: calendar
-                .dateComponents(
-                    [.yearForWeekOfYear, .weekOfYear],
-                    from: targetDate
-                )
-        ),
-              let weekEnd = calendar.date(byAdding: .day, value: 6, to: weekStart) else {
-            return ""
-        }
-        
-        let monthFormatter = DateFormatter()
-        monthFormatter.dateFormat = "LLLL"
-        monthFormatter.locale = Locale.current
-        
-        let startMonth = monthFormatter.string(from: weekStart)
-        let endMonth = monthFormatter.string(from: weekEnd)
-        
-        let yearFormatter = DateFormatter()
-        yearFormatter.dateFormat = "yyyy"
-        yearFormatter.locale = Locale.current
-        let year = yearFormatter.string(from: targetDate)
-        
-        if startMonth != endMonth {
-            if sizeCategory >= .accessibility1 {
-                return "\(startMonth) \(year)"
+
+        let sY = cal.component(.year,  from: weekStart)
+        let eY = cal.component(.year,  from: weekEnd)
+        let sM = cal.component(.month, from: weekStart)
+        let eM = cal.component(.month, from: weekEnd)
+
+        if sY == eY {
+            if sM == eM {
+                return ym.string(from: weekStart)
             } else {
-                return "\(startMonth) / \(endMonth) \(year)"
+                return "\(ym.string(from: weekStart)) – \(mOnly.string(from: weekEnd))"
             }
+        } else {
+            return "\(ym.string(from: weekStart)) – \(ym.string(from: weekEnd))"
         }
-        
-        return "\(startMonth) \(year)"
     }
 }
 
 struct WeekView: View {
     @Environment(\.dynamicTypeSize) var sizeCategory
+    @Environment(\.locale) private var locale
     
     @Binding var selectedDate: Date
     let weekNumber: Int
@@ -173,17 +172,14 @@ struct WeekView: View {
     }
     
     private func formatDayName(_ date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.locale = Locale.current
-        
-        if sizeCategory >= .xxLarge {
-            formatter.dateFormat = "EEEE"
-            let fullName = formatter.string(from: date)
-            return String(fullName.prefix(1)).uppercased()
-        } else {
-            formatter.dateFormat = "EEE"
-            return formatter.string(from: date)
-        }
+        let w: Date.FormatStyle.Symbol.Weekday =
+            (sizeCategory >= .xxLarge || sizeCategory.isAccessibilitySize) ? .narrow : .abbreviated
+
+        return date.formatted(
+            .dateTime
+                .locale(locale)
+                .weekday(w)
+        )
     }
     
     private func formatDayNumber(_ date: Date) -> String {

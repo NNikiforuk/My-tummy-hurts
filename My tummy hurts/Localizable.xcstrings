@@ -1419,9 +1419,6 @@
         }
       }
     },
-    "Hello, World!" : {
-      "shouldTranslate" : false
-    },
     "How many hours back" : {
       "extractionState" : "manual",
       "localizations" : {

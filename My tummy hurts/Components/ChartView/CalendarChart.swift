@@ -109,6 +109,7 @@ struct CalendarChart: View {
 struct MonthView: View {
     @EnvironmentObject private var vm: CoreDataViewModel
     @Environment(\.dynamicTypeSize) var sizeCategory
+    @Environment(\.locale) private var locale
     
     @Binding var selectedDate: Date
     @Binding var selectedFirstIngredient: String?
@@ -131,8 +132,10 @@ struct MonthView: View {
                 .foregroundStyle(Color("PrimaryText"))
                 .font(sizeCategory.isAccessibilitySize ? .system(size: 34) : .body)
             
-            let symbols = weekdaySymbols(for: customCalendar, dts: sizeCategory)
-            let ordered = symbols.shifted(startingAt: customCalendar.firstWeekday - 1)
+                let cal = calendar(localizedFrom: customCalendar, locale: locale)
+                let symbols = weekdaySymbols(for: cal, dts: sizeCategory)
+                let ordered = symbols.shifted(startingAt: cal.firstWeekday - 1)
+            
             HStack {
                 ForEach(ordered, id: \.self) { day in
                     Text(day)
@@ -155,8 +158,14 @@ struct MonthView: View {
         }
     }
     
+    private func calendar(localizedFrom base: Calendar, locale: Locale) -> Calendar {
+        var c = base
+        c.locale = locale
+        return c
+    }
+    
     private func weekdaySymbols(for cal: Calendar, dts: DynamicTypeSize) -> [String] {
-        if dts.isAccessibilitySize {
+        if dts.isAccessibilitySize || dts >= .xxLarge {
             let narrow = cal.veryShortStandaloneWeekdaySymbols
             return narrow.isEmpty ? cal.shortStandaloneWeekdaySymbols.map { String($0.prefix(1)) } : narrow
         } else {

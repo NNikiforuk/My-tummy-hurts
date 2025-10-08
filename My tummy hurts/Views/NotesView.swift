@@ -125,7 +125,7 @@ struct NoteSymptom: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             TopNoteRow(time: note.createdAt ?? Date(), critical: note.critical, meals: meals)
-            BottomNoteRow(text: note.symptoms ?? "", meals: meals)
+            BottomNoteRow(text: note.symptom ?? "", meals: meals)
         }
     }
 }

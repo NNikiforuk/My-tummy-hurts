@@ -14,20 +14,19 @@ struct AddMealView: View {
     
     @State private var selectedDate: Date = Date()
     @State private var newIngredients = ""
-    @State private var rows: [Row] = []
+    @State private var rows: [Row] = [Row()]
     @State private var isSaveDisabled = true
-    @State private var isEditorFocused = false
     
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
                 SiteTitle(title: "Add meal")
                 if sizeCategory.isAccessibilitySize {
-                   BiggerFontView(title: "Meal time", bindingData: $selectedDate)
+                    BiggerFontView(title: "Meal time", bindingData: $selectedDate)
                 } else {
                     DefaultFontView(title: "Meal time", bindingData: $selectedDate)
                 }
-                AddNewNote(newItems: $newIngredients, rows: $rows, meal: true)
+                AddNewIngredient(newIngredients: $newIngredients, rows: $rows)
                 Spacer()
             }
         }
@@ -44,9 +43,6 @@ struct AddMealView: View {
             }
         }
         .ignoresSafeArea(.keyboard)
-        .onTapGesture {
-            isEditorFocused = false
-        }
         .onChange(of: newIngredients) {
             isSaveDisabled = $0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
         }
@@ -57,6 +53,174 @@ struct AddMealView: View {
         newIngredients = ""
         rows = []
         dismiss()
+    }
+}
+
+struct AddNewIngredient: View {
+    @EnvironmentObject private var vm: CoreDataViewModel
+    @Binding var newIngredients: String
+    @Binding var rows: [Row]
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            SectionTitle(title: "Meal ingredients", textColor: Color("PrimaryText"))
+                .padding(.bottom, 20)
+            
+            NewRows(newNote: $newIngredients, rows: $rows)
+            AppendingRowBtn(rows: $rows)
+        }
+    }
+}
+
+struct NewRows: View {
+    @EnvironmentObject private var vm: CoreDataViewModel
+    
+    @Binding var newNote: String
+    @Binding var rows: [Row]
+    
+    @FocusState private var focusedRowID: UUID?
+    @State private var syncWorkItem: DispatchWorkItem?
+    
+    var suggestions: [String] { vm.ingredientSuggestions() }
+    
+    var body: some View {
+        VStack(spacing: 10) {
+            ForEach($rows) { $row in
+                IngredientRowField(
+                    text: $row.text,
+                    rowID: row.id,
+                    focusedRowID: $focusedRowID,
+                    suggestions: suggestions,
+                    onPick: { picked in
+                        row.text = picked
+                        scheduleSync()
+                    },
+                    onClear: { row.text = ""
+                        scheduleSync()
+                    },
+                    onDelete: { id in
+                        deleteRow(id)
+                    }
+                )
+            }
+        }
+        .simultaneousGesture(TapGesture().onEnded { focusedRowID = nil })
+        .onChange(of: rows) { _ in scheduleSync() }
+    }
+    
+    private func deleteRow(_ id: UUID) {
+        focusedRowID = nil
+        guard let i = rows.firstIndex(where: { $0.id == id }) else { return }
+        
+        DispatchQueue.main.async {
+            if self.rows.count == 1 {
+                self.rows[i].text = ""
+            } else {
+                self.rows.remove(at: i)
+            }
+            self.scheduleSync()
+        }
+    }
+    
+    private func scheduleSync() {
+        syncWorkItem?.cancel()
+        let snapshot = rows
+        let item = DispatchWorkItem { [snapshot] in
+            let joined = buildJoined(from: snapshot)
+            if joined != newNote { newNote = joined }
+        }
+        syncWorkItem = item
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(30), execute: item)
+    }
+    
+    private func buildJoined(from rows: [Row]) -> String {
+        let cleaned = rows.map(\.text)
+            .map {
+                $0.trimmingCharacters(in: .whitespacesAndNewlines)
+                    .trimmingCharacters(in: CharacterSet(charactersIn: ".,"))
+            }
+            .filter { !$0.isEmpty }
+        var seen = Set<String>()
+        let unique = cleaned.filter { seen.insert($0.lowercased()).inserted }
+        return unique.joined(separator: ", ")
+    }
+}
+
+struct AppendingRowBtn: View {
+    @Binding var rows: [Row]
+    
+    var body: some View {
+        Button {
+            withAnimation {
+                if rows.last?.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false {
+                    rows.append(Row())
+                }
+            }
+        } label: {
+            PlusIcon()
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+}
+
+struct IngredientRowField: View {
+    @EnvironmentObject private var vm: CoreDataViewModel
+    @Binding var text: String
+    let rowID: UUID
+    var focusedRowID: FocusState<UUID?>.Binding
+    let suggestions: [String]
+    
+    var onPick: (String) -> Void
+    var onClear: () -> Void
+    var onDelete: (UUID) -> Void
+    
+    @State private var showDropdown = false
+    @State private var fieldHeight: CGFloat = 0
+    
+    private var isFocused: Bool { focusedRowID.wrappedValue == rowID }
+    
+    var body: some View {
+        ZStack(alignment: .topLeading) {
+            VStack(alignment: .leading, spacing: 6) {
+                HStack(spacing: 8) {
+                    TextField("cow milk", text: $text)
+                        .noteTextFieldModifier()
+                        .background(
+                            GeometryReader { g in Color.clear
+                                    .onAppear { fieldHeight = g.size.height }
+                                    .onChange(of: g.size.height) { fieldHeight = $0 }
+                            }
+                        )
+                        .focused(focusedRowID, equals: rowID)
+                        .onChange(of: focusedRowID.wrappedValue) { _ in
+                            showDropdown = isFocused && !suggestions.isEmpty
+                        }
+                        .onChange(of: text) { _ in
+                            showDropdown = isFocused && !suggestions.isEmpty
+                        }
+                    
+                    Button {
+                        focusedRowID.wrappedValue = nil
+                        onDelete(rowID)
+                    } label: {
+                        Image(systemName: "xmark.circle").foregroundStyle(.secondary)
+                    }
+                }
+                
+                if showDropdown {
+                    SuggestionDropdown(
+                        suggestions: suggestions,
+                        query: text
+                    ) { picked in
+                        onPick(picked)
+                        focusedRowID.wrappedValue = nil
+                        showDropdown = false
+                    }
+                    .suggestionsModifier()
+                }
+            }
+            .zIndex(1)
+        }
     }
 }
 

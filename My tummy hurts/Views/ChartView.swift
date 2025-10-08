@@ -222,7 +222,7 @@ struct ChartView: View {
         guard let selectedSpecificSymptom = selectedSymptom else { return [] }
         
         return vm.savedSymptomNotes.filter { symptom in
-            symptom.symptoms?.contains(selectedSpecificSymptom) == true
+            symptom.symptom?.contains(selectedSpecificSymptom) == true
         }
     }
     

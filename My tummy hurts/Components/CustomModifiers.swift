@@ -105,3 +105,42 @@ extension View {
         modifier(TextFieldModifier())
     }
 }
+
+struct NoteTextFieldModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .padding(.horizontal, 14).padding(.vertical, 10)
+            .disableAutocorrection(true)
+            .lineLimit(1)
+            .textInputAutocapitalization(.never)
+            .foregroundStyle(.primary)
+            .background(Color(uiColor: .systemBackground))
+            .overlay(
+                RoundedRectangle(cornerRadius: 12, style: .continuous)
+                    .stroke(Color.secondary.opacity(0.45), lineWidth: 1)
+            )
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+    }
+}
+
+extension View {
+    func noteTextFieldModifier() -> some View {
+        modifier(NoteTextFieldModifier())
+    }
+}
+
+struct SuggestionsModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .frame(maxWidth: .infinity)
+            .padding(.top, 6)
+            .zIndex(2)
+            .transition(.move(edge: .top).combined(with: .opacity))
+    }
+}
+
+extension View {
+    func suggestionsModifier() -> some View {
+        modifier(SuggestionsModifier())
+    }
+}

@@ -13,31 +13,34 @@ struct AddSymptomView: View {
     @Environment(\.dynamicTypeSize) var sizeCategory
     
     @State private var selectedDate: Date = Date()
-    @State private var newSymptoms = ""
+    @State private var newSymptom = ""
     @State private var rows: [Row] = []
     @State private var isSaveDisabled = true
-    @State private var isEditorFocused = false
     @State private var critical: Bool = false
     
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
-            SiteTitle(title: "Add symptom")
-            if sizeCategory.isAccessibilitySize {
-               BiggerFontView(title: "Symptom time", bindingData: $selectedDate)
-            } else {
-               DefaultFontView(title: "Symptom time", bindingData: $selectedDate)
+                SiteTitle(title: "Add symptom")
+                if sizeCategory.isAccessibilitySize {
+                    BiggerFontView(title: "Symptom time", bindingData: $selectedDate)
+                } else {
+                    DefaultFontView(title: "Symptom time", bindingData: $selectedDate)
+                }
+                SymptomTags(critical: $critical)
+                HStack {
+                    SectionTitle(title: "Symptom", textColor: Color("PrimaryText"))
+                    Spacer()
+                }
+                FieldWithSuggestions(newSymptom: $newSymptom)
+                Spacer()
             }
-            SymptomTags(critical: $critical)
-            AddNewNote(newItems: $newSymptoms, rows: $rows, meal: false)
-            Spacer()
-        }
         }
         .customBgModifier()
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 SaveBtn(action: {
-                    model.addSymptom(createdAt: selectedDate, symptoms: newSymptoms, critical: critical)
+                    model.addSymptom(createdAt: selectedDate, symptom: newSymptom, critical: critical)
                     clearForm()
                 })
                 .fontWeight(.bold)
@@ -46,20 +49,66 @@ struct AddSymptomView: View {
             }
         }
         .ignoresSafeArea(.keyboard)
-        .onTapGesture {
-            isEditorFocused = false
-        }
-        .onChange(of: newSymptoms) {
+        .onChange(of: newSymptom) {
             isSaveDisabled = $0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
         }
     }
     
     func clearForm() {
         selectedDate = Date()
-        newSymptoms = ""
+        newSymptom = ""
         rows = []
         critical = false
         dismiss()
+    }
+}
+
+struct FieldWithSuggestions: View {
+    @EnvironmentObject private var vm: CoreDataViewModel
+    @Binding var newSymptom: String
+    @FocusState private var focused: Bool
+    @State private var showDropdown = false
+    @State private var fieldHeight: CGFloat = 0
+    
+    var suggestions: [String] {
+        vm.symptomSuggestions()
+    }
+    
+    var body: some View {
+        ZStack(alignment: .topLeading) {
+            VStack(alignment: .leading, spacing: 6) {
+                TextField("diarrhea", text: $newSymptom)
+                    .noteTextFieldModifier()
+                    .background(
+                        GeometryReader { g in Color.clear
+                                .onAppear { fieldHeight = g.size.height }
+                                .onChange(of: g.size.height) { fieldHeight = $0 }
+                        }
+                    )
+                    .focused($focused)
+                    .onChange(of: newSymptom) { _ in showDropdown = focused && !suggestions.isEmpty }
+                    .onChange(of: focused)      { f in showDropdown = f && !suggestions.isEmpty }
+                
+                if showDropdown {
+                    SuggestionDropdown(suggestions: suggestions, query: newSymptom) { picked in
+                        newSymptom = picked
+                        focused = false
+                        showDropdown = false
+                    }
+                    .suggestionsModifier()
+                }
+            }
+            .zIndex(1)
+        }
+        .simultaneousGesture(
+            TapGesture().onEnded {
+                if showDropdown {
+                    focused = false
+                    showDropdown = false
+                }
+            }
+        )
+        .animation(.snappy, value: showDropdown)
     }
 }
 

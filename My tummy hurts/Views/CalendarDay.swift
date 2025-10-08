@@ -52,7 +52,7 @@ struct CalendarDay: View {
     var symptoms: [Event] {
         filteredSymptoms.compactMap { symptom in
             guard let symptomTime = symptom.createdAt else { return nil }
-            guard let symptoms = symptom.symptoms else { return nil }
+            guard let symptoms = symptom.symptom else { return nil }
             
             return Event(date: symptomTime, type: .symptoms, tag: symptom.critical ? .red : .blue, icon: "toilet", desc: symptoms)
         }

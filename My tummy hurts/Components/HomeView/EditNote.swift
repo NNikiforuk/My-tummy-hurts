@@ -43,8 +43,7 @@ struct EditMeal: View {
                 VStack(alignment: .leading, spacing: 8) {
                     SectionTitle(title: "Meal ingredients", textColor: Color("PrimaryText"))
                         .padding(.bottom, 20)
-                    NewRows(newNote: $newIngredients, rows: $rows, meal: true)
-                    AppendingRowBtn(rows: $rows)
+                    AddNewIngredient(newIngredients: $newIngredients, rows: $rows)
                 }
                 Spacer()
             }
@@ -80,18 +79,12 @@ struct EditSymptom: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.dynamicTypeSize) var sizeCategory
     
-    @State private var newSymptoms = ""
+    @State private var newSymptom = ""
     @State private var symptomCreatedAt: Date = Date()
-    @State private var rows: [Row] = []
     @State private var critical: Bool = false
     @State private var showDeleteSymptomAlert: Bool = false
     
     @ObservedObject var note: SymptomNote
-    
-    var noteToRows: [Row] {
-        let text = note.symptoms ?? ""
-        return text.split(separator: ",").map{ Row(text: String($0) ) }
-    }
     
     var body: some View {
         ScrollView {
@@ -109,8 +102,7 @@ struct EditSymptom: View {
                 VStack(alignment: .leading, spacing: 8) {
                     SectionTitle(title: "Negative symptoms", textColor: Color("PrimaryText"))
                         .padding(.bottom, 20)
-                    NewRows(newNote: $newSymptoms, rows: $rows, meal: false)
-                    AppendingRowBtn(rows: $rows)
+                    FieldWithSuggestions(newSymptom: $newSymptom)
                 }
                 Spacer()
             }
@@ -120,10 +112,10 @@ struct EditSymptom: View {
             ToolbarItemGroup(placement: .topBarTrailing) {
                 DeleteBtn(action: { showDeleteSymptomAlert = true })
                 SaveBtn(action: {
-                    vm.updateSymptom(entity: note, createdAt: symptomCreatedAt, symptoms: newSymptoms, critical: critical)
+                    vm.updateSymptom(entity: note, createdAt: symptomCreatedAt, symptom: newSymptom, critical: critical)
                     dismiss()
                 })
-                .disabled(newSymptoms.isEmpty)
+                .disabled(newSymptom.isEmpty)
             }
         }
         .alert("Do you want to delete this symptom?", isPresented: $showDeleteSymptomAlert) {
@@ -134,23 +126,8 @@ struct EditSymptom: View {
             })
         }
         .onAppear {
-            rows = noteToRows
             symptomCreatedAt = note.createdAt ?? Date()
+            newSymptom = note.symptom ?? ""
         }
-    }
-}
-
-struct AppendingRowBtn: View {
-    @Binding var rows: [Row]
-    
-    var body: some View {
-        Button {
-            withAnimation {
-                rows.append(Row())
-            }
-        } label: {
-            PlusIcon()
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }

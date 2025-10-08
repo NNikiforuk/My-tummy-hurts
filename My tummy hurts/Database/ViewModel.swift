@@ -54,12 +54,12 @@ class CoreDataViewModel: ObservableObject {
         saveData(typeMeal: true)
     }
     
-    func addSymptom(createdAt: Date, symptoms: String, critical: Bool) {
+    func addSymptom(createdAt: Date, symptom: String, critical: Bool) {
         let newSymptom = SymptomNote(context: container.viewContext)
         
         newSymptom.id = UUID()
         newSymptom.createdAt = createdAt
-        newSymptom.symptoms = symptoms
+        newSymptom.symptom = symptom
         newSymptom.critical = critical
         
         saveData(typeMeal: false)
@@ -102,9 +102,9 @@ class CoreDataViewModel: ObservableObject {
         saveData(typeMeal: true)
     }
     
-    func updateSymptom(entity: SymptomNote, createdAt: Date, symptoms: String, critical: Bool) {
+    func updateSymptom(entity: SymptomNote, createdAt: Date, symptom: String, critical: Bool) {
         entity.createdAt = createdAt
-        entity.symptoms = symptoms
+        entity.symptom = symptom
         entity.critical = critical
         saveData(typeMeal: false)
     }
@@ -120,4 +120,65 @@ class CoreDataViewModel: ObservableObject {
     }
 }
 
+extension CoreDataViewModel {
+    @MainActor
+    func ingredientSuggestions() -> [String] {
+        let rows = savedMealNotes.compactMap(\.ingredients)
+        return makeSuggestions(from: rows)
+    }
 
+    @MainActor
+    func symptomSuggestions() -> [String] {
+        let rows = savedSymptomNotes.compactMap(\.symptom)
+        return makeSuggestions(from: rows)
+    }
+}
+
+private extension CoreDataViewModel {
+    func makeSuggestions(from rows: [String]) -> [String] {
+        guard !rows.isEmpty else { return [] }
+        let seps = CharacterSet(charactersIn: ",，;；|/•\n\t")
+
+        var freq: [String: Int] = [:]
+        var canonical: [String: String] = [:]
+
+        for row in rows {
+            var seenInThisRow = Set<String>()
+            for raw in row.components(separatedBy: seps) {
+                let label = raw
+                    .trimmingCharacters(in: .whitespacesAndNewlines)
+                    .trimmingCharacters(in: CharacterSet(charactersIn: "."))
+                guard !label.isEmpty else { continue }
+
+                let key = label.normalizedKey
+                if seenInThisRow.insert(key).inserted {
+                    freq[key, default: 0] += 1
+                }
+                if canonical[key] == nil { canonical[key] = label }
+            }
+        }
+
+        var items: [(label: String, count: Int)] = []
+        items.reserveCapacity(freq.count)
+        for (key, count) in freq {
+            if let label = canonical[key] {
+                items.append((label, count))
+            }
+        }
+
+        items.sort {
+            if $0.count != $1.count { return $0.count > $1.count }
+            return $0.label.localizedCaseInsensitiveCompare($1.label) == .orderedAscending
+        }
+
+        return items.map { $0.label }
+    }
+}
+
+private extension String {
+    var normalizedKey: String {
+        self.trimmingCharacters(in: .whitespacesAndNewlines)
+            .folding(options: [.diacriticInsensitive, .caseInsensitive], locale: .current)
+            .lowercased()
+    }
+}

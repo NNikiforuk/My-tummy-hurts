@@ -32,7 +32,7 @@ extension NoteEnum {
         case .meal(let meal):
             return meal.ingredients
         case .symptom(let symptom):
-            return symptom.symptoms
+            return symptom.symptom
         }
     }
     

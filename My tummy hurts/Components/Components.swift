@@ -115,7 +115,7 @@ struct OnboardingPageTitle: View {
 }
 
 struct DefaultFontView: View {
-    var title: String
+    var title: LocalizedStringKey
     
     @Binding var bindingData: Date
     
@@ -164,3 +164,64 @@ struct CustomDataPicker: View {
         .labelsHidden()
     }
 }
+
+struct Suggestion: View {
+    @Binding var newNote: String
+    
+    var suggestions: [String]
+    var onSelect: (() -> Void)? = nil
+    
+    var sortedSuggestions: [String] {
+        suggestions.sorted(by: { $0 < $1 })
+    }
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            ForEach(sortedSuggestions, id: \.self) { suggestion in
+                Button {
+                    newNote = suggestion
+                    onSelect?()
+                } label: {
+                    Text(suggestion)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .foregroundStyle(Color("SecondaryText"))
+            }
+        }
+        .background(.ultraThinMaterial)
+        .clipShape(RoundedRectangle(cornerRadius: 8))
+        .shadow(radius: 4)
+        .offset(y: 5)
+    }
+}
+
+struct SuggestionDropdown: View {
+    let suggestions: [String]
+    let query: String
+    var onPick: (String) -> Void
+    
+    var body: some View {
+        ScrollView {
+            LazyVStack(alignment: .leading) {
+                ForEach(suggestions, id: \.self) { s in
+                    Button { onPick(s) } label: {
+                        Text(s)
+                    }
+                    .padding(3)
+                    .padding(.horizontal, 5)
+                    .padding(.vertical, 5)
+                    .foregroundStyle(Color("SecondaryText"))
+                    .contentShape(Rectangle())
+                    .overlay(Divider(), alignment: .bottom)
+                }
+            }
+        }
+        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 12))
+        .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color(uiColor: .separator), lineWidth: 1))
+        .shadow(color: .black.opacity(0.12), radius: 10, y: 4)
+        .onAppear {
+            print(suggestions)
+        }
+    }
+}
+

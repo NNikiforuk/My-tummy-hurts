@@ -90,7 +90,7 @@ func dataForPicker(mealsMode: Bool, model: CoreDataViewModel, excluded: String? 
         }
     } else {
         for note in model.savedSymptomNotes {
-            guard let s = note.symptoms else { continue }
+            guard let s = note.symptom else { continue }
             array.append(contentsOf:
                             s.split(separator: ",").map { String($0).normalizedToken }.filter { !$0.isEmpty }
             )

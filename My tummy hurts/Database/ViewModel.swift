@@ -122,42 +122,67 @@ class CoreDataViewModel: ObservableObject {
 
 extension CoreDataViewModel {
     @MainActor
-    func ingredientSuggestions() -> [String] {
+    func ingredientSuggestions(prefix: String,
+                               includeAllWhenEmpty: Bool = false,
+                               limit: Int? = nil) -> [String] {
         let rows = savedMealNotes.compactMap(\.ingredients)
-        return makeSuggestions(from: rows)
+        return suggestions(from: rows,
+                           splitOnSeparators: true,
+                           prefix: prefix,
+                           includeAllWhenEmpty: includeAllWhenEmpty,
+                           limit: limit)
     }
-
+    
     @MainActor
-    func symptomSuggestions() -> [String] {
+    func symptomSuggestions(prefix: String,
+                            includeAllWhenEmpty: Bool = false,
+                            limit: Int? = nil) -> [String] {
         let rows = savedSymptomNotes.compactMap(\.symptom)
-        return makeSuggestions(from: rows)
+        return suggestions(from: rows,
+                           splitOnSeparators: false,
+                           prefix: prefix,
+                           includeAllWhenEmpty: includeAllWhenEmpty,
+                           limit: limit)
     }
 }
 
 private extension CoreDataViewModel {
-    func makeSuggestions(from rows: [String]) -> [String] {
+    func suggestions(from rows: [String],
+                     splitOnSeparators: Bool,
+                     prefix: String,
+                     includeAllWhenEmpty: Bool,
+                     limit: Int?) -> [String] {
         guard !rows.isEmpty else { return [] }
-        let seps = CharacterSet(charactersIn: ",，;；|/•\n\t")
-
+        
+        let rawPrefix = prefix.trimmingCharacters(in: .whitespacesAndNewlines)
+        let q = normalize(rawPrefix)
+        if q.isEmpty, !includeAllWhenEmpty { return [] }
+        
+        let separators = CharacterSet(charactersIn: ",，;；|/•\n\t")
+        
         var freq: [String: Int] = [:]
         var canonical: [String: String] = [:]
-
+        
         for row in rows {
+            let parts = splitOnSeparators ? row.components(separatedBy: separators) : [row]
             var seenInThisRow = Set<String>()
-            for raw in row.components(separatedBy: seps) {
+            for raw in parts {
                 let label = raw
                     .trimmingCharacters(in: .whitespacesAndNewlines)
                     .trimmingCharacters(in: CharacterSet(charactersIn: "."))
+                
                 guard !label.isEmpty else { continue }
-
-                let key = label.normalizedKey
+                let key = normalize(label)
+                
+                if !q.isEmpty, !key.hasPrefix(q) { continue }
+                
                 if seenInThisRow.insert(key).inserted {
                     freq[key, default: 0] += 1
                 }
                 if canonical[key] == nil { canonical[key] = label }
             }
         }
-
+        
         var items: [(label: String, count: Int)] = []
         items.reserveCapacity(freq.count)
         for (key, count) in freq {
@@ -165,13 +190,19 @@ private extension CoreDataViewModel {
                 items.append((label, count))
             }
         }
-
         items.sort {
             if $0.count != $1.count { return $0.count > $1.count }
             return $0.label.localizedCaseInsensitiveCompare($1.label) == .orderedAscending
         }
-
-        return items.map { $0.label }
+        
+        if let limit, limit > 0 { return Array(items.prefix(limit).map(\.label)) }
+        return items.map(\.label)
+    }
+    
+    func normalize(_ s: String) -> String {
+        s.folding(options: [.diacriticInsensitive, .caseInsensitive], locale: .current)
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .lowercased()
     }
 }
 

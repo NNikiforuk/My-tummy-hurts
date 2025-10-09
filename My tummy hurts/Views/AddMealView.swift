@@ -80,8 +80,7 @@ struct NewRows: View {
     
     @FocusState private var focusedRowID: UUID?
     @State private var syncWorkItem: DispatchWorkItem?
-    
-    var suggestions: [String] { vm.ingredientSuggestions() }
+    @State private var hasOpenDropdown = false
     
     var body: some View {
         VStack(spacing: 10) {
@@ -90,7 +89,9 @@ struct NewRows: View {
                     text: $row.text,
                     rowID: row.id,
                     focusedRowID: $focusedRowID,
-                    suggestions: suggestions,
+                    onDropdownVisibilityChanged: { visible in
+                        hasOpenDropdown = visible
+                    },
                     onPick: { picked in
                         row.text = picked
                         scheduleSync()
@@ -104,7 +105,19 @@ struct NewRows: View {
                 )
             }
         }
-        .simultaneousGesture(TapGesture().onEnded { focusedRowID = nil })
+        .background(
+            Group {
+                if hasOpenDropdown {
+                    Color.black.opacity(0.001)
+                        .ignoresSafeArea()
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            focusedRowID = nil
+                            hasOpenDropdown = false
+                        }
+                }
+            }
+        )
         .onChange(of: rows) { _ in scheduleSync() }
     }
     
@@ -168,8 +181,8 @@ struct IngredientRowField: View {
     @Binding var text: String
     let rowID: UUID
     var focusedRowID: FocusState<UUID?>.Binding
-    let suggestions: [String]
     
+    var onDropdownVisibilityChanged: (Bool) -> Void = { _ in }
     var onPick: (String) -> Void
     var onClear: () -> Void
     var onDelete: (UUID) -> Void
@@ -178,6 +191,9 @@ struct IngredientRowField: View {
     @State private var fieldHeight: CGFloat = 0
     
     private var isFocused: Bool { focusedRowID.wrappedValue == rowID }
+    private var filteredSuggestions: [String] {
+        vm.ingredientSuggestions(prefix: text, includeAllWhenEmpty: false)
+    }
     
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -193,15 +209,28 @@ struct IngredientRowField: View {
                         )
                         .focused(focusedRowID, equals: rowID)
                         .onChange(of: focusedRowID.wrappedValue) { _ in
-                            showDropdown = isFocused && !suggestions.isEmpty
+                            let visible = isFocused && !filteredSuggestions.isEmpty
+                            if visible != showDropdown {
+                                showDropdown = visible
+                                onDropdownVisibilityChanged(visible)
+                            }
                         }
                         .onChange(of: text) { _ in
-                            showDropdown = isFocused && !suggestions.isEmpty
+                            let visible = isFocused && !filteredSuggestions.isEmpty
+                            if visible != showDropdown {
+                                showDropdown = visible
+                                onDropdownVisibilityChanged(visible)
+                            }
                         }
                     
                     Button {
                         focusedRowID.wrappedValue = nil
                         onDelete(rowID)
+                        
+                        if showDropdown {
+                            showDropdown = false
+                            onDropdownVisibilityChanged(false)
+                        }
                     } label: {
                         Image(systemName: "xmark.circle").foregroundStyle(.secondary)
                     }
@@ -209,12 +238,13 @@ struct IngredientRowField: View {
                 
                 if showDropdown {
                     SuggestionDropdown(
-                        suggestions: suggestions,
+                        suggestions: filteredSuggestions,
                         query: text
                     ) { picked in
                         onPick(picked)
                         focusedRowID.wrappedValue = nil
                         showDropdown = false
+                        onDropdownVisibilityChanged(false)
                     }
                     .suggestionsModifier()
                 }

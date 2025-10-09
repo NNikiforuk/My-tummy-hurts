@@ -14,9 +14,10 @@ struct AddSymptomView: View {
     
     @State private var selectedDate: Date = Date()
     @State private var newSymptom = ""
-    @State private var rows: [Row] = []
     @State private var isSaveDisabled = true
     @State private var critical: Bool = false
+    @State private var hasOpenDropdown = false
+    @State private var closeDropdownTick = 0
     
     var body: some View {
         ScrollView {
@@ -32,11 +33,25 @@ struct AddSymptomView: View {
                     SectionTitle(title: "Symptom", textColor: Color("PrimaryText"))
                     Spacer()
                 }
-                FieldWithSuggestions(newSymptom: $newSymptom)
+                FieldWithSuggestions(newSymptom: $newSymptom, onDropdownVisibilityChanged: { visible in hasOpenDropdown = visible },
+                                     closeTick: closeDropdownTick)
                 Spacer()
             }
         }
         .customBgModifier()
+        .background(
+            Group {
+                if hasOpenDropdown {
+                    Color.black.opacity(0.001)
+                        .ignoresSafeArea()
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            hasOpenDropdown = false
+                            closeDropdownTick &+= 1
+                        }
+                }
+            }
+        )
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 SaveBtn(action: {
@@ -57,7 +72,6 @@ struct AddSymptomView: View {
     func clearForm() {
         selectedDate = Date()
         newSymptom = ""
-        rows = []
         critical = false
         dismiss()
     }
@@ -66,12 +80,16 @@ struct AddSymptomView: View {
 struct FieldWithSuggestions: View {
     @EnvironmentObject private var vm: CoreDataViewModel
     @Binding var newSymptom: String
+    
+    var onDropdownVisibilityChanged: (Bool) -> Void = { _ in }
+    var closeTick: Int = 0
+    
     @FocusState private var focused: Bool
     @State private var showDropdown = false
     @State private var fieldHeight: CGFloat = 0
     
-    var suggestions: [String] {
-        vm.symptomSuggestions()
+    private var filtered: [String] {
+        vm.symptomSuggestions(prefix: newSymptom, includeAllWhenEmpty: false)
     }
     
     var body: some View {
@@ -86,14 +104,37 @@ struct FieldWithSuggestions: View {
                         }
                     )
                     .focused($focused)
-                    .onChange(of: newSymptom) { _ in showDropdown = focused && !suggestions.isEmpty }
-                    .onChange(of: focused)      { f in showDropdown = f && !suggestions.isEmpty }
+                    .onChange(of: focused) { _ in
+                        let visible = focused && !filtered.isEmpty
+                        if visible != showDropdown {
+                            showDropdown = visible
+                            onDropdownVisibilityChanged(visible)
+                        }
+                    }
+                    .onChange(of: newSymptom) { _ in
+                        let visible = focused && !filtered.isEmpty
+                        if visible != showDropdown {
+                            showDropdown = visible
+                            onDropdownVisibilityChanged(visible)
+                        }
+                    }
+                    .onChange(of: closeTick) { _ in
+                        if showDropdown {
+                            focused = false
+                            showDropdown = false
+                            onDropdownVisibilityChanged(false)
+                        }
+                    }
                 
                 if showDropdown {
-                    SuggestionDropdown(suggestions: suggestions, query: newSymptom) { picked in
+                    SuggestionDropdown(
+                        suggestions: filtered,
+                        query: newSymptom
+                    ) { picked in
                         newSymptom = picked
                         focused = false
                         showDropdown = false
+                        onDropdownVisibilityChanged(false)
                     }
                     .suggestionsModifier()
                 }
@@ -134,7 +175,6 @@ struct SymptomTags: View {
                 .frame(width: 120, alignment: .leading)
                 .bold()
             Spacer()
-            
             ForEach(SymptomTagsEnum.allCases) { el in
                 singleTag(el: el)
             }

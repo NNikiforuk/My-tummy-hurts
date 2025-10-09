@@ -30,7 +30,6 @@ struct SectionTitle: View {
     }
 }
 
-
 struct NoDataAlert: View {
     let text: LocalizedStringKey
     
@@ -219,9 +218,6 @@ struct SuggestionDropdown: View {
         .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 12))
         .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color(uiColor: .separator), lineWidth: 1))
         .shadow(color: .black.opacity(0.12), radius: 10, y: 4)
-        .onAppear {
-            print(suggestions)
-        }
     }
 }
 

@@ -62,12 +62,13 @@ struct GeneralAnalytics: View {
                 
                 //CHARTS
                 VStack(alignment: .leading) {
-                    SectionTitle(title: "Potential causes for upset tummy", textColor: Color("SecondaryText"))
-                        .textCase(.uppercase)
-                    VStack {
                         switch chartType {
                         case .defaultChart:
-                            titleOfChart(title: chartTitle)
+                            HStack {
+                                Spacer()
+                                titleOfChart(title: chartTitle)
+                                Spacer()
+                            }
                             BarChart(data: firstChartData)
                                 .frame(height: 200)
                             
@@ -79,14 +80,17 @@ struct GeneralAnalytics: View {
                             } else if secondChartData.isEmpty {
                                 NoDataAlert(text: "No data to show")
                             } else if selectedSymptom != nil {
-                                titleOfChart(title: chartTitle)
+                                HStack {
+                                    Spacer()
+                                    titleOfChart(title: chartTitle)
+                                    Spacer()
+                                }
                                 BarChart(data: secondChartData)
                                     .frame(height: 200)
                             }
                         }
-                    }
-                    .padding()
                 }
+                .padding()
             }
         }
     }

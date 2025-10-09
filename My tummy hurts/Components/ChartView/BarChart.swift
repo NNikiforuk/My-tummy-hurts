@@ -54,7 +54,7 @@ struct BarChart: View {
                         CGFloat(entry.1) / CGFloat(maxValue) * (geo.size.height - textHeight)
                 )
             Text(entry.0)
-                .font(.system(size: 16))
+                .font(.caption2)
                 .frame(width: barWidth)
                 .lineLimit(1)
                 .foregroundStyle(Color("PrimaryText"))

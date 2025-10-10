@@ -40,9 +40,7 @@ struct EditMeal: View {
                     DefaultFontView(title: "Meal time", bindingData: $mealCreatedAt)
                 }
     
-                VStack(alignment: .leading, spacing: 8) {
-                    SectionTitle(title: "Meal ingredients", textColor: Color("PrimaryText"))
-                        .padding(.bottom, 20)
+                VStack(alignment: .leading) {
                     AddNewIngredient(newIngredients: $newIngredients, rows: $rows)
                 }
                 Spacer()

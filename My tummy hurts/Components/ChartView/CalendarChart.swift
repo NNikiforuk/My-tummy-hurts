@@ -100,7 +100,6 @@ struct CalendarChart: View {
                     }
                     .grayOverlayModifier()
                 }
-                .padding(.top, 30)
             }
         }
     }
@@ -309,7 +308,7 @@ struct TagsDescription: View {
         }
         .font(sizeCategory.isAccessibilitySize ? .system(size: 22) : .body )
         .foregroundStyle(Color("SecondaryText"))
-        .padding(.top, 50)
+        .padding(.top, 30)
     }
 }
 

@@ -14,7 +14,7 @@ struct ChartView: View {
     @State private var chartType: ChartMode = .defaultChart
     @State private var ingredientsToShow = 3
     @State private var hoursBack = 1
-    @State private var selectedSymptom: String? = "biegunka"
+    @State private var selectedSymptom: String? = nil
     @State private var selectedFirstIngredient: String? = nil
     @State private var selectedSecondIngredient: String? = nil
     @State private var selectedDate: Date = Date()
@@ -35,10 +35,10 @@ struct ChartView: View {
             default:
                 if howManyElFirstChartData < ingredientsToShow {
                     let format = NSLocalizedString("Top ingredients followed by any symptom (%1$d found)", comment: "")
-                    return String(format: format, ingredientsToShow, howManyElFirstChartData)
+                    return String(format: format, howManyElFirstChartData)
                 } else {
                     let format = NSLocalizedString("Top ingredients followed by any symptom", comment: "")
-                    return String(format: format, ingredientsToShow)
+                    return String(format: format)
                 }
             }
             
@@ -50,10 +50,10 @@ struct ChartView: View {
             default:
                 if howManyElSecondChartData < ingredientsToShow {
                     let format = NSLocalizedString("Top ingredients in the %1$d-hour window before: %2$@ (%3$d found)", comment: "")
-                    return String(format: format, ingredientsToShow, hoursBack, selectedSymptom ?? "", howManyElSecondChartData)
+                    return String(format: format, hoursBack, selectedSymptom ?? "", howManyElSecondChartData)
                 } else {
                     let format = NSLocalizedString("Top ingredients in the %1$d-hour window before: %2$@", comment: "")
-                    return String(format: format, ingredientsToShow, hoursBack, selectedSymptom ?? "")
+                    return String(format: format, hoursBack, selectedSymptom ?? "")
                 }
             }
         }

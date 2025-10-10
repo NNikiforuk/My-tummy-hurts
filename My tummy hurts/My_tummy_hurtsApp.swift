@@ -11,6 +11,13 @@ import SwiftUI
 struct My_tummy_hurtsApp: App {
     @StateObject private var vm = CoreDataViewModel()
     @AppStorage("isOnboarding") private var isOnboarding = true
+    @AppStorage("firstInstallAt") private var firstInstallAt: Double = 0
+    
+    init() {
+            if firstInstallAt == 0 {
+                firstInstallAt = Date().timeIntervalSince1970
+            }
+        }
     
     var body: some Scene {
         WindowGroup {

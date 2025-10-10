@@ -173,6 +173,7 @@ struct AppendingRowBtn: View {
             PlusIcon()
         }
         .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.top, 20)
     }
 }
 

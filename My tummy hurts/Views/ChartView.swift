@@ -34,10 +34,10 @@ struct ChartView: View {
                 return NSLocalizedString("Top ingredient followed by any symptom", comment: "")
             default:
                 if howManyElFirstChartData < ingredientsToShow {
-                    let format = NSLocalizedString("Top %1$d ingredients followed by any symptom (%2$d found)", comment: "")
+                    let format = NSLocalizedString("Top ingredients followed by any symptom (%1$d found)", comment: "")
                     return String(format: format, ingredientsToShow, howManyElFirstChartData)
                 } else {
-                    let format = NSLocalizedString("Top %1$d ingredients followed by any symptom", comment: "")
+                    let format = NSLocalizedString("Top ingredients followed by any symptom", comment: "")
                     return String(format: format, ingredientsToShow)
                 }
             }
@@ -49,10 +49,10 @@ struct ChartView: View {
                 return String(format: format, hoursBack, selectedSymptom ?? "")
             default:
                 if howManyElSecondChartData < ingredientsToShow {
-                    let format = NSLocalizedString("Top %1$d ingredients in the %2$d-hour window before: %3$@ (%4$d found)", comment: "")
+                    let format = NSLocalizedString("Top ingredients in the %1$d-hour window before: %2$@ (%3$d found)", comment: "")
                     return String(format: format, ingredientsToShow, hoursBack, selectedSymptom ?? "", howManyElSecondChartData)
                 } else {
-                    let format = NSLocalizedString("Top %1$d ingredients in the %2$d-hour window before: %3$@", comment: "")
+                    let format = NSLocalizedString("Top ingredients in the %1$d-hour window before: %2$@", comment: "")
                     return String(format: format, ingredientsToShow, hoursBack, selectedSymptom ?? "")
                 }
             }

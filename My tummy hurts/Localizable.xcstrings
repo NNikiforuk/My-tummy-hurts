@@ -3149,145 +3149,6 @@
         }
       }
     },
-    "Top %1$d ingredients followed by any symptom" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$d häufigste Zutaten, nach denen Symptome auftraten"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$d ingredientes más comunes seguidos de algún síntoma"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$d ingrédients les plus courants précédant un symptôme"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Najczęstsze %1$d składniki tuż przed objawami"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "最常见的 %1$d 个成分，其后伴随任意症状"
-          }
-        }
-      }
-    },
-    "Top %1$d ingredients followed by any symptom (%2$d found)" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$d häufigste Zutaten, nach denen Symptome auftraten (%2$d gefunden)"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$d ingredientes más comunes seguidos de algún síntoma (%2$d encontrados)"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$d ingrédients les plus courants précédant un symptôme (%2$d trouvés)"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Najczęstsze %1$d składniki poprzedzające objawy (znaleziono %2$d)"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "最常见的 %1$d 个成分，其后伴随任意症状（找到 %2$d 个"
-          }
-        }
-      }
-    },
-    "Top %1$d ingredients in the %2$d-hour window before: %3$@" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$d häufigste Zutaten im %2$d-Stunden-Fenster vor: %3$@"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$d ingredientes más comunes en las %2$d horas antes de: %3$@"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$d ingrédients les plus courants dans les %2$d heures avant : %3$@"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Najczęstsze %1$d składniki w oknie %2$d-godzinnym przed: %3$@"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在症状前 %2$d 小时内最常见的 %1$d 个成分：%3$@"
-          }
-        }
-      }
-    },
-    "Top %1$d ingredients in the %2$d-hour window before: %3$@ (%4$d found)" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$d häufigste Zutaten im %2$d-Stunden-Fenster vor: %3$@ (%4$d gefunden)"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$d ingredientes más comunes en las %2$d horas antes de: %3$@ (%4$d encontrados)"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$d ingrédients les plus courants dans les %2$d heures avant : %3$@ (%4$d trouvés)"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Najczęstsze %1$d składniki w oknie %2$d-godzinnym przed: %3$@ (znaleziono %4$d)"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在症状前 %2$d 小时内最常见的 %1$d 个成分：%3$@（找到 %4$d 个）"
-          }
-        }
-      }
-    },
     "Top ingredient followed by any symptom" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3347,7 +3208,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Najczęstszy składnik w oknie %1$d-godzinnym przed: %2$@"
+            "value" : "Najczęściej spożywany składnik w oknie %1$d-godzinnym przed: %2$@"
           }
         },
         "zh-Hans" : {
@@ -3424,6 +3285,142 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "导致负面症状前最常见的成分"
+          }
+        }
+      }
+    },
+    "Top ingredients followed by any symptom" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Häufigste Zutaten vor beliebigen Symptomen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingredientes más frecuentes previos a cualquier síntoma"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingrédients les plus fréquents précédant n’importe quel symptôme"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Najczęściej spożywane składniki tuż przed objawami"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最常见先于任意症状的食材"
+          }
+        }
+      }
+    },
+    "Top ingredients followed by any symptom (%1$d found)" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Häufigste Zutaten vor beliebigen Symptomen (%1$d gefunden)"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingredientes más frecuentes previos a cualquier síntoma (%1$d encontrados)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingrédients les plus fréquents précédant n’importe quel symptôme (%1$d trouvés)"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Najczęściej spożywane składniki tuż przed objawami (znaleziono %1$d)"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最常见先于任意症状的食材（找到 %1$d 项）"
+          }
+        }
+      }
+    },
+    "Top ingredients in the %1$d-hour window before: %2$@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Häufigste Zutaten im %1$d-Stunden-Fenster vor %2$@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingredientes más frecuentes en la ventana de %1$d horas antes de %2$@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingrédients les plus fréquents dans la fenêtre de %1$d heures avant : %2$@"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Najczęściej spożywane składniki w oknie %1$d-godzinnym przed: %2$@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最常见食材（%2$@ 前 %1$d 小时窗口）"
+          }
+        }
+      }
+    },
+    "Top ingredients in the %1$d-hour window before: %2$@ (%3$d found)" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Häufigste Zutaten im %1$d-Stunden-Fenster vor %2$@ (%3$d gefunden)"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingredientes más frecuentes en la ventana de %1$d horas antes de %2$@ (%3$d encontrados)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingrédients les plus fréquents dans la fenêtre de %1$d heures avant : %2$@ (%3$d trouvés)"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Najczęściej spożywane składniki w oknie %1$d-godzinnym przed: %2$@ (znaleziono %3$d)"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最常见食材（%2$@ 前 %1$d 小时窗口，找到 %3$d 项）"
           }
         }
       }

@@ -42,7 +42,6 @@ struct AddMealView: View {
                 .foregroundStyle(isSaveDisabled ? Color("SecondaryText") : .accent)
             }
         }
-        .ignoresSafeArea(.keyboard)
         .onChange(of: newIngredients) {
             isSaveDisabled = $0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
         }

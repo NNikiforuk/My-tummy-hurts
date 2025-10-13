@@ -63,7 +63,6 @@ struct AddSymptomView: View {
                 .foregroundStyle(isSaveDisabled ? .gray : .accent)
             }
         }
-        .ignoresSafeArea(.keyboard)
         .onChange(of: newSymptom) {
             isSaveDisabled = $0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
         }

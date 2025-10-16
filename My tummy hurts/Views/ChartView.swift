@@ -12,12 +12,13 @@ struct ChartView: View {
     
     @State private var analyticsType: AnalyticsMode = .barChart
     @State private var chartType: ChartMode = .defaultChart
-    @State private var ingredientsToShow = 3
     @State private var hoursBack = 1
     @State private var selectedSymptom: String? = nil
     @State private var selectedFirstIngredient: String? = nil
     @State private var selectedSecondIngredient: String? = nil
     @State private var selectedDate: Date = Date()
+    
+    let ingredientsToShow = 5
     
     var noMealNotes: Bool {
         vm.savedMealNotes.isEmpty
@@ -29,32 +30,20 @@ struct ChartView: View {
     var chartTitle: String {
         switch chartType {
         case .defaultChart:
-            switch ingredientsToShow {
-            case 1:
-                return NSLocalizedString("Top ingredient followed by any symptom", comment: "")
-            default:
-                if howManyElFirstChartData < ingredientsToShow {
-                    let format = NSLocalizedString("Top ingredients followed by any symptom (%1$d found)", comment: "")
-                    return String(format: format, howManyElFirstChartData)
-                } else {
-                    let format = NSLocalizedString("Top ingredients followed by any symptom", comment: "")
-                    return String(format: format)
-                }
+            if howManyElFirstChartData < ingredientsToShow {
+                let format = NSLocalizedString("Top ingredients followed by any symptom (%1$d found)", comment: "")
+                return String(format: format, howManyElFirstChartData)
+            } else {
+                let format = NSLocalizedString("Top ingredients followed by any symptom", comment: "")
+                return String(format: format)
             }
-            
         case .checkSpecificSymptom:
-            switch ingredientsToShow {
-            case 1:
-                let format = NSLocalizedString("Top ingredient in the %1$d-hour window before: %2$@", comment: "")
+            if howManyElSecondChartData < ingredientsToShow {
+                let format = NSLocalizedString("Top ingredients in the %1$d-hour window before: %2$@ (%3$d found)", comment: "")
+                return String(format: format, hoursBack, selectedSymptom ?? "", howManyElSecondChartData)
+            } else {
+                let format = NSLocalizedString("Top ingredients in the %1$d-hour window before: %2$@", comment: "")
                 return String(format: format, hoursBack, selectedSymptom ?? "")
-            default:
-                if howManyElSecondChartData < ingredientsToShow {
-                    let format = NSLocalizedString("Top ingredients in the %1$d-hour window before: %2$@ (%3$d found)", comment: "")
-                    return String(format: format, hoursBack, selectedSymptom ?? "", howManyElSecondChartData)
-                } else {
-                    let format = NSLocalizedString("Top ingredients in the %1$d-hour window before: %2$@", comment: "")
-                    return String(format: format, hoursBack, selectedSymptom ?? "")
-                }
             }
         }
     }
@@ -93,18 +82,17 @@ struct ChartView: View {
                     .frame(maxWidth: .infinity, alignment: .center)
                 ChooseAnalytics(analyticsType: $analyticsType)
                 
-                if vm.savedMealNotes.count < 5 || vm.savedSymptomNotes.count < 5 {
-                    NoDataAlert(text: "Add minimum 5 meals and 5 negative symptoms to see the charts. Detail matters: add more to unlock better insights")
-                } else {
                     switch analyticsType {
-                    case .barChart: GeneralAnalytics(chartType: $chartType, ingredientsToShow: $ingredientsToShow, hoursBack: $hoursBack, selectedSymptom: $selectedSymptom, chartTitle: chartTitle, noMealNotes: noMealNotes, noSymptomNotes: noSymptomNotes, firstChartData: firstChartData, secondChartData: secondChartData)
+                    case .barChart:
+                        GeneralAnalytics(chartType: $chartType, hoursBack: $hoursBack, selectedSymptom: $selectedSymptom, chartTitle: chartTitle, noMealNotes: noMealNotes, noSymptomNotes: noSymptomNotes, ingredientsToShow: ingredientsToShow, firstChartData: firstChartData, secondChartData: secondChartData)
                         
                     case .calendarView:
-                        if !noSymptomNotes {
+                        if firstChartData.isEmpty && secondChartData.isEmpty {
+                            NoDataAlert(text: "Add more meals and symptoms")
+                        } else {
                             CalendarChart(selectedFirstIngredient: $selectedFirstIngredient, selectedSecondIngredient: $selectedSecondIngredient, selectedDate: $selectedDate)
                         }
                     }
-                }
             }
             .animation(.easeInOut, value: chartType)
         }
@@ -255,7 +243,7 @@ extension CoreDataViewModel {
 #Preview("ChartView") {
     NavigationStack {
         ChartView()
-        .environmentObject(CoreDataViewModel.preview)
+            .environmentObject(CoreDataViewModel.preview)
     }
 }
 

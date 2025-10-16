@@ -12,22 +12,23 @@ struct GeneralAnalytics: View {
     @Environment(\.dynamicTypeSize) var sizeCategory
     
     @Binding var chartType: ChartMode
-    @Binding var ingredientsToShow: Int
     @Binding var hoursBack: Int
     @Binding var selectedSymptom: String?
     
     let chartTitle: String
     let noMealNotes: Bool
     let noSymptomNotes: Bool
+    let ingredientsToShow: Int
     var firstChartData: [(String, Int)]
     var secondChartData: [(String, Int)]
     
     var body: some View {
-        //JEZELI ISTNIEJA MEALS, SYMPTOMS
-        if !noMealNotes && !noSymptomNotes {
-            VStack(spacing: 40) {
-                SelectChartType(chartType: $chartType)
-                
+        VStack(spacing: 40) {
+            SelectChartType(chartType: $chartType)
+            
+            if firstChartData.isEmpty && secondChartData.isEmpty {
+                NoDataAlert(text: "Add more meals and symptoms")
+            } else {
                 //SECOND TOGGLE SETTINGS
                 if chartType == .checkSpecificSymptom {
                     VStack(alignment: .leading) {
@@ -53,42 +54,40 @@ struct GeneralAnalytics: View {
                             }
                         }
                         
-                       
+                        
                     }
                     .transition(.opacity.combined(with: .move(edge: .top)))
                 }
                 
-                HowManyIngredients(ingredientsToShow: $ingredientsToShow, chartType: $chartType)
-                
                 //CHARTS
                 VStack(alignment: .leading) {
-                        switch chartType {
-                        case .defaultChart:
+                    switch chartType {
+                    case .defaultChart:
+                        HStack {
+                            Spacer()
+                            titleOfChart(title: chartTitle)
+                            Spacer()
+                        }
+                        BarChart(data: firstChartData)
+                            .frame(height: 200)
+                        
+                    case .checkSpecificSymptom:
+                        if selectedSymptom == nil {
+                            VStack(alignment: .center) {
+                                NoDataAlert(text: "Select symptom above")
+                            }
+                        } else if secondChartData.isEmpty {
+                            NoDataAlert(text: "No data to show")
+                        } else if selectedSymptom != nil {
                             HStack {
                                 Spacer()
                                 titleOfChart(title: chartTitle)
                                 Spacer()
                             }
-                            BarChart(data: firstChartData)
+                            BarChart(data: secondChartData)
                                 .frame(height: 200)
-                            
-                        case .checkSpecificSymptom:
-                            if selectedSymptom == nil {
-                                VStack(alignment: .center) {
-                                    NoDataAlert(text: "Select symptom above")
-                                }
-                            } else if secondChartData.isEmpty {
-                                NoDataAlert(text: "No data to show")
-                            } else if selectedSymptom != nil {
-                                HStack {
-                                    Spacer()
-                                    titleOfChart(title: chartTitle)
-                                    Spacer()
-                                }
-                                BarChart(data: secondChartData)
-                                    .frame(height: 200)
-                            }
                         }
+                    }
                 }
                 .padding()
             }
@@ -113,12 +112,12 @@ struct GeneralAnalytics: View {
             ScrollView {
                 GeneralAnalytics(
                     chartType: .constant(.checkSpecificSymptom),
-                    ingredientsToShow: .constant(3),
                     hoursBack: .constant(1),
                     selectedSymptom: .constant("biegunka"),
                     chartTitle: "title",
                     noMealNotes: false,
                     noSymptomNotes: false,
+                    ingredientsToShow: 5,
                     firstChartData: [("kuba", 8)],
                     secondChartData: [("niki", 3)]
                 )

@@ -73,15 +73,15 @@ struct CalendarChart: View {
                         
                         if sizeCategory.isAccessibilitySize {
                             VStack {
-                                SelectElementPicker(pickerData: dataForPicker(mealsMode: true, model: vm, excluded: selectedSecondIngredient), pickerSelection: $selectedFirstIngredient)
+                                SelectElementPicker(pickerData: vm.dataForPicker(mealsMode: true, model: vm, excluded: selectedSecondIngredient), pickerSelection: $selectedFirstIngredient)
                                 Spacer()
-                                SelectElementPicker(pickerData: dataForPicker(mealsMode: true, model: vm, excluded: selectedFirstIngredient), pickerSelection: $selectedSecondIngredient)
+                                SelectElementPicker(pickerData: vm.dataForPicker(mealsMode: true, model: vm, excluded: selectedFirstIngredient), pickerSelection: $selectedSecondIngredient)
                             }
                         } else {
                             HStack {
-                                SelectElementPicker(pickerData: dataForPicker(mealsMode: true, model: vm, excluded: selectedSecondIngredient), pickerSelection: $selectedFirstIngredient)
+                                SelectElementPicker(pickerData: vm.dataForPicker(mealsMode: true, model: vm, excluded: selectedSecondIngredient), pickerSelection: $selectedFirstIngredient)
                                 Spacer()
-                                SelectElementPicker(pickerData: dataForPicker(mealsMode: true, model: vm, excluded: selectedFirstIngredient), pickerSelection: $selectedSecondIngredient)
+                                SelectElementPicker(pickerData: vm.dataForPicker(mealsMode: true, model: vm, excluded: selectedFirstIngredient), pickerSelection: $selectedSecondIngredient)
                             }
                         }
                         

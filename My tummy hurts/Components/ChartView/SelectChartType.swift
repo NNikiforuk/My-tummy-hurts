@@ -9,27 +9,20 @@ import SwiftUI
 
 struct SelectChartType: View {
     @Binding var chartType: ChartMode
-    @State private var showInfoAll = false
-    @State private var showInfoSpecificSymptom = false
-    @State private var showInfoLimit = false
     
     var body: some View {
         VStack(alignment: .leading) {
             SectionTitle(title: "Select chart type", textColor: Color("SecondaryText"))
                 .textCase(.uppercase)
-            VStack(spacing: 20) {
+            VStack(spacing: 10) {
                 SelectableCard(
-                    showInfo: $showInfoAll,
                     title: ChartMode.defaultChart.localizedTitle,
                     isSelected: chartType == ChartMode.defaultChart,
-                    infoText: ChartMode.defaultChart.localizedInfo,
                     onTap: { chartType = ChartMode.defaultChart })
                 
                 SelectableCard(
-                    showInfo: $showInfoSpecificSymptom,
                     title: ChartMode.checkSpecificSymptom.localizedTitle,
                     isSelected: chartType == ChartMode.checkSpecificSymptom,
-                    infoText: ChartMode.checkSpecificSymptom.localizedInfo,
                     onTap: { chartType = ChartMode.checkSpecificSymptom })
             }
             .grayOverlayModifier()
@@ -40,38 +33,19 @@ struct SelectChartType: View {
 }
 
 struct SelectableCard: View {
-    @Binding var showInfo: Bool
-    
     let title: String
     let isSelected: Bool
-    let infoText: String
     let onTap: () -> Void
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            HStack(alignment: .top, spacing: 12) {
+            HStack(alignment: .center, spacing: 12) {
                 Image(systemName: isSelected ? "largecircle.fill.circle" : "circle")
                     .imageScale(.large)
                     .foregroundStyle(isSelected ? .accent : Color("SecondaryText"))
                 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(title).font(.headline)
-                        .foregroundStyle(Color("PrimaryText"))
-                    Button {
-                        withAnimation { showInfo.toggle() }
-                    } label: {
-                        Label("More info", systemImage: "info.circle")
-                            .font(.subheadline)
-                            .foregroundStyle(Color("SecondaryText"))
-                            .padding(.top, 5)
-                    }
-                    if showInfo {
-                        Text(infoText)
-                            .font(.footnote)
-                            .foregroundStyle(Color("SecondaryText"))
-                            .transition(.opacity)
-                            .padding(.top, 5)
-                    }
+                    Text(title)
                 }
                 Spacer()
             }

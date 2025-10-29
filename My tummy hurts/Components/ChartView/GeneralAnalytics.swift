@@ -43,14 +43,14 @@ struct GeneralAnalytics: View {
                                     Spacer()
                                 }
                                 Spacer()
-                                SelectElementPicker(pickerData: dataForPicker(mealsMode: false, model: vm), pickerSelection: $selectedSymptom)
+                                SelectElementPicker(pickerData: vm.dataForPicker(mealsMode: false, model: vm), pickerSelection: $selectedSymptom)
                             }
                         } else {
                             HStack {
                                 SectionTitle(title: "Select symptom", textColor: Color("SecondaryText"))
                                     .textCase(.uppercase)
                                 Spacer()
-                                SelectElementPicker(pickerData: dataForPicker(mealsMode: false, model: vm), pickerSelection: $selectedSymptom)
+                                SelectElementPicker(pickerData: vm.dataForPicker(mealsMode: false, model: vm), pickerSelection: $selectedSymptom)
                             }
                         }
                         

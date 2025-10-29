@@ -26,11 +26,7 @@ struct HomeView: View {
     }
     
     var alertTitle: LocalizedStringKey {
-        if emptyDB {
-            "Nothing to delete"
-        } else {
-            "Do you want to delete everything?"
-        }
+        emptyDB ? "Nothing to delete" : "Do you want to delete everything?"
     }
     
     var colorScheme: ColorScheme? {
@@ -79,7 +75,8 @@ struct HomeView: View {
             }
             ToolbarItem(placement: .topBarTrailing) {
                 NavigationLink {
-                    ChartView()
+//                    ChartView()
+                    TestView()
                 } label: {
                     HStack {
                         Image(systemName: "chart.bar")

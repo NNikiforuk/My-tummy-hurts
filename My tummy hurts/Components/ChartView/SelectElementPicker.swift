@@ -42,6 +42,7 @@ struct SelectElementPicker: View {
                             )
                     )
             }
+            .frame(maxWidth: .infinity)
             .pickerStyle(.menu)
             .padding(5)
             .background(
@@ -76,38 +77,6 @@ struct SelectElementPicker: View {
             pickerSelection = rawSel
         }
     }
-}
-
-func dataForPicker(mealsMode: Bool, model: CoreDataViewModel, excluded: String? = nil) -> [String] {
-    var array: [String] = []
-    
-    if mealsMode {
-        for note in model.savedMealNotes {
-            guard let s = note.ingredients else { continue }
-            array.append(contentsOf:
-                            s.split(separator: ",").map { String($0).normalizedToken }.filter { !$0.isEmpty }
-            )
-        }
-    } else {
-        for note in model.savedSymptomNotes {
-            guard let s = note.symptom else { continue }
-            array.append(contentsOf:
-                            s.split(separator: ",").map { String($0).normalizedToken }.filter { !$0.isEmpty }
-            )
-        }
-    }
-    
-    if let ex = excluded?.normalizedToken, !ex.isEmpty {
-        array.removeAll { $0.caseInsensitiveCompare(ex) == .orderedSame }
-    }
-    
-    var seen = Set<String>()
-    let unique = array.compactMap { item -> String? in
-        let key = item.lowercased()
-        return seen.insert(key).inserted ? item : nil
-    }
-    
-    return unique.sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
 }
 
 extension String {

@@ -72,6 +72,16 @@
         }
       }
     },
+    "%lld z %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld z %2$lld"
+          }
+        }
+      }
+    },
     "a" : {
       "localizations" : {
         "de" : {
@@ -210,6 +220,9 @@
         }
       }
     },
+    "Add more meals and symptoms" : {
+
+    },
     "Add symptom" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -279,6 +292,9 @@
           }
         }
       }
+    },
+    "Analizujemy procent posiłków ze składnikiem, po których wystąpił symptom. Im wyższy procent, tym większe prawdopodobieństwo, że składnik jest przyczyną objawów." : {
+
     },
     "Analytics" : {
       "localizations" : {
@@ -485,6 +501,9 @@
           }
         }
       }
+    },
+    "bla" : {
+
     },
     "bloating" : {
       "extractionState" : "manual",
@@ -1488,6 +1507,12 @@
         }
       }
     },
+    "Ingredients by risk" : {
+
+    },
+    "Jak to działa?" : {
+
+    },
     "JANUARY 2025" : {
       "localizations" : {
         "de" : {
@@ -1730,6 +1755,9 @@
           }
         }
       }
+    },
+    "Mało danych - wyniki mogą być nieprecyzyjne" : {
+
     },
     "meal" : {
       "extractionState" : "manual",
@@ -2011,6 +2039,7 @@
       }
     },
     "More info" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2078,6 +2107,9 @@
           }
         }
       }
+    },
+    "No data available for analysis" : {
+
     },
     "No data to show" : {
       "extractionState" : "manual",
@@ -2495,6 +2527,9 @@
         }
       }
     },
+    "Potrzeba więcej danych" : {
+
+    },
     "Pre-symptom ingredients" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2529,6 +2564,9 @@
           }
         }
       }
+    },
+    "Rekomendacja" : {
+
     },
     "rye bread" : {
       "extractionState" : "manual",
@@ -3081,6 +3119,9 @@
         }
       }
     },
+    "Ten składnik często wiąże się z symptomami. Rozważ jego eliminację na 2-4 tygodnie, aby sprawdzić czy objawy ustąpią." : {
+
+    },
     "This app is for guidance only and shows simple stats. For serious or ongoing symptoms, please seek medical advice" : {
       "localizations" : {
         "de" : {
@@ -3529,6 +3570,15 @@
           }
         }
       }
+    },
+    "wystąpień z symptomami" : {
+
+    },
+    "Zamknij" : {
+
+    },
+    "Zbierz więcej obserwacji (minimum 3-5), aby uzyskać bardziej wiarygodne wyniki analizy." : {
+
     }
   },
   "version" : "1.1"

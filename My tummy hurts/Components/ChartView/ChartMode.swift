@@ -13,20 +13,11 @@ enum ChartMode: String, CaseIterable, Identifiable {
     var id: Self { self }
     var title: String {
         switch self {
-        case .defaultChart: "Pre-symptom ingredients"
+        case .defaultChart: "Suspicious ingredients"
         case .checkSpecificSymptom: "Check specific symptom"
-        }
-    }
-    var infoText: String {
-        switch self {
-        case .defaultChart: "Top ingredients consumed directly before any negative symptom"
-        case .checkSpecificSymptom: "Example: top ingredients consumed within 5 hours before each occurrence of heartburn"
         }
     }
     var localizedTitle: String {
         NSLocalizedString(self.title, comment: "")
-    }
-    var localizedInfo: String {
-        NSLocalizedString(self.infoText, comment: "")
     }
 }

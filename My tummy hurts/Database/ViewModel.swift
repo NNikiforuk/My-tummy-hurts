@@ -14,7 +14,9 @@ class CoreDataViewModel: ObservableObject {
     @Published var savedSymptomNotes: [SymptomNote] = [] { didSet { invalidateCache() } }
     
     var firstChartDataCache: [IngredientAnalysis]?
-    var secondChartDataCache: [IngredientAnalysis]?
+    var secondChartDataCache: [IngredientAnalysis2]?
+    var cachedSymptomId: UUID?
+    var cachedHourQty: Int?
     
     init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "My_tummy_hurts")
@@ -130,6 +132,8 @@ class CoreDataViewModel: ObservableObject {
     func invalidateCache() {
         firstChartDataCache = nil
         secondChartDataCache = nil
+        cachedSymptomId = nil
+        cachedHourQty = nil
     }
 }
 
@@ -253,79 +257,52 @@ extension CoreDataViewModel {
         return unique.sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
     }
     
-    
-    
     //FIRST CHART
-    var groupedNotesByDay: [(Date, [NoteEnum])] {
-        let allNotes =  savedMealNotes.map(NoteEnum.meal) + savedSymptomNotes.map(NoteEnum.symptom)
-        let dictionary = Dictionary(grouping: allNotes, by: { Calendar.current.startOfDay(for: $0.time) })
-        let sortedDictionary = dictionary.sorted(by: {$0.key < $1.key})
+    func analyzeIngredientsWeighted() -> [IngredientAnalysis] {
+        var ingredientStats: [String: (total: Int, symptomsCount: Int, weightedSymptoms: Double)] = [:]
         
-        return sortedDictionary.map { (date, notes) in
-            (date, notes.sorted { $0.time < $1.time })
-        }
-    }
-    
-    func catchConnections() -> [(meal: NoteEnum, symptoms: [NoteEnum])] {
-        var summary: [(meal: NoteEnum, symptoms: [NoteEnum])] = []
-        
-        for (_, notes) in groupedNotesByDay {
-            var currentMeal: NoteEnum?
-            var resultSymptoms: [NoteEnum] = []
-            
-            func saveSummary() {
-                if let meal = currentMeal, !resultSymptoms.isEmpty {
-                    summary.append((meal: meal, symptoms: resultSymptoms))
-                }
-            }
-            
-            for event in notes {
-                //Jeżeli napotykam meal
-                if !event.isSymptom {
-                    saveSummary()
-                    currentMeal = event
-                    resultSymptoms = []
-                }
-                
-                //Jeżeli napotykam symptom
-                if event.isSymptom && currentMeal != nil {
-                    resultSymptoms.append(event)
-                }
-            }
-            saveSummary()
-        }
-        return summary
-    }
-    
-    func analyzeIngredients() -> [IngredientAnalysis] {
-        let connections = catchConnections()
-        var mealsWithSymptoms: Set<String> = []
-        
-        for (meal, symptoms) in connections where !symptoms.isEmpty {
-            if case let .meal(MealNote) = meal {
-                mealsWithSymptoms.insert(MealNote.id?.uuidString ?? "")
-            }
-        }
-        
-        var ingredientStats:[String: (total: Int, withSymptom: Int)] = [:]
-        
+        // "egg, milk, coffee"
         for meal in savedMealNotes {
-            guard let ingredientsExist = meal.ingredients else { continue }
-            let ingredientsArray = ingredientsExist.components(separatedBy: ", ")
-            let hadSymptom = mealsWithSymptoms.contains(meal.id?.uuidString ?? "")
+            guard let mealTime = meal.createdAt,
+                  let ingredients = meal.ingredients else { continue } // pętla przechodzi do nastepnego meal
             
+            // ["egg", "milk", "coffee"]
+            let ingredientsArray = ingredients.components(separatedBy: ", ")
+            
+            // zwraca array z wagami symptomów, które wystąpiły między 0 a 8h po posiłku z Double? bez nil-ów
+            let symptomsAfter = savedSymptomNotes.compactMap { symptom -> Double? in
+                guard let symptomTime = symptom.createdAt else { return nil } // przechodzimy do następnego symptomu
+                let hoursAfter = symptomTime.timeIntervalSince(mealTime) / 3600 // ile h minęło od meal do symptomu?
+                guard hoursAfter > 0 && hoursAfter <= 8.0 else { return nil }
+                
+                let weight = max(0.1, 1.0 - (hoursAfter / 10.0))
+                return weight
+            }
+            
+            let totalWeight = symptomsAfter.reduce(0, +)
+            let hadSymptom = !symptomsAfter.isEmpty
+            
+            // "egg"
             for ingredient in ingredientsArray {
-                let current = ingredientStats[ingredient] ?? (total: 0, withSymptom: 0)
+                // ingredientStats["egg"]
+                let current = ingredientStats[ingredient] ?? (total: 0, symptomsCount: 0, weightedSymptoms: 0.0)
                 
                 ingredientStats[ingredient] = (
                     total: current.total + 1,
-                    withSymptom: hadSymptom ? current.withSymptom + 1 : current.withSymptom
+                    symptomsCount: current.symptomsCount + (hadSymptom ? 1 : 0),
+                    weightedSymptoms: current.weightedSymptoms + totalWeight
                 )
             }
         }
         
+        // iterujemy po [:]
         let analyses = ingredientStats.map { (name, stats) in
-            IngredientAnalysis(name: name, totalOccurrences: stats.total, symptomsOccurrences: stats.withSymptom)
+            IngredientAnalysis(
+                name: name,
+                totalOccurrences: stats.total,
+                symptomsOccurrences: stats.symptomsCount,
+                weightedSymptoms: stats.weightedSymptoms
+            )
         }
         
         return analyses
@@ -353,14 +330,82 @@ extension CoreDataViewModel {
             return cached
         }
         
-        let result = analyzeIngredients()
+        let result = analyzeIngredientsWeighted()
         firstChartDataCache = result
         return result
     }
     
+    var firstChartDataTop10: [IngredientAnalysis] {
+        Array(firstChartData.prefix(10))
+    }
+    
     //SECOND CHART
+    func specificSyptomChart(selectedSymptomId: UUID?, selectedHourQty: Int) -> [IngredientAnalysis2]? {
+        guard let selectedSymptom = findSpecificSymptom(selectedSymptomId: selectedSymptomId) else { return nil }
+        guard let selectedSymptomTime = selectedSymptom.createdAt else { return nil }
+        let mealsFromTimeline = catchMeals(selectedSymptomId: selectedSymptomId, selectedHourQty: selectedHourQty)
+        let historicalData = firstChartData
+        
+        var summary: [IngredientAnalysis2] = []
+        
+        for meal in mealsFromTimeline {
+            guard let mealTime = meal.createdAt else { continue }
+            let hoursBefore = selectedSymptomTime.timeIntervalSince(mealTime) / 3600
+            let timeProximity = max(0, 1.0 - (hoursBefore / Double(selectedHourQty)))
+            
+            guard let mealIngredients = meal.ingredients else { continue }
+            let ingredientsArray = mealIngredients.components(separatedBy: ", ")
+            
+            for ingredient in ingredientsArray {
+                let data = historicalData.first(where: { $0.name == ingredient })
+                let historicalRisk: Double
+                
+                if let data = data, data.totalOccurrences >= 2 {
+                    historicalRisk = data.suspicionRate
+                } else {
+                    historicalRisk = 0.5
+                }
+                
+                let suspicionScore = timeProximity * historicalRisk
+                
+                if let existingIndex = summary.firstIndex(where: { $0.name == ingredient }) {
+                    var existing = summary[existingIndex]
+                    
+                    existing.firstChartData = historicalData
+                    
+                    if suspicionScore > existing.suspicionScore {
+                        existing.suspicionScore = suspicionScore
+                        existing.timeProximity = timeProximity
+                        existing.howLongAgo = hoursBefore
+                    }
+                    
+                    if !existing.mealsList.contains(where: { $0.id == meal.id }) {
+                        existing.mealsList.append(meal)
+                    }
+                    
+                    summary[existingIndex] = existing
+                } else {
+                    let newIngredientAnalysis2 = IngredientAnalysis2(
+                        name: ingredient,
+                        suspicionScore: suspicionScore,
+                        timeProximity: timeProximity,
+                        howLongAgo: hoursBefore,
+                        mealsList: [meal],
+                        firstChartData: historicalData
+                    )
+                    summary.append(newIngredientAnalysis2)
+                }
+            }
+        }
+        
+        summary.sort { $0.suspicionScore > $1.suspicionScore }
+        return Array(summary.prefix(10))
+    }
     
-    
+    func getSecondChartData(symptomId: UUID?, hours: Int) -> [IngredientAnalysis2] {
+        specificSyptomChart(selectedSymptomId: symptomId,
+                            selectedHourQty: hours) ?? []
+    }
     
     //HORIZONTAL CHART
     func findSpecificSymptom(selectedSymptomId: UUID?) -> SymptomNote? {
@@ -428,27 +473,21 @@ private extension String {
     }
 }
 
-struct IngredientAnalysis: Identifiable {
-    let id = UUID()
-    let name: String
-    let totalOccurrences: Int //Ile razy jadłam kiedykolwiek?
-    let symptomsOccurrences: Int //Ile razy wystąpił symptom po zjedzeniu?
-    
-    var suspicionRate: Double {
-        guard totalOccurrences > 0 else { return 0 }
-        return Double(symptomsOccurrences) / Double(totalOccurrences)
-    }
-    
-    var displayScore: Double {
-        suspicionRate * log(Double(totalOccurrences) + 1)
-    }
-    
-    var legend: String {
-        "\(Int(suspicionRate * 100))%"
-    }
-    
+protocol ScoredIngredient: Identifiable {
+    var name: String { get }
+    var scoreValue: Double { get }
+    var colorIntensity: Color { get }
+    var riskLevel: String { get }
+    var hasEnoughData: Bool { get }
+    var totalOccurrences: Int { get }
+    var symptomsOccurrences: Int? { get }
+    var safeOccurrences: Int? { get }
+    var legend: String { get }
+}
+
+extension ScoredIngredient {
     var colorIntensity: Color {
-        switch suspicionRate {
+        switch scoreValue {
         case 0..<0.3:
             return .accent.opacity(0.1)
         case 0.3..<0.6:
@@ -458,6 +497,97 @@ struct IngredientAnalysis: Identifiable {
         default:
             return .accent
         }
+    }
+    var symptomsOccurrences: Int? { nil }
+    var safeOccurrences: Int? { nil }
+}
+
+extension IngredientAnalysis: ScoredIngredient {
+    var scoreValue: Double {
+        suspicionRate
+    }
+}
+
+extension IngredientAnalysis2: ScoredIngredient {
+    var scoreValue: Double {
+        suspicionScore
+    }
+}
+
+struct IngredientAnalysis2: Identifiable {
+    let id = UUID()
+    let name: String
+    var suspicionScore: Double
+    var timeProximity: Double
+    var howLongAgo: Double
+    var mealsList: [MealNote]
+    
+    var legend: String {
+        "\(Int(suspicionScore * 100))%"
+    }
+    
+    var firstChartData: [IngredientAnalysis] = []
+    
+    var historicalData: IngredientAnalysis? {
+        firstChartData.first(where: { $0.name == name })
+    }
+    
+    var globalTotalOccurrences: Int {
+        historicalData?.totalOccurrences ?? 0
+    }
+    
+    var globalSymptomsOccurrences: Int {
+        historicalData?.symptomsOccurrences ?? 0
+    }
+    
+    var usedHistoricalData: Bool {
+        (historicalData?.totalOccurrences ?? 0) >= 2
+    }
+    
+    var riskLevel: String {
+        if !usedHistoricalData {
+            return "Insufficient data"
+        }
+        
+        switch suspicionScore {
+        case 0.6...: return "High suspicion"
+        case 0.3..<0.6: return "Medium suspicion"
+        case 0.1..<0.3: return "Low suspicion"
+        default: return "Very low suspicion"
+        }
+    }
+    
+    var hasEnoughData: Bool {
+        usedHistoricalData && globalTotalOccurrences >= 3
+    }
+    
+    var totalOccurrences: Int {
+        mealsList.count
+    }
+    
+    var isSafe: Bool {
+        usedHistoricalData && globalSymptomsOccurrences == 0 && suspicionScore == 0
+    }
+}
+
+struct IngredientAnalysis: Identifiable {
+    let id = UUID()
+    let name: String
+    let totalOccurrences: Int //Ile razy jadłam kiedykolwiek?
+    let symptomsOccurrences: Int //Ile razy wystąpił symptom po zjedzeniu?
+    let weightedSymptoms: Double
+    
+    var suspicionRate: Double {
+        guard totalOccurrences > 0 else { return 0 }
+        return weightedSymptoms / Double(totalOccurrences)
+    }
+    
+    var displayScore: Double {
+        suspicionRate * log(Double(totalOccurrences) + 1)
+    }
+    
+    var legend: String {
+        "\(Int(suspicionRate * 100))%"
     }
     
     var riskLevel: String {
@@ -481,5 +611,126 @@ struct IngredientAnalysis: Identifiable {
     
     var safeOccurrences: Int {
         totalOccurrences - symptomsOccurrences
+    }
+}
+
+extension CoreDataViewModel {
+    static var previewWithData: CoreDataViewModel {
+        let vm = CoreDataViewModel(inMemory: true)
+        let context = vm.container.viewContext
+        
+        func createDate(daysAgo: Int, hour: Int, minute: Int = 0) -> Date {
+            let now = Date()
+            var components = Calendar.current.dateComponents([.year, .month, .day], from: now)
+            components.hour = hour
+            components.minute = minute
+            
+            let today = Calendar.current.date(from: components)!
+            return today.addingTimeInterval(-Double(daysAgo) * 86400)
+        }
+        
+        // 3 DNI TEMU
+        let meal1 = MealNote(context: context)
+        meal1.id = UUID()
+        meal1.createdAt = createDate(daysAgo: 3, hour: 8, minute: 0)
+        meal1.ingredients = "milk, cereal, banana"
+        
+        let symptom1 = SymptomNote(context: context)
+        symptom1.id = UUID()
+        symptom1.createdAt = createDate(daysAgo: 3, hour: 10, minute: 0)
+        symptom1.symptom = "Diarrhea"
+        
+        let meal2 = MealNote(context: context)
+        meal2.id = UUID()
+        meal2.createdAt = createDate(daysAgo: 3, hour: 14, minute: 0)
+        meal2.ingredients = "chicken, rice, vegetables"
+        
+        let meal3 = MealNote(context: context)
+        meal3.id = UUID()
+        meal3.createdAt = createDate(daysAgo: 3, hour: 19, minute: 0)
+        meal3.ingredients = "cheese, pasta, tomato"
+        
+        let symptom2 = SymptomNote(context: context)
+        symptom2.id = UUID()
+        symptom2.createdAt = createDate(daysAgo: 3, hour: 21, minute: 0)
+        symptom2.symptom = "Diarrhea"
+        
+        // 2 DNI TEMU
+        let meal4 = MealNote(context: context)
+        meal4.id = UUID()
+        meal4.createdAt = createDate(daysAgo: 2, hour: 9, minute: 0)
+        meal4.ingredients = "eggs, bread, coffee"
+        
+        let meal5 = MealNote(context: context)
+        meal5.id = UUID()
+        meal5.createdAt = createDate(daysAgo: 2, hour: 13, minute: 0)
+        meal5.ingredients = "chicken, quinoa"
+        
+        let meal6 = MealNote(context: context)
+        meal6.id = UUID()
+        meal6.createdAt = createDate(daysAgo: 2, hour: 17, minute: 0)
+        meal6.ingredients = "cheese, crackers"
+        
+        let symptom3 = SymptomNote(context: context)
+        symptom3.id = UUID()
+        symptom3.createdAt = createDate(daysAgo: 2, hour: 19, minute: 0)
+        symptom3.symptom = "Diarrhea"
+        
+        // WCZORAJ
+        let meal7 = MealNote(context: context)
+        meal7.id = UUID()
+        meal7.createdAt = createDate(daysAgo: 1, hour: 8, minute: 30)
+        meal7.ingredients = "milk, oatmeal"
+        
+        let symptom4 = SymptomNote(context: context)
+        symptom4.id = UUID()
+        symptom4.createdAt = createDate(daysAgo: 1, hour: 10, minute: 30)
+        symptom4.symptom = "Diarrhea"
+        
+        let meal8 = MealNote(context: context)
+        meal8.id = UUID()
+        meal8.createdAt = createDate(daysAgo: 1, hour: 12, minute: 0)
+        meal8.ingredients = "chicken, salad"
+        
+        let meal9 = MealNote(context: context)
+        meal9.id = UUID()
+        meal9.createdAt = createDate(daysAgo: 1, hour: 16, minute: 0)
+        meal9.ingredients = "bread, peanut butter"
+        
+        let symptom5 = SymptomNote(context: context)
+        symptom5.id = UUID()
+        symptom5.createdAt = createDate(daysAgo: 1, hour: 18, minute: 0)
+        symptom5.symptom = "Diarrhea"
+        
+        // DZISIAJ
+        let meal10 = MealNote(context: context)
+        meal10.id = UUID()
+        meal10.createdAt = createDate(daysAgo: 0, hour: 8, minute: 0)
+        meal10.ingredients = "milk, eggs"
+        
+        let meal11 = MealNote(context: context)
+        meal11.id = UUID()
+        meal11.createdAt = createDate(daysAgo: 0, hour: 12, minute: 30)
+        meal11.ingredients = "cheese, bread"
+        
+        let meal12 = MealNote(context: context)
+        meal12.id = UUID()
+        meal12.createdAt = createDate(daysAgo: 0, hour: 15, minute: 0)
+        meal12.ingredients = "apple, almonds"
+        
+        let meal13 = MealNote(context: context)
+        meal13.id = UUID()
+        meal13.createdAt = createDate(daysAgo: 0, hour: 18, minute: 0)
+        meal13.ingredients = "chicken, rice"
+        
+        let symptom6 = SymptomNote(context: context)
+        symptom6.id = UUID()
+        symptom6.createdAt = createDate(daysAgo: 0, hour: 19, minute: 30)
+        symptom6.symptom = "Diarrhea"
+        
+        try? context.save()
+        vm.fetchMeals()
+        vm.fetchSymptoms()
+        return vm
     }
 }

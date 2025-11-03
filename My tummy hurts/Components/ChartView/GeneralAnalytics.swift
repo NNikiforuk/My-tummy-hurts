@@ -106,24 +106,24 @@ struct GeneralAnalytics: View {
     }
 }
 
-#Preview("ChartView") {
-    NavigationStack {
-        NavigationStack {
-            ScrollView {
-                GeneralAnalytics(
-                    chartType: .constant(.checkSpecificSymptom),
-                    hoursBack: .constant(1),
-                    selectedSymptom: .constant("biegunka"),
-                    chartTitle: "title",
-                    noMealNotes: false,
-                    noSymptomNotes: false,
-                    ingredientsToShow: 5,
-                    firstChartData: [("kuba", 8)],
-                    secondChartData: [("niki", 3)]
-                )
-                .environmentObject(CoreDataViewModel.preview)
-            }
-        }
-    }
-}
+//#Preview("ChartView") {
+//    NavigationStack {
+//        NavigationStack {
+//            ScrollView {
+//                GeneralAnalytics(
+//                    chartType: .constant(.checkSpecificSymptom),
+//                    hoursBack: .constant(1),
+//                    selectedSymptom: .constant("biegunka"),
+//                    chartTitle: "title",
+//                    noMealNotes: false,
+//                    noSymptomNotes: false,
+//                    ingredientsToShow: 5,
+//                    firstChartData: [("kuba", 8)],
+//                    secondChartData: [("niki", 3)]
+//                )
+//                .environmentObject(CoreDataViewModel.preview)
+//            }
+//        }
+//    }
+//}
 

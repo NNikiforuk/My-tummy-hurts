@@ -20,4 +20,13 @@ enum ChartMode: String, CaseIterable, Identifiable {
     var localizedTitle: String {
         NSLocalizedString(self.title, comment: "")
     }
+    var desc: String {
+        switch self {
+        case .defaultChart: "Based on all meals and symptoms within 8 hours"
+        case .checkSpecificSymptom: ""
+        }
+    }
+    var localizedDesc: String {
+        NSLocalizedString(self.desc, comment: "")
+    }
 }

@@ -150,6 +150,3 @@ struct NotesPicker: View {
             .environmentObject(CoreDataViewModel())
     }
 }
-
-
-

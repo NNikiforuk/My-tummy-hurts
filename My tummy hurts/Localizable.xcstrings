@@ -4,6 +4,19 @@
     "" : {
 
     },
+    "–" : {
+
+    },
+    "%@ – %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ – %2$@"
+          }
+        }
+      }
+    },
     "%lld" : {
       "localizations" : {
         "de" : {
@@ -72,15 +85,41 @@
         }
       }
     },
-    "%lld z %lld" : {
+    "%lld of %lld" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "%1$lld z %2$lld"
+            "value" : "%1$lld of %2$lld"
           }
         }
       }
+    },
+    "%lld of %lld meals" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld of %2$lld meals"
+          }
+        }
+      }
+    },
+    "%lld of %lld meals in history" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld of %2$lld meals in history"
+          }
+        }
+      }
+    },
+    "%lld%%" : {
+
+    },
+    "•" : {
+
     },
     "a" : {
       "localizations" : {
@@ -293,9 +332,6 @@
         }
       }
     },
-    "Analizujemy procent posiłków ze składnikiem, po których wystąpił symptom. Im wyższy procent, tym większe prawdopodobieństwo, że składnik jest przyczyną objawów." : {
-
-    },
     "Analytics" : {
       "localizations" : {
         "de" : {
@@ -432,6 +468,9 @@
           }
         }
       }
+    },
+    "Based on all meals and symptoms within 8 hours" : {
+
     },
     "Be as specific as possible" : {
       "localizations" : {
@@ -1193,6 +1232,9 @@
         }
       }
     },
+    "Eaten %@ ago" : {
+
+    },
     "Edit meal" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1438,6 +1480,12 @@
         }
       }
     },
+    "Historical Risk Analysis" : {
+
+    },
+    "Historically safe" : {
+
+    },
     "How many hours back" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1507,10 +1555,10 @@
         }
       }
     },
-    "Ingredients by risk" : {
+    "Ingredients are ranked by risk score which considers:" : {
 
     },
-    "Jak to działa?" : {
+    "Insufficient data - results may be inaccurate" : {
 
     },
     "JANUARY 2025" : {
@@ -1616,6 +1664,9 @@
           }
         }
       }
+    },
+    "Limited data" : {
+
     },
     "List all the ingredients of your meals" : {
       "extractionState" : "manual",
@@ -1755,9 +1806,6 @@
           }
         }
       }
-    },
-    "Mało danych - wyniki mogą być nieprecyzyjne" : {
-
     },
     "meal" : {
       "extractionState" : "manual",
@@ -2073,6 +2121,9 @@
         }
       }
     },
+    "Need %lld more meals" : {
+
+    },
     "Negative symptoms" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2107,6 +2158,9 @@
           }
         }
       }
+    },
+    "Never caused symptoms (0 of %lld)" : {
+
     },
     "No data available for analysis" : {
 
@@ -2145,6 +2199,9 @@
           }
         }
       }
+    },
+    "No meals found in the selected time window" : {
+
     },
     "No meals yet" : {
       "extractionState" : "manual",
@@ -2424,6 +2481,9 @@
         }
       }
     },
+    "Only %lld meal(s) in history. Need 2+ for accuracy." : {
+
+    },
     "Options" : {
       "localizations" : {
         "de" : {
@@ -2527,9 +2587,6 @@
         }
       }
     },
-    "Potrzeba więcej danych" : {
-
-    },
     "Pre-symptom ingredients" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2565,9 +2622,6 @@
         }
       }
     },
-    "Rekomendacja" : {
-
-    },
     "rye bread" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2602,6 +2656,9 @@
           }
         }
       }
+    },
+    "Safe" : {
+
     },
     "Save" : {
       "localizations" : {
@@ -2705,6 +2762,9 @@
           }
         }
       }
+    },
+    "Select a symptom to analyze" : {
+
     },
     "Select chart type" : {
       "extractionState" : "manual",
@@ -2947,6 +3007,9 @@
         }
       }
     },
+    "Symptom Analysis" : {
+
+    },
     "Symptom tag" : {
       "localizations" : {
         "de" : {
@@ -3119,9 +3182,6 @@
         }
       }
     },
-    "Ten składnik często wiąże się z symptomami. Rozważ jego eliminację na 2-4 tygodnie, aby sprawdzić czy objawy ustąpią." : {
-
-    },
     "This app is for guidance only and shows simple stats. For serious or ongoing symptoms, please seek medical advice" : {
       "localizations" : {
         "de" : {
@@ -3157,6 +3217,7 @@
       }
     },
     "Time" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3189,6 +3250,12 @@
           }
         }
       }
+    },
+    "Time window: %lld hours before" : {
+
+    },
+    "Top 10 ingredients by risk" : {
+
     },
     "Top ingredient followed by any symptom" : {
       "extractionState" : "manual",
@@ -3571,13 +3638,7 @@
         }
       }
     },
-    "wystąpień z symptomami" : {
-
-    },
-    "Zamknij" : {
-
-    },
-    "Zbierz więcej obserwacji (minimum 3-5), aby uzyskać bardziej wiarygodne wyniki analizy." : {
+    "Why isn't 100% always first?" : {
 
     }
   },

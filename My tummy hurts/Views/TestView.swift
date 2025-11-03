@@ -13,7 +13,7 @@ struct TestView: View {
     @Environment(\.dynamicTypeSize) var sizeCategory
     
     @State private var analyticsType: AnalyticsMode = .barChart
-    @State private var chartType: ChartMode = .checkSpecificSymptom
+    @State private var chartType: ChartMode = .defaultChart
     @State private var hoursBack = 5
     @State private var selectedSymptomId: UUID? = nil
     @State private var selectedFirstIngredient: String? = nil
@@ -68,70 +68,29 @@ struct TestView: View {
         .customBgModifier()
     }
     
-    var showInfoBtn: some View {
-        Button {
-            showInfo.toggle()
-        } label: {
-            HStack {
-                SectionTitle(title: "Top 10 ingredients by risk", textColor: Color("SecondaryText"))
-                    .textCase(.uppercase)
-                Spacer()
-                Image(systemName: "info.circle")
-            }
-            .foregroundStyle(.secondary)
-        }
-    }
-    
-    var legend: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            Text("Ingredients are ranked by risk score which considers:")
-                .bold()
-            list(items: listItems1)
-            Text("Why isn't 100% always first?")
-                .bold()
-                .padding(.top, 20)
-            list(items: listItems2)
-        }
-        .padding()
-        .foregroundStyle(.secondary)
-        .grayOverlayModifier()
-    }
-    
-    func list(items: [String]) -> some View {
-        VStack(alignment: .leading,
-               spacing: 10) {
-            ForEach(items, id: \.self) { data in
-                HStack(alignment: .top) {
-                    Text("•")
-                    Text(data)
-                        .frame(maxWidth: .infinity,
-                               alignment: .leading)
+    var top10Ingredients: some View {
+        VStack(alignment: .leading) {
+            SectionTitle(title: "Top ten problematic ingredients", textColor: Color("SecondaryText"))
+                .textCase(.uppercase)
+            VStack {
+                if vm.firstChartData.isEmpty {
+                    EmptyStateView(text: "Add meals and symptoms")
+                } else {
+                    HistoricalRiskChart()
                 }
             }
-        }
-    }
-    
-    var top10Ingredients: some View {
-        VStack {
-            showInfoBtn
-            if showInfo {
-                legend
-            }
-            if vm.firstChartData.isEmpty {
-                EmptyStateView(subheadline: "Add more meals and symptoms")
-            } else {
-                ColumnChart(data: vm.firstChartData)
-            }
+            .grayOverlayModifier()
         }
     }
     
     var specificSymptom: some View {
         VStack(alignment: .leading, spacing: 40) {
-            HowManyHoursBack(value: $hoursBack)
-            selectSymptom
+            //            HowManyHoursBack(value: $hoursBack)
+            //            selectSymptom
             VStack {
                 sectionTitle
-                TimelineChart(selectedSymptomId: $selectedSymptomId, hoursBack: $hoursBack)
+                //                TimelineChart(selectedSymptomId: $selectedSymptomId, hoursBack: $hoursBack)
+                SymptomAnalysisView()
             }
         }
         .transition(.opacity.combined(with: .move(edge: .top)))
@@ -182,142 +141,848 @@ struct TestView: View {
     }
 }
 
-struct ColumnChart: View {
-    @EnvironmentObject private var vm: CoreDataViewModel
-    @State private var selectedIngredient: IngredientAnalysis?
-    
-    let data: [IngredientAnalysis]
-    
-    var body: some View {
-        VStack(spacing: 20) {
-                VStack(spacing: 25) {
-                    ForEach(data) { ingredient in
-                        IngredientRow(ingredient: ingredient)
-                            .onTapGesture {
-                                selectedIngredient = ingredient
-                            }
-                    }
-                }
-        }
-        .grayOverlayModifier()
-        .sheet(item: $selectedIngredient) { ingredient in
-            IngredientDetailView(ingredient: ingredient)
-        }
-    }
-}
-
-struct TimelineChart: View {
-    @EnvironmentObject private var vm: CoreDataViewModel
-    @Environment(\.dynamicTypeSize) var sizeCategory
-    @Binding var selectedSymptomId: UUID?
-    @Binding var hoursBack: Int
-    @State private var selectedIngredient: IngredientAnalysis?
-    @State private var showPop: Bool = false
-    
-    var data: [Event] {
-        vm.horizontalData(selectedSymptomId: selectedSymptomId, selectedHourQty: hoursBack)
-    }
-    
-    var chartStart: Date? {
-        vm.startTime(selectedSymptomId: selectedSymptomId, selectedHourQty: hoursBack)
-    }
-    
-    var chartEnd: Date? {
-        guard let symptom = vm.findSpecificSymptom(selectedSymptomId: selectedSymptomId) else { return nil }
-        guard let symptomTime = symptom.createdAt else { return nil }
-        return symptomTime
-    }
-    
-    var selectedSymptomName: String? {
-        guard let symptom = vm.findSpecificSymptom(selectedSymptomId: selectedSymptomId) else { return nil }
-        guard let symptomDesc = symptom.symptom else { return nil }
-        return symptomDesc
-    }
-    
-    var body: some View {
-        VStack {
-            if let start = chartStart, let end = chartEnd {
-                ScrollView(.horizontal) {
-                    Chart(data) { event in
-                        PointMark(x: .value("Time", event.date)
-                        )
-                        .symbol {
-                                Image(systemName: event.icon)
-                                    .foregroundColor(event.icon == "toilet" ? .accent : Color("PrimaryText"))
-                                    .font(sizeCategory.isAccessibilitySize ? .body :  .system(size: 17))
-                            }
-                    }
-                    .chartXScale(domain: start...(end.addingTimeInterval(60 * 60)))
-                    .chartXAxis {
-                        AxisMarks(position: .bottom, values: .automatic(desiredCount: 10)) { value in
-                            AxisGridLine()
-                            AxisTick()
-                            AxisValueLabel(format: .dateTime.hour().minute(.twoDigits))
-                        }
-                    }
-
-                    .frame(width: UIScreen.main.bounds.width * 2, height: 100)
-                    .padding()
-                    legend
-                }
-                .grayOverlayModifier()
-                
-//                ColumnChart()
-//                    .padding(.top, 30)
-                
-            } else {
-                EmptyStateView(subheadline: "Select symptom")
-                    .grayOverlayModifier()
-            }
-        }
-    }
-    
-    var legend: some View {
-        HStack(alignment: .center, spacing: 30) {
-            legendItem(icon: "fork.knife", text: "meal", color: Color("PrimaryText"))
-            legendItem(icon: "toilet", text: selectedSymptomName ?? "", color: .accent)
-            Spacer()
-        }
-        .font(.caption2)
-        .padding(.vertical, 20)
-    }
-    
-    func legendItem(icon: String, text: String, color: Color) -> some View {
-        HStack(spacing: 5) {
-            Image(systemName: icon)
-                .foregroundStyle(color)
-                .font(.body)
-            Text(text)
-                .foregroundStyle(Color("PrimaryText"))
-        }
-    }
-}
-
 struct EmptyStateView: View {
-    let subheadline: LocalizedStringKey
+    let text: LocalizedStringKey
     
     var body: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: 16) {
             Image(systemName: "chart.bar.xaxis")
-                .font(.system(size: 48))
+                .font(.system(size: 60))
                 .foregroundColor(.secondary)
             
             Text("No data available for analysis")
                 .font(.headline)
                 .foregroundColor(.secondary)
             
-            Text(subheadline)
+            Text(text)
                 .font(.caption)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
         }
         .frame(maxWidth: .infinity)
-        .padding(.vertical, 40)
+        .padding(.vertical, 60)
     }
 }
 
-struct IngredientRow: View {
+struct HistoricalRiskChart: View {
+    @EnvironmentObject var vm: CoreDataViewModel
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            VStack(spacing: 30) {
+                ForEach(vm.firstChartDataTop10) { ingredient in
+                    HistoricalIngredient(ingredient: ingredient)
+                }
+            }
+            .padding()
+        }
+    }
+}
+
+struct HistoricalIngredient: View {
     let ingredient: IngredientAnalysis
+    @State private var showDetail = false
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack {
+                Text(ingredient.name.capitalized)
+                    .bold()
+                Spacer()
+                
+                Text(ingredient.legend)
+                    .font(.title3)
+                    .bold()
+                    .foregroundColor(textColor)
+            }
+            
+            Text("\(ingredient.symptomsOccurrences) of \(ingredient.totalOccurrences) meals")
+                .font(.caption)
+                .foregroundColor(.secondary)
+            
+            VStack(alignment: .leading, spacing: 4) {
+                GeometryReader { geometry in
+                    ZStack(alignment: .leading) {
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill(Color.gray.opacity(0.1))
+                            .frame(height: 32)
+                        
+                        if ingredient.suspicionRate > 0 {
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(
+                                    LinearGradient(
+                                        colors: [
+                                            barColor,
+                                            barColor.opacity(0.7)
+                                        ],
+                                        startPoint: .leading,
+                                        endPoint: .trailing
+                                    )
+                                )
+                                .frame(
+                                    width: geometry.size.width * ingredient.suspicionRate,
+                                    height: 32
+                                )
+                        }
+                        
+                        if ingredient.suspicionRate > 0.3 {
+                            HStack {
+                                Text(ingredient.riskLevel)
+                                    .font(.caption)
+                                    .bold()
+                                    .foregroundColor(.white)
+                                    .padding(.leading, 8)
+                                Spacer()
+                            }
+                        }
+                    }
+                }
+                .frame(height: 32)
+                
+                HStack {
+                    if ingredient.suspicionRate == 0 {
+                        Label("Safe", systemImage: "checkmark.circle.fill")
+                            .font(.caption)
+                            .foregroundColor(.green)
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 6)
+                            .background(Color.green.opacity(0.1))
+                            .cornerRadius(8)
+                    }
+                    
+                    Spacer()
+                    
+                    if !ingredient.hasEnoughData {
+                        HStack(spacing: 4) {
+                            Image(systemName: "exclamationmark.triangle.fill")
+                                .font(.caption2)
+                            Text("Need \(3 - ingredient.totalOccurrences) more meals")
+                                .font(.caption2)
+                        }
+                        .foregroundColor(.orange)
+                    }
+                }
+            }
+        }
+        .onTapGesture {
+            showDetail = true
+        }
+        .sheet(isPresented: $showDetail) {
+            SheetContent(ingredient: ingredient)
+        }
+    }
+    
+    var textColor: Color {
+        switch ingredient.suspicionRate {
+        case 0:
+            return .green
+        case 0..<0.3:
+            return .secondary
+        case 0.3..<0.6:
+            return .orange
+        default:
+            return .red
+        }
+    }
+    
+    var barColor: Color {
+        switch ingredient.suspicionRate {
+        case 0..<0.3:
+            return .accent.opacity(0.3)
+        case 0.3..<0.6:
+            return .orange
+        case 0.6..<0.8:
+            return .red.opacity(0.7)
+        default:
+            return .red
+        }
+    }
+}
+
+struct SheetContent: View {
+    @Environment(\.dismiss) var dismiss
+    let ingredient: IngredientAnalysis
+    
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 24) {
+                    headerCard
+                    riskExplanationCard
+                    statisticsCard
+                    howItWorksCard
+                    recommendationsCard
+                }
+                .padding()
+            }
+            .navigationTitle(ingredient.name.capitalized)
+            .navigationBarTitleDisplayMode(.large)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Close") {
+                        dismiss()
+                    }
+                }
+            }
+        }
+        .grayOverlayModifier()
+    }
+    
+    var headerCard: some View {
+        VStack(spacing: 16) {
+            ZStack {
+                Circle()
+                    .stroke(Color.gray.opacity(0.2), lineWidth: 12)
+                    .frame(width: 120, height: 120)
+                
+                Circle()
+                    .trim(from: 0, to: ingredient.suspicionRate)
+                    .stroke(riskColor, style: StrokeStyle(lineWidth: 12, lineCap: .round))
+                    .frame(width: 120, height: 120)
+                    .rotationEffect(.degrees(-90))
+                    .animation(.easeInOut(duration: 1.0), value: ingredient.suspicionRate)
+                
+                VStack(spacing: 4) {
+                    Text("\(Int(ingredient.suspicionRate * 100))%")
+                        .font(.system(size: 32, weight: .bold))
+                        .foregroundColor(riskColor)
+                    
+                    Text("Risk")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+            }
+            
+            Text(ingredient.riskLevel)
+                .font(.headline)
+                .foregroundColor(.white)
+                .padding(.horizontal, 20)
+                .padding(.vertical, 8)
+                .background(riskColor)
+                .cornerRadius(20)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 20)
+    }
+    
+    var riskExplanationCard: some View {
+        VStack(alignment: .leading) {
+            SectionTitle(title: "What does this mean?", textColor: .secondary)
+                .textCase(.uppercase)
+            
+            Text(riskExplanation)
+                .foregroundColor(.primaryText)
+                .fixedSize(horizontal: false, vertical: true)
+                .grayOverlayModifier()
+                .frame(maxWidth: .infinity)
+        }
+    }
+    
+    var riskExplanation: String {
+        switch ingredient.suspicionRate {
+        case 0:
+            return "\(ingredient.name.capitalized) has not been associated with any symptoms in your \(ingredient.totalOccurrences) recorded meal(s). Based on your current data, this ingredient appears to be well tolerated by you"
+            
+        case 0..<0.3:
+            return "\(ingredient.name.capitalized) shows a weak association with symptoms. Out of \(ingredient.totalOccurrences) meals, symptoms occurred within 8 hours after \(ingredient.symptomsOccurrences). This could be coincidental or influenced by other factors. Continue tracking to gather more insights"
+            
+        case 0.3..<0.6:
+            return "\(ingredient.name.capitalized) shows a moderate pattern worth exploring. Symptoms appeared after \(ingredient.symptomsOccurrences) of \(ingredient.totalOccurrences) meals containing this ingredient. Consider trying it in different combinations or amounts to see if the pattern holds"
+            
+        case 0.6..<0.8:
+            return "\(ingredient.name.capitalized) shows a notable pattern that's worth investigating further. Symptoms followed \(ingredient.symptomsOccurrences) of \(ingredient.totalOccurrences) meals with this ingredient. You might try temporarily reducing intake or noting portion sizes to better understand your tolerance"
+            
+        default:
+            return "\(ingredient.name.capitalized) shows a strong association with symptoms across \(ingredient.symptomsOccurrences) of \(ingredient.totalOccurrences) meals. This pattern suggests you may be sensitive to this ingredient. Consider experimenting with smaller portions, different preparations or temporary elimination to see if symptoms improve. If symptoms are significant, consulting a healthcare provider could provide additional guidance"
+        }
+    }
+    
+    var statisticsCard: some View {
+        VStack(alignment: .leading) {
+            SectionTitle(title: "Statistics", textColor: .secondary)
+                .textCase(.uppercase)
+            
+            VStack(spacing: 20) {
+                statisticsRow(title: "Total meals with \(ingredient.name)", number: ingredient.totalOccurrences, icon: "fork.knife")
+                Divider()
+                statisticsRow(title: "How many times symptoms occurred within 8 hours after this ingredient", number: ingredient.symptomsOccurrences, icon: "exclamationmark.triangle.fill")
+                Divider()
+                statisticsRow(title: "Symptom-free meals", number: ingredient.safeOccurrences, icon: "checkmark.circle.fill")
+                
+                if ingredient.hasEnoughData {
+                    HStack {
+                        Image(systemName: "checkmark.seal.fill")
+                            .foregroundColor(.accent)
+                        Text("Enough data for reliable analysis")
+                            .font(.caption)
+                            .foregroundColor(.accent)
+                    }
+                    .padding(.top, 8)
+                } else {
+                    HStack {
+                        Image(systemName: "exclamationmark.triangle.fill")
+                            .foregroundColor(.orange)
+                        Text("Track \(3 - ingredient.totalOccurrences) more meal(s) for better accuracy")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+                    .padding(.top, 8)
+                }
+            }
+            .padding()
+            .grayOverlayModifier()
+        }
+    }
+    
+    func statisticsRow(title: LocalizedStringKey, number: Int, icon: String) -> some View {
+        HStack {
+            VStack(alignment: .leading, spacing: 4) {
+                Text(title)
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+            }
+            Spacer()
+            Text("\(number)")
+                .font(.title2)
+                .bold()
+                .foregroundStyle(.accent)
+        }
+    }
+    
+    var howItWorksCard: some View {
+        VStack(alignment: .leading) {
+            SectionTitle(title: "How we calculate risk", textColor: .secondary)
+                .textCase(.uppercase)
+            
+            VStack(alignment: .leading, spacing: 16) {
+                explanationRow(
+                    title: "Time-weighted analysis",
+                    description: "We track symptoms within 8 hours after meals. Symptoms that occur closer to meal time receive higher weight in the calculation"
+                )
+                
+                explanationRow(
+                    title: "Pattern detection",
+                    description: "The risk percentage shows how often this ingredient was followed by symptoms across all your tracked meals"
+                )
+                
+                explanationRow(
+                    title: "Reliability",
+                    description: "We need at least 3 meals with this ingredient to provide reliable analysis. More data means more accurate results"
+                )
+            }
+            .grayOverlayModifier()
+        }
+    }
+    
+    func explanationRow(title: String, description: String) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            VStack(alignment: .leading, spacing: 4) {
+                Text(title)
+                    .font(.subheadline)
+                    .bold()
+                
+                Text(description)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+        }
+    }
+    
+    var recommendationsCard: some View {
+        VStack(alignment: .leading) {
+            SectionTitle(title: "Recommendations", textColor: .secondary)
+                .textCase(.uppercase)
+            
+            VStack(alignment: .leading, spacing: 12) {
+                ForEach(recommendations, id: \.self) { recommendation in
+                    HStack(alignment: .top, spacing: 12) {
+                        Image(systemName: "checkmark.circle.fill")
+                            .foregroundColor(.accent)
+                        
+                        Text(recommendation)
+                            .foregroundColor(.accent)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                }
+            }
+            .noteModifier()
+        }
+    }
+    
+    var recommendations: [String] {
+        var recs: [String] = []
+        
+        switch ingredient.suspicionRate {
+        case 0:
+            recs.append("Continue enjoying this ingredient - it appears safe for you")
+            recs.append("Keep tracking to maintain accurate data")
+        case 0..<0.3:
+            recs.append("This ingredient seems mostly safe")
+            recs.append("Monitor for any changes in your reaction over time")
+            recs.append("Track a few more meals to improve accuracy")
+        case 0.3..<0.6:
+            recs.append("Consider reducing intake to see if symptoms improve")
+            recs.append("Pay attention to portion sizes - smaller amounts might be tolerable")
+            recs.append("Try eating this ingredient separately to isolate its effect")
+        case 0.6..<0.8:
+            recs.append("Strongly consider avoiding this ingredient")
+            recs.append("If you do eat it, track carefully to confirm the pattern")
+            recs.append("Discuss with your healthcare provider")
+        default:
+            recs.append("Avoid this ingredient")
+            recs.append("Consult with a healthcare provider or dietitian")
+            recs.append("If symptoms are severe, seek medical attention")
+        }
+        
+        if !ingredient.hasEnoughData {
+            recs.append("Track \(3 - ingredient.totalOccurrences) more meal(s) for more reliable analysis")
+        }
+        
+        return recs
+    }
+    
+    var riskColor: Color {
+        switch ingredient.suspicionRate {
+        case 0:
+            return .green
+        case 0..<0.3:
+            return .blue
+        case 0.3..<0.6:
+            return .orange
+        case 0.6..<0.8:
+            return .red.opacity(0.8)
+        default:
+            return .red
+        }
+    }
+}
+
+
+struct SymptomAnalysisView: View {
+    @EnvironmentObject var vm: CoreDataViewModel
+    
+    @State private var selectedSymptomId: UUID?
+    @State private var selectedHourQty = 5
+    
+    var pickerSymptoms: [SymptomNote] {
+        vm.savedSymptomNotes.sorted { $0.createdAt ?? Date() > $1.createdAt ?? Date() }
+    }
+    
+    var data: [IngredientAnalysis2] {
+        vm.getSecondChartData(symptomId: selectedSymptomId, hours: selectedHourQty)
+    }
+    
+    var potentialTriggers: [IngredientAnalysis2] {
+        data.filter { ingredient in
+            // ⭐ Tylko składniki z historią
+            guard ingredient.historicalData != nil else { return false }
+            guard ingredient.usedHistoricalData else { return false }
+            guard ingredient.suspicionScore > 0 else { return false }
+            return !ingredient.isSafe
+        }
+    }
+    
+    var safeIngredients: [IngredientAnalysis2] {
+        data.filter { ingredient in
+            guard ingredient.historicalData != nil else { return false }
+            return ingredient.isSafe
+        }
+    }
+    
+    var uncertainIngredients: [IngredientAnalysis2] {
+        data.filter { ingredient in
+            // ⭐ Ma historię ALE insufficient data
+            guard ingredient.historicalData != nil else { return false }
+            return !ingredient.usedHistoricalData && !ingredient.isSafe
+        }
+    }
+    
+    // ⭐ NOWA SEKCJA - składniki BEZ historii
+    var newIngredients: [IngredientAnalysis2] {
+        data.filter { ingredient in
+            ingredient.historicalData == nil
+        }
+    }
+    
+    var body: some View {
+        VStack(spacing: 16) {
+            // Header with controls
+            VStack(alignment: .leading, spacing: 12) {
+                HStack {
+                    Image(systemName: "exclamationmark.triangle.fill")
+                        .foregroundColor(.red)
+                    Text("Symptom Analysis")
+                        .font(.headline)
+                        .bold()
+                }
+                
+                Picker("Select symptom", selection: $selectedSymptomId) {
+                    Text("Select symptom").tag(nil as UUID?)
+                    
+                    ForEach(pickerSymptoms) { symptom in
+                        if let time = symptom.createdAt {
+                            // ⭐ Format z datą i czasem
+                            HStack {
+                                Text(time, style: .date)
+                                Text(time, style: .time)
+                                Text("–")
+                                Text(symptom.symptom ?? "Unknown")
+                            }
+                            .tag(symptom.id as UUID?)
+                        } else {
+                            Text(symptom.symptom ?? "Unknown")
+                                .tag(symptom.id as UUID?)
+                        }
+                    }
+                }
+                .pickerStyle(.menu)
+                
+                // Hour slider
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Time window: \(selectedHourQty) hours before")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                    
+                    Slider(value: Binding(
+                        get: { Double(selectedHourQty) },
+                        set: { selectedHourQty = Int($0) }
+                    ), in: 1...12, step: 1)
+                }
+            }
+            .padding()
+            .background(Color(.systemGray6))
+            .cornerRadius(12)
+            
+            VStack(spacing: 20) {
+                if !potentialTriggers.isEmpty {
+                    SectionView(
+                        title: "Potential triggers",
+                        subtitle: "Based on historical patterns",
+                        icon: "exclamationmark.triangle.fill",
+                        iconColor: .red,
+                        ingredients: potentialTriggers
+                    )
+                }
+                
+                if !safeIngredients.isEmpty {
+                    SectionView(
+                        title: "Safe ingredients",
+                        subtitle: "Never caused symptoms",
+                        icon: "checkmark.circle.fill",
+                        iconColor: .green,
+                        ingredients: safeIngredients
+                    )
+                }
+                
+                if !uncertainIngredients.isEmpty {
+                    SectionView(
+                        title: "Insufficient data",
+                        subtitle: "Need 2+ meals tracked",
+                        icon: "questionmark.circle.fill",
+                        iconColor: .orange,
+                        ingredients: uncertainIngredients
+                    )
+                }
+                
+                // ⭐ NOWA SEKCJA
+                if !newIngredients.isEmpty {
+                    SectionView(
+                        title: "New ingredients",
+                        subtitle: "Not yet in historical data",
+                        icon: "sparkles",
+                        iconColor: .blue,
+                        ingredients: newIngredients
+                    )
+                }
+            }
+        }
+        .padding()
+        .onAppear {
+            // Auto-select last symptom
+            if selectedSymptomId == nil {
+                selectedSymptomId = vm.savedSymptomNotes.first?.id
+            }
+        }
+    }
+}
+
+struct SymptomAnalysisResults: View {
+    let data: [IngredientAnalysis2]
+    
+    // Group ingredients
+    var potentialTriggers: [IngredientAnalysis2] {
+        data.filter { $0.usedHistoricalData && $0.suspicionScore > 0 && !$0.isSafe }
+    }
+    
+    var safeIngredients: [IngredientAnalysis2] {
+        data.filter { $0.isSafe }
+    }
+    
+    var uncertainIngredients: [IngredientAnalysis2] {
+        data.filter { !$0.usedHistoricalData || ($0.usedHistoricalData && $0.suspicionScore == 0 && !$0.isSafe) }
+    }
+    
+    var body: some View {
+        ScrollView {
+            VStack(spacing: 20) {
+                // Potential triggers
+                if !potentialTriggers.isEmpty {
+                    SectionView(
+                        title: "Potential triggers",
+                        subtitle: "Based on historical patterns",
+                        icon: "exclamationmark.triangle.fill",
+                        iconColor: .red,
+                        ingredients: potentialTriggers
+                    )
+                }
+                
+                // Safe ingredients
+                if !safeIngredients.isEmpty {
+                    SectionView(
+                        title: "Safe ingredients",
+                        subtitle: "Never caused symptoms",
+                        icon: "checkmark.circle.fill",
+                        iconColor: .green,
+                        ingredients: safeIngredients
+                    )
+                }
+                
+                // Uncertain
+                if !uncertainIngredients.isEmpty {
+                    SectionView(
+                        title: "Insufficient data",
+                        subtitle: "Need 2+ meals tracked",
+                        icon: "questionmark.circle.fill",
+                        iconColor: .orange,
+                        ingredients: uncertainIngredients
+                    )
+                }
+            }
+        }
+    }
+}
+
+struct SectionView: View {
+    let title: String
+    let subtitle: String
+    let icon: String
+    let iconColor: Color
+    let ingredients: [IngredientAnalysis2]
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            // Section header
+            VStack(alignment: .leading, spacing: 4) {
+                HStack {
+                    Image(systemName: icon)
+                        .foregroundColor(iconColor)
+                    Text(title)
+                        .font(.headline)
+                }
+                Text(subtitle)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
+            .padding(.horizontal)
+            
+            Divider()
+            
+            // Ingredients
+            ForEach(ingredients) { ingredient in
+                IngredientAnalysis2Row(ingredient: ingredient)
+            }
+        }
+        .padding(.vertical, 12)
+        .background(Color(.systemBackground))
+        .cornerRadius(16)
+        .shadow(radius: 2)
+    }
+}
+
+struct IngredientAnalysis2Row: View {
+    let ingredient: IngredientAnalysis2
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            // Top: Name + Percentage
+            HStack {
+                Text(emoji)
+                    .font(.title2)
+                
+                Text(ingredient.name.capitalized)
+                    .font(.body)
+                    .bold()
+                
+                Spacer()
+                
+                Text(ingredient.legend)
+                    .font(.title3)
+                    .bold()
+                    .foregroundColor(textColor)
+            }
+            
+            // Historical data
+            //            if let historical = ingredient.historicalData {
+            //                Text("\(ingredient.globalSymptomsOccurrences) of \(ingredient.globalTotalOccurrences) meals in history")
+            //                    .font(.caption)
+            //                    .foregroundColor(.secondary)
+            //
+            //
+            //            } else {
+            //                // ⭐ Dla składników bez historii
+            //                Text("Not yet in historical data")
+            //                    .font(.caption)
+            //                    .foregroundColor(.secondary)
+            //                    .italic()
+            //            }
+            if let historical = ingredient.historicalData {
+                // ⭐ ZMIEŃ NA:
+                Text("\(historical.symptomsOccurrences) of \(historical.totalOccurrences) meals in history")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                
+                Text("DEBUG: symptoms=\(historical.symptomsOccurrences), weighted=\(String(format: "%.1f", historical.weightedSymptoms))")
+                    .font(.caption2)
+                    .foregroundColor(.red)
+            }
+            
+            // Bar
+            GeometryReader { geometry in
+                ZStack(alignment: .leading) {
+                    // Background
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(Color.gray.opacity(0.1))
+                        .frame(height: 32)
+                    
+                    // Foreground
+                    if ingredient.suspicionScore > 0 {
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill(
+                                LinearGradient(
+                                    colors: [barColor, barColor.opacity(0.7)],
+                                    startPoint: .leading,
+                                    endPoint: .trailing
+                                )
+                            )
+                            .frame(
+                                width: geometry.size.width * ingredient.suspicionScore,
+                                height: 32
+                            )
+                    }
+                    
+                    // Label
+                    if ingredient.suspicionScore > 0.3 && ingredient.usedHistoricalData {
+                        HStack {
+                            Text(ingredient.riskLevel)
+                                .font(.caption)
+                                .bold()
+                                .foregroundColor(.white)
+                                .padding(.leading, 8)
+                            Spacer()
+                        }
+                    }
+                }
+            }
+            .frame(height: 32)
+            
+            // Timing info
+            Text("Eaten \(formattedTime) ago")
+                .font(.caption)
+                .foregroundColor(.secondary)
+            
+            // Warnings
+            if ingredient.historicalData == nil {
+                // ⭐ NOWE - dla składników bez historii
+                HStack(spacing: 8) {
+                    Image(systemName: "info.circle.fill")
+                        .font(.caption)
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("New ingredient")
+                            .font(.caption)
+                            .bold()
+                        Text("Track in more meals to see historical patterns.")
+                            .font(.caption2)
+                    }
+                }
+                .foregroundColor(.blue)
+                .padding(12)
+                .background(Color.blue.opacity(0.1))
+                .cornerRadius(8)
+            } else if !ingredient.usedHistoricalData {
+                // ⭐ STARE - dla składników z insufficient data
+                HStack(spacing: 8) {
+                    Image(systemName: "exclamationmark.triangle.fill")
+                        .font(.caption)
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Limited data")
+                            .font(.caption)
+                            .bold()
+                        Text("Only \(ingredient.globalTotalOccurrences) meal(s) in history. Need 2+ for accuracy.")
+                            .font(.caption2)
+                    }
+                }
+                .foregroundColor(.orange)
+                .padding(12)
+                .background(Color.orange.opacity(0.1))
+                .cornerRadius(8)
+            }
+        }
+        .padding()
+        .background(Color(.systemGray6))
+        .cornerRadius(12)
+        .padding(.horizontal)
+    }
+    
+    var formattedTime: String {
+        let hours = Int(ingredient.howLongAgo)
+        let minutes = Int((ingredient.howLongAgo - Double(hours)) * 60)
+        
+        if hours > 0 {
+            return minutes > 0 ? "\(hours)h \(minutes)m" : "\(hours)h"
+        } else {
+            return "\(minutes)m"
+        }
+    }
+    
+    var emoji: String {
+        if ingredient.isSafe { return "🟢" }
+        if !ingredient.usedHistoricalData { return "⚪" }
+        
+        switch ingredient.suspicionScore {
+        case 0..<0.3: return "⚪"
+        case 0.3..<0.6: return "🟡"
+        case 0.6..<0.8: return "🟠"
+        default: return "🔴"
+        }
+    }
+    
+    var textColor: Color {
+        if ingredient.isSafe { return .green }
+        if !ingredient.usedHistoricalData { return .secondary }
+        
+        switch ingredient.suspicionScore {
+        case 0..<0.3: return .secondary
+        case 0.3..<0.6: return .orange
+        default: return .red
+        }
+    }
+    
+    var barColor: Color {
+        if ingredient.isSafe { return .green }
+        if !ingredient.usedHistoricalData { return .gray }
+        
+        switch ingredient.suspicionScore {
+        case 0..<0.3: return .accent.opacity(0.3)
+        case 0.3..<0.6: return .orange
+        case 0.6..<0.8: return .red.opacity(0.7)
+        default: return .red
+        }
+    }
+}
+
+struct IngredientRow<T: ScoredIngredient>: View {
+    let ingredient: T
     
     var body: some View {
         VStack(spacing: 8) {
@@ -354,206 +1019,183 @@ struct IngredientRow: View {
     }
     
     var ingredientBottom: some View {
-        VStack {
-            GeometryReader { geometry in
-                ZStack(alignment: .leading) {
-                    RoundedRectangle(cornerRadius: 8)
-                        .fill(Color.gray.opacity(0.1))
-                        .frame(height: 32)
-                    
-                    RoundedRectangle(cornerRadius: 8)
-                        .fill(
-                            LinearGradient(
-                                colors: [
-                                    ingredient.colorIntensity,
-                                    ingredient.colorIntensity.opacity(0.7)
-                                ],
-                                startPoint: .leading,
-                                endPoint: .trailing
-                            )
-                        )
-                        .frame(
-                            width: geometry.size.width * ingredient.suspicionRate,
-                            height: 32
-                        )
-                    
-                    if ingredient.suspicionRate > 0.3 {
-                        HStack {
-                            Text(ingredient.riskLevel)
-                                .font(.caption)
-                                .bold()
-                                .foregroundColor(.white)
-                                .padding(.leading, 8)
-                            Spacer()
-                        }
-                    }
-                }
+        VStack(spacing: 8) {
+            // ⭐ Sprawdź czy składnik jest "safe"
+            if let analysis2 = ingredient as? IngredientAnalysis2, analysis2.isSafe {
+                // SAFE INGREDIENT - pokaż badge zamiast paska
+                safeBadge
+            } else if ingredient.scoreValue > 0 {
+                // NORMAL - pokaż pasek
+                normalBar
+            } else {
+                // SCORE = 0 ale nie "safe" - pokaż pusty pasek
+                emptyBar
             }
-            .frame(height: 32)
             
-            if !ingredient.hasEnoughData {
-                ingredientSmallData
+            // Warnings (jeśli są)
+            if let analysis2 = ingredient as? IngredientAnalysis2 {
+                if !analysis2.usedHistoricalData {
+                    insufficientDataWarning
+                }
             }
         }
     }
     
+    var safeBadge: some View {
+        HStack(spacing: 10) {
+            Image(systemName: "checkmark.shield.fill")
+                .foregroundColor(.green)
+                .font(.title3)
+            
+            VStack(alignment: .leading, spacing: 4) {
+                Text("Historically safe")
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.green)
+                
+                if let analysis2 = ingredient as? IngredientAnalysis2 {
+                    Text("Never caused symptoms (0 of \(analysis2.globalTotalOccurrences))")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+            }
+            
+            Spacer()
+        }
+        .padding(12)
+        .background(Color.green.opacity(0.1))
+        .cornerRadius(8)
+    }
+    
+    var normalBar: some View {
+        GeometryReader { geometry in
+            ZStack(alignment: .leading) {
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(Color.gray.opacity(0.1))
+                    .frame(height: 32)
+                
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(
+                        LinearGradient(
+                            colors: [
+                                ingredient.colorIntensity,
+                                ingredient.colorIntensity.opacity(0.7)
+                            ],
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
+                    )
+                    .frame(
+                        width: geometry.size.width * ingredient.scoreValue,
+                        height: 32
+                    )
+                
+                if ingredient.scoreValue > 0.3 {
+                    HStack {
+                        Text(ingredient.riskLevel)
+                            .font(.caption)
+                            .bold()
+                            .foregroundColor(.white)
+                            .padding(.leading, 8)
+                        Spacer()
+                    }
+                }
+            }
+        }
+        .frame(height: 32)
+    }
+    
+    var emptyBar: some View {
+        RoundedRectangle(cornerRadius: 8)
+            .fill(Color.gray.opacity(0.1))
+            .frame(height: 32)
+    }
+    
+    var insufficientDataWarning: some View {
+        HStack(spacing: 8) {
+            Image(systemName: "exclamationmark.triangle.fill")
+                .foregroundColor(.orange)
+                .font(.caption)
+            
+            VStack(alignment: .leading, spacing: 2) {
+                Text("Limited data")
+                    .font(.caption)
+                    .fontWeight(.semibold)
+                
+                if let analysis2 = ingredient as? IngredientAnalysis2 {
+                    Text("Only \(analysis2.globalTotalOccurrences) meal(s) in history. Need 2+ for accuracy.")
+                        .font(.caption2)
+                        .foregroundColor(.secondary)
+                }
+            }
+            
+            Spacer()
+        }
+        .padding(10)
+        .background(Color.orange.opacity(0.1))
+        .cornerRadius(8)
+    }
+    
     var ingredientName: some View {
         HStack {
-            Circle()
-                .fill(ingredient.colorIntensity)
-                .frame(width: 15, height: 15)
+            // ⭐ Ikona - zmień kolor dla safe
+            if let analysis2 = ingredient as? IngredientAnalysis2, analysis2.isSafe {
+                Circle()
+                    .fill(Color.green)
+                    .frame(width: 15, height: 15)
+            } else {
+                Circle()
+                    .fill(ingredient.colorIntensity)
+                    .frame(width: 15, height: 15)
+            }
             
             Text(ingredient.name)
                 .bold()
             
-            if !ingredient.hasEnoughData {
-                Image(systemName: "exclamationmark.triangle")
-                    .foregroundStyle(.red)
+            // ⭐ Triangle TYLKO dla insufficient data (nie dla safe)
+            if let analysis2 = ingredient as? IngredientAnalysis2 {
+                if !analysis2.usedHistoricalData {
+                    Image(systemName: "exclamationmark.triangle")
+                        .foregroundStyle(.orange)
+                }
             }
         }
     }
     
     var ingredientPercentage: some View {
         VStack(alignment: .trailing, spacing: 2) {
-            Text(ingredient.legend)
-                .font(.headline)
-            
-            Text("\(ingredient.symptomsOccurrences) z \(ingredient.totalOccurrences)")
-                .font(.caption2)
-                .foregroundColor(.secondary)
-        }
-    }
-}
-
-struct IngredientDetailView: View {
-    let ingredient: IngredientAnalysis
-    @Environment(\.dismiss) var dismiss
-    
-    var body: some View {
-        NavigationView {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 24) {
-                    symptomsFrequency
-                    details
-                    
-                    if !ingredient.hasEnoughData {
-                        moreDataNeeded
+            if let analysis2 = ingredient as? IngredientAnalysis2 {
+                // Pokaż procent
+                Text("\(Int(analysis2.suspicionScore * 100))%")
+                    .font(.headline)
+                    .foregroundColor(analysis2.isSafe ? .green : .primary)
+                
+                // Pokaż status
+                if analysis2.usedHistoricalData {
+                    if analysis2.isSafe {
+                        Text("Safe")
+                            .font(.caption2)
+                            .foregroundColor(.green)
+                    } else {
+                        Text("\(analysis2.globalSymptomsOccurrences) of \(analysis2.globalTotalOccurrences)")
+                            .font(.caption2)
+                            .foregroundColor(.secondary)
                     }
-                    
-                    if ingredient.suspicionRate > 0.6 {
-                        additionalInfo(title: "Recommendation", titleColor: .red.opacity(0.7), icon: "lightbulb.fill", text: "This ingredient is often associated with symptoms. Consider eliminating it for 2-4 weeks to see if the symptoms subside")
-                    }
-                    
-                    additionalInfo(title: "How does it works", titleColor: .primaryText, icon: "questionmark", text: "We analyze the percentage of meals containing the ingredient after which the symptom occurred. The higher the percentage, the greater the likelihood that the ingredient is the cause of the symptoms")
+                } else {
+                    Text("")
+                        .font(.caption2)
+                        .foregroundColor(.orange)
+                }
+            } else  {
+                Text(ingredient.legend)
+                    .font(.headline)
+                
+                if let symptomsOccurrences = ingredient.symptomsOccurrences {
+                    Text("\(symptomsOccurrences) of \(ingredient.totalOccurrences)")
+                        .font(.caption2)
+                        .foregroundColor(.secondary)
                 }
             }
-            .navigationTitle(ingredient.name)
-            .navigationBarTitleDisplayMode(.large)
-            .customBgModifier()
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Zamknij") {
-                        dismiss()
-                    }
-                }
-            }
-        }
-    }
-    
-    var symptomsFrequency: some View {
-        VStack(spacing: 8) {
-            Text(ingredient.legend)
-                .font(.system(size: 64, weight: .bold))
-            
-            Text("frequency of symptoms")
-        }
-        .foregroundStyle(.accent)
-        .frame(maxWidth: .infinity)
-        .grayOverlayModifier()
-    }
-    
-    var details: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            DetailRow(
-                icon: "chart.line.uptrend.xyaxis",
-                title: "Risk level",
-                value: ingredient.riskLevel,
-            )
-            
-            Divider()
-            
-            DetailRow(
-                icon: "fork.knife",
-                title: "Meals in total",
-                value: "\(ingredient.totalOccurrences)",
-            )
-            
-            Divider()
-            
-            DetailRow(
-                icon: "exclamationmark.triangle.fill",
-                title: "Meals with symptoms",
-                value: "\(ingredient.symptomsOccurrences)",
-            )
-            
-            Divider()
-            
-            DetailRow(
-                icon: "checkmark.circle.fill",
-                title: "Meals without symptoms",
-                value: "\(ingredient.safeOccurrences)",
-            )
-        }
-        .grayOverlayModifier()
-    }
-    
-    func additionalInfo(title: LocalizedStringKey, titleColor: Color, icon: String, text: LocalizedStringKey) -> some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Label(title, systemImage: icon)
-                .font(.headline)
-                .foregroundColor(titleColor)
-            
-            Text(text)
-                .font(.subheadline)
-                .foregroundColor(.secondary)
-        }
-        .frame(maxWidth: .infinity)
-        .grayOverlayModifier()
-    }
-    
-    var moreDataNeeded: some View {
-        VStack(alignment: .center, spacing: 8) {
-            Label("More data needed", systemImage: "info.circle.fill")
-                .font(.headline)
-            
-            Text("Collect more observations (minimum 3-5) to obtain more reliable analysis results")
-                .font(.subheadline)
-                .foregroundColor(.secondary)
-                .multilineTextAlignment(.center)
-        }
-        .frame(maxWidth: .infinity)
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(Color("CustomSecondary").opacity(0.5))
-        )
-    }
-}
-
-struct DetailRow: View {
-    let icon: String
-    let title: String
-    let value: String
-    
-    var body: some View {
-        HStack {
-            Image(systemName: icon)
-                .frame(width: 24)
-            Text(title)
-            Spacer()
-            Text(value)
-                .bold()
-                .foregroundStyle(.secondary)
         }
     }
 }
@@ -561,6 +1203,7 @@ struct DetailRow: View {
 #Preview() {
     NavigationStack {
         TestView()
-            .environmentObject(CoreDataViewModel.preview)
+            .environmentObject(CoreDataViewModel.previewWithData)
+        //            .environmentObject(CoreDataViewModel.preview)
     }
 }

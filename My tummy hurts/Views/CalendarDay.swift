@@ -71,13 +71,6 @@ struct CalendarDay: View {
                     NoDataAlert(text: "No notes today")
                 } else {
                     HStack {
-                        SectionTitle(title: "Events timeline", textColor: Color("SecondaryText"))
-                            .textCase(.uppercase)
-                        Spacer()
-                    }
-                    .padding(.top, 30)
-//                    TimelineChart(startOfDay: startOfDay, endOfDay: endOfDay, data: data)
-                    HStack {
                         SectionTitle(title: "Daily events", textColor: Color("SecondaryText"))
                             .textCase(.uppercase)
                         Spacer()
@@ -107,55 +100,6 @@ struct Event: Identifiable {
     let icon: String
     let desc: String
 }
-
-//struct TimelineChart: View {
-//    @EnvironmentObject private var vm: CoreDataViewModel
-//    @Environment(\.dynamicTypeSize) var sizeCategory
-//    
-//    var startOfDay: Date
-//    var endOfDay: Date
-//    var data: [Event]
-//    
-//    var body: some View {
-//        ScrollView(.horizontal) {
-//            Chart(data) { event in
-//                PointMark(x: .value("Time", event.date)
-//                )
-//                .symbol {
-//                    Image(systemName: event.icon)
-//                        .foregroundColor(event.tag?.color ?? Color("PrimaryText"))
-//                        .font(sizeCategory.isAccessibilitySize ? .body :  .system(size: 17))
-//                }
-//            }
-//            .chartXScale(domain: startOfDay...endOfDay)
-//            .frame(width: UIScreen.main.bounds.width * 2, height: 100)
-//            .padding(30)
-//            legend
-//        }
-//        .grayOverlayModifier()
-//    }
-//    
-//    var legend: some View {
-//        HStack(alignment: .center, spacing: 30) {
-//            legendItem(icon: "fork.knife", text: "meal", color: Color("PrimaryText"))
-//            legendItem(icon: "toilet", text: "minor symptom", color: SymptomTagsEnum.blue.color)
-//            legendItem(icon: "toilet", text: "major symptom", color: SymptomTagsEnum.red.color)
-//            Spacer()
-//        }
-//        .font(.caption2)
-//        .padding(.vertical, 20)
-//    }
-//    
-//    func legendItem(icon: String, text: LocalizedStringKey, color: Color) -> some View {
-//        HStack(spacing: 5) {
-//            Image(systemName: icon)
-//                .foregroundStyle(color)
-//                .font(.body)
-//            Text(text)
-//                .foregroundStyle(Color("PrimaryText"))
-//        }
-//    }
-//}
 
 struct DailyEvents: View {
     var data: [Event]
@@ -205,6 +149,7 @@ struct CalendarDay_Previews: PreviewProvider {
         NavigationStack {
             CalendarDay(selectedDate: .constant(Date()))
                 .environmentObject(CoreDataViewModel())
+//                .environmentObject(CoreDataViewModel.previewWithData)
         }
     }
 }

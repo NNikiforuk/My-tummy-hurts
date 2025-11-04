@@ -1,11 +1,36 @@
 //
-//  NoteEnum.swift
+//  ChartViewEnums.swift
 //  My tummy hurts
 //
-//  Created by Natalia Nikiforuk on 07/09/2025.
+//  Created by Natalia Nikiforuk on 04/11/2025.
 //
 
+import SwiftUI
 import Foundation
+
+enum ChartMode: String, CaseIterable, Identifiable {
+    case defaultChart, checkSpecificSymptom
+    var id: Self { self }
+    var title: String {
+        switch self {
+        case .defaultChart: "Suspicious ingredients"
+        case .checkSpecificSymptom: "Check specific symptom"
+        }
+    }
+    var localizedTitle: String {
+        NSLocalizedString(self.title, comment: "")
+    }
+}
+
+enum AnalyticsMode: String, CaseIterable, Identifiable {
+    case barChart = "Bar chart"
+    case calendarView = "Monthly calendar"
+    
+    var id: Self { self }
+    var localized: String {
+        NSLocalizedString(self.rawValue, comment: "")
+    }
+}
 
 enum NoteEnum {
     case meal(MealNote)

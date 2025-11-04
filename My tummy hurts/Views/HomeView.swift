@@ -75,8 +75,7 @@ struct HomeView: View {
             }
             ToolbarItem(placement: .topBarTrailing) {
                 NavigationLink {
-//                    ChartView()
-                    TestView()
+                    ChartView()
                 } label: {
                     HStack {
                         Image(systemName: "chart.bar")

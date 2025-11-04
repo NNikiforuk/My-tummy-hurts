@@ -402,12 +402,6 @@ extension CoreDataViewModel {
         return Array(summary.prefix(10))
     }
     
-    func getSecondChartData(symptomId: UUID?, hours: Int) -> [IngredientAnalysis2] {
-        specificSyptomChart(selectedSymptomId: symptomId,
-                            selectedHourQty: hours) ?? []
-    }
-    
-    //HORIZONTAL CHART
     func findSpecificSymptom(selectedSymptomId: UUID?) -> SymptomNote? {
         guard let selectedId = selectedSymptomId else { return nil }
         return savedSymptomNotes.first { $0.id == selectedId }
@@ -432,85 +426,9 @@ extension CoreDataViewModel {
             }
     }
     
-    func horizontalChartMeals(selectedSymptomId: UUID?, selectedHourQty: Int) -> [Event] {
-        let catchedMeals = catchMeals(selectedSymptomId: selectedSymptomId, selectedHourQty: selectedHourQty)
-        
-        var events: [Event] = []
-        
-        for meal in catchedMeals {
-            guard let mealTime = meal.createdAt else { return [] }
-            guard let mealIngredients = meal.ingredients else { return [] }
-            
-            events.append(Event(date: mealTime, type: .meals, tag: nil, icon: "fork.knife", desc: mealIngredients))
-        }
-        return events
-    }
-    
-    func horizontalChartSymptom(selectedSymptomId: UUID?) -> [Event] {
-        guard let symptom = findSpecificSymptom(selectedSymptomId: selectedSymptomId) else { return [] }
-        guard let symptomTime = symptom.createdAt else { return [] }
-        guard let symptomDesc = symptom.symptom else { return [] }
-        var events: [Event] = []
-        events.append(Event(date: symptomTime, type: .symptoms, tag: nil, icon: "toilet", desc: symptomDesc))
-        
-        return events
-    }
-    
-    func horizontalData(selectedSymptomId: UUID?, selectedHourQty: Int) -> [Event] {
-        let meals = horizontalChartMeals(selectedSymptomId: selectedSymptomId, selectedHourQty: selectedHourQty)
-        let symptom = horizontalChartSymptom(selectedSymptomId: selectedSymptomId)
-        let allTogether = meals + symptom
-        
-        return allTogether.sorted(by: { $0.date < $1.date })
-    }
-}
-
-private extension String {
-    var normalizedKey: String {
-        self.trimmingCharacters(in: .whitespacesAndNewlines)
-            .folding(options: [.diacriticInsensitive, .caseInsensitive], locale: .current)
-            .lowercased()
-    }
-}
-
-protocol ScoredIngredient: Identifiable {
-    var name: String { get }
-    var scoreValue: Double { get }
-    var colorIntensity: Color { get }
-    var riskLevel: String { get }
-    var hasEnoughData: Bool { get }
-    var totalOccurrences: Int { get }
-    var symptomsOccurrences: Int? { get }
-    var safeOccurrences: Int? { get }
-    var legend: String { get }
-}
-
-extension ScoredIngredient {
-    var colorIntensity: Color {
-        switch scoreValue {
-        case 0..<0.3:
-            return .accent.opacity(0.1)
-        case 0.3..<0.6:
-            return .accent.opacity(0.3)
-        case 0.6..<0.8:
-            return .accent.opacity(0.6)
-        default:
-            return .accent
-        }
-    }
-    var symptomsOccurrences: Int? { nil }
-    var safeOccurrences: Int? { nil }
-}
-
-extension IngredientAnalysis: ScoredIngredient {
-    var scoreValue: Double {
-        suspicionRate
-    }
-}
-
-extension IngredientAnalysis2: ScoredIngredient {
-    var scoreValue: Double {
-        suspicionScore
+    func getSecondChartData(symptomId: UUID?, hours: Int) -> [IngredientAnalysis2] {
+        specificSyptomChart(selectedSymptomId: symptomId,
+                            selectedHourQty: hours) ?? []
     }
 }
 

@@ -169,7 +169,13 @@ struct AppendingRowBtn: View {
                 }
             }
         } label: {
-            PlusIcon()
+            HStack {
+                Image(systemName: "plus")
+                Text("List item")
+            }
+            .foregroundStyle(.accent)
+            .bold()
+            .padding(.horizontal, 10)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.top, 20)

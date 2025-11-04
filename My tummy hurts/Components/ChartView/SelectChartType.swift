@@ -18,14 +18,12 @@ struct SelectChartType: View {
                 SelectableCard(
                     title: ChartMode.defaultChart.localizedTitle,
                     isSelected: chartType == ChartMode.defaultChart,
-                    onTap: { chartType = ChartMode.defaultChart },
-                    desc: ChartMode.defaultChart.localizedDesc)
+                    onTap: { chartType = ChartMode.defaultChart })
                 
                 SelectableCard(
                     title: ChartMode.checkSpecificSymptom.localizedTitle,
                     isSelected: chartType == ChartMode.checkSpecificSymptom,
-                    onTap: { chartType = ChartMode.checkSpecificSymptom },
-                    desc: ChartMode.checkSpecificSymptom.localizedDesc)
+                    onTap: { chartType = ChartMode.checkSpecificSymptom })
             }
             .grayOverlayModifier()
             .contentShape(Rectangle())
@@ -38,20 +36,16 @@ struct SelectableCard: View {
     let title: String
     let isSelected: Bool
     let onTap: () -> Void
-    let desc: String
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            HStack(alignment: .top, spacing: 12) {
+            HStack(alignment: .center, spacing: 12) {
                 Image(systemName: isSelected ? "largecircle.fill.circle" : "circle")
                     .imageScale(.large)
                     .foregroundStyle(isSelected ? .accent : Color("SecondaryText"))
                 
                 VStack(alignment: .leading, spacing: 4) {
                     Text(title)
-                    Text(desc)
-                        .foregroundStyle(.secondary)
-                        .font(.caption)
                 }
                 Spacer()
             }

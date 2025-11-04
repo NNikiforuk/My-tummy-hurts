@@ -9,9 +9,7 @@ import SwiftUI
 
 @main
 struct My_tummy_hurtsApp: App {
-//    @StateObject private var vm = CoreDataViewModel()
-    //do ucuniecia
-    @StateObject private var vm = CoreDataViewModel.previewWithData
+    @StateObject private var vm = CoreDataViewModel()
     @AppStorage("isOnboarding") private var isOnboarding = true
     @AppStorage("firstInstallAt") private var firstInstallAt: Double = 0
     

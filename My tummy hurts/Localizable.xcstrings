@@ -4,9 +4,6 @@
     "" : {
 
     },
-    "–" : {
-
-    },
     "%@ – %@" : {
       "localizations" : {
         "en" : {
@@ -85,16 +82,6 @@
         }
       }
     },
-    "%lld of %lld" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$lld of %2$lld"
-          }
-        }
-      }
-    },
     "%lld of %lld meals" : {
       "localizations" : {
         "en" : {
@@ -118,7 +105,7 @@
     "%lld%%" : {
 
     },
-    "•" : {
+    "×" : {
 
     },
     "a" : {
@@ -189,6 +176,9 @@
         }
       }
     },
+    "About this analysis" : {
+
+    },
     "Add meal" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -224,6 +214,9 @@
         }
       }
     },
+    "Add meals and symptoms" : {
+
+    },
     "Add minimum 5 meals and 5 negative symptoms to see the charts. Detail matters: add more to unlock better insights" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -258,9 +251,6 @@
           }
         }
       }
-    },
-    "Add more meals and symptoms" : {
-
     },
     "Add symptom" : {
       "extractionState" : "manual",
@@ -366,6 +356,9 @@
         }
       }
     },
+    "at %@" : {
+
+    },
     "b" : {
       "localizations" : {
         "de" : {
@@ -469,9 +462,6 @@
         }
       }
     },
-    "Based on all meals and symptoms within 8 hours" : {
-
-    },
     "Be as specific as possible" : {
       "localizations" : {
         "de" : {
@@ -540,9 +530,6 @@
           }
         }
       }
-    },
-    "bla" : {
-
     },
     "bloating" : {
       "extractionState" : "manual",
@@ -853,6 +840,9 @@
           }
         }
       }
+    },
+    "Close" : {
+
     },
     "Count" : {
       "localizations" : {
@@ -1232,9 +1222,6 @@
         }
       }
     },
-    "Eaten %@ ago" : {
-
-    },
     "Edit meal" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1304,6 +1291,9 @@
           }
         }
       }
+    },
+    "Enough data for reliable analysis" : {
+
     },
     "Enter what you ate and drank" : {
       "extractionState" : "manual",
@@ -1480,10 +1470,10 @@
         }
       }
     },
-    "Historical Risk Analysis" : {
+    "For symptom %@ on" : {
 
     },
-    "Historically safe" : {
+    "Historical pattern" : {
 
     },
     "How many hours back" : {
@@ -1521,6 +1511,15 @@
         }
       }
     },
+    "How many times symptoms occurred within 8 hours after this ingredient" : {
+
+    },
+    "How the score is calculated" : {
+
+    },
+    "How we calculate risk" : {
+
+    },
     "Ingredient" : {
       "localizations" : {
         "de" : {
@@ -1555,10 +1554,7 @@
         }
       }
     },
-    "Ingredients are ranked by risk score which considers:" : {
-
-    },
-    "Insufficient data - results may be inaccurate" : {
+    "Insufficient data" : {
 
     },
     "JANUARY 2025" : {
@@ -1666,6 +1662,9 @@
       }
     },
     "Limited data" : {
+
+    },
+    "Limited data - track more meals for better accuracy" : {
 
     },
     "List all the ingredients of your meals" : {
@@ -2121,7 +2120,7 @@
         }
       }
     },
-    "Need %lld more meals" : {
+    "Need %lld more meal(s)" : {
 
     },
     "Negative symptoms" : {
@@ -2159,7 +2158,10 @@
         }
       }
     },
-    "Never caused symptoms (0 of %lld)" : {
+    "New ingredient" : {
+
+    },
+    "New ingredients" : {
 
     },
     "No data available for analysis" : {
@@ -2199,9 +2201,6 @@
           }
         }
       }
-    },
-    "No meals found in the selected time window" : {
-
     },
     "No meals yet" : {
       "extractionState" : "manual",
@@ -2342,6 +2341,9 @@
         }
       }
     },
+    "Not enough historical data yet. This ingredient has been tracked in less than 2 meals. The suspicion score is based on timing alone, using a baseline risk estimate" : {
+
+    },
     "Note any discomfort" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2481,7 +2483,7 @@
         }
       }
     },
-    "Only %lld meal(s) in history. Need 2+ for accuracy." : {
+    "Only %lld meal(s) in history. Need 2+ for accuracy" : {
 
     },
     "Options" : {
@@ -2587,6 +2589,9 @@
         }
       }
     },
+    "Potential triggers" : {
+
+    },
     "Pre-symptom ingredients" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2621,6 +2626,15 @@
           }
         }
       }
+    },
+    "Recommendations" : {
+
+    },
+    "Reliable data - %lld meals tracked" : {
+
+    },
+    "Risk" : {
+
     },
     "rye bread" : {
       "extractionState" : "manual",
@@ -2658,6 +2672,9 @@
       }
     },
     "Safe" : {
+
+    },
+    "Safe ingredients" : {
 
     },
     "Save" : {
@@ -2762,9 +2779,6 @@
           }
         }
       }
-    },
-    "Select a symptom to analyze" : {
-
     },
     "Select chart type" : {
       "extractionState" : "manual",
@@ -2973,6 +2987,15 @@
         }
       }
     },
+    "Statistics" : {
+
+    },
+    "Suspicion" : {
+
+    },
+    "suspicion score" : {
+
+    },
     "Symptom" : {
       "localizations" : {
         "de" : {
@@ -3006,9 +3029,6 @@
           }
         }
       }
-    },
-    "Symptom Analysis" : {
-
     },
     "Symptom tag" : {
       "localizations" : {
@@ -3077,6 +3097,9 @@
           }
         }
       }
+    },
+    "Symptom-free meals" : {
+
     },
     "Symptom:" : {
       "localizations" : {
@@ -3216,6 +3239,9 @@
         }
       }
     },
+    "This score identifies potential connections based on timing and your historical patterns. It's a helpful tool for investigation, not a definitive diagnosis. Many factors can influence symptoms, and correlation doesn't always mean causation" : {
+
+    },
     "Time" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -3251,10 +3277,10 @@
         }
       }
     },
-    "Time window: %lld hours before" : {
+    "Time window" : {
 
     },
-    "Top 10 ingredients by risk" : {
+    "Timing analysis" : {
 
     },
     "Top ingredient followed by any symptom" : {
@@ -3398,6 +3424,7 @@
       }
     },
     "Top ingredients followed by any symptom" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3432,6 +3459,7 @@
       }
     },
     "Top ingredients followed by any symptom (%1$d found)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3466,6 +3494,7 @@
       }
     },
     "Top ingredients in the %1$d-hour window before: %2$@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3500,6 +3529,7 @@
       }
     },
     "Top ingredients in the %1$d-hour window before: %2$@ (%3$d found)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3567,6 +3597,18 @@
           }
         }
       }
+    },
+    "Top ten problematic ingredients" : {
+
+    },
+    "Total meals with %@" : {
+
+    },
+    "Track %lld more meal(s) for better accuracy" : {
+
+    },
+    "Track in more meals to see historical patterns" : {
+
     },
     "Track patterns in monthly calendar" : {
       "extractionState" : "manual",
@@ -3638,7 +3680,7 @@
         }
       }
     },
-    "Why isn't 100% always first?" : {
+    "What does this mean?" : {
 
     }
   },

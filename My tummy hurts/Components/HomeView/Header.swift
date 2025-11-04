@@ -80,11 +80,10 @@ struct HomeViewHeader: View {
             if sM == eM {
                 return ym.string(from: weekStart)
             } else {
-                return "\(ym.string(from: weekStart)) – \(mOnly.string(from: weekEnd))"
+                return "\(mOnly.string(from: weekStart)) / \(mOnly.string(from: weekEnd)) \(sY)"
             }
         } else {
-            return "\(ym.string(from: weekStart)) – \(ym.string(from: weekEnd))"
-        }
+            return "\(mOnly.string(from: weekStart)) \(sY) / \(mOnly.string(from: weekEnd)) \(eY)" }
     }
 }
 

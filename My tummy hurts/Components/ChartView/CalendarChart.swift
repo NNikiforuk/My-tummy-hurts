@@ -71,37 +71,35 @@ struct CalendarChart: View {
                                 .padding(.vertical, 5)
                         }
                         
-                        if vm.savedSymptomNotes.isEmpty && vm.savedMealNotes.isEmpty {
-                            EmptyStateView(text: "Add meals and symptoms")
+                        if sizeCategory.isAccessibilitySize {
+                            VStack {
+                                SelectElementPicker(pickerData: vm.dataForPicker(mealsMode: true, model: vm, excluded: selectedSecondIngredient), pickerSelection: $selectedFirstIngredient)
+                                Spacer()
+                                SelectElementPicker(pickerData: vm.dataForPicker(mealsMode: true, model: vm, excluded: selectedFirstIngredient), pickerSelection: $selectedSecondIngredient)
+                            }
                         } else {
-                            if sizeCategory.isAccessibilitySize {
-                                VStack {
-                                    SelectElementPicker(pickerData: vm.dataForPicker(mealsMode: true, model: vm, excluded: selectedSecondIngredient), pickerSelection: $selectedFirstIngredient)
-                                    Spacer()
-                                    SelectElementPicker(pickerData: vm.dataForPicker(mealsMode: true, model: vm, excluded: selectedFirstIngredient), pickerSelection: $selectedSecondIngredient)
-                                }
-                            } else {
-                                HStack {
-                                    SelectElementPicker(pickerData: vm.dataForPicker(mealsMode: true, model: vm, excluded: selectedSecondIngredient), pickerSelection: $selectedFirstIngredient)
-                                    Spacer()
-                                    SelectElementPicker(pickerData: vm.dataForPicker(mealsMode: true, model: vm, excluded: selectedFirstIngredient), pickerSelection: $selectedSecondIngredient)
-                                }
+                            HStack {
+                                SelectElementPicker(pickerData: vm.dataForPicker(mealsMode: true, model: vm, excluded: selectedSecondIngredient), pickerSelection: $selectedFirstIngredient)
+                                Spacer()
+                                SelectElementPicker(pickerData: vm.dataForPicker(mealsMode: true, model: vm, excluded: selectedFirstIngredient), pickerSelection: $selectedSecondIngredient)
                             }
                         }
-                        
-                    }
-                    VStack {
-                        TabView(selection: $currentPage) {
-                            ForEach(months.indices, id: \.self) { index in
-                                MonthView(selectedDate: $selectedDate, selectedFirstIngredient: $selectedFirstIngredient, selectedSecondIngredient: $selectedSecondIngredient, month: months[index])
-                                    .tag(index)
+                        VStack {
+                            TabView(selection: $currentPage) {
+                                ForEach(months.indices, id: \.self) { index in
+                                    MonthView(selectedDate: $selectedDate, selectedFirstIngredient: $selectedFirstIngredient, selectedSecondIngredient: $selectedSecondIngredient, month: months[index])
+                                        .tag(index)
+                                }
                             }
+                            .tabViewStyle(.page(indexDisplayMode: .never))
+                            .frame(height: 400)
+                            TagsDescription()
                         }
-                        .tabViewStyle(.page(indexDisplayMode: .never))
-                        .frame(height: 400)
-                        TagsDescription()
+                        .grayOverlayModifier()
+                    } else {
+                        EmptyStateView(text: "Add meals and symptoms")
+                            .grayOverlayModifier()
                     }
-                    .grayOverlayModifier()
                 }
             }
         }
@@ -134,9 +132,9 @@ struct MonthView: View {
                 .foregroundStyle(Color("PrimaryText"))
                 .font(sizeCategory.isAccessibilitySize ? .system(size: 34) : .body)
             
-                let cal = calendar(localizedFrom: customCalendar, locale: locale)
-                let symbols = weekdaySymbols(for: cal, dts: sizeCategory)
-                let ordered = symbols.shifted(startingAt: cal.firstWeekday - 1)
+            let cal = calendar(localizedFrom: customCalendar, locale: locale)
+            let symbols = weekdaySymbols(for: cal, dts: sizeCategory)
+            let ordered = symbols.shifted(startingAt: cal.firstWeekday - 1)
             
             HStack {
                 ForEach(ordered, id: \.self) { day in

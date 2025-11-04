@@ -10,8 +10,12 @@ import CoreData
 
 class CoreDataViewModel: ObservableObject {
     let container: NSPersistentContainer
-    @Published var savedMealNotes: [MealNote] = [] { didSet { invalidateCache() } }
-    @Published var savedSymptomNotes: [SymptomNote] = [] { didSet { invalidateCache() } }
+    @Published var savedMealNotes: [MealNote] = [] {
+        didSet { invalidateCache() }
+    }
+    @Published var savedSymptomNotes: [SymptomNote] = [] {
+        didSet { invalidateCache() }
+    }
     
     var firstChartDataCache: [IngredientAnalysis]?
     var secondChartDataCache: [IngredientAnalysis2]?
@@ -22,7 +26,9 @@ class CoreDataViewModel: ObservableObject {
         container = NSPersistentContainer(name: "My_tummy_hurts")
         
         if inMemory {
-            container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")
+            container.persistentStoreDescriptions.first?.url = URL(
+                fileURLWithPath: "/dev/null"
+            )
         }
         
         container.loadPersistentStores { description, error in
@@ -76,10 +82,18 @@ class CoreDataViewModel: ObservableObject {
     }
     
     func deleteAll() {
-        let fetchRequestMeals = NSFetchRequest<NSFetchRequestResult>(entityName: "MealNote")
-        let fetchRequestSymptoms = NSFetchRequest<NSFetchRequestResult>(entityName: "SymptomNote")
-        let batchDeleteRequestMeals = NSBatchDeleteRequest(fetchRequest: fetchRequestMeals)
-        let batchDeleteRequestSymptoms = NSBatchDeleteRequest(fetchRequest: fetchRequestSymptoms)
+        let fetchRequestMeals = NSFetchRequest<NSFetchRequestResult>(
+            entityName: "MealNote"
+        )
+        let fetchRequestSymptoms = NSFetchRequest<NSFetchRequestResult>(
+            entityName: "SymptomNote"
+        )
+        let batchDeleteRequestMeals = NSBatchDeleteRequest(
+            fetchRequest: fetchRequestMeals
+        )
+        let batchDeleteRequestSymptoms = NSBatchDeleteRequest(
+            fetchRequest: fetchRequestSymptoms
+        )
         
         do {
             try container.viewContext.execute(batchDeleteRequestMeals)
@@ -112,7 +126,12 @@ class CoreDataViewModel: ObservableObject {
         saveData(typeMeal: true)
     }
     
-    func updateSymptom(entity: SymptomNote, createdAt: Date, symptom: String, critical: Bool) {
+    func updateSymptom(
+        entity: SymptomNote,
+        createdAt: Date,
+        symptom: String,
+        critical: Bool
+    ) {
         entity.createdAt = createdAt
         entity.symptom = symptom
         entity.critical = critical
@@ -209,15 +228,22 @@ extension CoreDataViewModel {
         }
         items.sort {
             if $0.count != $1.count { return $0.count > $1.count }
-            return $0.label.localizedCaseInsensitiveCompare($1.label) == .orderedAscending
+            return $0.label
+                .localizedCaseInsensitiveCompare($1.label) == .orderedAscending
         }
         
-        if let limit, limit > 0 { return Array(items.prefix(limit).map(\.label)) }
+        if let limit, limit > 0 {
+            return Array(items.prefix(limit).map(\.label))
+        }
         return items.map(\.label)
     }
     
     func normalize(_ s: String) -> String {
-        s.folding(options: [.diacriticInsensitive, .caseInsensitive], locale: .current)
+        s
+            .folding(
+                options: [.diacriticInsensitive, .caseInsensitive],
+                locale: .current
+            )
             .trimmingCharacters(in: .whitespacesAndNewlines)
             .lowercased()
     }
@@ -232,14 +258,20 @@ extension CoreDataViewModel {
             for note in model.savedMealNotes {
                 guard let s = note.ingredients else { continue }
                 array.append(contentsOf:
-                                s.split(separator: ",").map { String($0).normalizedToken }.filter { !$0.isEmpty }
+                                s
+                    .split(separator: ",")
+                    .map { String($0).normalizedToken }
+                    .filter { !$0.isEmpty }
                 )
             }
         } else {
             for note in model.savedSymptomNotes {
                 guard let s = note.symptom else { continue }
                 array.append(contentsOf:
-                                s.split(separator: ",").map { String($0).normalizedToken }.filter { !$0.isEmpty }
+                                s
+                    .split(separator: ",")
+                    .map { String($0).normalizedToken }
+                    .filter { !$0.isEmpty }
                 )
             }
         }
@@ -254,7 +286,10 @@ extension CoreDataViewModel {
             return seen.insert(key).inserted ? item : nil
         }
         
-        return unique.sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
+        return unique
+            .sorted {
+                $0.localizedCaseInsensitiveCompare($1) == .orderedAscending
+            }
     }
     
     //FIRST CHART
@@ -264,15 +299,21 @@ extension CoreDataViewModel {
         // "egg, milk, coffee"
         for meal in savedMealNotes {
             guard let mealTime = meal.createdAt,
-                  let ingredients = meal.ingredients else { continue } // pętla przechodzi do nastepnego meal
+                  let ingredients = meal.ingredients else {
+                continue
+            } // pętla przechodzi do nastepnego meal
             
             // ["egg", "milk", "coffee"]
             let ingredientsArray = ingredients.components(separatedBy: ", ")
             
             // zwraca array z wagami symptomów, które wystąpiły między 0 a 8h po posiłku z Double? bez nil-ów
             let symptomsAfter = savedSymptomNotes.compactMap { symptom -> Double? in
-                guard let symptomTime = symptom.createdAt else { return nil } // przechodzimy do następnego symptomu
-                let hoursAfter = symptomTime.timeIntervalSince(mealTime) / 3600 // ile h minęło od meal do symptomu?
+                guard let symptomTime = symptom.createdAt else {
+                    return nil
+                } // przechodzimy do następnego symptomu
+                let hoursAfter = symptomTime.timeIntervalSince(
+                    mealTime
+                ) / 3600 // ile h minęło od meal do symptomu?
                 guard hoursAfter > 0 && hoursAfter <= 8.0 else { return nil }
                 
                 let weight = max(0.1, 1.0 - (hoursAfter / 10.0))
@@ -285,7 +326,11 @@ extension CoreDataViewModel {
             // "egg"
             for ingredient in ingredientsArray {
                 // ingredientStats["egg"]
-                let current = ingredientStats[ingredient] ?? (total: 0, symptomsCount: 0, weightedSymptoms: 0.0)
+                let current = ingredientStats[ingredient] ?? (
+                    total: 0,
+                    symptomsCount: 0,
+                    weightedSymptoms: 0.0
+                )
                 
                 ingredientStats[ingredient] = (
                     total: current.total + 1,
@@ -306,7 +351,9 @@ extension CoreDataViewModel {
         }
         
         return analyses
-            .sorted { first, second in
+            .sorted {
+ first,
+ second in
                 if first.displayScore != second.displayScore {
                     return first.displayScore > second.displayScore
                 }
@@ -319,7 +366,10 @@ extension CoreDataViewModel {
                     return first.totalOccurrences > second.totalOccurrences
                 }
                 
-                return first.name.localizedCaseInsensitiveCompare(second.name) == .orderedAscending
+                return first.name
+                    .localizedCaseInsensitiveCompare(
+                        second.name
+                    ) == .orderedAscending
             }
             .prefix(10)
             .map { $0 }
@@ -341,23 +391,37 @@ extension CoreDataViewModel {
     
     //SECOND CHART
     func specificSyptomChart(selectedSymptomId: UUID?, selectedHourQty: Int) -> [IngredientAnalysis2]? {
-        guard let selectedSymptom = findSpecificSymptom(selectedSymptomId: selectedSymptomId) else { return nil }
-        guard let selectedSymptomTime = selectedSymptom.createdAt else { return nil }
-        let mealsFromTimeline = catchMeals(selectedSymptomId: selectedSymptomId, selectedHourQty: selectedHourQty)
+        guard let selectedSymptom = findSpecificSymptom(selectedSymptomId: selectedSymptomId) else {
+            return nil
+        }
+        guard let selectedSymptomTime = selectedSymptom.createdAt else {
+            return nil
+        }
+        let mealsFromTimeline = catchMeals(
+            selectedSymptomId: selectedSymptomId,
+            selectedHourQty: selectedHourQty
+        )
         let historicalData = firstChartData
         
         var summary: [IngredientAnalysis2] = []
         
         for meal in mealsFromTimeline {
             guard let mealTime = meal.createdAt else { continue }
-            let hoursBefore = selectedSymptomTime.timeIntervalSince(mealTime) / 3600
-            let timeProximity = max(0, 1.0 - (hoursBefore / Double(selectedHourQty)))
+            let hoursBefore = selectedSymptomTime.timeIntervalSince(
+                mealTime
+            ) / 3600
+            let timeProximity = max(
+                0,
+                1.0 - (hoursBefore / Double(selectedHourQty))
+            )
             
             guard let mealIngredients = meal.ingredients else { continue }
             let ingredientsArray = mealIngredients.components(separatedBy: ", ")
             
             for ingredient in ingredientsArray {
-                let data = historicalData.first(where: { $0.name == ingredient })
+                let data = historicalData.first(
+                    where: { $0.name == ingredient
+                    })
                 let historicalRisk: Double
                 
                 if let data = data, data.totalOccurrences >= 2 {
@@ -368,7 +432,9 @@ extension CoreDataViewModel {
                 
                 let suspicionScore = timeProximity * historicalRisk
                 
-                if let existingIndex = summary.firstIndex(where: { $0.name == ingredient }) {
+                if let existingIndex = summary.firstIndex(
+                    where: { $0.name == ingredient
+                    }) {
                     var existing = summary[existingIndex]
                     
                     existing.firstChartData = historicalData
@@ -379,7 +445,8 @@ extension CoreDataViewModel {
                         existing.howLongAgo = hoursBefore
                     }
                     
-                    if !existing.mealsList.contains(where: { $0.id == meal.id }) {
+                    if !existing.mealsList
+                        .contains(where: { $0.id == meal.id }) {
                         existing.mealsList.append(meal)
                     }
                     
@@ -408,15 +475,22 @@ extension CoreDataViewModel {
     }
     
     func startTime(selectedSymptomId: UUID?, selectedHourQty: Int) -> Date? {
-        guard let symptom = findSpecificSymptom(selectedSymptomId: selectedSymptomId) else { return nil }
+        guard let symptom = findSpecificSymptom(selectedSymptomId: selectedSymptomId) else {
+            return nil
+        }
         guard let symptomTime = symptom.createdAt else { return nil }
         
-        return Calendar.current.date(byAdding: .hour, value: -selectedHourQty, to: symptomTime)
+        return Calendar.current
+            .date(byAdding: .hour, value: -selectedHourQty, to: symptomTime)
     }
     
     func catchMeals(selectedSymptomId: UUID?, selectedHourQty: Int) -> [MealNote] {
-        guard let startDate = startTime(selectedSymptomId: selectedSymptomId, selectedHourQty: selectedHourQty) else { return [] }
-        guard let symptom = findSpecificSymptom(selectedSymptomId: selectedSymptomId) else { return [] }
+        guard let startDate = startTime(selectedSymptomId: selectedSymptomId, selectedHourQty: selectedHourQty) else {
+            return []
+        }
+        guard let symptom = findSpecificSymptom(selectedSymptomId: selectedSymptomId) else {
+            return []
+        }
         guard let symptomTime = symptom.createdAt else { return [] }
         
         return savedMealNotes
@@ -505,7 +579,8 @@ struct IngredientAnalysis: Identifiable {
     }
     
     var legend: String {
-        "\(Int(suspicionRate * 100))%"
+        let percentage = min(Int(suspicionRate * 100), 100)
+        return "\(percentage)%"
     }
     
     var riskLevel: String {
@@ -529,126 +604,5 @@ struct IngredientAnalysis: Identifiable {
     
     var safeOccurrences: Int {
         totalOccurrences - symptomsOccurrences
-    }
-}
-
-extension CoreDataViewModel {
-    static var previewWithData: CoreDataViewModel {
-        let vm = CoreDataViewModel(inMemory: true)
-        let context = vm.container.viewContext
-        
-        func createDate(daysAgo: Int, hour: Int, minute: Int = 0) -> Date {
-            let now = Date()
-            var components = Calendar.current.dateComponents([.year, .month, .day], from: now)
-            components.hour = hour
-            components.minute = minute
-            
-            let today = Calendar.current.date(from: components)!
-            return today.addingTimeInterval(-Double(daysAgo) * 86400)
-        }
-        
-        // 3 DNI TEMU
-        let meal1 = MealNote(context: context)
-        meal1.id = UUID()
-        meal1.createdAt = createDate(daysAgo: 3, hour: 8, minute: 0)
-        meal1.ingredients = "milk, cereal, banana"
-        
-        let symptom1 = SymptomNote(context: context)
-        symptom1.id = UUID()
-        symptom1.createdAt = createDate(daysAgo: 3, hour: 10, minute: 0)
-        symptom1.symptom = "Diarrhea"
-        
-        let meal2 = MealNote(context: context)
-        meal2.id = UUID()
-        meal2.createdAt = createDate(daysAgo: 3, hour: 14, minute: 0)
-        meal2.ingredients = "chicken, rice, vegetables"
-        
-        let meal3 = MealNote(context: context)
-        meal3.id = UUID()
-        meal3.createdAt = createDate(daysAgo: 3, hour: 19, minute: 0)
-        meal3.ingredients = "cheese, pasta, tomato"
-        
-        let symptom2 = SymptomNote(context: context)
-        symptom2.id = UUID()
-        symptom2.createdAt = createDate(daysAgo: 3, hour: 21, minute: 0)
-        symptom2.symptom = "Diarrhea"
-        
-        // 2 DNI TEMU
-        let meal4 = MealNote(context: context)
-        meal4.id = UUID()
-        meal4.createdAt = createDate(daysAgo: 2, hour: 9, minute: 0)
-        meal4.ingredients = "eggs, bread, coffee"
-        
-        let meal5 = MealNote(context: context)
-        meal5.id = UUID()
-        meal5.createdAt = createDate(daysAgo: 2, hour: 13, minute: 0)
-        meal5.ingredients = "chicken, quinoa"
-        
-        let meal6 = MealNote(context: context)
-        meal6.id = UUID()
-        meal6.createdAt = createDate(daysAgo: 2, hour: 17, minute: 0)
-        meal6.ingredients = "cheese, crackers"
-        
-        let symptom3 = SymptomNote(context: context)
-        symptom3.id = UUID()
-        symptom3.createdAt = createDate(daysAgo: 2, hour: 19, minute: 0)
-        symptom3.symptom = "Diarrhea"
-        
-        // WCZORAJ
-        let meal7 = MealNote(context: context)
-        meal7.id = UUID()
-        meal7.createdAt = createDate(daysAgo: 1, hour: 8, minute: 30)
-        meal7.ingredients = "milk, oatmeal"
-        
-        let symptom4 = SymptomNote(context: context)
-        symptom4.id = UUID()
-        symptom4.createdAt = createDate(daysAgo: 1, hour: 10, minute: 30)
-        symptom4.symptom = "Diarrhea"
-        
-        let meal8 = MealNote(context: context)
-        meal8.id = UUID()
-        meal8.createdAt = createDate(daysAgo: 1, hour: 12, minute: 0)
-        meal8.ingredients = "chicken, salad"
-        
-        let meal9 = MealNote(context: context)
-        meal9.id = UUID()
-        meal9.createdAt = createDate(daysAgo: 1, hour: 16, minute: 0)
-        meal9.ingredients = "bread, peanut butter"
-        
-        let symptom5 = SymptomNote(context: context)
-        symptom5.id = UUID()
-        symptom5.createdAt = createDate(daysAgo: 1, hour: 18, minute: 0)
-        symptom5.symptom = "Diarrhea"
-        
-        // DZISIAJ
-        let meal10 = MealNote(context: context)
-        meal10.id = UUID()
-        meal10.createdAt = createDate(daysAgo: 0, hour: 8, minute: 0)
-        meal10.ingredients = "milk, eggs"
-        
-        let meal11 = MealNote(context: context)
-        meal11.id = UUID()
-        meal11.createdAt = createDate(daysAgo: 0, hour: 12, minute: 30)
-        meal11.ingredients = "cheese, bread"
-        
-        let meal12 = MealNote(context: context)
-        meal12.id = UUID()
-        meal12.createdAt = createDate(daysAgo: 0, hour: 15, minute: 0)
-        meal12.ingredients = "apple, almonds"
-        
-        let meal13 = MealNote(context: context)
-        meal13.id = UUID()
-        meal13.createdAt = createDate(daysAgo: 0, hour: 18, minute: 0)
-        meal13.ingredients = "chicken, rice"
-        
-        let symptom6 = SymptomNote(context: context)
-        symptom6.id = UUID()
-        symptom6.createdAt = createDate(daysAgo: 0, hour: 19, minute: 30)
-        symptom6.symptom = "Diarrhea"
-        
-        try? context.save()
-        vm.fetchMeals()
-        vm.fetchSymptoms()
-        return vm
     }
 }

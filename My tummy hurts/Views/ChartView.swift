@@ -13,7 +13,7 @@ struct ChartView: View {
     @Environment(\.dynamicTypeSize) var sizeCategory
     
     @State private var analyticsType: AnalyticsMode = .calendarView
-    @State private var chartType: ChartMode = .checkSpecificSymptom
+    @State private var chartType: ChartMode = .defaultChart
     @State private var hoursBack = 5
     @State private var selectedSymptomId: UUID? = nil
     @State private var selectedFirstIngredient: String? = nil
@@ -82,7 +82,7 @@ struct ChartView: View {
             howManyHoursBack
             selectSymptom
             VStack(alignment: .leading) {
-                SymptomAnalysisView(selectedHourQty: $hoursBack)
+                SymptomAnalysisView(selectedHourQty: $hoursBack, selectedSymptomId: $selectedSymptomId)
             }
         }
         .transition(.opacity.combined(with: .move(edge: .top)))
@@ -185,7 +185,7 @@ struct HistoricalIngredient: View {
                 Text(ingredient.legend)
                     .font(.title3)
                     .bold()
-                    .foregroundColor(textColor)
+                    .foregroundColor(.accent)
             }
             
             Text("\(ingredient.symptomsOccurrences) of \(ingredient.totalOccurrences) meals")
@@ -204,15 +204,15 @@ struct HistoricalIngredient: View {
                                 .fill(
                                     LinearGradient(
                                         colors: [
-                                            barColor,
-                                            barColor.opacity(0.7)
+                                            .accent,
+                                            .accent.opacity(0.7)
                                         ],
                                         startPoint: .leading,
                                         endPoint: .trailing
                                     )
                                 )
                                 .frame(
-                                    width: geometry.size.width * ingredient.suspicionRate,
+                                    width: geometry.size.width * min(ingredient.suspicionRate, 1.0),
                                     height: 32
                                 )
                         }
@@ -248,10 +248,10 @@ struct HistoricalIngredient: View {
                         HStack(spacing: 4) {
                             Image(systemName: "exclamationmark.triangle.fill")
                                 .font(.caption2)
-                            Text("Need \(3 - ingredient.totalOccurrences) more meals")
+                            Text("Need \(3 - ingredient.totalOccurrences) more meal(s)")
                                 .font(.caption2)
                         }
-                        .foregroundColor(.orange)
+                        .foregroundColor(.red.opacity(0.6))
                     }
                 }
             }
@@ -261,32 +261,6 @@ struct HistoricalIngredient: View {
         }
         .sheet(isPresented: $showDetail) {
             SheetContent(ingredient: ingredient)
-        }
-    }
-    
-    var textColor: Color {
-        switch ingredient.suspicionRate {
-        case 0:
-            return .green
-        case 0..<0.3:
-            return .secondary
-        case 0.3..<0.6:
-            return .orange
-        default:
-            return .red
-        }
-    }
-    
-    var barColor: Color {
-        switch ingredient.suspicionRate {
-        case 0..<0.3:
-            return .accent.opacity(0.3)
-        case 0.3..<0.6:
-            return .orange
-        case 0.6..<0.8:
-            return .red.opacity(0.7)
-        default:
-            return .red
         }
     }
 }
@@ -363,10 +337,10 @@ struct SheetContent: View {
                 } else {
                     HStack {
                         Image(systemName: "exclamationmark.triangle.fill")
-                            .foregroundColor(.orange)
+                            .foregroundColor(.red.opacity(0.6))
                         Text("Track \(3 - ingredient.totalOccurrences) more meal(s) for better accuracy")
                             .font(.caption)
-                            .foregroundColor(.secondary)
+                            .foregroundColor(.red.opacity(0.6))
                     }
                     .padding(.top, 8)
                 }
@@ -482,8 +456,8 @@ struct SheetContent: View {
 
 struct SymptomAnalysisView: View {
     @EnvironmentObject var vm: CoreDataViewModel
-    @State private var selectedSymptomId: UUID?
     @Binding var selectedHourQty: Int
+    @Binding var selectedSymptomId: UUID?
     
     var data: [IngredientAnalysis2] {
         vm.getSecondChartData(symptomId: selectedSymptomId, hours: selectedHourQty)
@@ -621,7 +595,7 @@ struct IngredientAnalysis2Row: View {
                 Text(ingredient.legend)
                     .font(.title3)
                     .bold()
-                    .foregroundColor(textColor)
+                    .foregroundColor(.accent)
             }
             
             if let historical = ingredient.historicalData {
@@ -640,7 +614,7 @@ struct IngredientAnalysis2Row: View {
                         RoundedRectangle(cornerRadius: 8)
                             .fill(
                                 LinearGradient(
-                                    colors: [barColor, barColor.opacity(0.7)],
+                                    colors: [.accent, .accent.opacity(0.7)],
                                     startPoint: .leading,
                                     endPoint: .trailing
                                 )
@@ -709,29 +683,6 @@ struct IngredientAnalysis2Row: View {
             SheetContentSpecificSymptom(ingredient: ingredient, symptomTime: symptomTime, symptomName: symptomName)
         }
     }
-    
-    var textColor: Color {
-        if ingredient.isSafe { return .green }
-        if !ingredient.usedHistoricalData { return .secondary }
-        
-        switch ingredient.suspicionScore {
-        case 0..<0.3: return .secondary
-        case 0.3..<0.6: return .orange
-        default: return .red
-        }
-    }
-    
-    var barColor: Color {
-        if ingredient.isSafe { return .green }
-        if !ingredient.usedHistoricalData { return .gray }
-        
-        switch ingredient.suspicionScore {
-        case 0..<0.3: return .accent.opacity(0.3)
-        case 0.3..<0.6: return .orange
-        case 0.6..<0.8: return .red.opacity(0.7)
-        default: return .red
-        }
-    }
 }
 
 struct RecommendationsCard: View {
@@ -754,6 +705,7 @@ struct RecommendationsCard: View {
                     }
                 }
             }
+            .frame(maxWidth: .infinity)
             .grayOverlayModifier()
         }
     }
@@ -800,7 +752,7 @@ struct HeaderCard: View {
                     .animation(.easeInOut(duration: 1.0), value: suspicionValue)
                 
                 VStack(spacing: 4) {
-                    Text("\(Int(suspicionValue * 100))%")
+                    Text("\(Int(min(suspicionValue, 1.0) * 100))%")
                         .font(.system(size: 32, weight: .bold))
                         .foregroundColor(.accent)
                     
@@ -1269,7 +1221,6 @@ struct SelectableCard: View {
 #Preview() {
     NavigationStack {
         ChartView()
-            .environmentObject(CoreDataViewModel.previewWithData)
-        //            .environmentObject(CoreDataViewModel.preview)
+            .environmentObject(CoreDataViewModel())
     }
 }

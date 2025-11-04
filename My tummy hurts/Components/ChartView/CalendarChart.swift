@@ -55,6 +55,7 @@ struct CalendarChart: View {
                         HStack {
                             SectionTitle(title: "Select ingredients", textColor: Color("SecondaryText"))
                                 .textCase(.uppercase)
+                            Spacer()
                             Button {
                                 withAnimation { showInfo.toggle() }
                             } label: {
@@ -71,19 +72,12 @@ struct CalendarChart: View {
                                 .padding(.vertical, 5)
                         }
                         
-                        if sizeCategory.isAccessibilitySize {
                             VStack {
                                 SelectElementPicker(pickerData: vm.dataForPicker(mealsMode: true, model: vm, excluded: selectedSecondIngredient), pickerSelection: $selectedFirstIngredient)
                                 Spacer()
                                 SelectElementPicker(pickerData: vm.dataForPicker(mealsMode: true, model: vm, excluded: selectedFirstIngredient), pickerSelection: $selectedSecondIngredient)
                             }
-                        } else {
-                            HStack {
-                                SelectElementPicker(pickerData: vm.dataForPicker(mealsMode: true, model: vm, excluded: selectedSecondIngredient), pickerSelection: $selectedFirstIngredient)
-                                Spacer()
-                                SelectElementPicker(pickerData: vm.dataForPicker(mealsMode: true, model: vm, excluded: selectedFirstIngredient), pickerSelection: $selectedSecondIngredient)
-                            }
-                        }
+                       
                         VStack {
                             TabView(selection: $currentPage) {
                                 ForEach(months.indices, id: \.self) { index in

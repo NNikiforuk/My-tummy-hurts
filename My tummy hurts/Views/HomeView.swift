@@ -68,10 +68,10 @@ struct HomeView: View {
                     }
                     DeleteBtnTextIcon(title: "Delete all", icon: "trash", action: { showDeleteAllAlert = true })
                 } label: {
-                    Label("Options", systemImage: "ellipsis")
+                    Image(systemName: "ellipsis")
                         .font(.callout)
+                        .foregroundStyle(.accent)
                 }
-                .foregroundStyle(.primary)
             }
             ToolbarItem(placement: .topBarTrailing) {
                 NavigationLink {

@@ -462,6 +462,9 @@
         }
       }
     },
+    "Be as specific and consistent. For example always use „rye bread” instead of „bread rye”" : {
+
+    },
     "Be as specific as possible" : {
       "localizations" : {
         "de" : {
@@ -2487,6 +2490,7 @@
 
     },
     "Options" : {
+      "extractionState" : "stale",
       "localizations" : {
         "de" : {
           "stringUnit" : {

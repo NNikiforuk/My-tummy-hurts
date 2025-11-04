@@ -58,7 +58,6 @@ struct AddSymptomView: View {
                     model.addSymptom(createdAt: selectedDate, symptom: newSymptom, critical: critical)
                     clearForm()
                 })
-                .fontWeight(.bold)
                 .disabled(isSaveDisabled)
                 .foregroundStyle(isSaveDisabled ? .gray : .accent)
             }

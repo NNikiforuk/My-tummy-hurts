@@ -37,7 +37,6 @@ struct AddMealView: View {
                     model.addMeal(createdAt: selectedDate, ingredients: newIngredients)
                     clearForm()
                 })
-                .fontWeight(.bold)
                 .disabled(isSaveDisabled)
                 .foregroundStyle(isSaveDisabled ? Color("SecondaryText") : .accent)
             }
@@ -63,8 +62,10 @@ struct AddNewIngredient: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             SectionTitle(title: "Meal ingredients", textColor: Color("PrimaryText"))
+            Text("Be as specific and consistent. For example always use „rye bread” instead of „bread rye”")
+                .font(.caption)
+                .foregroundStyle(.secondaryText)
                 .padding(.bottom, 20)
-            
             NewRows(newNote: $newIngredients, rows: $rows)
             AppendingRowBtn(rows: $rows)
         }

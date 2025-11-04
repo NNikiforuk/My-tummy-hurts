@@ -12,7 +12,7 @@ struct ChartView: View {
     @EnvironmentObject private var vm: CoreDataViewModel
     @Environment(\.dynamicTypeSize) var sizeCategory
     
-    @State private var analyticsType: AnalyticsMode = .calendarView
+    @State private var analyticsType: AnalyticsMode = .barChart
     @State private var chartType: ChartMode = .defaultChart
     @State private var hoursBack = 5
     @State private var selectedSymptomId: UUID? = nil
@@ -235,10 +235,10 @@ struct HistoricalIngredient: View {
                     if ingredient.suspicionRate == 0 {
                         Label("Safe", systemImage: "checkmark.circle.fill")
                             .font(.caption)
-                            .foregroundColor(.green)
+                            .foregroundColor(.accent)
                             .padding(.horizontal, 12)
                             .padding(.vertical, 6)
-                            .background(Color.green.opacity(0.1))
+                            .background(Color.accent.opacity(0.1))
                             .cornerRadius(8)
                     }
                     
@@ -251,7 +251,7 @@ struct HistoricalIngredient: View {
                             Text("Need \(3 - ingredient.totalOccurrences) more meal(s)")
                                 .font(.caption2)
                         }
-                        .foregroundColor(.red.opacity(0.6))
+                        .foregroundColor(.red.opacity(0.8))
                     }
                 }
             }
@@ -337,10 +337,10 @@ struct SheetContent: View {
                 } else {
                     HStack {
                         Image(systemName: "exclamationmark.triangle.fill")
-                            .foregroundColor(.red.opacity(0.6))
+                            .foregroundColor(.red.opacity(0.8))
                         Text("Track \(3 - ingredient.totalOccurrences) more meal(s) for better accuracy")
                             .font(.caption)
-                            .foregroundColor(.red.opacity(0.6))
+                            .foregroundColor(.red.opacity(0.8))
                     }
                     .padding(.top, 8)
                 }
@@ -435,21 +435,6 @@ struct SheetContent: View {
         }
         
         return recs
-    }
-    
-    var riskColor: Color {
-        switch ingredient.suspicionRate {
-        case 0:
-            return .green
-        case 0..<0.3:
-            return .blue
-        case 0.3..<0.6:
-            return .orange
-        case 0.6..<0.8:
-            return .red.opacity(0.8)
-        default:
-            return .red
-        }
     }
 }
 
@@ -782,7 +767,7 @@ struct HeaderCard: View {
             
             Text(riskLevel)
                 .font(.headline)
-                .foregroundColor(.white)
+                .foregroundColor(.background)
                 .padding(.horizontal, 20)
                 .padding(.vertical, 8)
                 .background(.accent)

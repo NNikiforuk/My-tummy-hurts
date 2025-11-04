@@ -24,10 +24,11 @@ struct WelcomeView: View {
     
     var body: some View {
         ZStack {
-            Color("OnboardingBcg").ignoresSafeArea()
+            Color("BackgroundColor").ignoresSafeArea()
             TabView {
                 LogoIntroductionView()
                 InputDataView()
+                BePrecise()
                 TopIngredients()
                 SpecificSymptom()
                 MonthlyCalendar()
@@ -36,7 +37,7 @@ struct WelcomeView: View {
             .tabViewStyle(PageTabViewStyle())
         }
         .navigationBarTitleDisplayMode(.inline)
-        .toolbarBackground(Color("OnboardingBcg"), for: .navigationBar)
+        .toolbarBackground(Color("BackgroundColor"), for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)
         .preferredColorScheme(colorScheme)
     }
@@ -56,9 +57,9 @@ struct WelcomeView: View {
                     }
                 }
             }
-            .toolbarBackground(Color("OnboardingBcg"), for: .navigationBar)
+            .toolbarBackground(Color("BackgroundColor"), for: .navigationBar)
             .toolbarBackground(.visible, for: .navigationBar)
-            .background(Color("OnboardingBcg").ignoresSafeArea())
+            .background(Color("BackgroundColor").ignoresSafeArea())
     }
     .environment(\.colorScheme, .light)
 }

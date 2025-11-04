@@ -22,7 +22,7 @@ struct LogoIntroductionView: View {
                 styles: { text in
                     text
                         .font(.myFont)
-                        .foregroundColor(Color("WhiteCustom"))
+                        .foregroundColor(.accent)
                 }
             )
             .font(.title2)
@@ -74,6 +74,7 @@ struct LogoView: View {
         Image("AppIconPreview")
             .resizable()
             .frame(width: 100, height: 100)
+            .clipShape(RoundedRectangle(cornerRadius: 15))
     }
 }
 

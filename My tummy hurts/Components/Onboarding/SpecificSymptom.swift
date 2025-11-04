@@ -13,13 +13,10 @@ struct SpecificSymptom: View {
     
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 20) {
-                TimeWindowOnboardingView()
-                OnboardingColumnChart()
-                if sizeCategory.isAccessibilitySize {
-                    LargeSizeLegend()
-                        .frame(maxWidth: .infinity)
-                }
+            VStack(alignment: .leading, spacing: 40) {
+                header(icon: "clock", title: "Check time windows", subtitle: "See what you ate x hours before each occurrence of the selected symptom. What could have caused the discomfort?")
+                    .minimumScaleFactor(sizeCategory.customMinScaleFactor)
+                upperChartPart(ingredient: "cow milk", suspicionRate: 0.45, calc: "2 of 2 meals in history", barText: "Medium suspicion")
                 Spacer()
             }
             .padding()
@@ -27,26 +24,3 @@ struct SpecificSymptom: View {
     }
 }
 
-struct TimeWindowOnboardingView: View {
-    @Environment(\.dynamicTypeSize) var sizeCategory
-    
-    var body: some View {
-        VStack(spacing: 40) {
-            header(icon: "clock", title: "Check time windows", subtitle: "See what you ate x hours before each occurrence of the selected symptom. Which one occurred most often?")
-                .minimumScaleFactor(sizeCategory.customMinScaleFactor)
-            Chart {
-                RuleMark(x: .value("Symptom", 0))
-                    .lineStyle(StrokeStyle(lineWidth: 2, dash: [4]))
-                    .annotation(position: .top, alignment: .center) {
-                        Text("diarrhea")
-                            .font(.caption)
-                            .foregroundStyle(.accent)
-                    }
-            }
-            .chartXScale(domain: sizeCategory.isAccessibilitySize ? -5...1 : -15...0)
-            .frame(height: 100)
-            .padding()
-        }
-        .minimumScaleFactor(sizeCategory.customMinScaleFactor)
-    }
-}

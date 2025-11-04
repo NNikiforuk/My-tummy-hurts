@@ -25,14 +25,6 @@ struct InputDataView: View {
             VStack(alignment: .leading, spacing: 50) {
                 createItem(text: "Enter what you ate and drank", icon: "fork.knife", bindingText: $ingredient1, secondBindingText: $ingredient2, ifShow: showSecondIngredient)
                 createItem(text: "Note any discomfort", icon: "toilet", bindingText: $symptom1, secondBindingText: $symptom2, ifShow: showSecondSymptom)
-                
-                VStack(alignment: .leading) {
-                    createInfo(text: "More data = better graphs")
-                    createInfo(text: "Be as specific as possible")
-                    createInfo(text: "Be consistent")
-                    createInfo(text: "For example, always use „rye bread” instead of „bread rye”")
-                }
-                .padding(.top, 30)
                 Spacer()
             }
         }

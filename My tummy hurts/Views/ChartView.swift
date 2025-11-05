@@ -319,7 +319,7 @@ struct SheetContent: View {
                 .textCase(.uppercase)
             
             VStack(spacing: 20) {
-                statisticsRow(title: "Total meals with \(ingredient.name)", number: ingredient.totalOccurrences, icon: "fork.knife")
+                statisticsRow(title: "Total meals with: \(ingredient.name)", number: ingredient.totalOccurrences, icon: "fork.knife")
                 Divider()
                 statisticsRow(title: "How many times symptoms occurred within 8 hours after this ingredient", number: ingredient.symptomsOccurrences, icon: "exclamationmark.triangle.fill")
                 Divider()
@@ -750,7 +750,7 @@ struct HeaderCard: View {
             if circleTitle == "Suspicion" {
                 if let selectedSymptomTime = symptomTime, let selectedSymptomName = symptomName {
                     VStack(spacing: 4) {
-                        Text("For symptom \(selectedSymptomName.lowercased()) on")
+                        Text("Selected symptom: \(selectedSymptomName.lowercased())")
                             .font(.caption)
                             .foregroundColor(.secondary)
                         

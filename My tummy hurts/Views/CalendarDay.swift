@@ -149,7 +149,6 @@ struct CalendarDay_Previews: PreviewProvider {
         NavigationStack {
             CalendarDay(selectedDate: .constant(Date()))
                 .environmentObject(CoreDataViewModel())
-//                .environmentObject(CoreDataViewModel.previewWithData)
         }
     }
 }

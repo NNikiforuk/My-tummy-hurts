@@ -78,6 +78,46 @@
         }
       }
     },
+    "%lld / %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld / %2$lld"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld / %2$lld"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld / %2$lld"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld / %2$lld"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld / %2$lld"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld / %2$lld"
+          }
+        }
+      }
+    },
     "%lld h" : {
       "localizations" : {
         "de" : {
@@ -108,86 +148,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld 小时"
-          }
-        }
-      }
-    },
-    "%lld of %lld meals" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$lld von %2$lld Mahlzeiten"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$lld of %2$lld meals"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$lld de %2$lld comidas"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$lld sur %2$lld repas"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$lld z %2$lld posiłków"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$lld / %2$lld 餐"
-          }
-        }
-      }
-    },
-    "%lld of %lld meals in history" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$lld von %2$lld gespeicherten Mahlzeiten"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$lld of %2$lld meals in history"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$lld de %2$lld comidas registradas"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$lld sur %2$lld repas enregistrés"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%1$lld z %2$lld historycznych posiłków"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "历史中的 %1$lld / %2$lld 餐"
           }
         }
       }
@@ -226,6 +186,40 @@
         }
       }
     },
+    "%lld%% risk" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Risiko: %lld%%"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Riesgo: %lld%%"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Risque : %lld%%"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ryzyko: %lld%%"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "风险：%lld%%"
+          }
+        }
+      }
+    },
     "×" : {
       "localizations" : {
         "de" : {
@@ -260,36 +254,36 @@
         }
       }
     },
-    "2 of 2 meals in history" : {
+    "2 of 2 meals" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "2 von 2 gespeicherten Mahlzeiten"
+            "value" : "2 von 2 Mahlzeiten"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "2 de 2 comidas registradas"
+            "value" : "2 de 2 comidas"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "2 sur 2 repas enregistrés"
+            "value" : "2 sur 2 repas"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "2 z 2 historycznych posiłków"
+            "value" : "2 z 2 posiłków"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "历史中的 2 / 2 餐"
+            "value" : "2 / 2 餐"
           }
         }
       }
@@ -358,6 +352,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "3 / 3 餐"
+          }
+        }
+      }
+    },
+    "50% (baseline)" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50 % (Basiswert)"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50 % (valor base)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50 % (valeur de référence)"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50% (wartość bazowa)"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "50%（基线值）"
           }
         }
       }
@@ -638,6 +666,40 @@
         }
       }
     },
+    "Avoid this ingredient" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vermeide diese Zutat"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Evita este ingrediente"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Éviter cet ingrédient"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unikaj tego składnika"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "避免食用此成分"
+          }
+        }
+      }
+    },
     "Bar chart" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -669,6 +731,74 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "条形图"
+          }
+        }
+      }
+    },
+    "Based on your past meals with this ingredient" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Basierend auf deinen bisherigen Mahlzeiten mit dieser Zutat"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Basado en tus comidas anteriores con este ingrediente"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Basé sur vos repas précédents avec cet ingrédient"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Na podstawie Twoich wcześniejszych posiłków z tym składnikiem"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "基于您之前含有此成分的餐食记录"
+          }
+        }
+      }
+    },
+    "Baseline estimate - not enough data yet" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Basis-Schätzung – noch nicht genug Daten"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estimación base – aún no hay suficientes datos"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estimation de base – données insuffisantes pour le moment"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Szacunek bazowy – zbyt mało danych"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "基线估计 - 数据不足"
           }
         }
       }
@@ -949,37 +1079,36 @@
         }
       }
     },
-    "Check time windows" : {
-      "extractionState" : "manual",
+    "Check time window" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zeitraum analysieren"
+            "value" : "Zeitfenster prüfen"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Revisa los rangos de tiempo"
+            "value" : "Revisar intervalo de tiempo"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vérifiez l’intervalle de temps"
+            "value" : "Vérifier la fenêtre temporelle"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sprawdź przedziały czasowe"
+            "value" : "Sprawdź przedział czasowy"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "查看时间范围"
+            "value" : "检查时间范围"
           }
         }
       }
@@ -1116,6 +1245,244 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "关闭"
+          }
+        }
+      }
+    },
+    "Consider avoiding it before important events or activities" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vor wichtigen Ereignissen besser meiden"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Considera evitarlo antes de eventos o actividades importantes"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Envisager d’éviter avant un événement important"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rozważ unikanie przed ważnymi wydarzeniami lub aktywnościami"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在重要活动前考虑避免食用"
+          }
+        }
+      }
+    },
+    "Consider other ingredients or factors that might be involved" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Andere mögliche Faktoren oder Zutaten berücksichtigen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Considera otros ingredientes o factores que puedan estar involucrados"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Envisager d’autres ingrédients ou facteurs impliqués"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weź pod uwagę inne składniki lub czynniki, które mogą mieć wpływ"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "考虑其他可能相关的成分或因素"
+          }
+        }
+      }
+    },
+    "Consider reducing intake to see if symptoms improve" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reduziere die Aufnahme, um zu sehen, ob sich die Symptome bessern"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Considera reducir la ingesta para ver si los síntomas mejoran"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Envisager de réduire la consommation pour voir si les symptômes s’améliorent"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rozważ zmniejszenie spożycia, aby sprawdzić, czy objawy ustąpią"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "考虑减少摄入量以观察症状是否改善"
+          }
+        }
+      }
+    },
+    "Consider temporarily reducing intake to test the pattern" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vorübergehend weniger konsumieren, um das Muster zu testen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Considera reducir temporalmente la ingesta para probar el patrón"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Envisager de réduire temporairement la consommation pour tester le schéma"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rozważ tymczasowe zmniejszenie spożycia, aby przetestować wzorzec"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "考虑暂时减少摄入以测试模式"
+          }
+        }
+      }
+    },
+    "Consult with a healthcare provider or dietitian" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konsultiere eine Fachkraft im Gesundheitswesen oder Ernährungsberater"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consulta con un profesional de la salud o un dietista"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consulter un professionnel de santé ou un diététicien"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skonsultuj się ze specjalistą lub dietetykiem"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "咨询医疗专业人员或营养师"
+          }
+        }
+      }
+    },
+    "Continue enjoying this ingredient - it appears safe for you" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Genieße diese Zutat weiterhin – sie scheint sicher zu sein"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continúa disfrutando este ingrediente – parece seguro para ti"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continuez à consommer cet ingrédient – il semble sûr pour vous"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nadal możesz spożywać ten składnik - wygląda na bezpieczny"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "继续食用此成分 - 目前看来是安全的"
+          }
+        }
+      }
+    },
+    "Continue tracking to monitor for any pattern changes" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weiterverfolgen, um mögliche Musteränderungen zu erkennen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continúa registrando para observar cualquier cambio de patrón"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continuez à suivre pour détecter tout changement de schéma"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kontynuuj monitorowanie, aby obserwować ewentualne zmiany wzorca"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "继续跟踪以监测模式变化"
           }
         }
       }
@@ -1327,6 +1694,40 @@
         }
       }
     },
+    "Discuss with your healthcare provider" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mit deiner Ärztin oder deinem Arzt besprechen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Coméntalo con tu profesional de salud"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Discuter avec votre professionnel de santé"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Omów ze swoim specjalistą"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "与您的医疗专业人员讨论"
+          }
+        }
+      }
+    },
     "Do you want to delete everything?" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1351,7 +1752,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Czy chcesz zrestartować?"
+            "value" : "Czy chcesz wszystko usunąć?"
           }
         },
         "zh-Hans" : {
@@ -1743,6 +2144,74 @@
         }
       }
     },
+    "High risk" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hohes Risiko"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Riesgo alto"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Risque élevé"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wysokie ryzyko"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "高风险"
+          }
+        }
+      }
+    },
+    "High suspicion" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoher Verdacht"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alta sospecha"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forte suspicion"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wysokie podejrzenie"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "高度怀疑"
+          }
+        }
+      }
+    },
     "Historical pattern" : {
       "localizations" : {
         "de" : {
@@ -1773,6 +2242,74 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "历史模式"
+          }
+        }
+      }
+    },
+    "Historical risk" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Historisches Risiko"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Riesgo histórico"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Risque historique"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ryzyko historyczne"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "历史风险"
+          }
+        }
+      }
+    },
+    "Historical risk rate" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Historische Risikorate"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tasa de riesgo histórico"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Taux de risque historique"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Historyczny wskaźnik ryzyka"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "历史风险率"
           }
         }
       }
@@ -1812,36 +2349,36 @@
         }
       }
     },
-    "How many times symptoms occurred within 8 hours after this ingredient" : {
+    "How recently this was consumed. More recent = higher weight" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wie oft Symptome innerhalb von 8 Stunden nach dieser Zutat aufgetreten sind"
+            "value" : "Zeitpunkt des Verzehrs. Je aktueller, desto höheres Gewicht"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cuántas veces aparecieron los síntomas dentro de las 8 horas posteriores a este ingrediente"
+            "value" : "Cuándo se consumió este ingrediente. Más reciente = mayor peso"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nombre de fois que les symptômes sont apparus dans les 8 heures suivant cet ingrédient"
+            "value" : "Date de consommation récente. Plus c’est récent, plus le poids est élevé"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Liczba wystąpień objawów w ciągu 8 godzin po składniku"
+            "value" : "Jak dawno spożyto ten składnik. Im nowsze dane, tym większa waga"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在摄入该成分后8小时内症状出现的次数"
+            "value" : "最近 - 次摄入的时间。越近期，权重越高。"
           }
         }
       }
@@ -1914,6 +2451,177 @@
         }
       }
     },
+    "If symptoms are severe, seek medical attention" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bei starken Symptomen ärztliche Hilfe aufsuchen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Si los síntomas son graves, busca atención médica"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Si les symptômes sont graves, consultez un médecin"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "W przypadku silnych objawów skontaktuj się z lekarzem"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如果症状严重，请及时就医"
+          }
+        }
+      }
+    },
+    "If you do eat it, track carefully to confirm the association" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Falls konsumiert, sorgfältig auf mögliche Zusammenhänge achten"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Si lo consumes, realiza un seguimiento cuidadoso para confirmar la relación"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Si vous en consommez, suivez attentivement pour confirmer l’association"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jeśli go spożyjesz, dokładnie monitoruj reakcję, by potwierdzić związek"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如果食用，请仔细记录以确认关联"
+          }
+        }
+      }
+    },
+    "If you do eat it, track carefully to confirm the pattern" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Falls konsumiert, sorgfältig auf das Muster achten"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Si lo consumes, haz un seguimiento cuidadoso para confirmar el patrón"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Si vous en consommez, suivez attentivement pour confirmer le schéma"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jeśli go spożyjesz, dokładnie monitoruj, by potwierdzić wzorzec"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如果食用，请仔细记录以确认模式"
+          }
+        }
+      }
+    },
+    "If you try it again, start with very small amounts" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wenn du es erneut probierst, beginne mit sehr kleinen Mengen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Si lo intentas de nuevo, empieza con cantidades muy pequeñas"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Si vous l’essayez à nouveau, commencez par de très petites quantités"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jeśli spróbujesz ponownie, zacznij od bardzo małych ilości"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如果再次尝试，请从非常少量开始"
+          }
+        }
+      }
+    },
+    "Ingredient analysis" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zutatenanalyse"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Análisis de ingredientes"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Analyse des ingrédients"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Analiza składników"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "成分分析"
+          }
+        }
+      }
+    },
     "Insufficient data" : {
       "localizations" : {
         "de" : {
@@ -1978,6 +2686,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "2025年1月"
+          }
+        }
+      }
+    },
+    "Keep tracking to maintain accurate data" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weiter verfolgen, um genaue Daten zu erhalten"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sigue registrando para mantener datos precisos"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continuez à suivre pour conserver des données précises"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kontynuuj śledzenie, aby zachować dokładność danych"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "继续记录以保持数据准确性"
           }
         }
       }
@@ -2048,40 +2790,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "浅色"
-          }
-        }
-      }
-    },
-    "Limited data" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Begrenzte Daten"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Datos limitados"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Données limitées"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ograniczone dane"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "数据有限"
           }
         }
       }
@@ -2185,6 +2893,74 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "列表项"
+          }
+        }
+      }
+    },
+    "Low risk" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geringes Risiko"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Riesgo bajo"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Risque faible"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Niskie ryzyko"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "低风险"
+          }
+        }
+      }
+    },
+    "Low suspicion" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geringer Verdacht"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sospecha baja"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Faible suspicion"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Niskie podejrzenie"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "低怀疑度"
           }
         }
       }
@@ -2398,6 +3174,80 @@
         }
       }
     },
+    "Meals followed by selected symptom: %lld / %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aufgezeichnete Fälle mit gewähltem Symptom: %lld / %lld"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Meals followed by selected symptom: %1$lld / %2$lld"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registros con el síntoma seleccionado: %lld / %lld"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enregistrements associés au symptôme sélectionné : %lld / %lld"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dane z wybranym symptomem: %lld / %lld"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "与所选症状相关的记录：%lld / %lld"
+          }
+        }
+      }
+    },
+    "Meals registered: %lld. Need minimum 3 for accuracy" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erfasste Mahlzeiten: %lld. Mindestens 3 erforderlich für eine genaue Analyse"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comidas registradas: %lld. Se necesitan al menos 3 para mayor precisión"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Repas enregistrés: %lld. Minimum 3 requis pour une meilleure précision"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zarejestrowane posiłki: %lld. Wymagane minimum 3 dla dokładności"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已记录餐食：%lld。至少需要 3 条记录以确保准确性"
+          }
+        }
+      }
+    },
     "Medium risk" : {
       "localizations" : {
         "de" : {
@@ -2536,6 +3386,40 @@
         }
       }
     },
+    "Monitor for any changes in your reaction over time" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Überwache Änderungen deiner Reaktion im Zeitverlauf"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supervisa cualquier cambio en tu reacción con el tiempo"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Surveillez toute évolution de votre réaction dans le temps"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Monitoruj zmiany swojej reakcji w czasie"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "随时间监测反应变化"
+          }
+        }
+      }
+    },
     "Monthly calendar" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2606,40 +3490,6 @@
         }
       }
     },
-    "Need %lld more meal(s)" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Noch %lld weitere Mahlzeit(en) erforderlich"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Faltan %lld comidas más"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Encore %lld repas nécessaires"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Potrzebnych jeszcze %lld posiłków"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "还需记录%lld顿餐食"
-          }
-        }
-      }
-    },
     "Negative symptoms" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2671,40 +3521,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "负面症状"
-          }
-        }
-      }
-    },
-    "New ingredient" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Neue Zutat"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nuevo ingrediente"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nouvel ingrédient"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nowy składnik"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "新成分"
           }
         }
       }
@@ -3020,6 +3836,40 @@
         }
       }
     },
+    "Note other factors like stress or sleep when symptoms occur" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beachte andere Faktoren wie Stress oder Schlaf bei Symptomen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ten en cuenta otros factores como el estrés o el sueño cuando aparezcan los síntomas"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notez d’autres facteurs comme le stress ou le sommeil lors des symptômes"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zwróć uwagę na inne czynniki, np. stres lub sen"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "注意压力或睡眠等其他因素"
+          }
+        }
+      }
+    },
     "Nothing to delete" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3051,6 +3901,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "没有可删除的内容"
+          }
+        }
+      }
+    },
+    "Notice if symptoms vary with portion size or preparation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beachte, ob Symptome je nach Portionsgröße oder Zubereitung variieren"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Observa si los síntomas varían según el tamaño de la porción o la preparación"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Observez si les symptômes varient selon la portion ou la préparation"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zwróć uwagę, czy objawy różnią się w zależności od porcji lub przygotowania"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "注意症状是否随份量或烹饪方式变化"
           }
         }
       }
@@ -3124,36 +4008,104 @@
         }
       }
     },
-    "Only %lld meal(s) in history. Need 2+ for accuracy" : {
+    "Pattern detection" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nur %lld Mahlzeit(en) in der Historie. Mindestens 2 erforderlich für Genauigkeit."
+            "value" : "Mustererkennung"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Solo %lld comidas registradas. Se necesitan al menos 2 para obtener precisión"
+            "value" : "Detección de patrones"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Seulement %lld repas enregistrés. Au moins 2 sont nécessaires pour une précision fiable."
+            "value" : "Détection de schéma"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tylko %lld posiłków. Potrzebne min. 2 dla dokładności"
+            "value" : "Wykrywanie wzorców"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "历史中仅有%lld顿餐食记录。至少需要2顿以确保准确性。"
+            "value" : "模式检测"
+          }
+        }
+      }
+    },
+    "Pay attention to portion sizes - smaller amounts might be tolerable" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Achte auf Portionsgrößen – kleinere Mengen könnten verträglich sein"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Presta atención al tamaño de las porciones - cantidades pequeñas podrían ser tolerables"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Faites attention aux portions – de plus petites quantités peuvent être tolérées"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zwróć uwagę na wielkość porcji - mniejsze ilości mogą być tolerowane"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "注意份量 - 较少的量可能可耐受"
+          }
+        }
+      }
+    },
+    "Pay attention to portion sizes and preparation methods" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Achte auf Portionsgrößen und Zubereitungsmethoden"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Presta atención a las porciones y métodos de preparación"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Faites attention à la taille des portions et aux modes de préparation"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zwróć uwagę na porcje i sposób przygotowania"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "注意份量和烹饪方式"
           }
         }
       }
@@ -3261,6 +4213,40 @@
         }
       }
     },
+    "Potentially safe ingredients" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Potenziell sichere Zutaten"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingredientes potencialmente seguros"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingrédients potentiellement sûrs"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Potencjalnie bezpieczne składniki"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "可能安全的成分"
+          }
+        }
+      }
+    },
     "Pre-symptom ingredients" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3292,6 +4278,41 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "症状前常见成分"
+          }
+        }
+      }
+    },
+    "Problematic ingredients" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Problematische Zutaten"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingredientes problemáticos"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingrédients problématiques"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Problematyczne składniki"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "有问题的成分"
           }
         }
       }
@@ -3330,36 +4351,104 @@
         }
       }
     },
-    "Reliable data - %lld meals tracked" : {
+    "Reliability" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zuverlässige Daten – %lld Mahlzeiten erfasst"
+            "value" : "Zuverlässigkeit"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Datos fiables — %lld comidas registradas"
+            "value" : "Fiabilidad"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Données fiables — %lld repas enregistrés"
+            "value" : "Fiabilité"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wiarygodne dane — zarejestrowano %lld posiłków"
+            "value" : "Wiarygodność"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "可靠数据 - 已记录%lld顿餐食"
+            "value" : "可靠性"
+          }
+        }
+      }
+    },
+    "Reliable data. Number of tracked meals: %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zuverlässige Daten. Anzahl der erfassten Einträge: %lld"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datos fiables. Número de registros seguidos: %lld"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Données fiables. Nombre d’enregistrements suivis: %lld"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wiarygodne dane. Liczba śledzonych zapisów: %lld"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "可靠数据。已跟踪数量：%lld"
+          }
+        }
+      }
+    },
+    "Required number of meals to add: %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erforderliche Anzahl zusätzlicher Einträge: %lld"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Número de registros necesarios por añadir: %lld"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nombre d’enregistrements à ajouter: %lld"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wymagana liczba zapisów do dodania: %lld"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "需要添加的记录数：%lld"
           }
         }
       }
@@ -3913,6 +5002,74 @@
         }
       }
     },
+    "Strong evidence this ingredient may trigger symptoms" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Starke Hinweise darauf, dass diese Zutat Symptome auslösen kann"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hay una fuerte evidencia de que este ingrediente puede provocar síntomas"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forte indication que cet ingrédient peut déclencher des symptômes"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Istnieją silne dowody, że ten składnik może wywoływać objawy"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "有强有力的证据表明此成分可能引发症状"
+          }
+        }
+      }
+    },
+    "Strongly consider avoiding this ingredient" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Es wird dringend empfohlen, diese Zutat zu meiden"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Considera seriamente evitar este ingrediente"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il est fortement conseillé d’éviter cet ingrédient"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zdecydowanie rozważ unikanie tego składnika"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "强烈建议避免食用此成分"
+          }
+        }
+      }
+    },
     "Suspicion" : {
       "localizations" : {
         "de" : {
@@ -3947,36 +5104,37 @@
         }
       }
     },
-    "suspicion score" : {
+    "Suspicious ingredients" : {
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Verdachtsscore"
+            "value" : "Verdächtige Zutaten"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Puntuación de sospecha"
+            "value" : "Ingredientes sospechosos"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Score de suspicion"
+            "value" : "Ingrédients suspects"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "wskaźnik podejrzenia"
+            "value" : "Podejrzane składniki"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "怀疑评分"
+            "value" : "可疑成分"
           }
         }
       }
@@ -4221,6 +5379,74 @@
         }
       }
     },
+    "The close timing makes this ingredient particularly relevant to investigate" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der zeitliche Zusammenhang macht diese Zutat besonders relevant für die Untersuchung"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La proximidad temporal hace que este ingrediente sea especialmente relevante para investigar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le moment rapproché rend cet ingrédient particulièrement pertinent à examiner"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bliskość w czasie sprawia, że ten składnik jest szczególnie wart dalszej analizy"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "时间上的接近使此成分特别值得进一步调查"
+          }
+        }
+      }
+    },
+    "The risk percentage shows how often this ingredient was followed by symptoms across all your tracked meals" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Risikoanteil zeigt, wie oft diese Zutat in deinen Aufzeichnungen mit Symptomen einherging"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El porcentaje de riesgo muestra con qué frecuencia este ingrediente fue seguido de síntomas en tus registros"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le pourcentage de risque indique la fréquence à laquelle cet ingrédient a été suivi de symptômes dans vos enregistrements"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Procent ryzyka pokazuje, jak często po tym składniku występowały objawy w Twoich zapisach"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "风险百分比显示此成分在所有记录中引发症状的频率"
+          }
+        }
+      }
+    },
     "This app is for guidance only and shows simple stats. For serious or ongoing symptoms, please seek medical advice" : {
       "localizations" : {
         "de" : {
@@ -4251,6 +5477,478 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "本应用仅供参考，并提供简单统计。如有严重或持续的症状，请寻求医疗建议"
+          }
+        }
+      }
+    },
+    "This ingredient has not shown any association with symptoms based on existing records. Current data indicates that this ingredient is generally well tolerated" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Laut den vorhandenen Daten zeigt diese Zutat keine Verbindung zu Symptomen. Aktuelle Daten deuten auf eine gute Verträglichkeit hin"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Según los registros existentes, este ingrediente no muestra ninguna asociación con síntomas. Los datos actuales indican que generalmente se tolera bien"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "D’après les enregistrements existants, cet ingrédient ne montre aucune association avec des symptômes. Les données actuelles indiquent qu’il est bien toléré"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Na podstawie dostępnych danych składnik ten nie wykazuje związku z objawami. Aktualne dane sugerują, że jest ogólnie dobrze tolerowany"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "根据现有记录，此成分未显示与症状有关的任何关联。当前数据表明它总体上易于耐受"
+          }
+        }
+      }
+    },
+    "This ingredient is likely not the main cause of this symptom" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese Zutat ist wahrscheinlich nicht die Hauptursache dieses Symptoms"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Es probable que este ingrediente no sea la causa principal de este síntoma"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cet ingrédient n’est probablement pas la cause principale de ce symptôme"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ten składnik prawdopodobnie nie jest główną przyczyną tego objawu"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此成分可能不是该症状的主要原因"
+          }
+        }
+      }
+    },
+    "This ingredient seems mostly safe" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese Zutat scheint überwiegend sicher zu sein"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este ingrediente parece en general seguro"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cet ingrédient semble globalement sûr"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ten składnik wydaje się w większości bezpieczny"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此成分整体看来较为安全"
+          }
+        }
+      }
+    },
+    "This ingredient shows a moderate trend that may be worth exploring. Symptoms appeared in several cases recorded with this ingredient. Testing different combinations or amounts may help confirm the pattern." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese Zutat zeigt einen moderaten Trend, der eine Untersuchung wert sein könnte. In mehreren Aufzeichnungen traten Symptome auf. Unterschiedliche Kombinationen oder Mengen zu testen, kann helfen, das Muster zu bestätigen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este ingrediente muestra una tendencia moderada que podría valer la pena explorar. Los síntomas aparecieron en varios registros. Probar diferentes combinaciones o cantidades puede ayudar a confirmar el patrón"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cet ingrédient montre une tendance modérée qui mérite d’être explorée. Des symptômes sont apparus dans plusieurs enregistrements. Tester différentes combinaisons ou quantités peut aider à confirmer le schéma"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ten składnik wykazuje umiarkowany wzorzec, który może być wart zbadania. Objawy pojawiły się w kilku przypadkach. Próba różnych kombinacji lub ilości może pomóc potwierdzić wzorzec"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此成分显示出值得进 - 步探索的中等趋势。在几次记录中出现了相关症状。尝试不同的组合或摄入量可能有助于确认这 - 模式"
+          }
+        }
+      }
+    },
+    "This ingredient shows a recurring pattern linked to symptoms. A notable share of records involving this ingredient were followed by symptoms. Consider temporarily reducing intake or adjusting portion sizes to better understand its effects" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese Zutat zeigt ein wiederkehrendes Muster im Zusammenhang mit Symptomen. Ein erheblicher Anteil der Aufzeichnungen war von Symptomen gefolgt. Erwäge, die Aufnahme vorübergehend zu reduzieren oder Portionsgrößen anzupassen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este ingrediente muestra un patrón recurrente asociado a los síntomas. Una proporción significativa de registros con este ingrediente fue seguida de síntomas. Considera reducir temporalmente la ingesta o ajustar las porciones para entender mejor sus efectos"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cet ingrédient montre un schéma récurrent lié aux symptômes. Une part notable des enregistrements associés à cet ingrédient ont été suivis de symptômes. Envisagez de réduire temporairement la consommation ou d’ajuster les portions pour mieux comprendre ses effets"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ten składnik wykazuje powtarzający się wzorzec związany z objawami. Znaczna część zapisów z tym składnikiem była powiązana z objawami. Rozważ tymczasowe zmniejszenie spożycia lub dostosowanie porcji, aby lepiej zrozumieć jego wpływ"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此成分与症状显示出反复出现的关联。相当比例的记录显示其后出现症状。可考虑暂时减少摄入或调整份量以更好了解其影响"
+          }
+        }
+      }
+    },
+    "This ingredient shows a strong connection with symptoms based on available records. The data suggests potential sensitivity to this ingredient. Trying smaller portions, alternative preparations or temporary elimination may help evaluate its impact. In case of strong reactions, professional consultation is recommended" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese Zutat zeigt laut den verfügbaren Daten eine starke Verbindung zu Symptomen. Dies deutet auf eine mögliche Empfindlichkeit hin. Kleinere Portionen, alternative Zubereitungen oder vorübergehender Verzicht können helfen, die Auswirkungen einzuschätzen. Bei starken Reaktionen wird professionelle Beratung empfohlen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Según los registros disponibles, este ingrediente muestra una fuerte conexión con los síntomas. Los datos sugieren una posible sensibilidad. Probar porciones más pequeñas, preparaciones alternativas o una eliminación temporal puede ayudar a evaluar su impacto. En caso de reacciones intensas, se recomienda una consulta profesional"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "D’après les données disponibles, cet ingrédient présente une forte corrélation avec les symptômes. Cela peut indiquer une sensibilité potentielle. Essayer de plus petites portions, des préparations alternatives ou une élimination temporaire peut aider à évaluer son impact. En cas de forte réaction, une consultation professionnelle est recommandée"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Na podstawie dostępnych danych składnik ten wykazuje silny związek z objawami. Dane sugerują możliwą nadwrażliwość. Spróbowanie mniejszych porcji, alternatywnych przygotowań lub tymczasowe wyeliminowanie może pomóc ocenić wpływ. W przypadku silnych reakcji zalecana jest konsultacja ze specjalistą"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "根据现有记录，此成分与症状存在强关联。数据表明可能对其有敏感性。尝试少量摄入、不同烹饪方式或暂时停用可能有助于评估其影响。如有强烈反应，建议寻求专业咨询"
+          }
+        }
+      }
+    },
+    "This ingredient shows a weak link with symptoms. According to existing records, symptoms occurred within 8 hours in a few cases. This may be coincidental or affected by other factors. Continued tracking is recommended for better insight" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese Zutat zeigt eine schwache Verbindung zu Symptomen. Laut bestehenden Daten traten Symptome in einigen Fällen innerhalb von 8 Stunden auf. Dies kann zufällig oder durch andere Faktoren beeinflusst sein. Fortlaufende Beobachtung wird empfohlen, um genauere Erkenntnisse zu gewinnen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este ingrediente muestra una conexión débil con los síntomas. Según los registros existentes, los síntomas aparecieron en unas pocas ocasiones dentro de las 8 horas. Esto puede ser casual o influido por otros factores. Se recomienda un seguimiento continuo para una mejor comprensión"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cet ingrédient présente un lien faible avec les symptômes. Selon les enregistrements existants, les symptômes sont apparus dans les 8 heures dans quelques cas. Cela peut être une coïncidence ou influencé par d’autres facteurs. Un suivi continu est recommandé pour une meilleure compréhension"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ten składnik wykazuje słabe powiązanie z objawami. Według dostępnych danych, objawy pojawiły się w kilku przypadkach w ciągu 8 godzin. Może to być przypadkowe lub zależne od innych czynników. Zaleca się dalsze monitorowanie dla lepszego wglądu"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此成分与症状的关联较弱。根据现有记录，在少数情况下，症状在 8 小时内出现。这可能是巧合或受其他因素影响。建议继续跟踪以获得更深入的了解"
+          }
+        }
+      }
+    },
+    "This ingredient was consumed %@ before the selected symptom. Historical data shows a %lld%% link with this ingredient. Combined with the close timing, this ingredient is highly likely to have triggered this reaction" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese Zutat wurde %1$@ vor dem ausgewählten Symptom konsumiert. Historische Daten zeigen eine %2$lld%% Verbindung mit dieser Zutat. Aufgrund des zeitlichen Zusammenhangs ist es sehr wahrscheinlich, dass sie diese Reaktion ausgelöst hat"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "This ingredient was consumed %1$@ before the selected symptom. Historical data shows a %2$lld%% link with this ingredient. Combined with the close timing, this ingredient is highly likely to have triggered this reaction"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este ingrediente se consumió %1$@ antes del síntoma seleccionado. Los datos históricos muestran una relación del %2$lld%% con este ingrediente. Junto con la cercanía temporal, es muy probable que haya desencadenado esta reacción"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cet ingrédient a été consommé %1$@ avant le symptôme sélectionné. Les données historiques montrent un lien de %2$lld%% avec cet ingrédient. Combiné à la proximité temporelle, il est très probable que cet ingrédient ait déclenché cette réaction"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ten składnik został spożyty %1$@ przed wybranym objawem. Dane historyczne pokazują związek na poziomie %2$lld%% z tym składnikiem. W połączeniu z bliskim czasem wystąpienia, składnik ten prawdopodobnie wywołał tę reakcję"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此成分在所选症状前 %1$@ 被摄入。历史数据显示与此成分有关的关联率为 %2$lld%%。结合时间接近的情况，此成分很可能引发了此反应"
+          }
+        }
+      }
+    },
+    "This ingredient was consumed %@ before the selected symptom. Historical data shows a %lld%% link with this ingredient. The proximity and pattern make it a notable candidate for this reaction" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese Zutat wurde %1$@ vor dem gewählten Symptom konsumiert. Historische Daten zeigen eine %2$lld%% Verbindung. Das zeitliche Muster macht sie zu einem möglichen Kandidaten für diese Reaktion"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "This ingredient was consumed %1$@ before the selected symptom. Historical data shows a %2$lld%% link with this ingredient. The proximity and pattern make it a notable candidate for this reaction"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este ingrediente se consumió %1$@ antes del síntoma seleccionado. Los datos históricos muestran una conexión del %2$lld%%. La proximidad y el patrón lo convierten en un posible factor de esta reacción"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cet ingrédient a été consommé %1$@ avant le symptôme sélectionné. Les données historiques montrent un lien de %2$lld%% avec cet ingrédient. La proximité temporelle et le schéma en font un facteur notable de cette réaction"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ten składnik został spożyty %1$@ przed wybranym objawem. Dane historyczne pokazują związek na poziomie %2$lld%%. Czas i wzorzec sprawiają, że jest to potencjalny czynnik tej reakcji"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此成分在所选症状前 %1$@ 被摄入。历史数据显示与此成分有关的关联率为 %2$lld%%。时间接近和模式使其成为该反应的潜在因素"
+          }
+        }
+      }
+    },
+    "This ingredient was consumed %@ before the selected symptom. Historical data shows a %lld%% link with this ingredient. The timing and pattern suggest a moderate possibility it played a role, though other factors may be involved" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese Zutat wurde %1$@ vor dem Symptom konsumiert. Die historischen Daten zeigen eine %2$lld%% Verbindung. Zeitlicher Zusammenhang und Muster deuten auf eine moderate Beteiligung hin, obwohl andere Faktoren ebenfalls eine Rolle spielen könnten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "This ingredient was consumed %1$@ before the selected symptom. Historical data shows a %2$lld%% link with this ingredient. The timing and pattern suggest a moderate possibility it played a role, though other factors may be involved"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este ingrediente se consumió %1$@ antes del síntoma seleccionado. Los datos históricos muestran una relación del %2$lld%%. El tiempo y el patrón sugieren una posibilidad moderada de que haya influido, aunque pueden intervenir otros factores"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cet ingrédient a été consommé %1$@ avant le symptôme sélectionné. Les données montrent un lien de %2$lld%% avec cet ingrédient. Le moment et le schéma suggèrent une implication possible, bien que d’autres facteurs puissent jouer un rôle"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ten składnik został spożyty %1$@ przed wybranym objawem. Dane historyczne wskazują na związek %2$lld%%. Czas i wzorzec sugerują umiarkowane prawdopodobieństwo, że odegrał rolę, choć mogą być też inne czynniki"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此成分在所选症状前 %1$@ 被摄入。历史数据显示与此成分有关的关联率为 %2$lld%%。时间和模式表明它可能起到了 - 定作用，但其他因素也可能参与其中"
+          }
+        }
+      }
+    },
+    "This ingredient was consumed %@ before the selected symptom. Historical data shows a %lld%% link with this ingredient. The timing suggests a low likelihood of a direct connection" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese Zutat wurde %1$@ vor dem gewählten Symptom konsumiert. Historische Daten zeigen eine %2$lld%% Verbindung. Das Timing deutet auf eine geringe Wahrscheinlichkeit einer direkten Verbindung hin"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "This ingredient was consumed %1$@ before the selected symptom. Historical data shows a %2$lld%% link with this ingredient. The timing suggests a low likelihood of a direct connection"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este ingrediente se consumió %1$@ antes del síntoma seleccionado. Los datos históricos muestran una relación del %2$lld%%. El momento sugiere una baja probabilidad de una conexión directa"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cet ingrédient a été consommé %1$@ avant le symptôme sélectionné. Les données historiques montrent un lien de %2$lld%% avec cet ingrédient. Le moment suggère une faible probabilité d’un lien direct"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ten składnik został spożyty %1$@ przed wybranym objawem. Dane historyczne pokazują związek na poziomie %2$lld%%. Czas sugeruje niskie prawdopodobieństwo bezpośredniego powiązania"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此成分在所选症状前 %1$@ 被摄入。历史数据显示与此成分的关联率为 %2$lld%%。时间间隔表明直接关联的可能性较低"
+          }
+        }
+      }
+    },
+    "This ingredient was consumed %@ before the selected symptom. Historical data shows a %lld%% link with this ingredient. There's a strong possibility this ingredient contributed to your symptom" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese Zutat wurde %1$@ vor dem gewählten Symptom konsumiert. Historische Daten zeigen eine %2$lld%% Verbindung. Es ist sehr wahrscheinlich, dass diese Zutat zu deinem Symptom beigetragen hat"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "This ingredient was consumed %1$@ before the selected symptom. Historical data shows a %2$lld%% link with this ingredient. There's a strong possibility this ingredient contributed to your symptom"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este ingrediente se consumió %1$@ antes del síntoma seleccionado. Los datos históricos muestran una relación del %2$lld%%. Existe una alta probabilidad de que este ingrediente haya contribuido a tu síntoma"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cet ingrédient a été consommé %1$@ avant le symptôme sélectionné. Les données historiques montrent un lien de %2$lld%% avec cet ingrédient. Il est fort probable que cet ingrédient ait contribué à votre symptôme"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ten składnik został spożyty %1$@ przed wybranym objawem. Dane historyczne pokazują związek na poziomie %2$lld%%. Istnieje duże prawdopodobieństwo, że ten składnik przyczynił się do objawu"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此成分在所选症状前 %1$@ 被摄入。历史数据显示与此成分的关联率为 %2$lld%%。该成分很可能促成了此症状"
+          }
+        }
+      }
+    },
+    "This ingredient was consumed %@ before this symptom. However, we don't have enough historical data about this ingredient yet (less than 2 meals tracked). The score shown is a baseline estimate. Track more meals containing this ingredient to get more reliable analysis" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese Zutat wurde %1$@ vor diesem Symptom konsumiert. Es liegen jedoch noch nicht genügend historische Daten vor (weniger als 2 Datensätze). Der angezeigte Wert ist eine Basisschätzung. Erfasse mehr Daten mit dieser Zutat für eine verlässlichere Analyse"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este ingrediente se consumió %1$@ antes de este síntoma. Sin embargo, aún no hay suficientes datos históricos (menos de 2 registros). El puntaje mostrado es una estimación base. Registra más datos con este ingrediente para obtener un análisis más confiable"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cet ingrédient a été consommé %1$@ avant ce symptôme. Cependant, il n’y a pas encore assez de données historiques (moins de 2 enregistrements). Le score affiché est une estimation de base. Suivez plus d’enregistrements contenant cet ingrédient pour obtenir une analyse plus fiable"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ten składnik został spożyty %1$@ przed tym objawem. Nie mamy jeszcze wystarczającej ilości danych historycznych (mniej niż 2 zapisy). Wynik jest wstępnym oszacowaniem. Zbieraj więcej danych zawierających ten składnik, aby uzyskać wiarygodniejszą analizę"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此成分在该症状前 %1$@ 被摄入。但目前缺乏足够的历史数据（记录少于 2 条）。当前分数为基线估计。请继续记录包含此成分的数据以获得更可靠的分析"
           }
         }
       }
@@ -4289,6 +5987,40 @@
         }
       }
     },
+    "Time proximity" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeitliche Nähe"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Proximidad temporal"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Proximité temporelle"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odległość w czasie"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "时间接近度"
+          }
+        }
+      }
+    },
     "Time window" : {
       "localizations" : {
         "de" : {
@@ -4323,24 +6055,24 @@
         }
       }
     },
-    "Timing analysis" : {
+    "Time-weighted analysis" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zeitliche Analyse"
+            "value" : "Zeitgewichtete Analyse"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Análisis temporal"
+            "value" : "Análisis ponderado en el tiempo"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Analyse temporelle"
+            "value" : "Analyse pondérée dans le temps"
           }
         },
         "pl" : {
@@ -4352,7 +6084,41 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "时间分析"
+            "value" : "时间加权分析"
+          }
+        }
+      }
+    },
+    "Top 10 problematic ingredients" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "10 problematischste Zutaten"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "10 ingredientes más problemáticos"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "10 ingrédients les plus problématiques"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Top 10 problematycznych składników"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "前10个可能引起问题的成分"
           }
         }
       }
@@ -4427,138 +6193,172 @@
         }
       }
     },
-    "Top ten problematic ingredients" : {
+    "Total meals with ingredient" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zehn problematischste Zutaten"
+            "value" : "Gesamtzahl der Datensätze mit dieser Zutat"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Diez ingredientes más problemáticos"
+            "value" : "Total de registros con este ingrediente"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dix ingrédients les plus problématiques"
+            "value" : "Total des enregistrements avec cet ingrédient"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Top dziesięć problematycznych składników"
+            "value" : "Posiłki z tym składnikiem"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "前十个可能引起问题的成分"
+            "value" : "含此成分的总记录数"
           }
         }
       }
     },
-    "Total meals with %@" : {
+    "Total symptoms within 8 hours after ingredient" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gesamte Mahlzeiten mit %@"
+            "value" : "Gesamtzahl der Symptome innerhalb von 8 Stunden nach der Zutat"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Total de comidas con %@"
+            "value" : "Total de síntomas dentro de las 8 horas posteriores al ingrediente"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nombre total de repas contenant %@"
+            "value" : "Nombre total de symptômes dans les 8 heures suivant cet ingrédient"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ilość posiłków z %@"
+            "value" : "Objawy w ciągu 8 godzin po spożyciu składnika"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "含%@的总餐食数"
+            "value" : "成分后 8 小时内的症状总数"
           }
         }
       }
     },
-    "Track %lld more meal(s) for better accuracy" : {
+    "Track a few more meals to improve accuracy" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Erfassen Sie %lld weitere Mahlzeit(en) für genauere Ergebnisse"
+            "value" : "Erfasse einige zusätzliche Einträge, um die Genauigkeit zu erhöhen"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Registra %lld comidas más para mejorar la precisión"
+            "value" : "Registra algunos datos más para mejorar la precisión"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Enregistrez encore %lld repas pour améliorer la précision"
+            "value" : "Ajoutez quelques enregistrements supplémentaires pour améliorer la précision"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dodaj jeszcze %lld posiłków, aby zwiększyć dokładność"
+            "value" : "Zarejestruj kilka dodatkowych danych, aby poprawić dokładność"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "再记录%lld顿餐食以提高准确性"
+            "value" : "再记录几条数据以提高准确性"
           }
         }
       }
     },
-    "Track in more meals to see historical patterns" : {
+    "Track any reintroduction attempts carefully" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Erfassen Sie mehr Mahlzeiten, um historische Muster zu erkennen"
+            "value" : "Beobachte alle Wiedereinführungsversuche sorgfältig"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Registra más comidas para ver los patrones históricos"
+            "value" : "Registra cuidadosamente cualquier intento de reintroducción"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Enregistrez plus de repas pour visualiser les schémas historiques"
+            "value" : "Suivez attentivement toute tentative de réintroduction"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dodaj więcej posiłków, aby zobaczyć trend"
+            "value" : "Dokładnie monitoruj każdą próbę ponownego wprowadzenia"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "记录更多餐食以查看历史模式"
+            "value" : "仔细记录任何重新引入的尝试"
+          }
+        }
+      }
+    },
+    "Track more meals with this ingredient to build reliable data" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erfasse mehr Daten mit dieser Zutat, um zuverlässige Ergebnisse zu erhalten"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registra más datos con este ingrediente para obtener resultados fiables"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continuez à suivre cet ingrédient pour constituer des données fiables"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zbieraj więcej danych z tym składnikiem, aby uzyskać wiarygodne wyniki"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "继续记录此成分的数据以建立可靠的结果"
           }
         }
       }
@@ -4594,6 +6394,108 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "在月历中跟踪功能"
+          }
+        }
+      }
+    },
+    "Try eating it at different times of day to see if timing matters" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Probiere es zu unterschiedlichen Tageszeiten, um zu sehen, ob die Uhrzeit eine Rolle spielt"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prueba consumirlo en distintos momentos del día para ver si el horario influye"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Essayez de le consommer à différents moments de la journée pour voir si le moment influe"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spróbuj spożyć o różnych porach dnia, aby sprawdzić, czy czas ma znaczenie"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "尝试在不同时间食用以观察时间是否影响结果"
+          }
+        }
+      }
+    },
+    "Try eating this ingredient separately to isolate its effect" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Probiere, diese Zutat einzeln zu essen, um ihre Wirkung zu isolieren"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prueba consumir este ingrediente por separado para aislar su efecto"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Essayez de consommer cet ingrédient séparément pour isoler son effet"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spróbuj spożyć ten składnik osobno, by ocenić jego działanie"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "尝试单独食用此成分以评估其影响"
+          }
+        }
+      }
+    },
+    "Try it in isolation (not with other potentially triggering foods)" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teste es isoliert (nicht mit anderen möglichen Auslösern)"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pruébalo de forma aislada (sin otros alimentos que puedan causar síntomas)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Essayez-le isolément (sans autres aliments potentiellement déclencheurs)"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spróbuj spożyć go oddzielnie (nie łącz z innymi potencjalnymi wyzwalaczami)"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "独立尝试（不要与其他可能引发症状的食物 - 起食用）"
           }
         }
       }
@@ -4667,6 +6569,108 @@
         }
       }
     },
+    "Very low suspicion" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sehr geringer Verdacht"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sospecha muy baja"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Très faible suspicion"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bardzo niskie podejrzenie"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "非常低的怀疑度"
+          }
+        }
+      }
+    },
+    "We need at least 3 meals with this ingredient to provide reliable analysis. More data means more accurate results" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mindestens 3 Datensätze mit dieser Zutat sind erforderlich, um eine verlässliche Analyse zu gewährleisten. Mehr Daten bedeuten genauere Ergebnisse"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se necesitan al menos 3 registros con este ingrediente para un análisis fiable. Más datos significan resultados más precisos"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Au moins 3 enregistrements avec cet ingrédient sont nécessaires pour une analyse fiable. Plus de données signifie des résultats plus précis"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Potrzebne są co najmniej 3 zapisy z tym składnikiem, aby analiza była wiarygodna. Więcej danych to dokładniejsze wyniki"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "我们需要至少 3 条与此成分相关的记录以进行可靠分析。更多数据意味着更准确的结果"
+          }
+        }
+      }
+    },
+    "We track symptoms within 8 hours after meals. Symptoms that occur closer to meal time receive higher weight in the calculation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wir verfolgen Symptome innerhalb von 8 Stunden nach dem Essen. Symptome, die näher zur Mahlzeit auftreten, erhalten in der Berechnung ein höheres Gewicht"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registramos los síntomas dentro de las 8 horas posteriores a la comida. Los síntomas que ocurren más cerca de la hora de comer tienen un mayor peso en el cálculo"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nous suivons les symptômes dans les 8 heures suivant les repas. Les symptômes survenant plus près du repas ont un poids plus élevé dans le calcul"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Śledzimy objawy w ciągu 8 godzin po posiłku. Objawy, które występują bliżej czasu posiłku, mają większą wagę w obliczeniach"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "我们跟踪餐后 8 小时内的症状。距离进餐时间越近的症状在计算中权重越高"
+          }
+        }
+      }
+    },
     "What does this mean?" : {
       "localizations" : {
         "de" : {
@@ -4697,6 +6701,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "这是什么意思？"
+          }
+        }
+      }
+    },
+    "Worth monitoring this ingredient more closely" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Es lohnt sich, diese Zutat genauer zu beobachten"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vale la pena hacer un seguimiento más cercano de este ingrediente"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il vaut la peine de surveiller cet ingrédient de plus près"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Warto uważniej monitorować ten składnik"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "值得更密切地跟踪此成分"
           }
         }
       }

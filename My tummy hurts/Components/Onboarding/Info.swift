@@ -40,6 +40,7 @@ struct Info: View {
                                 .font(.title3).bold()
                                 .padding(.horizontal, 20)
                                 .padding(.vertical, 10)
+                                .foregroundStyle(.neutral)
                         }
                         .buttonStyle(.borderedProminent)
                         .padding(.vertical, 20)

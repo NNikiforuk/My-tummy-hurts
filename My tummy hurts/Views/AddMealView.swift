@@ -58,14 +58,26 @@ struct AddNewIngredient: View {
     @EnvironmentObject private var vm: CoreDataViewModel
     @Binding var newIngredients: String
     @Binding var rows: [Row]
+    @State private var showDetails: Bool = false
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            SectionTitle(title: "Meal ingredients", textColor: Color("PrimaryText"))
-            Text("Be as specific and consistent. For example always use „rye bread” instead of „bread rye”")
-                .font(.caption)
-                .foregroundStyle(.secondaryText)
-                .padding(.bottom, 20)
+            Button {
+                showDetails.toggle()
+            } label: {
+                HStack {
+                    SectionTitle(title: "Meal ingredients", textColor: Color("PrimaryText"))
+                    Image(systemName: "info.circle")
+                        .foregroundStyle(.secondaryText)
+                }
+            }
+            .padding(.bottom, 20)
+            if showDetails {
+                Text("Be as specific and consistent. For example always use „rye bread” instead of „bread rye”")
+                    .font(.caption)
+                    .foregroundStyle(.secondaryText)
+                    .padding(.bottom, 20)
+            }
             NewRows(newNote: $newIngredients, rows: $rows)
             AppendingRowBtn(rows: $rows)
         }

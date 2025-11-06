@@ -9,21 +9,18 @@ import SwiftUI
 import Foundation
 
 enum ChartMode: String, CaseIterable, Identifiable {
-    case defaultChart, checkSpecificSymptom
+    case problematicIngredients = "Problematic ingredients"
+    case potentiallySafeIngredients = "Potentially safe ingredients"
+    case checkSpecificSymptom = "Check specific symptom"
+    
     var id: Self { self }
-    var title: String {
-        switch self {
-        case .defaultChart: "Suspicious ingredients"
-        case .checkSpecificSymptom: "Check specific symptom"
-        }
-    }
-    var localizedTitle: String {
-        NSLocalizedString(self.title, comment: "")
+    var localized: String {
+        NSLocalizedString(self.rawValue, comment: "")
     }
 }
 
 enum AnalyticsMode: String, CaseIterable, Identifiable {
-    case barChart = "Bar chart"
+    case barChart = "Ingredient analysis"
     case calendarView = "Monthly calendar"
     
     var id: Self { self }

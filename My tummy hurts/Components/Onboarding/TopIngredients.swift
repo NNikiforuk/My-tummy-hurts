@@ -90,7 +90,7 @@ func upperChartPart(ingredient: LocalizedStringKey, suspicionRate: Double, calc:
                             Text(barText)
                                 .font(.caption)
                                 .bold()
-                                .foregroundColor(.white)
+                                .foregroundColor(.neutral)
                                 .padding(.leading, 8)
                             Spacer()
                         }

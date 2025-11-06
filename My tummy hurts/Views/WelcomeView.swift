@@ -61,5 +61,6 @@ struct WelcomeView: View {
             .toolbarBackground(.visible, for: .navigationBar)
             .background(Color("BackgroundColor").ignoresSafeArea())
     }
+//    .environment(\.colorScheme, .dark)
     .environment(\.colorScheme, .light)
 }

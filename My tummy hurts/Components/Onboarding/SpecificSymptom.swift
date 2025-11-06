@@ -14,9 +14,9 @@ struct SpecificSymptom: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 40) {
-                header(icon: "clock", title: "Check time windows", subtitle: "See what you ate x hours before each occurrence of the selected symptom. What could have caused the discomfort?")
+                header(icon: "clock", title: "Check time window", subtitle: "See what you ate x hours before each occurrence of the selected symptom. What could have caused the discomfort?")
                     .minimumScaleFactor(sizeCategory.customMinScaleFactor)
-                upperChartPart(ingredient: "cow milk", suspicionRate: 0.45, calc: "2 of 2 meals in history", barText: "Medium suspicion")
+                upperChartPart(ingredient: "cow milk", suspicionRate: 0.45, calc: "2 of 2 meals", barText: "Medium suspicion")
                 Spacer()
             }
             .padding()

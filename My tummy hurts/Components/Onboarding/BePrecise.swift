@@ -29,7 +29,7 @@ struct BePrecise: View {
                         Image(systemName: "checkmark.circle.fill")
                             .font(.body)
                             .foregroundStyle(.accent)
-                        Text(sentence.sentence)
+                        Text(LocalizedStringKey(sentence.sentence))
                             .font(.body)
                     }
                     .font(.callout)

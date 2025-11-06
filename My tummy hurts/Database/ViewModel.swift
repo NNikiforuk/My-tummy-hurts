@@ -17,8 +17,9 @@ class CoreDataViewModel: ObservableObject {
         didSet { invalidateCache() }
     }
     
-    var firstChartDataCache: [IngredientAnalysis]?
-    var secondChartDataCache: [IngredientAnalysis2]?
+    var topProblematicIngredientsCache: [IngredientAnalysis]?
+    var safeIngredientsCache: [IngredientAnalysis]?
+    var specificSymptomCache: [IngredientAnalysis2]?
     var cachedSymptomId: UUID?
     var cachedHourQty: Int?
     
@@ -149,8 +150,9 @@ class CoreDataViewModel: ObservableObject {
     }
     
     func invalidateCache() {
-        firstChartDataCache = nil
-        secondChartDataCache = nil
+        topProblematicIngredientsCache = nil
+        safeIngredientsCache = nil
+        specificSymptomCache = nil
         cachedSymptomId = nil
         cachedHourQty = nil
     }
@@ -292,28 +294,25 @@ extension CoreDataViewModel {
             }
     }
     
-    //FIRST CHART
+    //TOP 10 PROBLEMATIC INGREDIENTS
     func analyzeIngredientsWeighted() -> [IngredientAnalysis] {
         var ingredientStats: [String: (total: Int, symptomsCount: Int, weightedSymptoms: Double)] = [:]
         
-        // "egg, milk, coffee"
         for meal in savedMealNotes {
             guard let mealTime = meal.createdAt,
                   let ingredients = meal.ingredients else {
                 continue
-            } // pętla przechodzi do nastepnego meal
+            }
             
-            // ["egg", "milk", "coffee"]
             let ingredientsArray = ingredients.components(separatedBy: ", ")
             
-            // zwraca array z wagami symptomów, które wystąpiły między 0 a 8h po posiłku z Double? bez nil-ów
             let symptomsAfter = savedSymptomNotes.compactMap { symptom -> Double? in
                 guard let symptomTime = symptom.createdAt else {
                     return nil
-                } // przechodzimy do następnego symptomu
+                }
                 let hoursAfter = symptomTime.timeIntervalSince(
                     mealTime
-                ) / 3600 // ile h minęło od meal do symptomu?
+                ) / 3600
                 guard hoursAfter > 0 && hoursAfter <= 8.0 else { return nil }
                 
                 let weight = max(0.1, 1.0 - (hoursAfter / 10.0))
@@ -323,9 +322,7 @@ extension CoreDataViewModel {
             let totalWeight = symptomsAfter.reduce(0, +)
             let hadSymptom = !symptomsAfter.isEmpty
             
-            // "egg"
             for ingredient in ingredientsArray {
-                // ingredientStats["egg"]
                 let current = ingredientStats[ingredient] ?? (
                     total: 0,
                     symptomsCount: 0,
@@ -340,7 +337,6 @@ extension CoreDataViewModel {
             }
         }
         
-        // iterujemy po [:]
         let analyses = ingredientStats.map { (name, stats) in
             IngredientAnalysis(
                 name: name,
@@ -351,9 +347,29 @@ extension CoreDataViewModel {
         }
         
         return analyses
-            .sorted {
- first,
- second in
+            .sorted { first, second in
+                let firstInsufficient = first.totalOccurrences < 3
+                let secondInsufficient = second.totalOccurrences < 3
+                
+                if firstInsufficient != secondInsufficient {
+                    return secondInsufficient
+                }
+                
+                if firstInsufficient && secondInsufficient {
+                    return first.name.localizedCaseInsensitiveCompare(second.name) == .orderedAscending
+                }
+                
+                let firstIsSafe = first.suspicionRate == 0
+                let secondIsSafe = second.suspicionRate == 0
+                
+                if firstIsSafe != secondIsSafe {
+                    return firstIsSafe
+                }
+                
+                if firstIsSafe && secondIsSafe {
+                    return first.name.localizedCaseInsensitiveCompare(second.name) == .orderedAscending
+                }
+                
                 if first.displayScore != second.displayScore {
                     return first.displayScore > second.displayScore
                 }
@@ -366,27 +382,50 @@ extension CoreDataViewModel {
                     return first.totalOccurrences > second.totalOccurrences
                 }
                 
-                return first.name
-                    .localizedCaseInsensitiveCompare(
-                        second.name
-                    ) == .orderedAscending
+                return first.name.localizedCaseInsensitiveCompare(second.name) == .orderedAscending
             }
-            .prefix(10)
             .map { $0 }
     }
     
-    var firstChartData: [IngredientAnalysis] {
-        if let cached = firstChartDataCache {
+    var top10Ingredients: [IngredientAnalysis] {
+        if let cached = topProblematicIngredientsCache {
             return cached
         }
         
         let result = analyzeIngredientsWeighted()
-        firstChartDataCache = result
+        topProblematicIngredientsCache = result
         return result
     }
     
-    var firstChartDataTop10: [IngredientAnalysis] {
-        Array(firstChartData.prefix(10))
+    var top10IngredientsTop10: [IngredientAnalysis] {
+        Array(
+            top10Ingredients
+                .filter { ingredient in
+                    !(ingredient.suspicionRate == 0 && ingredient.totalOccurrences >= 3)
+                }
+                .prefix(10)
+        )
+    }
+    
+    //SAFE INGREDIENTS
+    func analyzeSafeIngredients() -> [IngredientAnalysis] {
+        top10Ingredients
+            .filter { ingredient in
+                ingredient.suspicionRate == 0 && ingredient.totalOccurrences >= 3
+            }
+            .sorted { first, second in
+                first.name.localizedCaseInsensitiveCompare(second.name) == .orderedAscending
+            }
+    }
+    
+    var safeIngredients: [IngredientAnalysis] {
+        if let cached = safeIngredientsCache {
+            return cached
+        }
+        
+        let result = analyzeSafeIngredients()
+        safeIngredientsCache = result
+        return result
     }
     
     //SECOND CHART
@@ -401,7 +440,7 @@ extension CoreDataViewModel {
             selectedSymptomId: selectedSymptomId,
             selectedHourQty: selectedHourQty
         )
-        let historicalData = firstChartData
+        let historicalData = top10Ingredients
         
         var summary: [IngredientAnalysis2] = []
         
@@ -536,7 +575,7 @@ struct IngredientAnalysis2: Identifiable {
         (historicalData?.totalOccurrences ?? 0) >= 2
     }
     
-    var riskLevel: String {
+    var riskLevel: LocalizedStringKey {
         if !usedHistoricalData {
             return "Insufficient data"
         }
@@ -583,7 +622,7 @@ struct IngredientAnalysis: Identifiable {
         return "\(percentage)%"
     }
     
-    var riskLevel: String {
+    var riskLevel: LocalizedStringKey {
         switch suspicionRate {
         case 0:
             return "Safe"

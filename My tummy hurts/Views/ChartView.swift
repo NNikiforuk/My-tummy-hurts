@@ -68,7 +68,6 @@ struct ChartView: View {
         VStack(alignment: .leading) {
             SectionTitle(title: title, textColor: Color("SecondaryText"))
                 .textCase(.uppercase)
-            
             VStack {
                 if chartType == ChartMode.problematicIngredients {
                     if vm.top10Ingredients.isEmpty {
@@ -78,7 +77,7 @@ struct ChartView: View {
                         ingredientsList
                     }
                 } else {
-                    if vm.top10Ingredients.isEmpty {
+                    if vm.safeIngredients.isEmpty {
                         EmptyStateView(text: "Add meals and symptoms")
                             .grayOverlayModifier()
                     } else {

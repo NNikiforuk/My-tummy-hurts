@@ -314,7 +314,7 @@ struct SheetContent: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
-                    HeaderCard(suspicionValue: ingredient.suspicionRate, riskLevel: ingredient.riskLevel, circleTitle: "Risk", symptomTime: nil, symptomName: nil)
+                    HeaderCard(suspicionValue: ingredient.suspicionRate, riskLevel: ingredient.riskLevel, circleTitle: "Correlation", symptomTime: nil, symptomName: nil)
                     RiskExplanationCard(riskExplanation: riskExplanation)
                     statisticsCard
                     howItWorksCard
@@ -408,7 +408,7 @@ struct SheetContent: View {
     
     var howItWorksCard: some View {
         VStack(alignment: .leading) {
-            SectionTitle(title: "How we calculate risk", textColor: .secondary)
+            SectionTitle(title: "How we calculate correlation", textColor: .secondary)
                 .textCase(.uppercase)
             
             VStack(alignment: .leading, spacing: 16) {
@@ -419,7 +419,7 @@ struct SheetContent: View {
                 
                 explanationRow(
                     title: "Pattern detection",
-                    description: "The risk percentage shows how often this ingredient was followed by symptoms across all your tracked meals"
+                    description: "The correlation percentage shows how often this ingredient was followed by symptoms across all your tracked meals"
                 )
                 
                 explanationRow(
@@ -821,7 +821,7 @@ struct SheetContentSpecificSymptom: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
-                    HeaderCard(suspicionValue: ingredient.suspicionScore, riskLevel: ingredient.riskLevel, circleTitle: "Risk", symptomTime: symptomTime, symptomName: symptomName)
+                    HeaderCard(suspicionValue: ingredient.suspicionScore, riskLevel: ingredient.riskLevel, circleTitle: "Correlation", symptomTime: symptomTime, symptomName: symptomName)
                     RiskExplanationCard(riskExplanation: explanation)
                     historicalPatternCard
                     howScoreWorksCard
@@ -916,7 +916,7 @@ struct SheetContentSpecificSymptom: View {
             
             VStack(spacing: 16) {
                 if ingredient.usedHistoricalData {
-                    timingAnalysisRow(icon: "chart.bar.fill", value: "\(Int((ingredient.historicalData?.suspicionRate ?? 0) * 100))%", firstText: "Historical risk rate", secondText: "Meals followed by selected symptom: \(ingredient.globalSymptomsOccurrences) / \(ingredient.globalTotalOccurrences)")
+                    timingAnalysisRow(icon: "chart.bar.fill", value: "\(Int((ingredient.historicalData?.suspicionRate ?? 0) * 100))%", firstText: "Historical correlation rate", secondText: "Meals followed by selected symptom: \(ingredient.globalSymptomsOccurrences) / \(ingredient.globalTotalOccurrences)")
                     
                     if ingredient.hasEnoughData {
                         HStack(spacing: 8) {
@@ -940,7 +940,7 @@ struct SheetContentSpecificSymptom: View {
                         }
                     }
                 } else {
-                    Text("Not enough historical data yet. This ingredient has been tracked in less than 2 meals. The suspicion score is based on timing alone, using a baseline risk estimate")
+                    Text("Not enough historical data yet. This ingredient has been tracked in less than 2 meals. The suspicion score is based on timing alone, using a baseline correlation estimate")
                 }
             }
             .grayOverlayModifier()
@@ -967,7 +967,7 @@ struct SheetContentSpecificSymptom: View {
                 
                 calculationRow(
                     icon: "chart.bar.fill",
-                    title: "Historical risk",
+                    title: "Historical correlation",
                     value: ingredient.usedHistoricalData ? "\(Int((ingredient.historicalData?.suspicionRate ?? 0) * 100))%" : "50% (baseline)",
                     description: ingredient.usedHistoricalData ? "Based on your past meals with this ingredient" : "Baseline estimate - not enough data yet"
                 )
@@ -977,7 +977,7 @@ struct SheetContentSpecificSymptom: View {
                     VStack(spacing: 15) {
                         Image(systemName: "equal")
                             .foregroundColor(.accent)
-                        Text("\(Int(ingredient.suspicionScore * 100))% risk")
+                        Text("\(Int(ingredient.suspicionScore * 100))% correlation")
                             .font(.title2)
                             .bold()
                             .foregroundColor(.accent)

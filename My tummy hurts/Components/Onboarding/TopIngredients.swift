@@ -16,8 +16,8 @@ struct TopIngredients: View {
             VStack(alignment: .leading, spacing: 40) {
                 VStack(spacing: 40) {
                     header(icon: "fork.knife", title: "Top ingredients", subtitle: "Check which of the ingredients you have eaten may be problematic")
-                    upperChartPart(ingredient: "cow milk", suspicionRate: 1.0, calc: "3 of 3 meals", barText: "Very high risk")
-                    upperChartPart(ingredient: "chocolate", suspicionRate: 0.4, calc: "2 of 5 meals", barText: "Medium risk")
+                    upperChartPart(ingredient: "cow milk", suspicionRate: 1.0, calc: "3 of 3 meals", barText: "Very strong correlation")
+                    upperChartPart(ingredient: "chocolate", suspicionRate: 0.4, calc: "2 of 5 meals", barText: "Medium correlation")
                 }
                 Spacer()
             }

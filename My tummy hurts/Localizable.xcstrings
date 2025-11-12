@@ -186,36 +186,36 @@
         }
       }
     },
-    "%lld%% risk" : {
+    "%lld%% correlation" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Risiko: %lld%%"
+            "value" : "%lld%% Korrelation"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Riesgo: %lld%%"
+            "value" : "%lld%% correlación"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Risque : %lld%%"
+            "value" : "%lld%% corrélation"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ryzyko: %lld%%"
+            "value" : "%lld%% korelacja"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "风险：%lld%%"
+            "value" : "%lld%% 相关性"
           }
         }
       }
@@ -1487,6 +1487,40 @@
         }
       }
     },
+    "Correlation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Korrelation"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Correlación"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Corrélation"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Korelacja"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "相关性"
+          }
+        }
+      }
+    },
     "cow milk" : {
       "localizations" : {
         "de" : {
@@ -2144,36 +2178,36 @@
         }
       }
     },
-    "High risk" : {
+    "High correlation" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hohes Risiko"
+            "value" : "Hohe Korrelation"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Riesgo alto"
+            "value" : "Alta correlación"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Risque élevé"
+            "value" : "Corrélation élevée"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wysokie ryzyko"
+            "value" : "Wysoka korelacja"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "高风险"
+            "value" : "高相关性"
           }
         }
       }
@@ -2212,6 +2246,74 @@
         }
       }
     },
+    "Historical correlation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Historische Korrelation"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Correlación histórica"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Corrélation historique"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Historyczna korelacja"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "历史相关性"
+          }
+        }
+      }
+    },
+    "Historical correlation rate" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rate der historischen Korrelation"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tasa de correlación histórica"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Taux de corrélation historique"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wskaźnik historycznej korelacji"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "历史相关率"
+          }
+        }
+      }
+    },
     "Historical pattern" : {
       "localizations" : {
         "de" : {
@@ -2242,74 +2344,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "历史模式"
-          }
-        }
-      }
-    },
-    "Historical risk" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Historisches Risiko"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Riesgo histórico"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Risque historique"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ryzyko historyczne"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "历史风险"
-          }
-        }
-      }
-    },
-    "Historical risk rate" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Historische Risikorate"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tasa de riesgo histórico"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Taux de risque historique"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Historyczny wskaźnik ryzyka"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "历史风险率"
           }
         }
       }
@@ -2417,36 +2451,36 @@
         }
       }
     },
-    "How we calculate risk" : {
+    "How we calculate correlation" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wie wir das Risiko berechnen"
+            "value" : "Wie wir die Korrelation berechnen"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cómo calculamos el riesgo"
+            "value" : "Cómo calculamos la correlación"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Comment nous calculons le risque"
+            "value" : "Comment nous calculons la corrélation"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sposób obliczania ryzyka"
+            "value" : "Jak obliczamy korelację"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "我们如何计算风险"
+            "value" : "我们如何计算相关性"
           }
         }
       }
@@ -2897,36 +2931,36 @@
         }
       }
     },
-    "Low risk" : {
+    "Low correlation" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Geringes Risiko"
+            "value" : "Niedrige Korrelation"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Riesgo bajo"
+            "value" : "Baja correlación"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Risque faible"
+            "value" : "Corrélation faible"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Niskie ryzyko"
+            "value" : "Niska korelacja"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "低风险"
+            "value" : "低相关性"
           }
         }
       }
@@ -3248,36 +3282,36 @@
         }
       }
     },
-    "Medium risk" : {
+    "Medium correlation" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mittleres Risiko"
+            "value" : "Mittlere Korrelation"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Riesgo medio"
+            "value" : "Correlación media"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Risque moyen"
+            "value" : "Corrélation moyenne"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Średnie ryzyko"
+            "value" : "Średnia korelacja"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "中等风险"
+            "value" : "中等相关性"
           }
         }
       }
@@ -3559,6 +3593,40 @@
         }
       }
     },
+    "No correlation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine Korrelation"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sin correlación"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucune corrélation"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Brak korelacji"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无相关性"
+          }
+        }
+      }
+    },
     "No data available for analysis" : {
       "localizations" : {
         "de" : {
@@ -3767,36 +3835,36 @@
         }
       }
     },
-    "Not enough historical data yet. This ingredient has been tracked in less than 2 meals. The suspicion score is based on timing alone, using a baseline risk estimate" : {
+    "Not enough historical data yet. This ingredient has been tracked in less than 2 meals. The suspicion score is based on timing alone, using a baseline correlation estimate" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Noch nicht genügend historische Daten. Diese Zutat wurde in weniger als 2 Mahlzeiten erfasst. Der Verdacht basiert nur auf dem zeitlichen Zusammenhang unter Verwendung einer Basisrisikoeinschätzung"
+            "value" : "Nicht genügend historische Daten. Diese Zutat wurde in weniger als 2 Mahlzeiten verfolgt. Der Verdacht basiert nur auf der Zeit, unter Verwendung einer Basis-Korrelationsschätzung."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aún no hay suficientes datos históricos. Este ingrediente se ha registrado en menos de 2 comidas. La puntuación de sospecha se basa únicamente en el tiempo, utilizando una estimación básica del riesgo"
+            "value" : "No hay suficientes datos históricos. Este ingrediente se ha registrado en menos de 2 comidas. La puntuación de sospecha se basa solo en el tiempo, utilizando una estimación de correlación base."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pas encore assez de données historiques. Cet ingrédient a été suivi dans moins de 2 repas. Le score de suspicion est basé uniquement sur le moment d’apparition, selon une estimation de risque de base."
+            "value" : "Pas assez de données historiques. Cet ingrédient a été suivi dans moins de 2 repas. Le score de suspicion est basé uniquement sur le temps, en utilisant une estimation de corrélation de base."
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Za mało danych. Ten składnik pojawił się w mniej niż dwóch zarejestrowanych posiłkach. Wynik opiera się wyłącznie na czasie wystąpienia objawów, z użyciem podstawowego oszacowania ryzyka"
+            "value" : "Brak wystarczających danych historycznych. Ten składnik był śledzony w mniej niż 2 posiłkach. Wynik podejrzenia opiera się wyłącznie na czasie, używając bazowego oszacowania korelacji"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "历史数据不足。该成分仅记录于少于2顿餐食中。怀疑评分仅基于时间推算，使用基础风险估算。"
+            "value" : "历史数据不足。该食材仅在少于 2 次用餐中被记录。可疑评分仅基于时间，使用基础相关性估计。"
           }
         }
       }
@@ -4449,40 +4517,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "需要添加的记录数：%lld"
-          }
-        }
-      }
-    },
-    "Risk" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Risiko"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Riesgo"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Risque"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ryzyko"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "风险"
           }
         }
       }
@@ -5413,36 +5447,36 @@
         }
       }
     },
-    "The risk percentage shows how often this ingredient was followed by symptoms across all your tracked meals" : {
+    "The correlation percentage shows how often this ingredient was followed by symptoms across all your tracked meals" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Der Risikoanteil zeigt, wie oft diese Zutat in deinen Aufzeichnungen mit Symptomen einherging"
+            "value" : "Der Korrelationsprozentsatz zeigt, wie oft diese Zutat in allen erfassten Mahlzeiten mit Symptomen verbunden war."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El porcentaje de riesgo muestra con qué frecuencia este ingrediente fue seguido de síntomas en tus registros"
+            "value" : "El porcentaje de correlación muestra con qué frecuencia este ingrediente fue seguido de síntomas en todas tus comidas registradas."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le pourcentage de risque indique la fréquence à laquelle cet ingrédient a été suivi de symptômes dans vos enregistrements"
+            "value" : "Le pourcentage de corrélation montre à quelle fréquence cet ingrédient a été suivi de symptômes dans tous vos repas enregistrés."
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Procent ryzyka pokazuje, jak często po tym składniku występowały objawy w Twoich zapisach"
+            "value" : "Procent korelacji pokazuje, jak często po tym składniku następowały symptomy we wszystkich zapisanych posiłkach"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "风险百分比显示此成分在所有记录中引发症状的频率"
+            "value" : "相关性百分比显示此食材在所有记录的餐食中与症状出现的频率。"
           }
         }
       }
@@ -5455,6 +5489,12 @@
             "value" : "Diese Analyse dient ausschließlich Informationszwecken. Sie ist kein medizinisches Diagnosewerkzeug. Wenden Sie sich bei medizinischen Fragen immer an eine Fachkraft im Gesundheitswesen."
           }
         },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este análisis tiene fines meramente informativos. No es una herramienta de diagnóstico médico. Consulte siempre a un profesional sanitario para obtener asesoramiento médico"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5464,7 +5504,7 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ta analiza ma wyłącznie charakter informacyjny. Nie jest narzędziem diagnostycznym. W razie wątpliwości skonsultuj się z lekarzem lub specjalistą."
+            "value" : "Ta analiza ma wyłącznie charakter informacyjny. Nie jest narzędziem diagnostycznym. W razie wątpliwości skonsultuj się z lekarzem lub specjalistą"
           }
         },
         "zh-Hans" : {
@@ -6563,36 +6603,36 @@
         }
       }
     },
-    "Very high risk" : {
+    "Very high correlation" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sehr hohes Risiko"
+            "value" : "Sehr hohe Korrelation"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Riesgo muy alto"
+            "value" : "Correlación muy alta"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Risque très élevé"
+            "value" : "Corrélation très élevée"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bardzo wysokie ryzyko"
+            "value" : "Bardzo wysoka korelacja"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "极高风险"
+            "value" : "非常高的相关性"
           }
         }
       }
@@ -6627,6 +6667,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "非常低的怀疑度"
+          }
+        }
+      }
+    },
+    "Very strong correlation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sehr starke Korrelation"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Correlación muy fuerte"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Corrélation très forte"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bardzo silna korelacja"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "非常强的相关性"
           }
         }
       }

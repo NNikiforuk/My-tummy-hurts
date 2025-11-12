@@ -5447,6 +5447,34 @@
         }
       }
     },
+    "This analysis is for informational purposes only. It is not a medical diagnostic tool. Always consult a healthcare professional for medical advice." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese Analyse dient ausschließlich Informationszwecken. Sie ist kein medizinisches Diagnosewerkzeug. Wenden Sie sich bei medizinischen Fragen immer an eine Fachkraft im Gesundheitswesen."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cette analyse est fournie à titre informatif uniquement. Ce n’est pas un outil de diagnostic médical. Consultez toujours un professionnel de santé pour tout avis médical."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ta analiza ma wyłącznie charakter informacyjny. Nie jest narzędziem diagnostycznym. W razie wątpliwości skonsultuj się z lekarzem lub specjalistą."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "本分析仅供参考，并非医疗诊断工具。如有健康疑虑，请咨询专业的医疗人员。"
+          }
+        }
+      }
+    },
     "This app is for guidance only and shows simple stats. For serious or ongoing symptoms, please seek medical advice" : {
       "localizations" : {
         "de" : {

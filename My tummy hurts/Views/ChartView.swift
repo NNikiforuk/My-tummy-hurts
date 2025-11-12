@@ -41,6 +41,8 @@ struct ChartView: View {
                     .frame(maxWidth: .infinity, alignment: .center)
                 ChooseAnalytics(analyticsType: $analyticsType)
                 
+                warning
+                
                 switch analyticsType {
                 case .barChart:
                     VStack(spacing: 40) {
@@ -157,6 +159,18 @@ struct ChartView: View {
         .frame(maxWidth: .infinity)
         .pickerStyle(.menu)
         .grayOverlayModifier()
+    }
+    
+    var warning: some View {
+        HStack(alignment: .top) {
+            Image(systemName: "cross.case.fill")
+                .font(.title3)
+            Text("This analysis is for informational purposes only. It is not a medical diagnostic tool. Always consult a healthcare professional for medical advice.")
+                .font(.footnote)
+        }
+        .foregroundColor(.secondary)
+        .padding(.top, 10)
+        .padding(.horizontal)
     }
 }
 

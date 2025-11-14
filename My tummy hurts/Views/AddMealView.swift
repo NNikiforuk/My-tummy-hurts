@@ -58,29 +58,49 @@ struct AddNewIngredient: View {
     @EnvironmentObject private var vm: CoreDataViewModel
     @Binding var newIngredients: String
     @Binding var rows: [Row]
-    @State private var showDetails: Bool = false
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Button {
-                showDetails.toggle()
-            } label: {
-                HStack {
-                    SectionTitle(title: "Meal ingredients", textColor: Color("PrimaryText"))
-                    Image(systemName: "info.circle")
-                        .foregroundStyle(.secondaryText)
-                }
-            }
-            .padding(.bottom, 20)
-            if showDetails {
-                Text("Be as specific and consistent. For example always use „rye bread” instead of „bread rye”")
-                    .font(.caption)
-                    .foregroundStyle(.secondaryText)
-                    .padding(.bottom, 20)
-            }
+            SectionTitle(title: "Meal ingredients", textColor: Color("PrimaryText"))
+            warning
+                .padding(.bottom, 12)
             NewRows(newNote: $newIngredients, rows: $rows)
             AppendingRowBtn(rows: $rows)
         }
+    }
+    
+    var warning: some View {
+        HStack(alignment: .top, spacing: 12) {
+            Image(systemName: "info.circle.fill")
+                .font(.title3)
+                .foregroundStyle(.customSecondary)
+            
+            VStack(alignment: .leading, spacing: 4) {
+                Text("Use the exact same names each time.")
+                    .fontWeight(.medium)
+                
+                HStack(spacing: 4) {
+                    Group {
+                        Text("\"cow milk\"")
+                        Text("≠")
+                        Text("\"milk\"")
+                        Text("≠")
+                        Text("\"milk cow\"")
+                    }
+                    .foregroundStyle(.primary)
+                    .fontWeight(.semibold)
+                }
+                
+                Text("These ingredients are tracked as different.")
+            }
+            Spacer()
+        }
+        .frame(maxWidth: .infinity)
+        .font(.caption)
+        .foregroundStyle(.secondaryText)
+        .padding(12)
+        .background(.customSecondary.opacity(0.1))
+        .cornerRadius(8)
     }
 }
 

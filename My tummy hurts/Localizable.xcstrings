@@ -4,6 +4,108 @@
     "" : {
 
     },
+    "\"cow milk\"" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Kuhmilch\""
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"leche de vaca\""
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"lait de vache\""
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„krowie mleko”"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"牛奶\""
+          }
+        }
+      }
+    },
+    "\"milk cow\"" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Milchkuh\""
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"vaca lechera\""
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"vache laitière\""
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„mleko krowie”"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"奶牛\""
+          }
+        }
+      }
+    },
+    "\"milk\"" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Milch\""
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"leche\""
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"lait\""
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "„mleko”"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"牛奶\""
+          }
+        }
+      }
+    },
     "%@ – %@" : {
       "localizations" : {
         "de" : {
@@ -250,6 +352,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "x"
+          }
+        }
+      }
+    },
+    "≠" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "≠"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "≠"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "≠"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "≠"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "≠"
           }
         }
       }
@@ -799,40 +935,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "基线估计 - 数据不足"
-          }
-        }
-      }
-    },
-    "Be as specific and consistent. For example always use „rye bread” instead of „bread rye”" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "eien Sie präzise und konsequent. Verwenden Sie zum Beispiel immer „Roggenbrot“ statt „Brot Roggen“"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sé específico y coherente. Por ejemplo, usa siempre “pan de centeno” en lugar de “centeno pan”"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Soyez précis et cohérent. Par exemple, utilisez toujours « pain de seigle » plutôt que « seigle pain »"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Używaj zawsze tej samej formy. Np. zawsze „chleb żytni” zamiast „żytni chleb” "
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "请保持具体且一致。例如，请始终使用“黑麦面包”，而不是“面包黑麦”。"
           }
         }
       }
@@ -3248,36 +3350,36 @@
         }
       }
     },
-    "Meals registered: %lld. Need minimum 3 for accuracy" : {
+    "Meals with this ingredient: %lld" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Erfasste Mahlzeiten: %lld. Mindestens 3 erforderlich für eine genaue Analyse"
+            "value" : "Mahlzeiten mit dieser Zutat: %lld"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Comidas registradas: %lld. Se necesitan al menos 3 para mayor precisión"
+            "value" : "Comidas con este ingrediente: %lld"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Repas enregistrés: %lld. Minimum 3 requis pour une meilleure précision"
+            "value" : "Repas avec cet ingrédient : %lld"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zarejestrowane posiłki: %lld. Wymagane minimum 3 dla dokładności"
+            "value" : "Posiłki z tym składnikiem: %lld"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "已记录餐食：%lld。至少需要 3 条记录以确保准确性"
+            "value" : "含此食材的餐食：%lld"
           }
         }
       }
@@ -3520,6 +3622,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "数据越多 = 图表越准确"
+          }
+        }
+      }
+    },
+    "Need minimum 3 for accuracy" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mindestens 3 für Genauigkeit erforderlich"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se necesitan mínimo 3 para precisión"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minimum 3 requis pour la précision"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Do analizy potrzeba minimum 3"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "至少需要3次以确保准确性"
           }
         }
       }
@@ -5481,6 +5617,40 @@
         }
       }
     },
+    "These ingredients are tracked as different." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese Zutaten werden als unterschiedlich erfasst."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estos ingredientes se rastrean como diferentes."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ces ingrédients sont suivis comme différents."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Te składniki są traktowane jako różne."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "这些食材被追踪为不同的。"
+          }
+        }
+      }
+    },
     "This analysis is for informational purposes only. It is not a medical diagnostic tool. Always consult a healthcare professional for medical advice." : {
       "localizations" : {
         "de" : {
@@ -6599,6 +6769,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "找出是什么在伤害你的肠胃"
+          }
+        }
+      }
+    },
+    "Use the exact same names each time." : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verwenden Sie jedes Mal exakt dieselben Namen."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use exactamente los mismos nombres cada vez."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utilisez exactement les mêmes noms à chaque fois."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Za każdym razem używaj dokładnie tych samych określeń."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "每次请使用完全相同的名称。"
           }
         }
       }

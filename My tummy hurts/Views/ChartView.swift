@@ -40,9 +40,7 @@ struct ChartView: View {
                 SiteTitle(title: "Analytics")
                     .frame(maxWidth: .infinity, alignment: .center)
                 ChooseAnalytics(analyticsType: $analyticsType)
-                
                 warning
-                
                 switch analyticsType {
                 case .barChart:
                     VStack(spacing: 40) {
@@ -165,12 +163,16 @@ struct ChartView: View {
         HStack(alignment: .top) {
             Image(systemName: "cross.case.fill")
                 .font(.title3)
+                .foregroundColor(.customSecondary)
             Text("This analysis is for informational purposes only. It is not a medical diagnostic tool. Always consult a healthcare professional for medical advice.")
                 .font(.footnote)
         }
+        .frame(maxWidth: .infinity)
+        .padding(5)
         .foregroundColor(.secondary)
         .padding(.top, 10)
         .padding(.horizontal)
+        .background(.customSecondary.opacity(0.1))
     }
 }
 
@@ -614,17 +616,21 @@ struct InsufficientIngredientData: View {
         VStack(alignment: .leading) {
             Text(ingredientName)
                 .bold()
-            HStack(spacing: 8) {
+            HStack(alignment: .top) {
                 Image(systemName: "exclamationmark.triangle.fill")
-                    .font(.caption)
+                    .font(.subheadline)
                 VStack(alignment: .leading, spacing: 2) {
                     Text("Insufficient data")
                         .font(.caption)
                         .bold()
                     
-                    Text("Meals registered: \(globalTotalOccurrences). Need minimum 3 for accuracy")
+                    Text("Meals with this ingredient: \(globalTotalOccurrences)")
+                        .font(.caption2)
+                    
+                    Text("Need minimum 3 for accuracy")
                         .font(.caption2)
                 }
+                Spacer()
             }
             .frame(maxWidth: .infinity)
             .foregroundColor(.accent)

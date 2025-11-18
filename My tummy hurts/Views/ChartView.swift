@@ -12,7 +12,7 @@ struct ChartView: View {
     @EnvironmentObject private var vm: CoreDataViewModel
     @Environment(\.dynamicTypeSize) var sizeCategory
     
-    @State private var analyticsType: AnalyticsMode = .calendarView
+    @State private var analyticsType: AnalyticsMode = .barChart
     @State private var chartType: ChartMode = .problematicIngredients
     @State private var hoursBack = 5
     @State private var selectedSymptomId: UUID? = nil
@@ -51,7 +51,17 @@ struct ChartView: View {
                         case .potentiallySafeIngredients:
                             firstTwoChartsContainer(title: "Potentially safe ingredients")
                         case .checkSpecificSymptom:
-                            specificSymptom
+                            
+                            VStack(alignment: .leading) {
+                                if vm.savedSymptomNotes.isEmpty {
+                                    SectionTitle(title: "Check specific symptom", textColor: Color("SecondaryText"))
+                                        .textCase(.uppercase)
+                                    EmptyStateView(text: "Add minimum 1 meal and minimum 1 symptom")
+                                        .grayOverlayModifier()
+                                } else {
+                                    specificSymptom
+                                }
+                            }
                         }
                     }
                     
@@ -70,7 +80,17 @@ struct ChartView: View {
                 .textCase(.uppercase)
             VStack {
                 if chartType == ChartMode.problematicIngredients {
-                    if vm.top10Ingredients.isEmpty {
+                    if vm.top10IngredientsTop10.isEmpty {
+                        VStack {
+                            Text("No problematic ingredients at this time")
+                                .foregroundColor(.secondary)
+                                .multilineTextAlignment(.center)
+                        }
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .grayOverlayModifier()
+                        
+                    } else if vm.top10IngredientsTop10.isEmpty {
                         EmptyStateView(text: "Add meals and symptoms")
                             .grayOverlayModifier()
                     } else {
@@ -78,7 +98,7 @@ struct ChartView: View {
                     }
                 } else {
                     if vm.safeIngredients.isEmpty {
-                        EmptyStateView(text: "Add meals and symptoms")
+                        EmptyStateView(text: "No potentially safe ingredients")
                             .grayOverlayModifier()
                     } else {
                         ingredientsList
@@ -90,7 +110,7 @@ struct ChartView: View {
     
     var ingredientsList: some View {
         VStack(alignment: .leading, spacing: 16) {
-            VStack(spacing: 10) {
+            VStack(alignment: .leading, spacing: 10) {
                 ForEach(chartType == ChartMode.problematicIngredients ? vm.top10IngredientsTop10 : vm.safeIngredients) { ingredient in
                     if chartType == ChartMode.problematicIngredients {
                         HistoricalIngredient(ingredient: ingredient)
@@ -190,7 +210,7 @@ struct EmptyStateView: View {
                 .font(.system(size: 60))
                 .foregroundColor(.secondary)
             
-            Text("No data available for analysis")
+            Text("Insufficient data")
                 .font(.headline)
                 .foregroundColor(.secondary)
             
@@ -321,11 +341,11 @@ struct SheetContent: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
-                    HeaderCard(suspicionValue: ingredient.suspicionRate, riskLevel: ingredient.riskLevel, circleTitle: "Correlation", symptomTime: nil, symptomName: nil)
-                    RiskExplanationCard(riskExplanation: riskExplanation)
+                    HeaderCard(suspicionValue: ingredient.suspicionRate, riskLevel: ingredient.riskLevel, circleTitle: "correlation", symptomTime: nil, symptomName: nil)
                     statisticsCard
-                    howItWorksCard
                     RecommendationsCard(recommendations: recommendations)
+                    howItWorksCard
+                    
                 }
                 .padding()
             }
@@ -342,60 +362,35 @@ struct SheetContent: View {
         .grayOverlayModifier()
     }
     
-    var riskExplanation: LocalizedStringKey {
-        switch ingredient.suspicionRate {
-        case 0:
-            return "This ingredient has not shown any association with symptoms based on existing records. Current data indicates that this ingredient is generally well tolerated"
-            
-        case 0..<0.3:
-            return "This ingredient shows a weak link with symptoms. According to existing records, symptoms occurred within 8 hours in a few cases. This may be coincidental or affected by other factors. Continued tracking is recommended for better insight"
-            
-        case 0.3..<0.6:
-            return "This ingredient shows a moderate trend that may be worth exploring. Symptoms appeared in several cases recorded with this ingredient. Testing different combinations or amounts may help confirm the pattern."
-            
-        case 0.6..<0.8:
-            return "This ingredient shows a recurring pattern linked to symptoms. A notable share of records involving this ingredient were followed by symptoms. Consider temporarily reducing intake or adjusting portion sizes to better understand its effects"
-            
-        default:
-            return "This ingredient shows a strong connection with symptoms based on available records. The data suggests potential sensitivity to this ingredient. Trying smaller portions, alternative preparations or temporary elimination may help evaluate its impact. In case of strong reactions, professional consultation is recommended"
-        }
-    }
-    
     var statisticsCard: some View {
-        VStack(alignment: .leading) {
-            SectionTitle(title: "Statistics", textColor: .secondary)
-                .textCase(.uppercase)
+        VStack(alignment: .leading, spacing: 20) {
+            statisticsRow(title: "Total meals with ingredient", number: ingredient.totalOccurrences, icon: "fork.knife")
+            Divider()
+            statisticsRow(title: "Total symptoms within 8 hours after ingredient", number: ingredient.symptomsOccurrences, icon: "exclamationmark.triangle.fill")
+            Divider()
+            statisticsRow(title: "Symptom-free meals", number: ingredient.safeOccurrences, icon: "checkmark.circle.fill")
             
-            VStack(spacing: 20) {
-                statisticsRow(title: "Total meals with ingredient", number: ingredient.totalOccurrences, icon: "fork.knife")
-                Divider()
-                statisticsRow(title: "Total symptoms within 8 hours after ingredient", number: ingredient.symptomsOccurrences, icon: "exclamationmark.triangle.fill")
-                Divider()
-                statisticsRow(title: "Symptom-free meals", number: ingredient.safeOccurrences, icon: "checkmark.circle.fill")
-                
-                if ingredient.hasEnoughData {
-                    HStack {
-                        Image(systemName: "checkmark.seal.fill")
-                            .foregroundColor(.accent)
-                        Text("Enough data for reliable analysis")
-                            .font(.caption)
-                            .foregroundColor(.accent)
-                    }
-                    .padding(.top, 8)
-                } else {
-                    HStack {
-                        Image(systemName: "exclamationmark.triangle.fill")
-                            .foregroundColor(.red.opacity(0.8))
-                        Text("Required number of meals to add: \(3 - ingredient.totalOccurrences)")
-                            .font(.caption)
-                            .foregroundColor(.red.opacity(0.8))
-                    }
-                    .padding(.top, 8)
-                }
+            
+            HStack {
+                Image(systemName: "checkmark.seal.fill")
+                    .foregroundColor(.customSecondary)
+                Text("Enough data for reliable analysis")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
             }
-            .padding()
-            .grayOverlayModifier()
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 20)
+            .background(
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color("CustomSecondary").opacity(0.1))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(Color("SecondaryText").opacity(0.2), lineWidth: 1)
+                    )
+            )
         }
+        .padding()
+        .grayOverlayModifier()
     }
     
     func statisticsRow(title: LocalizedStringKey, number: Int, icon: String) -> some View {
@@ -458,31 +453,31 @@ struct SheetContent: View {
         
         switch ingredient.suspicionRate {
         case 0:
-            recs.append("Continue enjoying this ingredient - it appears safe for you")
+            recs.append("This ingredient has not shown any association with symptoms based on existing records")
+            recs.append("Continue enjoying this ingredient. It appears safe for you")
             recs.append("Keep tracking to maintain accurate data")
         case 0..<0.3:
-            recs.append("This ingredient seems mostly safe")
+            recs.append("According to existing records, symptoms occurred within 8 hours in a few cases")
+            recs.append("This may be coincidental or affected by other factors")
             recs.append("Monitor for any changes in your reaction over time")
             recs.append("Track a few more meals to improve accuracy")
         case 0.3..<0.6:
-            recs.append("Consider reducing intake to see if symptoms improve")
+            recs.append("Symptoms appeared in several cases recorded with this ingredient")
+            recs.append("Testing different combinations or amounts may help confirm the pattern")
             recs.append("Pay attention to portion sizes - smaller amounts might be tolerable")
             recs.append("Try eating this ingredient separately to isolate its effect")
             recs.append("Track a few more meals to improve accuracy")
         case 0.6..<0.8:
-            recs.append("Strongly consider avoiding this ingredient")
+            recs.append("A notable share of meals involving this ingredient were followed by symptoms")
+            recs.append("Consider temporarily reducing intake or adjusting portion sizes")
             recs.append("If you do eat it, track carefully to confirm the pattern")
+            recs.append("Track a few more meals to improve accuracy")
             recs.append("Discuss with your healthcare provider")
-            recs.append("Track a few more meals to improve accuracy")
         default:
-            recs.append("Avoid this ingredient")
-            recs.append("Consult with a healthcare provider or dietitian")
-            recs.append("If symptoms are severe, seek medical attention")
+            recs.append("The data suggests potential sensitivity to this ingredient")
+            recs.append("Trying smaller portions, alternative preparations or temporary elimination may help evaluate its impact")
             recs.append("Track a few more meals to improve accuracy")
-        }
-        
-        if !ingredient.hasEnoughData {
-            recs.append("Required number of meals to add: \(3 - ingredient.totalOccurrences)")
+            recs.append("If symptoms are severe, seek medical attention")
         }
         
         return recs
@@ -538,6 +533,18 @@ struct SymptomAnalysisView: View {
     
     var body: some View {
         VStack(spacing: 20) {
+            
+            if potentialTriggers.isEmpty && safeIngredients.isEmpty && uncertainIngredients.isEmpty && newIngredients.isEmpty {
+                VStack {
+                    Text("No correlation with this symptom")
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.center)
+                }
+                .padding()
+                .frame(maxWidth: .infinity)
+                .grayOverlayModifier()
+            }
+            
             if !potentialTriggers.isEmpty {
                 VStack(alignment: .leading) {
                     SectionTitle(title: "Potential triggers", textColor: Color("SecondaryText"))
@@ -720,7 +727,7 @@ struct RecommendationsCard: View {
             SectionTitle(title: "Recommendations", textColor: .secondary)
                 .textCase(.uppercase)
             
-            VStack(alignment: .leading, spacing: 12) {
+            VStack(alignment: .leading, spacing: 20) {
                 ForEach(recommendations.indices, id: \.self) { idx in
                     let recommendation = recommendations[idx]
                     HStack(alignment: .top, spacing: 12) {
@@ -729,7 +736,7 @@ struct RecommendationsCard: View {
                         
                         Text(recommendation)
                             .foregroundColor(.accent)
-                            .fixedSize(horizontal: false, vertical: true)
+                            .font(.subheadline)
                     }
                 }
             }
@@ -832,11 +839,9 @@ struct SheetContentSpecificSymptom: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
-                    HeaderCard(suspicionValue: ingredient.suspicionScore, riskLevel: ingredient.riskLevel, circleTitle: "Correlation", symptomTime: symptomTime, symptomName: symptomName)
-                    RiskExplanationCard(riskExplanation: explanation)
-                    historicalPatternCard
-                    howScoreWorksCard
+                    HeaderCard(suspicionValue: ingredient.suspicionScore, riskLevel: ingredient.riskLevel, circleTitle: "correlation", symptomTime: symptomTime, symptomName: symptomName)
                     RecommendationsCard(recommendations: recommendations)
+                    howScoreWorksCard
                     disclaimerCard
                 }
                 .padding()
@@ -852,35 +857,6 @@ struct SheetContentSpecificSymptom: View {
             }
         }
         .customBgModifier()
-    }
-    
-    var explanation: LocalizedStringKey {
-        let timeText = formattedTimeAgo
-        
-        if !ingredient.usedHistoricalData {
-            return "This ingredient was consumed \(timeText) before this symptom. However, we don't have enough historical data about this ingredient yet (less than 2 meals tracked). The score shown is a baseline estimate. Track more meals containing this ingredient to get more reliable analysis"
-        }
-        
-        let historicalRate = ingredient.historicalData?.suspicionRate ?? 0
-        let historicalPercent = Int(historicalRate * 100)
-        //        let historicalMeals = "\(ingredient.globalSymptomsOccurrences) / \(ingredient.globalTotalOccurrences)"
-        
-        switch ingredient.suspicionScore {
-        case 0..<0.2:
-            return "This ingredient was consumed \(timeText) before the selected symptom. Historical data shows a \(historicalPercent)% link with this ingredient. The timing suggests a low likelihood of a direct connection"
-            
-        case 0.2..<0.4:
-            return "This ingredient was consumed \(timeText) before the selected symptom. Historical data shows a \(historicalPercent)% link with this ingredient. The timing and pattern suggest a moderate possibility it played a role, though other factors may be involved"
-            
-        case 0.4..<0.6:
-            return "This ingredient was consumed \(timeText) before the selected symptom. Historical data shows a \(historicalPercent)% link with this ingredient. The proximity and pattern make it a notable candidate for this reaction"
-            
-        case 0.6..<0.8:
-            return "This ingredient was consumed \(timeText) before the selected symptom. Historical data shows a \(historicalPercent)% link with this ingredient. There's a strong possibility this ingredient contributed to your symptom"
-            
-        default:
-            return "This ingredient was consumed \(timeText) before the selected symptom. Historical data shows a \(historicalPercent)% link with this ingredient. Combined with the close timing, this ingredient is highly likely to have triggered this reaction"
-        }
     }
     
     func createIcon(icon: String) -> some View {
@@ -920,44 +896,6 @@ struct SheetContentSpecificSymptom: View {
         }
     }
     
-    var historicalPatternCard: some View {
-        VStack(alignment: .leading) {
-            SectionTitle(title: "Historical pattern", textColor: .secondary)
-                .textCase(.uppercase)
-            
-            VStack(spacing: 16) {
-                if ingredient.usedHistoricalData {
-                    timingAnalysisRow(icon: "chart.bar.fill", value: "\(Int((ingredient.historicalData?.suspicionRate ?? 0) * 100))%", firstText: "Historical correlation rate", secondText: "Meals followed by selected symptom: \(ingredient.globalSymptomsOccurrences) / \(ingredient.globalTotalOccurrences)")
-                    
-                    if ingredient.hasEnoughData {
-                        HStack(spacing: 8) {
-                            Image(systemName: "checkmark.seal.fill")
-                                .foregroundColor(.accent)
-                            Text("Reliable data. Number of tracked meals: \(ingredient.globalTotalOccurrences)")
-                                .padding(.vertical)
-                                .font(.caption)
-                                .bold()
-                                .foregroundColor(.accent)
-                        }
-                    } else {
-                        HStack(spacing: 8) {
-                            Image(systemName: "exclamationmark.triangle.fill")
-                                .foregroundColor(.accent)
-                            Text("Limited data - track more meals for better accuracy")
-                                .padding(.vertical)
-                                .font(.caption)
-                                .foregroundColor(.accent)
-                                .bold()
-                        }
-                    }
-                } else {
-                    Text("Not enough historical data yet. This ingredient has been tracked in less than 2 meals. The suspicion score is based on timing alone, using a baseline correlation estimate")
-                }
-            }
-            .grayOverlayModifier()
-        }
-    }
-    
     var howScoreWorksCard: some View {
         VStack(alignment: .leading) {
             SectionTitle(title: "How the score is calculated", textColor: .secondary)
@@ -967,7 +905,6 @@ struct SheetContentSpecificSymptom: View {
                 calculationRow(
                     icon: "clock.fill",
                     title: "Time proximity",
-                    value: "\(Int(ingredient.timeProximity * 100))%",
                     description: "How recently this was consumed. More recent = higher weight"
                 )
                 
@@ -979,7 +916,6 @@ struct SheetContentSpecificSymptom: View {
                 calculationRow(
                     icon: "chart.bar.fill",
                     title: "Historical correlation",
-                    value: ingredient.usedHistoricalData ? "\(Int((ingredient.historicalData?.suspicionRate ?? 0) * 100))%" : "50% (baseline)",
                     description: ingredient.usedHistoricalData ? "Based on your past meals with this ingredient" : "Baseline estimate - not enough data yet"
                 )
                 
@@ -988,7 +924,7 @@ struct SheetContentSpecificSymptom: View {
                     VStack(spacing: 15) {
                         Image(systemName: "equal")
                             .foregroundColor(.accent)
-                        Text("\(Int(ingredient.suspicionScore * 100))% correlation")
+                        Text("\(Int(ingredient.suspicionScore * 100))%")
                             .font(.title2)
                             .bold()
                             .foregroundColor(.accent)
@@ -1000,7 +936,7 @@ struct SheetContentSpecificSymptom: View {
         }
     }
     
-    func calculationRow(icon: String, title: LocalizedStringKey, value: LocalizedStringKey, description: LocalizedStringKey) -> some View {
+    func calculationRow(icon: String, title: LocalizedStringKey, description: LocalizedStringKey) -> some View {
         HStack(alignment: .top, spacing: 12) {
             Image(systemName: icon)
                 .font(.title3)
@@ -1008,23 +944,16 @@ struct SheetContentSpecificSymptom: View {
                 .frame(width: 30)
             
             VStack(alignment: .leading, spacing: 4) {
-                HStack {
-                    Text(title)
-                        .font(.subheadline)
-                        .bold()
-                    
-                    Spacer()
-                    
-                    Text(value)
-                        .font(.headline)
-                        .foregroundColor(.customSecondary)
-                }
+                Text(title)
+                    .font(.subheadline)
+                    .bold()
                 
                 Text(description)
                     .font(.caption)
             }
             
         }
+        .frame(maxWidth: .infinity)
         .grayOverlayModifier()
     }
     
@@ -1059,10 +988,6 @@ struct SheetContentSpecificSymptom: View {
             recs.append("Consider avoiding it before important events or activities")
             recs.append("If you try it again, start with very small amounts")
             recs.append("Track any reintroduction attempts carefully")
-        }
-        
-        if ingredient.timeProximity > 0.7 {
-            recs.append("The close timing makes this ingredient particularly relevant to investigate")
         }
         
         if !ingredient.hasEnoughData {
@@ -1106,7 +1031,6 @@ struct ChooseAnalytics: View {
             Picker("Choose analytics", selection: $analyticsType) {
                 ForEach(AnalyticsMode.allCases) { el in
                     Text(el.localized)
-                        .foregroundStyle(Color("PrimaryText"))
                 }
             }
         }

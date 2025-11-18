@@ -70,30 +70,19 @@ struct AddNewIngredient: View {
     }
     
     var warning: some View {
-        HStack(alignment: .top, spacing: 12) {
-            Image(systemName: "info.circle.fill")
-                .font(.title3)
-                .foregroundStyle(.customSecondary)
+        VStack(alignment: .center, spacing: 4) {
+            Text("Use the exact same names each time.")
+            Text("These ingredients are tracked as different.")
             
-            VStack(alignment: .leading, spacing: 4) {
-                Text("Use the exact same names each time.")
-                    .fontWeight(.medium)
-                
-                HStack(spacing: 4) {
-                    Group {
-                        Text("\"cow milk\"")
-                        Text("≠")
-                        Text("\"milk\"")
-                        Text("≠")
-                        Text("\"milk cow\"")
-                    }
-                    .foregroundStyle(.primary)
-                    .fontWeight(.semibold)
+            HStack(spacing: 4) {
+                Group {
+                    Text("cow milk")
+                    Text("≠")
+                    Text("milk")
                 }
-                
-                Text("These ingredients are tracked as different.")
             }
-            Spacer()
+            
+            
         }
         .frame(maxWidth: .infinity)
         .font(.caption)

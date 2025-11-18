@@ -12,7 +12,7 @@ struct ChartView: View {
     @EnvironmentObject private var vm: CoreDataViewModel
     @Environment(\.dynamicTypeSize) var sizeCategory
     
-    @State private var analyticsType: AnalyticsMode = .barChart
+    @State private var analyticsType: AnalyticsMode = .calendarView
     @State private var chartType: ChartMode = .problematicIngredients
     @State private var hoursBack = 5
     @State private var selectedSymptomId: UUID? = nil
@@ -164,15 +164,20 @@ struct ChartView: View {
             Image(systemName: "cross.case.fill")
                 .font(.title3)
                 .foregroundColor(.customSecondary)
-            Text("This analysis is for informational purposes only. It is not a medical diagnostic tool. Always consult a healthcare professional for medical advice.")
+            Text("The analysis is for informational purposes only. It is not a medical diagnostic tool. Always consult a healthcare professional for medical advice")
                 .font(.footnote)
         }
         .frame(maxWidth: .infinity)
-        .padding(5)
+        .padding()
         .foregroundColor(.secondary)
-        .padding(.top, 10)
-        .padding(.horizontal)
-        .background(.customSecondary.opacity(0.1))
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Color("CustomSecondary").opacity(0.1))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(Color("SecondaryText").opacity(0.2), lineWidth: 1)
+                )
+        )
     }
 }
 

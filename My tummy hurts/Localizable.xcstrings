@@ -629,6 +629,40 @@
         }
       }
     },
+    "Add minimum 1 meal and minimum 1 symptom" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mindestens 1 Mahlzeit und mindestens 1 Symptom hinzufügen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añadir como mínimo 1 comida y como mínimo 1 síntoma"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajoutez au moins 1 repas et au moins 1 symptôme"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dodaj min. 1 posiłek i min. 1 symptom"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "至少添加1顿饭和1个症状"
+          }
+        }
+      }
+    },
     "Add minimum 5 meals and 5 negative symptoms to see the charts. Detail matters: add more to unlock better insights" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4932,6 +4966,34 @@
         }
       }
     },
+    "Select ingredient" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zutat auswählen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seleccionar ingrediente"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sélectionner un ingrédient"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wybierz składniki"
+          }
+        }
+      }
+    },
     "Select ingredients" : {
       "localizations" : {
         "de" : {
@@ -5549,6 +5611,40 @@
         }
       }
     },
+    "The analysis is for informational purposes only. It is not a medical diagnostic tool. Always consult a healthcare professional for medical advice" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Analyse dient ausschließlich zu Informationszwecken. Sie ist kein medizinisches Diagnosewerkzeug. Konsultieren Sie für medizinische Beratung immer einen Arzt"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El análisis tiene fines meramente informativos. No es una herramienta de diagnóstico médico. Consulte siempre a un profesional sanitario para obtener asesoramiento médico"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cette analyse est fournie à titre informatif uniquement. Elle ne constitue pas un outil de diagnostic médical. Consultez toujours un professionnel de santé pour obtenir un avis médical"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Analiza ma charakter wyłącznie informacyjny. Nie jest narzędziem diagnostycznym. W przypadku problemów zdrowotnych zawsze najpierw skonsultuj się z lekarzem"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "本分析仅供参考，并非医疗诊断工具。请务必咨询医疗保健专业人士以获取医疗建议。"
+          }
+        }
+      }
+    },
     "The close timing makes this ingredient particularly relevant to investigate" : {
       "localizations" : {
         "de" : {
@@ -5647,40 +5743,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "这些食材被追踪为不同的。"
-          }
-        }
-      }
-    },
-    "This analysis is for informational purposes only. It is not a medical diagnostic tool. Always consult a healthcare professional for medical advice." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Diese Analyse dient ausschließlich Informationszwecken. Sie ist kein medizinisches Diagnosewerkzeug. Wenden Sie sich bei medizinischen Fragen immer an eine Fachkraft im Gesundheitswesen."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Este análisis tiene fines meramente informativos. No es una herramienta de diagnóstico médico. Consulte siempre a un profesional sanitario para obtener asesoramiento médico"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cette analyse est fournie à titre informatif uniquement. Ce n’est pas un outil de diagnostic médical. Consultez toujours un professionnel de santé pour tout avis médical."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ta analiza ma wyłącznie charakter informacyjny. Nie jest narzędziem diagnostycznym. W razie wątpliwości skonsultuj się z lekarzem lub specjalistą"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "本分析仅供参考，并非医疗诊断工具。如有健康疑虑，请咨询专业的医疗人员。"
           }
         }
       }

@@ -47,13 +47,24 @@ struct CalendarChart: View {
         )
     }
     
+    var dataCountForSecondPicker: Int {
+        vm.dataForPicker(mealsMode: true, model: vm).count
+    }
+    
+    var sectionTitle: LocalizedStringKey {
+        if dataCountForSecondPicker > 1 {
+            return "Select ingredients"
+        }
+        return "Select ingredient"
+    }
+    
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 10) {
-                    if !vm.savedMealNotes.isEmpty {
+                    if !vm.savedMealNotes.isEmpty, !vm.savedSymptomNotes.isEmpty {
                         HStack {
-                            SectionTitle(title: "Select ingredients", textColor: Color("SecondaryText"))
+                            SectionTitle(title: sectionTitle, textColor: Color("SecondaryText"))
                                 .textCase(.uppercase)
                             Spacer()
                             Button {
@@ -74,8 +85,11 @@ struct CalendarChart: View {
                         
                             VStack {
                                 SelectElementPicker(pickerData: vm.dataForPicker(mealsMode: true, model: vm, excluded: selectedSecondIngredient), pickerSelection: $selectedFirstIngredient)
-                                Spacer()
-                                SelectElementPicker(pickerData: vm.dataForPicker(mealsMode: true, model: vm, excluded: selectedFirstIngredient), pickerSelection: $selectedSecondIngredient)
+                                
+                                if dataCountForSecondPicker > 1 {
+                                    Spacer()
+                                    SelectElementPicker(pickerData: vm.dataForPicker(mealsMode: true, model: vm, excluded: selectedFirstIngredient), pickerSelection: $selectedSecondIngredient)
+                                }
                             }
                        
                         VStack {
@@ -91,7 +105,7 @@ struct CalendarChart: View {
                         }
                         .grayOverlayModifier()
                     } else {
-                        EmptyStateView(text: "Add meals and symptoms")
+                        EmptyStateView(text: "Add minimum 1 meal and minimum 1 symptom")
                             .grayOverlayModifier()
                     }
                 }

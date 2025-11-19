@@ -581,10 +581,10 @@ struct IngredientAnalysis2: Identifiable {
         }
         
         switch suspicionScore {
-        case 0.6...: return "High suspicion"
-        case 0.3..<0.6: return "Medium suspicion"
-        case 0.1..<0.3: return "Low suspicion"
-        default: return "Very low suspicion"
+        case 0.6...: return "High"
+        case 0.3..<0.6: return "Medium"
+        case 0.1..<0.3: return "Low"
+        default: return "Very low"
         }
     }
     
@@ -625,15 +625,15 @@ struct IngredientAnalysis: Identifiable {
     var riskLevel: LocalizedStringKey {
         switch suspicionRate {
         case 0:
-            return "No correlation"
+            return "Very low"
         case 0..<0.3:
-            return "Low correlation"
+            return "Low"
         case 0.3..<0.6:
-            return "Medium correlation"
+            return "Medium"
         case 0.6..<0.8:
-            return "High correlation"
+            return "High"
         default:
-            return "Very high correlation"
+            return "Very high"
         }
     }
     

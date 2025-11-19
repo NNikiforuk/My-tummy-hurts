@@ -80,8 +80,6 @@ struct HomeView: View {
                     HStack {
                         Image(systemName: "chart.bar")
                             .font(.callout)
-                        Text("Analytics")
-                            .font(.callout)
                     }
                 }
             }

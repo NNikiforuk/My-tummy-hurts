@@ -9,9 +9,9 @@ import SwiftUI
 import Foundation
 
 enum ChartMode: String, CaseIterable, Identifiable {
-    case problematicIngredients = "Problematic ingredients"
-    case potentiallySafeIngredients = "Potentially safe ingredients"
-    case checkSpecificSymptom = "Check specific symptom"
+    case problematicIngredients = "Ingredients linked with discomfort"
+    case potentiallySafeIngredients = "Ingredients with low impact"
+    case checkSpecificSymptom = "View by symptom"
     
     var id: Self { self }
     var localized: String {
@@ -20,7 +20,7 @@ enum ChartMode: String, CaseIterable, Identifiable {
 }
 
 enum AnalyticsMode: String, CaseIterable, Identifiable {
-    case barChart = "Ingredient analysis"
+    case barChart = "Ingredient patterns"
     case calendarView = "Monthly calendar"
     
     var id: Self { self }

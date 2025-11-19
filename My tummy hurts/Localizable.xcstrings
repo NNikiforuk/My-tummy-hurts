@@ -356,40 +356,6 @@
         }
       }
     },
-    "A pattern may be forming in your data" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "In Ihren Daten könnte sich ein Muster abzeichnen"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Es posible que se esté formando un patrón en sus datos"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Une tendance pourrait se dessiner dans vos données"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zaczyna się tworzyć pewien wzorzec"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "你的数据中可能正在形成某种模式"
-          }
-        }
-      }
-    },
     "About this data" : {
       "localizations" : {
         "de" : {
@@ -598,36 +564,36 @@
         }
       }
     },
-    "At least 3 meals with this ingredient are needed to show patterns. More data means more accurate results" : {
+    "At least 3 meals with this ingredient are needed to calculate the score. The more entries you log, the more stable the patterns become" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mindestens 3 Mahlzeiten mit dieser Zutat sind erforderlich, um Muster zu erkennen. Mehr Daten bedeuten genauere Ergebnisse"
+            "value" : "Für die Berechnung des Werts werden mindestens 3 Mahlzeiten mit dieser Zutat benötigt. Je mehr Einträge du erfasst, desto stabiler werden die Muster"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Se necesitan al menos 3 comidas con este ingrediente para mostrar patrones. Cuantos más datos, más precisos serán los resultados"
+            "value" : "Se necesitan al menos 3 comidas con este ingrediente para calcular la puntuación. Cuantas más entradas registres, más estables se vuelven los patrones"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Au moins 3 repas contenant cet ingrédient sont nécessaires pour mettre en évidence des tendances. Plus il y a de données, plus les résultats sont précis"
+            "value" : "Au moins 3 repas contenant cet ingrédient sont nécessaires pour calculer le score. Plus vous enregistrez d’entrées, plus les schémas deviennent stables"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Potrzebne są co najmniej 3 posiłki zawierające ten składnik. Im więcej danych, tym dokładniejsze wyniki"
+            "value" : "Do obliczenia wyniku potrzebne są co najmniej 3 posiłki z tym składnikiem. Im więcej zapisów dodasz, tym stabilniejsze stają się wzorce"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "至少需要包含该成分的3餐数据才能显示规律。数据越多，结果越准确"
+            "value" : "至少需要包含这种食材的 3 次用餐记录才能计算该分数。记录的条目越多，模式就越稳定"
           }
         }
       }
@@ -1147,40 +1113,6 @@
         }
       }
     },
-    "Consider sharing this with a doctor" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bitte besprechen Sie dies mit einem Arzt"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Considere compartir esto con un médico"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Envisagez d'en parler à un médecin"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rozważ omówienie tej kwestii z lekarzem"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "请考虑将此信息告知医生"
-          }
-        }
-      }
-    },
     "cow milk" : {
       "localizations" : {
         "de" : {
@@ -1285,40 +1217,6 @@
         }
       }
     },
-    "Data confidence" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vertrauen in Daten"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Confianza en los datos"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Confiance dans les données"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wiarygodność danych"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "数据可信度"
-          }
-        }
-      }
-    },
     "Data insights" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1350,6 +1248,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "数据洞察"
+          }
+        }
+      }
+    },
+    "Data reliability" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datenzuverlässigkeit"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fiabilidad de los datos"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fiabilité des données"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wiarygodność danych"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "数据可靠性"
           }
         }
       }
@@ -2044,6 +1976,74 @@
         }
       }
     },
+    "If you're concerned about how you feel, you can share these notes with a doctor" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wenn du dir wegen deines Befindens Sorgen machst, kannst du diese Notizen mit einer Ärztin oder einem Arzt besprechen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Si te preocupa cómo te sientes, puedes compartir estas notas con un médico"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Si vous êtes inquiet(-ète) de la façon dont vous vous sentez, vous pouvez partager ces notes avec un médecin"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jeśli martwisz się swoim samopoczuciem, możesz omówić te zapisy z lekarzem"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如果你对自己的感受感到担心，可以把这些记录拿去和医生讨论"
+          }
+        }
+      }
+    },
+    "If you're concerned about your health, consider discussing these notes with a doctor" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wenn du dir um deine Gesundheit Sorgen machst, solltest du in Erwägung ziehen, diese Notizen mit einer Ärztin oder einem Arzt zu besprechen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Si te preocupa tu salud, plantéate comentar estas notas con un médico"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Si vous êtes préoccupé(e) par votre santé, envisagez de discuter de ces notes avec un médecin"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jeśli martwisz się o swoje zdrowie, rozważ omówienie tych zapisów z lekarzem"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如果你担心自己的健康，可以考虑拿这些记录和医生讨论"
+          }
+        }
+      }
+    },
     "Ingredient analysis" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2190,40 +2190,6 @@
         }
       }
     },
-    "Insights are based on your logged data. Always consult a doctor before making dietary changes" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Die Erkenntnisse basieren auf Ihren protokollierten Daten. Konsultieren Sie immer einen Arzt, bevor Sie Ihre Ernährung umstellen"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Las conclusiones se basan en los datos registrados. Consulte siempre a un médico antes de realizar cambios en su dieta"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Les informations sont basées sur vos données enregistrées. Consultez toujours un médecin avant de modifier votre alimentation"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wnioski opierają się na zarejestrowanych danych. Przed wprowadzeniem zmian w diecie należy zawsze skonsultować się z lekarzem"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "洞察基于您的记录数据。调整饮食前请务必咨询医生"
-          }
-        }
-      }
-    },
     "Insufficient data" : {
       "localizations" : {
         "de" : {
@@ -2258,40 +2224,6 @@
         }
       }
     },
-    "It's not clear yet if this ingredient is related" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Es ist noch nicht klar, ob dieser Inhaltsstoff damit zusammenhängt"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aún no está claro si este ingrediente está relacionado"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "On ne sait pas encore si cet ingrédient est lié"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nie jest jeszcze jasne, czy ten składnik ma związek z symptomem"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "目前尚不清楚该成分是否与此相关"
-          }
-        }
-      }
-    },
     "JANUARY 2025" : {
       "localizations" : {
         "de" : {
@@ -2322,6 +2254,244 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "2025年1月"
+          }
+        }
+      }
+    },
+    "Keep logging meals and notes to check whether this pattern stays consistent" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Protokolliere weiter Mahlzeiten und Notizen, um zu prüfen, ob dieses Muster stabil bleibt"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sigue registrando comidas y notas para comprobar si este patrón se mantiene constante"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continuez à enregistrer vos repas et vos notes pour vérifier si ce schéma reste stable"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dodawaj kolejne posiłki i notatki, aby sprawdzić, czy ten wzorzec pozostaje spójny"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "继续记录餐食和备注，以检查这个模式是否保持不变"
+          }
+        }
+      }
+    },
+    "Keep logging meals and notes to check whether this pattern stays consistent or changes over time" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Protokolliere weiter Mahlzeiten und Notizen, um zu überprüfen, ob dieses Muster stabil bleibt oder sich im Laufe der Zeit verändert"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sigue registrando comidas y notas para comprobar si este patrón se mantiene constante o cambia con el tiempo"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continuez à enregistrer vos repas et vos notes pour vérifier si ce schéma reste stable ou change avec le temps"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dodawaj kolejne posiłki i notatki, aby sprawdzić, czy ten wzorzec pozostaje spójny, czy zmienia się w czasie"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "继续记录餐食和备注，以检查这个模式是保持不变还是会随时间改变"
+          }
+        }
+      }
+    },
+    "Keep logging meals and notes to confirm whether this pattern continues over time" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Protokolliere weiter Mahlzeiten und Notizen, um zu bestätigen, ob dieses Muster sich im Laufe der Zeit fortsetzt"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sigue registrando comidas y notas para confirmar si este patrón continúa con el tiempo"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continuez à enregistrer vos repas et vos notes pour confirmer si ce schéma se maintient dans le temps"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dodawaj kolejne posiłki i notatki, aby potwierdzić, czy ten wzorzec utrzymuje się w czasie"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "继续记录餐食和备注，以确认这个模式是否会在-段时间内持续"
+          }
+        }
+      }
+    },
+    "Keep logging meals and notes to get a clearer picture over time" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Protokolliere weiter Mahlzeiten und Notizen, um mit der Zeit ein klareres Bild zu bekommen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sigue registrando comidas y notas para obtener, con el tiempo, una imagen más clara"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continuez à enregistrer vos repas et vos notes pour obtenir, avec le temps, une image plus claire"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dodawaj kolejne posiłki i notatki, aby z czasem uzyskać jaśniejszy obraz sytuacji"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "继续记录餐食和备注，以便随着时间获得更清晰的整体情况"
+          }
+        }
+      }
+    },
+    "Keep logging meals and notes to see if anything changes over time" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Protokolliere weiter Mahlzeiten und Notizen, um zu sehen, ob sich im Laufe der Zeit etwas verändert"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sigue registrando comidas y notas para ver si algo cambia con el tiempo"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continuez à enregistrer vos repas et vos notes pour voir si quelque chose change avec le temps"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dodawaj kolejne posiłki i notatki, aby zobaczyć, czy coś zmienia się z czasem"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "继续记录餐食和备注，以观察是否会随着时间发生变化"
+          }
+        }
+      }
+    },
+    "Keep logging meals and notes to see whether this pattern becomes clearer" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Protokolliere weiter Mahlzeiten und Notizen, um zu sehen, ob dieses Muster klarer wird"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sigue registrando comidas y notas para ver si este patrón se vuelve más claro"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continuez à enregistrer vos repas et vos notes pour voir si ce schéma devient plus clair"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dodawaj kolejne posiłki i notatki, aby zobaczyć, czy ten wzorzec staje się bardziej wyraźny"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "继续记录餐食和备注，以查看这个模式是否会变得更加清晰"
+          }
+        }
+      }
+    },
+    "Keep logging meals and notes to see whether this pattern becomes stronger or weaker" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Protokolliere weiter Mahlzeiten und Notizen, um zu sehen, ob dieses Muster stärker oder schwächer wird"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sigue registrando comidas y notas para ver si este patrón se hace más fuerte o más débil"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continuez à enregistrer vos repas et vos notes pour voir si ce schéma se renforce ou s’atténue"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dodawaj kolejne posiłki i notatki, aby zobaczyć, czy ten wzorzec się wzmacnia, czy słabnie"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "继续记录餐食和备注，以查看这个模式是变强还是减弱"
           }
         }
       }
@@ -2461,40 +2631,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "列表项"
-          }
-        }
-      }
-    },
-    "Log a few more meals to get a clearer picture" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tragen Sie noch ein paar Mahlzeiten ein, um ein klareres Bild zu erhalten"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Anota algunas comidas más para tener una idea más clara"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Enregistrez quelques repas supplémentaires pour obtenir une image plus claire"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dodaj więcej posiłków, aby uzyskać jaśniejszy obraz sytuacji"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "再记录几顿饭，就能更清楚地了解情况了"
           }
         }
       }
@@ -2772,6 +2908,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "含此食材的餐食：%lld"
+          }
+        }
+      }
+    },
+    "Meals without a symptom entry" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mahlzeiten ohne Symptomeintrag"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comidas sin registro de síntoma"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Repas sans saisie de symptôme"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Posiłki bez zapisanego objawu"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "没有症状记录的用餐"
           }
         }
       }
@@ -3398,36 +3568,36 @@
         }
       }
     },
-    "Note how it was prepared and how much you ate" : {
+    "Note how the ingredient was prepared and how much you ate" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Beachten Sie, wie es zubereitet wurde und wie viel Sie gegessen haben"
+            "value" : "Notiere, wie die Zutat zubereitet wurde und wie viel du gegessen hast"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Anota cómo lo preparaste y cuánto comiste"
+            "value" : "Anota cómo se preparó este ingrediente y cuánto comiste"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Notez comment cela a été préparé et combien vous en avez mangé"
+            "value" : "Notez comment l’ingrédient a été préparé et quelle quantité vous avez mangée"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zwróć uwagę jak to zostało przygotowane i  w jakiej ilości"
+            "value" : "Zapisz, w jaki sposób przygotowano ten składnik i ile go zjadłaś/zjadłeś"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "注意它是如何准备的以及你吃了多少"
+            "value" : "记下这种食材是如何烹调的，以及你吃了多少"
           }
         }
       }
@@ -3570,36 +3740,70 @@
         }
       }
     },
-    "Pay attention to timing and portion sizes" : {
+    "pattern score" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Achten Sie auf das Timing und die Portionsgrößen"
+            "value" : "Musterwert"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Presta atención al momento y al tamaño de las raciones"
+            "value" : "Puntuación del patrón"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Faites attention au moment où vous mangez et à la taille des portions"
+            "value" : "Score de schéma"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zwróć uwagę na porę posiłku i wielkość porcji"
+            "value" : "wskaźnik wzorca"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "注意进食时间和份量大小"
+            "value" : "模式得分"
+          }
+        }
+      }
+    },
+    "Patterns are based on your past entries. Keep logging meals and notes to enable this view" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Muster basieren nur auf deinen bisherigen Einträgen. Protokolliere weiter Mahlzeiten und Notizen, um diese Ansicht zu aktivieren"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Los patrones se basan únicamente en tus registros anteriores. Sigue anotando comidas y notas para activar esta vista"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les schémas sont basés uniquement sur vos entrées précédentes. Continuez à enregistrer vos repas et vos notes pour activer cette vue"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wzorce opierają się wyłącznie na Twoich wcześniejszych zapisach. Dodawaj kolejne posiłki i notatki, aby włączyć ten widok"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "这些模式基于你之前的记录。继续记录餐食和备注，以便启用此视图"
           }
         }
       }
@@ -3739,40 +3943,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "有问题的成分"
-          }
-        }
-      }
-    },
-    "rate" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "rate"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "tasa"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "rate"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "rate"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "费率"
           }
         }
       }
@@ -4293,6 +4463,40 @@
         }
       }
     },
+    "Symptom entries within 8 hours after the meal" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Symptomeinträge innerhalb von 8 Stunden nach der Mahlzeit"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registros de síntomas dentro de las 8 horas posteriores a la comida"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entrées de symptômes dans les 8 heures suivant le repas"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zapisane objawy w ciągu 8 godzin po posiłku"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "用餐后 8 小时内记录的症状"
+          }
+        }
+      }
+    },
     "Symptom tag" : {
       "localizations" : {
         "de" : {
@@ -4357,40 +4561,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "症状时间"
-          }
-        }
-      }
-    },
-    "Symptom-free meals" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Symptomfreie Mahlzeiten"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Comidas sin síntomas"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Repas sans symptôme"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Posiłki bez symptomów"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "无症状餐食"
           }
         }
       }
@@ -4464,142 +4634,6 @@
         }
       }
     },
-    "Symptoms appeared after some meals with this ingredient" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Die Symptome traten nach einigen Mahlzeiten mit diesem Inhaltsstoff auf"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Los síntomas aparecieron después de algunas comidas con este ingrediente"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Les symptômes sont apparus après certains repas contenant cet ingrédient"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Objawy pojawiły się po spożyciu niektórych posiłków zawierających ten składnik"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "食用含此成分的某些餐食后出现症状"
-          }
-        }
-      }
-    },
-    "Symptoms frequently occurred after eating this ingredient" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Symptome traten häufig nach dem Verzehr dieser Zutat auf"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Los síntomas se producían con frecuencia después de comer este ingrediente"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Les symptômes apparaissaient fréquemment après avoir consommé cet ingrédient"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Po spożyciu tego składnika często wystąpiły objawy"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "食用该成分后常出现症状"
-          }
-        }
-      }
-    },
-    "Symptoms occurred after this ingredient in a few cases" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "In einigen Fällen traten nach der Einnahme dieses Inhaltsstoffs Symptome auf"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "En algunos casos, los síntomas aparecieron después de consumir este ingrediente"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Des symptômes sont apparus après la consommation de cet ingrédient dans quelques cas"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "W kilku przypadkach objawy wystąpiły po spożyciu tego składnika"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在少数病例中，症状是在摄入该成分后出现的"
-          }
-        }
-      }
-    },
-    "Symptoms often followed meals with this ingredient" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Symptome traten häufig nach Mahlzeiten mit diesem Inhaltsstoff auf"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Los síntomas solían aparecer después de las comidas que contenían este ingrediente"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Les symptômes apparaissaient souvent après les repas contenant cet ingrédient"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Po posiłkach zawierających ten składnik często pojawiły się objawy"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "食用含此成分的食物后常出现症状"
-          }
-        }
-      }
-    },
     "System" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4635,36 +4669,138 @@
         }
       }
     },
-    "The percentage shows how often symptoms followed meals with this ingredient" : {
+    "The analysis includes symptom entries that you logged within 8 hours after a meal containing this ingredient. Entries closer to the meal have a slightly higher influence on the score" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Der Prozentsatz gibt an, wie oft Symptome nach Mahlzeiten mit diesem Inhaltsstoff auftraten"
+            "value" : "Die Analyse berücksichtigt Symptomeinträge, die du innerhalb von 8 Stunden nach einer Mahlzeit mit dieser Zutat protokolliert hast. Einträge, die näher an der Mahlzeit liegen, haben einen etwas höheren Einfluss auf den Wert"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El porcentaje muestra la frecuencia con la que los síntomas aparecieron después de las comidas que contenían este ingrediente"
+            "value" : "El análisis incluye los registros de síntomas que hayas anotado dentro de las 8 horas posteriores a una comida que contenga este ingrediente. Los registros más cercanos a la comida tienen una influencia ligeramente mayor en la puntuación"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le pourcentage indique la fréquence à laquelle les symptômes sont apparus après des repas contenant cet ingrédient"
+            "value" : "L’analyse inclut les entrées de symptômes que vous avez enregistrées dans les 8 heures suivant un repas contenant cet ingrédient. Les entrées les plus proches du repas ont une influence légèrement plus forte sur le score"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Procent pokazuje, jak często objawy pojawiały się po posiłkach zawierających ten składnik"
+            "value" : "Analiza uwzględnia wpisy z objawami zapisanymi w ciągu 8 godzin po posiłku zawierającym ten składnik. Wpisy bliżej czasu posiłku mają nieco większy wpływ na wynik"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "该百分比显示了食用含此成分的餐食后出现症状的频率"
+            "value" : "分析会包含你在含有这种食材的用餐后 8 小时内记录的症状条目。越接近用餐时间的记录，对分数的影响会略大-些"
+          }
+        }
+      }
+    },
+    "The pattern score (0–100%) describes how often this ingredient and the selected symptom appear together in your log within this 8-hour window" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Musterwert (0-100 %) beschreibt, wie oft diese Zutat und das ausgewählte Symptom innerhalb dieses 8-Stunden-Fensters gemeinsam in deinem Protokoll auftreten"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La puntuación del patrón (0-100 %) describe con qué frecuencia este ingrediente y el síntoma seleccionado aparecen juntos en tu registro dentro de esta ventana de 8 horas"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le score de schéma (0-100 %) décrit la fréquence à laquelle cet ingrédient et le symptôme sélectionné apparaissent ensemble dans votre journal au sein de cette fenêtre de 8 heures"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wskaźnik wzorca (0–100%) opisuje, jak często ten składnik i wybrany objaw pojawiają się razem w Twoim dzienniku w tym 8-godzinnym przedziale"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "模式得分（0-100%）描述了在这个 8 小时时间窗内，这种食材和所选症状在你的日志中-起出现的频率"
+          }
+        }
+      }
+    },
+    "The patterns shown are based only on your own entries and do not constitute medical advice. Always talk to a doctor before making changes to your diet" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die angezeigten Muster basieren ausschließlich auf deinen eigenen Einträgen und stellen keinen medizinischen Rat dar. Sprich immer mit einer Ärztin oder einem Arzt, bevor du deine Ernährung veränderst"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Los patrones que se muestran se basan únicamente en tus propios registros y no constituyen asesoramiento médico. Habla siempre con un médico antes de hacer cambios en tu dieta"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les schémas affichés sont basés uniquement sur vos propres entrées et ne constituent pas un avis médical. Parlez toujours à un médecin avant de modifier votre alimentation"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prezentowane wzorce opierają się wyłącznie na Twoich zapisach i nie stanowią porady medycznej. Przed wprowadzeniem zmian w diecie zawsze skonsultuj się z lekarzem"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "显示的这些模式仅基于你的个人记录，并不构成医疗建议。在改变饮食之前，请始终先咨询医生"
+          }
+        }
+      }
+    },
+    "There may not be enough entries yet to rely on this pattern. Keep logging meals and notes to make it more stable" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Möglicherweise gibt es noch nicht genug Einträge, um sich auf dieses Muster zu verlassen. Protokolliere weiter Mahlzeiten und Notizen, damit es stabiler wird"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Puede que todavía no haya suficientes registros como para confiar en este patrón. Sigue registrando comidas y notas para que se vuelva más estable"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il n’y a peut-être pas encore assez d’entrées pour se fier à ce schéma. Continuez à enregistrer vos repas et vos notes afin de le rendre plus stable"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Może być jeszcze za mało zapisów, aby opierać się na tym wzorcu. Dodawaj kolejne posiłki i notatki, aby stał się bardziej stabilny"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "目前的记录数量可能不足以可靠地依赖这个模式。继续记录餐食和备注，让这个模式变得更加稳定"
           }
         }
       }
@@ -4737,172 +4873,308 @@
         }
       }
     },
-    "This could be coincidental" : {
+    "This ingredient and the selected symptom appeared together in some of your entries" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Das könnte Zufall sein"
+            "value" : "In deinem Tagebuch treten diese Zutat und das ausgewählte Symptom in einigen deiner Einträge gemeinsam auf"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Esto podría ser una coincidencia"
+            "value" : "En tu registro, este ingrediente y el síntoma seleccionado aparecen juntos en algunas de tus entradas"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cela pourrait être une coïncidence"
+            "value" : "Dans votre journal, cet ingrédient et le symptôme sélectionné apparaissent ensemble dans certaines de vos entrées"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "To może być zbieg okoliczności"
+            "value" : "W Twoim dzienniku ten składnik i wybrany objaw pojawiły się razem w części zapisów"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "这可能是巧合"
+            "value" : "在你的记录中，这种食材和所选症状在部分条目中-起出现"
           }
         }
       }
     },
-    "This ingredient frequently appeared before this symptom" : {
+    "This ingredient and the selected symptom frequently appear together in your entries" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dieser Inhaltsstoff trat häufig vor diesem Symptom auf"
+            "value" : "In deinem Tagebuch treten diese Zutat und das ausgewählte Symptom in vielen deiner Einträge häufig gemeinsam auf"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Este ingrediente aparecía con frecuencia antes de que se manifestara este síntoma"
+            "value" : "En tu registro, este ingrediente y el síntoma seleccionado aparecen con mucha frecuencia juntos en tus entradas"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cet ingrédient apparaissait fréquemment avant l'apparition de ce symptôme"
+            "value" : "Dans votre journal, cet ingrédient et le symptôme sélectionné apparaissent fréquemment ensemble dans vos entrées"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ten składnik często pojawiał się przed wystąpieniem objawu"
+            "value" : "W Twoim dzienniku ten składnik i wybrany objaw bardzo często pojawiają się razem w zapisach"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "该成分在此症状出现前经常出现"
+            "value" : "在你的记录中，这种食材和所选症状在许多条目中频繁地-起出现"
           }
         }
       }
     },
-    "This ingredient often appeared before this symptom" : {
+    "This ingredient and the selected symptom often appear together in your entries" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dieser Inhaltsstoff trat häufig vor diesem Symptom auf"
+            "value" : "In deinen Einträgen treten diese Zutat und das ausgewählte Symptom häufig gemeinsam auf"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Este ingrediente solía aparecer antes de este síntoma"
+            "value" : "En tus registros, este ingrediente y el síntoma seleccionado a menudo aparecen juntos"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cet ingrédient apparaissait souvent avant ce symptôme"
+            "value" : "Dans vos entrées, cet ingrédient et le symptôme sélectionné apparaissent souvent ensemble"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ten składnik często pojawiał się przed wystąpieniem objawu"
+            "value" : "W Twoich zapisach ten składnik i wybrany objaw często pojawiają się razem"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "该成分常在此症状出现之前出现"
+            "value" : "在你的记录中，这种食材和所选症状经常-起出现"
           }
         }
       }
     },
-    "This ingredient rarely appeared before selected symptom" : {
+    "This ingredient and the selected symptom only appeared together in a few of your entries" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dieser Inhaltsstoff trat vor dem ausgewählten Symptom selten auf"
+            "value" : "In deinen Einträgen sind diese Zutat und das ausgewählte Symptom nur in wenigen Einträgen gemeinsam aufgetreten"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Este ingrediente rara vez aparecía antes del síntoma seleccionado"
+            "value" : "En tus registros, este ingrediente y el síntoma seleccionado solo aparecieron juntos en unas pocas entradas"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cet ingrédient apparaissait rarement avant le symptôme sélectionné"
+            "value" : "Dans vos entrées, cet ingrédient et le symptôme sélectionné n’apparaissent ensemble que dans quelques entrées"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ten składnik rzadko pojawiał się przed wybranym objawem"
+            "value" : "W Twoich zapisach ten składnik i wybrany objaw pojawiły się razem tylko w kilku wpisach"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "该成分在选定症状出现前很少出现"
+            "value" : "在你的记录中，这种食材和所选症状只在少数几条记录中-起出现"
           }
         }
       }
     },
-    "This ingredient sometimes appeared before this symptom" : {
+    "This ingredient and your symptom appeared together in some of your entries" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dieser Inhaltsstoff trat manchmal vor diesem Symptom auf"
+            "value" : "In deinem Tagebuch sind diese Zutat und dein Symptom in einigen deiner Einträge gemeinsam aufgetreten"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Este ingrediente aparecía a veces antes de este síntoma"
+            "value" : "En tu diario, este ingrediente y tu síntoma aparecieron juntos en algunas de tus entradas"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cet ingrédient est parfois apparu avant ce symptôme"
+            "value" : "Dans votre journal, cet ingrédient et votre symptôme apparaissent ensemble dans certaines de vos entrées"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ten składnik czasami pojawiał się przed wystąpieniem tego objawu"
+            "value" : "W Twoim dzienniku ten składnik i Twój objaw pojawiły się razem w części wpisów"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "该成分有时会在此症状出现之前出现"
+            "value" : "在你的记录中，这种食材和你的症状在部分记录中-起出现"
+          }
+        }
+      }
+    },
+    "This ingredient and your symptom frequently appear together in your entries" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In deinem Tagebuch treten diese Zutat und dein Symptom sehr häufig gemeinsam auf"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En tu diario, este ingrediente y tu síntoma aparecen con mucha frecuencia juntos"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dans votre journal, cet ingrédient et votre symptôme apparaissent très fréquemment ensemble"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "W Twoim dzienniku ten składnik i Twój objaw bardzo często pojawiają się razem"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在你的记录中，这种食材和你的症状非常频繁地-起出现"
+          }
+        }
+      }
+    },
+    "This ingredient and your symptom often appear together in your entries" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In deinem Tagebuch treten diese Zutat und dein Symptom häufig gemeinsam auf"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En tu diario, este ingrediente y tu síntoma a menudo aparecen juntos"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dans votre journal, cet ingrédient et votre symptôme apparaissent souvent ensemble"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "W Twoim dzienniku ten składnik i Twój objaw często pojawiają się razem"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在你的记录中，这种食材和你的症状经常-起出现"
+          }
+        }
+      }
+    },
+    "This ingredient and your symptom only appeared together in a few of your entries" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In deinem Tagebuch sind diese Zutat und dein Symptom nur in wenigen deiner Einträge gemeinsam aufgetreten"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En tu diario, este ingrediente y tu síntoma solo aparecieron juntos en unas pocas entradas"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dans vos entrées, cet ingrédient et votre symptôme n’apparaissent ensemble que dans quelques entrées"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "W Twoim dzienniku ten składnik i Twój objaw pojawiły się razem tylko w kilku wpisach"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在你的记录中，这种食材和你的症状只在少数几条记录中-起出现"
+          }
+        }
+      }
+    },
+    "This may be due to coincidence or other factors" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das kann Zufall sein oder mit anderen Faktoren zusammenhängen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esto puede deberse a la casualidad o a otros factores"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cela peut être dû au hasard ou à d’autres facteurs"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Może to wynikać z przypadku albo z innych czynników"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "这可能只是巧合，或者与其他因素有关"
           }
         }
       }
@@ -4937,6 +5209,108 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "该百分比基于您记录数据中的时间点和历史模式。诸多因素可能影响症状表现，同时出现并不意味着因果关系。饮食调整前请务必咨询医疗保健提供者"
+          }
+        }
+      }
+    },
+    "This shows co-occurrence in your diary, not a proven cause" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das zeigt ein gemeinsames Auftreten in deinem Tagebuch, ist aber kein nachgewiesener Ursache-Wirkungs-Zusammenhang"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esto muestra una coexistencia en tu diario, pero no una causa probada"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cela montre une co-occurrence dans votre journal, sans prouver un lien de cause à effet"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokazuje to współwystępowanie w Twoim dzienniku, ale nie potwierdza związku przyczynowego"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "这表示在你的日记中存在共同出现，但并不能证明因果关系"
+          }
+        }
+      }
+    },
+    "This suggests a possible pattern in your diary, but not a definite cause" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das deutet auf ein mögliches Muster in deinem Tagebuch hin, aber nicht auf eine eindeutige Ursache"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esto sugiere un posible patrón en tu diario, pero no una causa definitiva"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cela suggère un schéma possible dans votre journal, mais pas une cause certaine"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sugeruje to możliwy wzorzec w Twoim dzienniku, ale nie oznacza jednoznacznej przyczyny"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "这表明在你的日记中可能存在-种模式，但并不代表确定的原因"
+          }
+        }
+      }
+    },
+    "This suggests a possible pattern in your diary, but not a medical diagnosis" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das deutet auf ein mögliches Muster in deinem Tagebuch hin, ist aber keine medizinische Diagnose"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esto sugiere un posible patrón en tu diario, pero no es un diagnóstico médico"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cela suggère un schéma possible dans votre journal, mais pas un diagnostic médical"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sugeruje to możliwy wzorzec w Twoim dzienniku, ale nie stanowi diagnozy medycznej"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "这表明在你的日记中可能存在-种模式，但这并不是医学诊断"
           }
         }
       }
@@ -5109,74 +5483,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "含此成分的总记录数"
-          }
-        }
-      }
-    },
-    "Total symptoms within 8 hours after ingredient" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gesamtzahl der Symptome innerhalb von 8 Stunden nach der Zutat"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Total de síntomas dentro de las 8 horas posteriores al ingrediente"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nombre total de symptômes dans les 8 heures suivant cet ingrédient"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zapisane objawy w ciągu 8 godzin po posiłku"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "成分后 8 小时内的症状总数"
-          }
-        }
-      }
-    },
-    "Track other factors like stress or sleep" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Beobachten Sie andere Faktoren wie Stress oder Schlaf"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Controla otros factores como el estrés o el sueño"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Suivez d'autres facteurs tels que le stress ou le sommeil"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Śledź inne czynniki, takie jak stres lub sen"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "追踪其他因素，如压力或睡眠"
           }
         }
       }
@@ -5422,40 +5728,6 @@
         }
       }
     },
-    "We check for symptoms within 8 hours of a meal. Symptoms closer to the meal time are weighted higher" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wir überprüfen innerhalb von 8 Stunden nach einer Mahlzeit auf Symptome. Symptome, die näher an der Mahlzeit auftreten, werden stärker gewichtet"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Comprobamos los síntomas en las 8 horas posteriores a una comida. Los síntomas más cercanos a la hora de la comida se ponderan más"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nous vérifions les symptômes dans les 8 heures suivant un repas. Les symptômes plus proches de l'heure du repas sont pondérés plus fortement"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sprawdzamy objawy w ciągu 8 godzin od posiłku. Te występujące bliżej pory posiłku mają większą wagę"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "我们会在进食后8小时内检查症状。越接近进食时间出现的症状权重越高"
-          }
-        }
-      }
-    },
     "What does this mean?" : {
       "localizations" : {
         "de" : {
@@ -5490,70 +5762,138 @@
         }
       }
     },
-    "You haven't logged any symptoms after eating this ingredient" : {
+    "You can also track other factors like stress, sleep or activity" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sie haben nach dem Verzehr dieser Zutat keine Symptome gemeldet"
+            "value" : "Du kannst auch andere Faktoren wie Stress, Schlaf oder Aktivität mitverfolgen"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No has registrado ningún síntoma después de comer este ingrediente"
+            "value" : "También puedes registrar otros factores como el estrés, el sueño o la actividad"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vous n'avez signalé aucun symptôme après avoir consommé cet ingrédient"
+            "value" : "Vous pouvez aussi suivre d’autres facteurs comme le stress, le sommeil ou l’activité"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nie odnotowano żadnych objawów po spożyciu tego składnika"
+            "value" : "Możesz też śledzić inne czynniki, takie jak stres, sen czy aktywność"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "您尚未记录食用该成分后的任何症状"
+            "value" : "你也可以记录其他因素，例如压力、睡眠或活动量"
           }
         }
       }
     },
-    "Your data shows a strong pattern" : {
+    "You haven't logged any symptom entries within 8 hours after meals with this ingredient so far" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ihre Daten zeigen ein starkes Muster"
+            "value" : "Bisher hast du innerhalb von 8 Stunden nach Mahlzeiten mit dieser Zutat keine Symptomeinträge protokolliert"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tus datos muestran un patrón claro"
+            "value" : "Hasta ahora no has registrado ningún síntoma dentro de las 8 horas posteriores a comidas con este ingrediente"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vos données montrent une tendance forte"
+            "value" : "Jusqu’à présent, vous n’avez enregistré aucun symptôme dans les 8 heures suivant un repas contenant cet ingrédient"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Twoje dane wskazują na wyraźną tendencję"
+            "value" : "Do tej pory nie zapisałaś/zapisałeś żadnych objawów w ciągu 8 godzin po posiłkach z tym składnikiem"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "您的数据显示出明显的规律"
+            "value" : "到目前为止，在包含这种食材的用餐后 8 小时内，你还没有记录过任何症状"
+          }
+        }
+      }
+    },
+    "You may want to note timing and portion sizes in your entries" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du kannst in deinen Einträgen auch Zeitpunkt und Portionsgrößen festhalten"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "También puedes anotar la hora y el tamaño de las porciones en tus registros"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous pouvez aussi noter l’heure et la taille des portions dans vos entrées"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Możesz notować także czas oraz wielkość porcji"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你可以在记录中补充时间点和食用份量"
+          }
+        }
+      }
+    },
+    "Your data shows a clear co-occurrence in your diary, not a medical diagnosis" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deine Daten zeigen ein deutliches gemeinsames Auftreten in deinem Tagebuch, aber keine medizinische Diagnose"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tus datos muestran una coexistencia clara en tu diario, pero no un diagnóstico médico"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vos données montrent une co-occurrence claire dans votre journal, et non un diagnostic médical"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Twoje dane pokazują wyraźne współwystępowanie w dzienniku, ale nie jest to diagnoza medyczna"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你的数据显示，在日记中存在明显的共同出现，但这并不是医学诊断"
           }
         }
       }

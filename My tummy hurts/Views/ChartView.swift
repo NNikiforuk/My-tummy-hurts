@@ -13,7 +13,7 @@ struct ChartView: View {
     @Environment(\.dynamicTypeSize) var sizeCategory
     
     @State private var analyticsType: AnalyticsMode = .barChart
-    @State private var chartType: ChartMode = .checkSpecificSymptom
+    @State private var chartType: ChartMode = .problematicIngredients
     @State private var hoursBack = 5
     @State private var selectedSymptomId: UUID? = nil
     @State private var selectedFirstIngredient: String? = nil
@@ -173,7 +173,7 @@ struct ChartView: View {
             Image(systemName: "info.circle")
                 .font(.title3)
                 .foregroundColor(.customSecondary)
-            Text("Insights are based on your logged data. Always consult a doctor before making dietary changes")
+            Text("The patterns shown are based only on your own entries and do not constitute medical advice. Always talk to a doctor before making changes to your diet")
                 .font(.footnote)
         }
         .frame(maxWidth: .infinity)
@@ -262,7 +262,7 @@ struct IngredientHistoryHeader: View {
 
 struct HistoricalIngredient: View {
     let ingredient: IngredientAnalysis
-    @State private var showDetail = true
+    @State private var showDetail = false
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -757,7 +757,7 @@ struct HeaderCard: View {
                         .foregroundColor(.accent)
                     
                     Text(circleTitle)
-                        .font(.caption)
+                        .font(.caption2)
                         .foregroundColor(.accent)
                 }
             }
@@ -778,7 +778,7 @@ struct SheetContentSpecificSymptom: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
-                    HeaderCard(suspicionValue: ingredient.suspicionScore, circleTitle: "rate", symptomTime: symptomTime, symptomName: symptomName)
+                    HeaderCard(suspicionValue: ingredient.suspicionScore, circleTitle: "pattern score", symptomTime: symptomTime, symptomName: symptomName)
                     RecommendationsCard(recommendations: recommendations)
                     howScoreWorksCard
                     disclaimerCard
@@ -900,42 +900,44 @@ struct SheetContentSpecificSymptom: View {
         var recs: [LocalizedStringKey] = []
         
         if !ingredient.usedHistoricalData {
-            recs.append("Log a few more meals to get a clearer picture")
-            recs.append("Note how it was prepared and how much you ate")
-            recs.append("Track other factors like stress or sleep")
+            recs.append("Patterns are based on your past entries. Keep logging meals and notes to enable this view")
+            recs.append("Note how the ingredient was prepared and how much you ate")
+            recs.append("You can also track other factors like stress, sleep or activity")
             return recs
         }
         
         switch ingredient.suspicionScore {
         case 0..<0.3:
-            recs.append("This ingredient rarely appeared before selected symptom")
-            recs.append("Log a few more meals to get a clearer picture")
-            recs.append("This could be coincidental")
+            recs.append("This ingredient and the selected symptom only appeared together in a few of your entries")
+            recs.append("This may be due to coincidence or other factors")
+            recs.append("Keep logging meals and notes to get a clearer picture over time")
             
         case 0.3..<0.5:
-            recs.append("This ingredient sometimes appeared before this symptom")
-            recs.append("Log a few more meals to get a clearer picture")
-            recs.append("Pay attention to timing and portion sizes")
+            recs.append("This ingredient and the selected symptom appeared together in some of your entries")
+            recs.append("This shows co-occurrence in your diary, not a proven cause")
+            recs.append("Keep logging meals and notes to see whether this pattern becomes clearer")
+            recs.append("You may want to note timing and portion sizes in your entries")
             
         case 0.5..<0.7:
-            recs.append("This ingredient often appeared before this symptom")
-            recs.append("A pattern may be forming in your data")
-            recs.append("Log a few more meals to get a clearer picture")
-            recs.append("Consider sharing this with a doctor")
+            recs.append("This ingredient and the selected symptom often appear together in your entries")
+            recs.append("This suggests a possible pattern in your diary, but not a medical diagnosis")
+            recs.append("Keep logging meals and notes to check whether this pattern stays consistent or changes over time")
+            recs.append("If you're concerned about how you feel, you can share these notes with a doctor")
             
         default:
-            recs.append("This ingredient frequently appeared before this symptom")
-            recs.append("Your data shows a strong pattern")
-            recs.append("Log a few more meals to get a clearer picture")
-            recs.append("Consider sharing this with a doctor")
+            recs.append("This ingredient and the selected symptom frequently appear together in your entries")
+            recs.append("Your data shows a clear co-occurrence in your diary, not a medical diagnosis")
+            recs.append("Keep logging meals and notes to confirm whether this pattern continues over time")
+            recs.append("If you're concerned about your health, consider discussing these notes with a doctor")
         }
         
         if !ingredient.hasEnoughData {
-            recs.append("Log a few more meals to get a clearer picture")
+            recs.append("There may not be enough entries yet to rely on this pattern. Keep logging meals and notes to make it more stable")
         }
         
         return recs
     }
+
     
     var disclaimerCard: some View {
         VStack(alignment: .leading) {

@@ -80,20 +80,14 @@ struct ChartView: View {
                 .textCase(.uppercase)
             VStack {
                 if chartType == ChartMode.problematicIngredients {
-                    if vm.top10IngredientsTop10.isEmpty {
-                        VStack {
-                            Text("No problematic ingredients at this time")
-                                .foregroundColor(.secondary)
-                                .multilineTextAlignment(.center)
-                        }
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .grayOverlayModifier()
-                        
-                    } else if vm.top10IngredientsTop10.isEmpty {
-                        EmptyStateView(text: "Add meals and symptoms")
+                    if vm.top10Ingredients.isEmpty {
+                        EmptyStateView(text: "Add minimum 1 meal and minimum 1 symptom")
                             .grayOverlayModifier()
-                    } else {
+                    } else if vm.top10IngredientsTop10.isEmpty {
+                        EmptyStateView(text: "No problematic ingredients at this time")
+                            .grayOverlayModifier()
+                        
+                    }  else {
                         ingredientsList
                     }
                 } else {
@@ -207,11 +201,7 @@ struct EmptyStateView: View {
     var body: some View {
         VStack(spacing: 16) {
             Image(systemName: "chart.bar.xaxis")
-                .font(.system(size: 60))
-                .foregroundColor(.secondary)
-            
-            Text("Insufficient data")
-                .font(.headline)
+                .font(.system(size: 40))
                 .foregroundColor(.secondary)
             
             Text(text)
@@ -220,7 +210,7 @@ struct EmptyStateView: View {
                 .multilineTextAlignment(.center)
         }
         .frame(maxWidth: .infinity)
-        .padding(.vertical, 60)
+        .padding()
     }
 }
 
@@ -535,14 +525,8 @@ struct SymptomAnalysisView: View {
         VStack(spacing: 20) {
             
             if potentialTriggers.isEmpty && safeIngredients.isEmpty && uncertainIngredients.isEmpty && newIngredients.isEmpty {
-                VStack {
-                    Text("No correlation with this symptom")
-                        .foregroundColor(.secondary)
-                        .multilineTextAlignment(.center)
-                }
-                .padding()
-                .frame(maxWidth: .infinity)
-                .grayOverlayModifier()
+                EmptyStateView(text: "No correlation with this symptom")
+                    .grayOverlayModifier()
             }
             
             if !potentialTriggers.isEmpty {

@@ -1,9 +1,8 @@
 <h1 align="center">
   <br>
   <p>Tummy hurts</p>
+  <h4 align="center">Let's find out why your tummy is upset</h4>
 <h4 align="center"> <a href="https://apps.apple.com/us/app/tummy-hurts/id6753219176" target="_blank">Click to see the project in App Store</a></h4>
-  <h4 align="center">Let's find out why your tummy is upset
-</h4>
   <br>
   <h4 align="center">
    <img src="https://github.com/user-attachments/assets/3ee6f0c1-8a84-42b0-8bf6-122e44b89865" width="350" h="auto"/>

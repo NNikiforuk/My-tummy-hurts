@@ -26,12 +26,12 @@ struct My_tummy_hurtsApp: App {
                     WelcomeView(isOnboarding: $isOnboarding)
                         .navigationTitle("")
                         .navigationBarTitleDisplayMode(.inline)
-                        .toolbar {
-                            ToolbarItem(placement: .topBarTrailing) {
-                                ToolbarSkipButton(isOnboarding: $isOnboarding)
-                            }
-                        }
-                        .toolbarBackground(.visible, for: .navigationBar)
+//                        .toolbar {
+//                            ToolbarItem(placement: .topBarTrailing) {
+//                                ToolbarSkipButton(isOnboarding: $isOnboarding)
+//                            }
+//                        }
+//                        .toolbarBackground(.visible, for: .navigationBar)
                 } else {
                     HomeView(isOnboarding: $isOnboarding)
                 }

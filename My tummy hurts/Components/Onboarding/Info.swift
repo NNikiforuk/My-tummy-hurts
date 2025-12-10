@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import StoreKit
 
 struct Info: View {
     @Binding var isOnboarding: Bool
     @Environment(\.dynamicTypeSize) var sizeCategory
     @Environment(\.dismiss) var dismiss
+    @Environment(\.requestReview) var requestReview
     
     var body: some View {
         ScrollView {
@@ -50,6 +52,9 @@ struct Info: View {
                 .padding(.top, 50)
             }
             .padding()
+            .onAppear {
+                requestReview()
+            }
         }
     }
     
